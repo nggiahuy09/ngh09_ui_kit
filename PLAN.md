@@ -247,11 +247,28 @@ qua GitHub OIDC, không cần token).
 - [x] Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue (cả package & example),
       `flutter test` 18/18 pass.
 
-**Bước 3 — Hạ tầng test & catalog**
-- [ ] `test/flutter_test_config.dart` (alchemist + font).
-- [ ] Khởi tạo `widgetbook/` app + addons; viết use case đầu tiên cho 1 component mẫu.
-- [ ] Viết 1 component mẫu (AppButton) end-to-end: code → doc → usecase → widget test → golden.
-      Đây là **template** để nhân bản cho các component sau.
+**Bước 3 — Hạ tầng test & catalog** ✅ ĐÃ XONG (2026-06-21)
+- [x] `test/flutter_test_config.dart`: bọc `AlchemistConfig.runWithConfig`, tắt platform
+      goldens (chỉ giữ CI goldens — pixel-exact, ổn định mọi máy); alchemist tự load font.
+- [x] Khởi tạo `widgetbook/` (project con, `path: ../`, `widgetbook ^3.0.0` → resolve 3.21.0).
+      `main.dart`: `Widgetbook.material` + directories (Category→Folder→Component), khai báo
+      use case **bằng tay** (không code-gen). Addons: `MaterialThemeAddon` (Light/Dark dùng
+      `AppTheme.light/dark`), `TextScaleAddon`, `AlignmentAddon`, `ViewportAddon`
+      (thay `DeviceFrameAddon` đã deprecated). Thêm platform `web` để build styleguide.
+- [x] **AppButton** end-to-end (template cho các component sau):
+      - Code: `button_variant.dart` (enum `ButtonVariant` filled/tonal/outlined/text +
+        `ButtonSize` sm/md/lg), `app_button.dart` (4 named ctor, leading/trailing icon,
+        `isLoading`/`disabled`/`expanded`, đọc 100% từ semantic token qua `context.*`,
+        không hardcode). Export qua barrel.
+      - Doc `///` đầy đủ cho class + mọi public member (đạt pub points).
+      - Use case Widgetbook: Playground (knobs cho mọi prop), Variants, Sizes.
+      - Widget test (14 ca): render, tap callback, disabled/loading, ẩn icon khi loading,
+        a11y semantics (`matchesSemantics`), map named-ctor→variant, expanded width.
+      - Golden test (alchemist, 4 file): variants×{light,dark}, sizes, states
+        (loading dùng `pumpBeforeTest: pumpOnce` tránh spinner vô hạn).
+- [x] Kiểm chứng: `dart format` sạch (24 file), `flutter analyze --fatal-infos` 0 issue
+      (package + example + widgetbook), `flutter test` 36/36 pass (gồm golden compare),
+      `flutter build web` (widgetbook) build thành công.
 
 **Bước 4 — Build components (Phase B → C → D)**
 - [ ] Lặp lại pattern của AppButton cho từng component theo thứ tự ưu tiên.
