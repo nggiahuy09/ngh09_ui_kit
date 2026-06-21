@@ -1,3 +1,5 @@
+import 'dart:ui' show lerpDouble;
+
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/tokens/spacing.dart';
 
@@ -8,50 +10,71 @@ import 'package:ngh09_ui_kit/src/tokens/spacing.dart';
 class AppSpacing extends ThemeExtension<AppSpacing> {
   /// Creates a spacing set.
   const AppSpacing({
+    required this.xxs,
     required this.xs,
     required this.sm,
+    required this.smd,
     required this.md,
     required this.lg,
     required this.xl,
+    required this.xxl,
   });
 
   /// The default spacing scale.
   const AppSpacing.standard()
-    : xs = SpacingTokens.xs,
+    : xxs = SpacingTokens.xxs,
+      xs = SpacingTokens.xs,
       sm = SpacingTokens.sm,
+      smd = SpacingTokens.smd,
       md = SpacingTokens.md,
       lg = SpacingTokens.lg,
-      xl = SpacingTokens.xl;
+      xl = SpacingTokens.xl,
+      xxl = SpacingTokens.xxl;
 
-  /// Extra-small spacing.
+  /// Extra-extra-small spacing (2).
+  final double xxs;
+
+  /// Extra-small spacing (4).
   final double xs;
 
-  /// Small spacing.
+  /// Small spacing (8).
   final double sm;
 
-  /// Medium spacing (the default unit).
+  /// Small-medium spacing (12).
+  final double smd;
+
+  /// Medium spacing — the default unit (16).
   final double md;
 
-  /// Large spacing.
+  /// Large spacing (24).
   final double lg;
 
-  /// Extra-large spacing.
+  /// Extra-large spacing (32).
   final double xl;
+
+  /// Extra-extra-large spacing (48).
+  final double xxl;
 
   @override
   AppSpacing copyWith({
+    double? xxs,
     double? xs,
     double? sm,
+    double? smd,
     double? md,
     double? lg,
     double? xl,
+    double? xxl,
   }) {
     return AppSpacing(
+      xxs: xxs ?? this.xxs,
       xs: xs ?? this.xs,
       sm: sm ?? this.sm,
+      smd: smd ?? this.smd,
       md: md ?? this.md,
       lg: lg ?? this.lg,
       xl: xl ?? this.xl,
+      xxl: xxl ?? this.xxl,
     );
   }
 
@@ -59,14 +82,14 @@ class AppSpacing extends ThemeExtension<AppSpacing> {
   AppSpacing lerp(ThemeExtension<AppSpacing>? other, double t) {
     if (other is! AppSpacing) return this;
     return AppSpacing(
-      xs: lerpDouble(xs, other.xs, t),
-      sm: lerpDouble(sm, other.sm, t),
-      md: lerpDouble(md, other.md, t),
-      lg: lerpDouble(lg, other.lg, t),
-      xl: lerpDouble(xl, other.xl, t),
+      xxs: lerpDouble(xxs, other.xxs, t)!,
+      xs: lerpDouble(xs, other.xs, t)!,
+      sm: lerpDouble(sm, other.sm, t)!,
+      smd: lerpDouble(smd, other.smd, t)!,
+      md: lerpDouble(md, other.md, t)!,
+      lg: lerpDouble(lg, other.lg, t)!,
+      xl: lerpDouble(xl, other.xl, t)!,
+      xxl: lerpDouble(xxl, other.xxl, t)!,
     );
   }
-
-  /// Linearly interpolates between two doubles (spacing never animates `null`).
-  static double lerpDouble(double a, double b, double t) => a + (b - a) * t;
 }

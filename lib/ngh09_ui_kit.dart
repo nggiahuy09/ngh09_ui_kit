@@ -27,5 +27,6 @@ export 'src/tokens/spacing.dart';
 export 'src/tokens/typography.dart';
 // Utilities.
 export 'src/utils/context_extensions.dart';
+export 'src/utils/responsive.dart';
 
 // Components are exported here as they are implemented (Phase B onward).

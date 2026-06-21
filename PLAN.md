@@ -229,9 +229,23 @@ qua GitHub OIDC, không cần token).
 > Ghi chú môi trường: dùng **fvm Flutter 3.35.6 / Dart 3.9.2** (`fvm use 3.35.6`) vì
 > `very_good_analysis ^10` yêu cầu Dart ≥3.9.
 
-**Bước 2 — Foundation (Phase A)**
-- [ ] Implement `tokens/` → `theme/` (extensions + buildTheme) → `context_extensions`.
-- [ ] Unit test tokens & theme mapping.
+**Bước 2 — Foundation (Phase A)** ✅ ĐÃ XONG (2026-06-21)
+- [x] `tokens/`: palette đầy đủ (brand/neutral 50–900 + status success/warning/danger/info),
+      spacing 4pt (none…xxl), type scale Material 3 (display→label) với weights & line-heights.
+      `radii/elevation/durations/breakpoints` giữ nguyên (đã hợp lý).
+- [x] `theme/`: `AppColors` (semantic roles đầy đủ + `toColorScheme()`), `AppTypography`
+      (15 type roles + `toTextTheme()`), `AppSpacing`, `AppRadii` (+ `BorderRadius` getters).
+      Mỗi extension có `copyWith` + `lerp`.
+- [x] `AppTheme.light()/dark()`: build `ThemeData` M3, chiếu semantic colors→`ColorScheme`,
+      typography→`TextTheme`, gắn 4 extensions; nhận custom `colors`/`typography` để brand.
+- [x] `utils/context_extensions.dart` (`context.colors/spacing/radii/textStyles/isDarkMode`
+      + MediaQuery helpers) và `utils/responsive.dart` (`ScreenType`, `responsiveValue`,
+      `ResponsiveBuilder`). Export qua barrel.
+- [x] Unit test tokens & theme mapping (18 test: token scale, color→scheme, type→texttheme,
+      lerp/copyWith, ScreenType breakpoints, context extensions, ResponsiveBuilder).
+- [x] Dọn `example/` (xoá widget_test cũ, sửa `analysis_options`, cập nhật demo dùng type scale mới).
+- [x] Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue (cả package & example),
+      `flutter test` 18/18 pass.
 
 **Bước 3 — Hạ tầng test & catalog**
 - [ ] `test/flutter_test_config.dart` (alchemist + font).
