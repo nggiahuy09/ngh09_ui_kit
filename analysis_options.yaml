@@ -1,0 +1,20 @@
+# Strict lint set for a publishable UI kit.
+# very_good_analysis is stricter than flutter_lints and enables
+# public_member_api_docs (important for pub.dev documentation score).
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "example/**"
+    - "widgetbook/**"
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    # Allow flexible widget constructor ordering common in UI code.
+    sort_constructors_first: false

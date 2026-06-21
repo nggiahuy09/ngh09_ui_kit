@@ -1,0 +1,7 @@
+# The example app reuses the package's strict lint set so demos stay idiomatic.
+include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    # Demo entry points are fine without library-level docs.
+    public_member_api_docs: false

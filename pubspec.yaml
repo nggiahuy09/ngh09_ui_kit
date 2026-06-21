@@ -1,0 +1,31 @@
+name: ngh09_ui_kit
+description: >-
+  A Material 3 based Flutter UI kit and design system with design tokens,
+  themeable components, and a Widgetbook catalog.
+version: 0.1.0
+repository: https://github.com/ngh09/ngh09_ui_kit
+homepage: https://github.com/ngh09/ngh09_ui_kit
+issue_tracker: https://github.com/ngh09/ngh09_ui_kit/issues
+
+environment:
+  sdk: ^3.9.0
+  flutter: ">=3.35.0"
+
+# Keep runtime dependencies minimal — a UI kit should not pull heavy packages.
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  # Golden / snapshot testing for components (CI-stable fonts & shadows).
+  alchemist: ^0.14.0
+  flutter_test:
+    sdk: flutter
+  # Stricter lint set than flutter_lints (enables public_member_api_docs etc.).
+  very_good_analysis: ^10.0.0
+
+# NOTE: Widgetbook lives in the standalone `widgetbook/` project (path-depends on
+# this package) so its dependencies never leak into this publishable package.
+
+flutter:
+  uses-material-design: true

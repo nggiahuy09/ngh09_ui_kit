@@ -1,0 +1,24 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+pubspec.lock
+
+# IDE
+*.iml
+.idea/
+.vscode/
+
+# fvm
+.fvm/
+
+# macOS
+.DS_Store
+
+# Coverage
+coverage/
+
+# Golden test failures (alchemist writes failure diffs here)
+**/failures/
