@@ -11,6 +11,9 @@
 /// re-exported here form the public API.
 library;
 
+// Components (Phase B onward).
+export 'src/components/buttons/app_button.dart';
+export 'src/components/buttons/button_variant.dart';
 // Foundation — semantic theme layer.
 export 'src/theme/app_colors.dart';
 export 'src/theme/app_radii.dart';
@@ -28,5 +31,3 @@ export 'src/tokens/typography.dart';
 // Utilities.
 export 'src/utils/context_extensions.dart';
 export 'src/utils/responsive.dart';
-
-// Components are exported here as they are implemented (Phase B onward).
