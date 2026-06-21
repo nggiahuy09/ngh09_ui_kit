@@ -1,16 +1,69 @@
 # ngh09_ui_kit
 
-A new Flutter project.
+A Material 3 based Flutter **UI kit & design system**: design tokens, a semantic
+theme layer built on `ThemeExtension`, themeable components, and a Widgetbook
+catalog.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Two-tier design tokens** — primitive tokens (`ColorTokens`, `SpacingTokens`, …)
+  mapped to a semantic layer (`AppColors`, `AppSpacing`, …) so re-theming touches
+  one place.
+- **Material 3** — light & dark `ThemeData` via `AppTheme.light()` / `AppTheme.dark()`.
+- **Ergonomic access** — read tokens with `context.colors`, `context.spacing`,
+  `context.radii`, `context.textStyles`.
+- Components are added incrementally (see the roadmap in `PLAN.md`).
 
-A few resources to get you started if this is your first Flutter project:
+## Getting started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Add the dependency:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```yaml
+dependencies:
+  ngh09_ui_kit: ^0.1.0
+```
+
+## Usage
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      home: Builder(
+        builder: (context) => Scaffold(
+          backgroundColor: context.colors.background,
+          body: Center(
+            child: Text('Hello', style: context.textStyles.display),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+See the [`example/`](example/) app for a runnable demo and `PLAN.md` for the
+full architecture and roadmap.
+
+## Development
+
+```bash
+flutter pub get
+dart format .
+flutter analyze
+flutter test
+```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
