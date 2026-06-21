@@ -120,29 +120,80 @@ ngh09_ui_kit/
 
 ## 2. Các thành phần cần implement (theo thứ tự ưu tiên)
 
-### Phase A — Foundation (làm trước, mọi thứ phụ thuộc vào đây)
+> **Trạng thái hiện tại (2026-06-21):** Foundation (Phase A) ✅ và **AppButton** ✅ đã xong.
+> Các component bên dưới là roadmap kế tiếp. Token set hiện tại **đã đủ** để build phần lớn
+> các component này mà không cần thêm token mới — đặc biệt status colors
+> (`success`/`warning`/`danger`/`info` + `on*`), surfaces, outline, elevation đã sẵn sàng.
+
+### Phase A — Foundation (làm trước, mọi thứ phụ thuộc vào đây) ✅
 1. **Design tokens** (`tokens/`): color palette, spacing scale (4/8pt), typography scale,
    radii, elevation, durations.
 2. **ThemeExtensions** (`theme/`): `AppColors`, `AppTypography`, `AppSpacing`, `AppRadii`.
 3. **AppTheme**: `buildLightTheme()`, `buildDarkTheme()` trả `ThemeData` đã gắn extensions.
 4. **Context extensions**: `context.colors`, `context.spacing`, `context.textStyles`.
 
-### Phase B — Core components (dùng nhiều nhất)
-5. **AppButton** (variants: filled / tonal / outlined / text; sizes: sm/md/lg; states:
+### Phase B — Core components ✅ (một phần) — dùng nhiều nhất
+5. **AppButton** ✅ (variants: filled / tonal / outlined / text; sizes: sm/md/lg; states:
    loading, disabled; leading/trailing icon).
-6. **AppTextField** (label, hint, error, prefix/suffix, helper, obscure).
-7. **AppCard**, **AppGap** (spacing helper).
-8. **Typography widget** (`AppText` với style ngữ nghĩa: `displayLarge`, `bodyMedium`...).
 
-### Phase C — Form & feedback
-9. AppCheckbox, AppRadio, AppSwitch, AppDropdown.
-10. AppDialog, AppSnackbar/Toast, AppLoading (spinner/skeleton).
+### Phase C — Forms & input (ưu tiên cao nhất kế tiếp)
 
-### Phase D — Display & navigation
-11. AppBadge, AppAvatar, AppChip, AppDivider.
-12. AppAppBar, AppTabBar, AppBottomNav, AppScaffold.
+> Đây là nhóm "đáng tiền" nhất sau button. Bắt đầu bằng **AppTextField** vì nó thiết lập
+> quy ước trạng thái focus/error/disabled mà checkbox/switch/dropdown sẽ kế thừa.
 
-> Mỗi component khi "xong" = code + doc comment `///` + use case Widgetbook + widget test + golden test.
+6. **AppTextField** — `inputs/app_text_field.dart`
+   - Variants: `outlined` / `filled` (enum `TextFieldVariant`).
+   - States: default / focused / error / disabled.
+   - Props: `label`, `hint`, `helperText`, `errorText`, `prefix`/`suffix` (icon hoặc widget),
+     `obscureText`, `maxLines`, `keyboardType`, `onChanged`, `controller`.
+   - Token: viền dùng `outline`/`primary`/`danger`; nền filled dùng `surfaceVariant`.
+   - ⚠️ Component **stateful** đầu tiên — chốt convention focus/error tại đây.
+7. **AppCheckbox** — `inputs/app_checkbox.dart` — tri-state tùy chọn, label đi kèm, disabled.
+8. **AppRadio** / **AppRadioGroup** — `inputs/app_radio.dart` — generic `<T>`, group quản lý value.
+9. **AppSwitch** — `inputs/app_switch.dart` — on/off, label, disabled; dùng `primary`/`outline`.
+10. **AppDropdown / AppSelect** — `inputs/app_dropdown.dart` — generic `<T>`, menu-backed,
+    có label/hint/error giống AppTextField.
+
+### Phase D — Display & feedback (status tokens đã sẵn sàng cho nhóm này)
+
+11. **AppBadge** — `display/app_badge.dart` — count + dot, variant theo status
+    (`neutral`/`success`/`warning`/`danger`/`info`). **Nhỏ, reuse cao → ứng viên template tốt.**
+12. **AppChip** — `display/app_chip.dart` — `input` / `filter` / `choice`; selected dùng
+    `primaryContainer`; hỗ trợ leading icon + onDeleted.
+13. **AppAlert / AppBanner** — `feedback/app_alert.dart` — inline status messaging, map 1:1
+    với 4 status color; có title/description/icon + action tùy chọn.
+14. **AppCard** — `display/app_card.dart` — surface + elevation token; variants
+    `elevated`/`outlined`/`filled`; slot header/body/footer.
+15. **AppAvatar** — `display/app_avatar.dart` — image / initials / icon fallback; sizes sm/md/lg.
+16. **AppDivider** — `display/app_divider.dart` — horizontal/vertical, dùng `outlineVariant`.
+
+### Phase E — Indicators & overlays
+
+17. **AppProgressIndicator** — `feedback/app_progress.dart` — linear + circular, xác định/không
+    xác định. **Tách spinner đang nằm trong `AppButton._ButtonContent` ra dùng chung.**
+18. **AppSkeleton / Shimmer** — `feedback/app_skeleton.dart` — placeholder loading.
+19. **AppTooltip** — `feedback/app_tooltip.dart`.
+20. **AppSnackbar / Toast** — `feedback/app_snackbar.dart` — status variants, action.
+21. **AppDialog** — `feedback/app_dialog.dart` — alert/confirm, dùng `AppButton` cho actions.
+22. **AppBottomSheet** — `feedback/app_bottom_sheet.dart` — modal/persistent.
+
+### Phase F — Layout & navigation
+
+23. **AppListTile** — `layout/app_list_tile.dart` — leading/title/subtitle/trailing.
+24. **AppGap** — `layout/app_gap.dart` — `Gap(context.spacing.md)` helper.
+25. **AppTabs** — `navigation/app_tabs.dart`.
+26. **AppAppBar** — `navigation/app_app_bar.dart`.
+27. **AppBottomNav** — `navigation/app_bottom_nav.dart`.
+28. **AppScaffold** — `layout/app_scaffold.dart` — wrap Material Scaffold với token mặc định.
+29. **AppText** (tùy chọn) — typography widget với style ngữ nghĩa (`displayLarge`, `bodyMedium`…).
+
+> **Thứ tự đề xuất bắt đầu Phase tiếp theo:**
+> 1. **AppBadge** (Phase D) — nhỏ, stateless, làm template sạch cho status colors + radii.
+> 2. **AppChip** (Phase D) — củng cố pattern variant+selected state.
+> 3. **AppTextField** (Phase C) — component stateful đầu tiên, giá trị cao nhất.
+
+> Mỗi component khi "xong" = code + doc comment `///` + use case Widgetbook + widget test + golden test
+> (xem mục 9 — Định nghĩa "Done").
 
 ---
 
