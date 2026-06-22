@@ -9,6 +9,7 @@ void main() {
       expect(theme.extension<GHAppColors>(), isNotNull);
       expect(theme.extension<GHAppSpacing>(), isNotNull);
       expect(theme.extension<GHAppRadii>(), isNotNull);
+      expect(theme.extension<GHAppShadows>(), isNotNull);
       expect(theme.extension<GHAppTypography>(), isNotNull);
       expect(theme.brightness, Brightness.light);
       expect(theme.useMaterial3, isTrue);

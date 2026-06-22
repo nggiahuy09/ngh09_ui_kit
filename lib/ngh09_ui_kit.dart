@@ -21,6 +21,7 @@ export 'src/components/display/chip_variant.dart';
 // Foundation — semantic theme layer.
 export 'src/theme/app_colors.dart';
 export 'src/theme/app_radii.dart';
+export 'src/theme/app_shadows.dart';
 export 'src/theme/app_spacing.dart';
 export 'src/theme/app_theme.dart';
 export 'src/theme/app_typography.dart';
@@ -28,8 +29,8 @@ export 'src/theme/app_typography.dart';
 export 'src/tokens/breakpoints.dart';
 export 'src/tokens/colors.dart';
 export 'src/tokens/durations.dart';
-export 'src/tokens/elevation.dart';
 export 'src/tokens/radii.dart';
+export 'src/tokens/shadows.dart';
 export 'src/tokens/spacing.dart';
 export 'src/tokens/typography.dart';
 // Utilities.
