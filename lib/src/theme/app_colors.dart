@@ -12,10 +12,10 @@ import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 /// * **Borders** — [outline], [outlineVariant].
 /// * **Status** — [success], [warning], [danger], [info] and their `on*`.
 @immutable
-class AppColors extends ThemeExtension<AppColors> {
-  /// Creates a semantic color set. Prefer the [AppColors.light] and
-  /// [AppColors.dark] presets unless you are building a custom brand theme.
-  const AppColors({
+class GHAppColors extends ThemeExtension<GHAppColors> {
+  /// Creates a semantic color set. Prefer the [GHAppColors.light] and
+  /// [GHAppColors.dark] presets unless you are building a custom brand theme.
+  const GHAppColors({
     required this.brightness,
     required this.primary,
     required this.onPrimary,
@@ -40,7 +40,7 @@ class AppColors extends ThemeExtension<AppColors> {
   });
 
   /// The default light color set.
-  const AppColors.light()
+  const GHAppColors.light()
     : brightness = Brightness.light,
       primary = ColorTokens.brand500,
       onPrimary = ColorTokens.white,
@@ -64,7 +64,7 @@ class AppColors extends ThemeExtension<AppColors> {
       onInfo = ColorTokens.white;
 
   /// The default dark color set.
-  const AppColors.dark()
+  const GHAppColors.dark()
     : brightness = Brightness.dark,
       primary = ColorTokens.brand300,
       onPrimary = ColorTokens.brand900,
@@ -175,7 +175,7 @@ class AppColors extends ThemeExtension<AppColors> {
   }
 
   @override
-  AppColors copyWith({
+  GHAppColors copyWith({
     Brightness? brightness,
     Color? primary,
     Color? onPrimary,
@@ -198,7 +198,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? info,
     Color? onInfo,
   }) {
-    return AppColors(
+    return GHAppColors(
       brightness: brightness ?? this.brightness,
       primary: primary ?? this.primary,
       onPrimary: onPrimary ?? this.onPrimary,
@@ -224,9 +224,9 @@ class AppColors extends ThemeExtension<AppColors> {
   }
 
   @override
-  AppColors lerp(ThemeExtension<AppColors>? other, double t) {
-    if (other is! AppColors) return this;
-    return AppColors(
+  GHAppColors lerp(ThemeExtension<GHAppColors>? other, double t) {
+    if (other is! GHAppColors) return this;
+    return GHAppColors(
       brightness: t < 0.5 ? brightness : other.brightness,
       primary: Color.lerp(primary, other.primary, t)!,
       onPrimary: Color.lerp(onPrimary, other.onPrimary, t)!,

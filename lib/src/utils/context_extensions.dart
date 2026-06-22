@@ -16,25 +16,26 @@ import 'package:ngh09_ui_kit/src/tokens/breakpoints.dart';
 /// SizedBox(height: context.spacing.md);
 /// Text('Hi', style: context.textStyles.titleLarge);
 /// ```
-extension AppThemeContext on BuildContext {
+extension GHAppThemeContext on BuildContext {
   /// The semantic color set for the current theme.
-  AppColors get colors => Theme.of(this).extension<AppColors>()!;
+  GHAppColors get colors => Theme.of(this).extension<GHAppColors>()!;
 
   /// The semantic spacing scale for the current theme.
-  AppSpacing get spacing => Theme.of(this).extension<AppSpacing>()!;
+  GHAppSpacing get spacing => Theme.of(this).extension<GHAppSpacing>()!;
 
   /// The semantic radius scale for the current theme.
-  AppRadii get radii => Theme.of(this).extension<AppRadii>()!;
+  GHAppRadii get radii => Theme.of(this).extension<GHAppRadii>()!;
 
   /// The semantic text styles for the current theme.
-  AppTypography get textStyles => Theme.of(this).extension<AppTypography>()!;
+  GHAppTypography get textStyles =>
+      Theme.of(this).extension<GHAppTypography>()!;
 
   /// Whether the active theme is dark.
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }
 
 /// Shortcuts for layout-related `MediaQuery` values and responsive checks.
-extension AppMediaQueryContext on BuildContext {
+extension GHAppMediaQueryContext on BuildContext {
   /// The current logical screen size.
   Size get screenSize => MediaQuery.sizeOf(this);
 

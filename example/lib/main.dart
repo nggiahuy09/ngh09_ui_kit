@@ -29,8 +29,8 @@ class _ExampleAppState extends State<ExampleApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ngh09_ui_kit example',
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
+      theme: GHAppTheme.light(),
+      darkTheme: GHAppTheme.dark(),
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
       home: FoundationGallery(

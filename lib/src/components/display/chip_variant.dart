@@ -1,4 +1,4 @@
-/// The interaction model of an `AppChip`.
+/// The interaction model of an `GHAppChip`.
 ///
 /// Variants follow the Material 3 chip families but are resolved against the
 /// kit's semantic color roles (`context.colors`) rather than the raw
@@ -18,7 +18,7 @@ enum ChipVariant {
   choice,
 }
 
-/// The size of an `AppChip`, controlling height, padding and label style.
+/// The size of an `GHAppChip`, controlling height, padding and label style.
 enum ChipSize {
   /// Compact chip — for dense layouts.
   small,

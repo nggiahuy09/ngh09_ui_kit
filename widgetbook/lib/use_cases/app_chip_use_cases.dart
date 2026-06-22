@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-/// The Widgetbook component entry for [AppChip], grouping all of its use cases.
+/// The Widgetbook component entry for [GHAppChip], grouping all of its use
+/// cases.
 ///
 /// Declared by hand (no code generation) so the catalog stays a plain Dart
 /// project that anyone can read and extend.
 WidgetbookComponent buildAppChipComponent() {
   return WidgetbookComponent(
-    name: 'AppChip',
+    name: 'GHAppChip',
     useCases: [
       WidgetbookUseCase(
         name: 'Playground',
@@ -52,7 +53,7 @@ Widget _playgroundUseCase(BuildContext context) {
   final deletable = knobs.boolean(label: 'Deletable (input)');
 
   return Center(
-    child: AppChip(
+    child: GHAppChip(
       label: label,
       variant: variant,
       size: size,
@@ -75,23 +76,31 @@ Widget _variantsUseCase(BuildContext context) {
       runSpacing: context.spacing.md,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        AppChip.input(
+        GHAppChip.input(
           label: 'input',
           leading: const Icon(Icons.tag),
           onDeleted: () {},
         ),
-        AppChip.filter(
+        GHAppChip.filter(
           label: 'filter off',
           selected: false,
           onSelected: (_) {},
         ),
-        AppChip.filter(label: 'filter on', selected: true, onSelected: (_) {}),
-        AppChip.choice(
+        GHAppChip.filter(
+          label: 'filter on',
+          selected: true,
+          onSelected: (_) {},
+        ),
+        GHAppChip.choice(
           label: 'choice off',
           selected: false,
           onSelected: (_) {},
         ),
-        AppChip.choice(label: 'choice on', selected: true, onSelected: (_) {}),
+        GHAppChip.choice(
+          label: 'choice on',
+          selected: true,
+          onSelected: (_) {},
+        ),
       ],
     ),
   );
@@ -106,7 +115,7 @@ Widget _sizesUseCase(BuildContext context) {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         for (final size in ChipSize.values)
-          AppChip.filter(
+          GHAppChip.filter(
             label: size.name,
             selected: true,
             size: size,

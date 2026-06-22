@@ -6,7 +6,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable button built on the kit's semantic tokens.
 ///
-/// `AppButton` is the canonical action component. It supports four
+/// `GHAppButton` is the canonical action component. It supports four
 /// [ButtonVariant]s (filled / tonal / outlined / text), three [ButtonSize]s,
 /// optional [leading]/[trailing] icons, and `loading`/`disabled` states.
 ///
@@ -16,13 +16,13 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// hardcoded.
 ///
 /// ```dart
-/// AppButton(
+/// GHAppButton(
 ///   label: 'Save',
 ///   onPressed: _save,
 ///   leading: const Icon(Icons.check),
 /// );
 ///
-/// AppButton.outlined(
+/// GHAppButton.outlined(
 ///   label: 'Cancel',
 ///   size: ButtonSize.small,
 ///   onPressed: _cancel,
@@ -32,10 +32,10 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// A button is disabled when [onPressed] is `null` or [isLoading] is `true`.
 /// While [isLoading] it shows a progress indicator in place of the icons and
 /// ignores taps, but keeps its label and footprint so the layout does not jump.
-class AppButton extends StatelessWidget {
+class GHAppButton extends StatelessWidget {
   /// Creates a button with an explicit [variant] (defaults to
   /// [ButtonVariant.filled]).
-  const AppButton({
+  const GHAppButton({
     required this.label,
     this.onPressed,
     this.variant = ButtonVariant.filled,
@@ -48,7 +48,7 @@ class AppButton extends StatelessWidget {
   });
 
   /// Creates a high-emphasis [ButtonVariant.filled] button.
-  const AppButton.filled({
+  const GHAppButton.filled({
     required this.label,
     this.onPressed,
     this.size = ButtonSize.medium,
@@ -60,7 +60,7 @@ class AppButton extends StatelessWidget {
   }) : variant = ButtonVariant.filled;
 
   /// Creates a medium-emphasis [ButtonVariant.tonal] button.
-  const AppButton.tonal({
+  const GHAppButton.tonal({
     required this.label,
     this.onPressed,
     this.size = ButtonSize.medium,
@@ -72,7 +72,7 @@ class AppButton extends StatelessWidget {
   }) : variant = ButtonVariant.tonal;
 
   /// Creates a medium-emphasis [ButtonVariant.outlined] button.
-  const AppButton.outlined({
+  const GHAppButton.outlined({
     required this.label,
     this.onPressed,
     this.size = ButtonSize.medium,
@@ -84,7 +84,7 @@ class AppButton extends StatelessWidget {
   }) : variant = ButtonVariant.outlined;
 
   /// Creates a low-emphasis [ButtonVariant.text] button.
-  const AppButton.text({
+  const GHAppButton.text({
     required this.label,
     this.onPressed,
     this.size = ButtonSize.medium,
@@ -210,7 +210,7 @@ class AppButton extends StatelessWidget {
     };
   }
 
-  Color _foregroundColor(AppColors colors) {
+  Color _foregroundColor(GHAppColors colors) {
     return switch (variant) {
       ButtonVariant.filled => colors.onPrimary,
       ButtonVariant.tonal => colors.onPrimaryContainer,
@@ -219,7 +219,7 @@ class AppButton extends StatelessWidget {
     };
   }
 
-  Color? _backgroundColor(AppColors colors) {
+  Color? _backgroundColor(GHAppColors colors) {
     return switch (variant) {
       ButtonVariant.filled => colors.primary,
       ButtonVariant.tonal => colors.primaryContainer,
@@ -247,7 +247,7 @@ class AppButton extends StatelessWidget {
   };
 }
 
-/// Lays out the leading icon, label and trailing icon of an [AppButton],
+/// Lays out the leading icon, label and trailing icon of an [GHAppButton],
 /// swapping the icons for a progress indicator while loading.
 class _ButtonContent extends StatelessWidget {
   const _ButtonContent({

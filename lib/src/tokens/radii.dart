@@ -1,6 +1,6 @@
 /// Primitive border-radius scale.
 ///
-/// Low-level tokens; consumed by the semantic theme layer (`AppRadii`).
+/// Low-level tokens; consumed by the semantic theme layer (`GHAppRadii`).
 abstract final class RadiusTokens {
   /// No rounding.
   static const double none = 0;

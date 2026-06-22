@@ -7,32 +7,33 @@ import 'package:ngh09_ui_kit/src/theme/app_typography.dart';
 /// Entry point for building the UI kit's [ThemeData].
 ///
 /// Wraps Material 3 and attaches the kit's semantic [ThemeExtension]s
-/// ([AppColors], [AppSpacing], [AppRadii], [AppTypography]) so components can
-/// read tokens via `context.colors`, `context.spacing`, etc. The semantic
+/// ([GHAppColors], [GHAppSpacing], [GHAppRadii], [GHAppTypography]) so
+/// components can read tokens via `context.colors`, `context.spacing`, etc.
+/// The semantic
 /// colors and typography are also projected onto the underlying Material
 /// [ColorScheme] and [TextTheme] so built-in Material widgets stay consistent.
-abstract final class AppTheme {
+abstract final class GHAppTheme {
   /// Builds the light [ThemeData] for the UI kit.
   ///
   /// Pass a custom [colors]/[typography] to brand the kit; the defaults are
-  /// [AppColors.light] and [AppTypography.standard].
+  /// [GHAppColors.light] and [GHAppTypography.standard].
   static ThemeData light({
-    AppColors colors = const AppColors.light(),
-    AppTypography typography = const AppTypography.standard(),
+    GHAppColors colors = const GHAppColors.light(),
+    GHAppTypography typography = const GHAppTypography.standard(),
   }) => _build(colors: colors, typography: typography);
 
   /// Builds the dark [ThemeData] for the UI kit.
   static ThemeData dark({
-    AppColors colors = const AppColors.dark(),
-    AppTypography typography = const AppTypography.standard(),
+    GHAppColors colors = const GHAppColors.dark(),
+    GHAppTypography typography = const GHAppTypography.standard(),
   }) => _build(colors: colors, typography: typography);
 
   static ThemeData _build({
-    required AppColors colors,
-    required AppTypography typography,
+    required GHAppColors colors,
+    required GHAppTypography typography,
   }) {
-    const spacing = AppSpacing.standard();
-    const radii = AppRadii.standard();
+    const spacing = GHAppSpacing.standard();
+    const radii = GHAppRadii.standard();
     final colorScheme = colors.toColorScheme();
     final textTheme = typography.toTextTheme();
 

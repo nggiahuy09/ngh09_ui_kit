@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/theme/app_colors.dart';
 
-/// The semantic status conveyed by an `AppBadge`.
+/// The semantic status conveyed by an `GHAppBadge`.
 ///
 /// Each status maps to one of the kit's semantic color roles
 /// (`context.colors`) so badges re-theme along with the rest of the kit and
@@ -23,7 +23,7 @@ enum BadgeStatus {
   info;
 
   /// Resolves the background color for this status from [colors].
-  Color background(AppColors colors) => switch (this) {
+  Color background(GHAppColors colors) => switch (this) {
     BadgeStatus.neutral => colors.surfaceVariant,
     BadgeStatus.success => colors.success,
     BadgeStatus.warning => colors.warning,
@@ -32,7 +32,7 @@ enum BadgeStatus {
   };
 
   /// Resolves the foreground (content) color for this status from [colors].
-  Color foreground(AppColors colors) => switch (this) {
+  Color foreground(GHAppColors colors) => switch (this) {
     BadgeStatus.neutral => colors.onSurfaceVariant,
     BadgeStatus.success => colors.onSuccess,
     BadgeStatus.warning => colors.onWarning,
@@ -41,7 +41,7 @@ enum BadgeStatus {
   };
 }
 
-/// The size of an `AppBadge`, controlling height, padding and label style.
+/// The size of an `GHAppBadge`, controlling height, padding and label style.
 enum BadgeSize {
   /// Compact badge — for dense layouts.
   small,

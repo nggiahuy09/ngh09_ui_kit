@@ -3,29 +3,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
 void main() {
-  group('AppTheme', () {
+  group('GHAppTheme', () {
     test('light theme attaches all semantic extensions', () {
-      final theme = AppTheme.light();
-      expect(theme.extension<AppColors>(), isNotNull);
-      expect(theme.extension<AppSpacing>(), isNotNull);
-      expect(theme.extension<AppRadii>(), isNotNull);
-      expect(theme.extension<AppTypography>(), isNotNull);
+      final theme = GHAppTheme.light();
+      expect(theme.extension<GHAppColors>(), isNotNull);
+      expect(theme.extension<GHAppSpacing>(), isNotNull);
+      expect(theme.extension<GHAppRadii>(), isNotNull);
+      expect(theme.extension<GHAppTypography>(), isNotNull);
       expect(theme.brightness, Brightness.light);
       expect(theme.useMaterial3, isTrue);
     });
 
     test('dark theme uses the dark color set', () {
-      final theme = AppTheme.dark();
+      final theme = GHAppTheme.dark();
       expect(theme.brightness, Brightness.dark);
       expect(
-        theme.extension<AppColors>()!.background,
+        theme.extension<GHAppColors>()!.background,
         ColorTokens.neutral900,
       );
     });
 
     test('projects semantic colors onto the Material ColorScheme', () {
-      final theme = AppTheme.light();
-      final colors = theme.extension<AppColors>()!;
+      final theme = GHAppTheme.light();
+      final colors = theme.extension<GHAppColors>()!;
       expect(theme.colorScheme.primary, colors.primary);
       expect(theme.colorScheme.surface, colors.surface);
       expect(theme.colorScheme.error, colors.danger);
@@ -33,8 +33,8 @@ void main() {
     });
 
     test('projects semantic typography onto the Material TextTheme', () {
-      final theme = AppTheme.light();
-      final typography = theme.extension<AppTypography>()!;
+      final theme = GHAppTheme.light();
+      final typography = theme.extension<GHAppTypography>()!;
       // ThemeData merges defaults (color, family) onto the styles, so compare
       // the metrics the kit actually controls rather than identity.
       expect(
@@ -52,22 +52,22 @@ void main() {
     });
 
     test('accepts a custom color set for branding', () {
-      const branded = AppColors.light();
+      const branded = GHAppColors.light();
       final custom = branded.copyWith(primary: const Color(0xFF00FF00));
-      final theme = AppTheme.light(colors: custom);
-      expect(theme.extension<AppColors>()!.primary, const Color(0xFF00FF00));
+      final theme = GHAppTheme.light(colors: custom);
+      expect(theme.extension<GHAppColors>()!.primary, const Color(0xFF00FF00));
       expect(theme.colorScheme.primary, const Color(0xFF00FF00));
     });
   });
 
-  group('AppColors', () {
+  group('GHAppColors', () {
     test('light and dark sets carry the correct brightness', () {
-      expect(const AppColors.light().brightness, Brightness.light);
-      expect(const AppColors.dark().brightness, Brightness.dark);
+      expect(const GHAppColors.light().brightness, Brightness.light);
+      expect(const GHAppColors.dark().brightness, Brightness.dark);
     });
 
     test('toColorScheme maps semantic roles', () {
-      const colors = AppColors.light();
+      const colors = GHAppColors.light();
       final scheme = colors.toColorScheme();
       expect(scheme.brightness, Brightness.light);
       expect(scheme.primary, colors.primary);
@@ -76,14 +76,14 @@ void main() {
     });
 
     test('lerp returns the endpoints at t=0 and t=1', () {
-      const a = AppColors.light();
-      const b = AppColors.dark();
+      const a = GHAppColors.light();
+      const b = GHAppColors.dark();
       expect(a.lerp(b, 0).background, a.background);
       expect(a.lerp(b, 1).background, b.background);
     });
 
     test('copyWith overrides only the given roles', () {
-      const base = AppColors.light();
+      const base = GHAppColors.light();
       final next = base.copyWith(danger: const Color(0xFF112233));
       expect(next.danger, const Color(0xFF112233));
       expect(next.primary, base.primary);
@@ -100,15 +100,15 @@ void main() {
       expect(SpacingTokens.xxl, 48);
     });
 
-    test('AppSpacing.standard mirrors the primitive tokens', () {
-      const s = AppSpacing.standard();
+    test('GHAppSpacing.standard mirrors the primitive tokens', () {
+      const s = GHAppSpacing.standard();
       expect(s.xs, SpacingTokens.xs);
       expect(s.md, SpacingTokens.md);
       expect(s.xxl, SpacingTokens.xxl);
     });
 
-    test('AppRadii exposes BorderRadius getters', () {
-      const r = AppRadii.standard();
+    test('GHAppRadii exposes BorderRadius getters', () {
+      const r = GHAppRadii.standard();
       expect(r.borderRadiusMd, BorderRadius.circular(RadiusTokens.md));
       expect(r.borderRadiusFull, BorderRadius.circular(RadiusTokens.full));
     });
@@ -135,15 +135,15 @@ void main() {
 
   group('context extensions', () {
     testWidgets('resolve theme extensions and screen helpers', (tester) async {
-      late AppSpacing spacing;
-      late AppColors colors;
-      late AppTypography typography;
+      late GHAppSpacing spacing;
+      late GHAppColors colors;
+      late GHAppTypography typography;
       late bool isDark;
       late ScreenType screenType;
 
       await tester.pumpWidget(
         MaterialApp(
-          theme: AppTheme.light(),
+          theme: GHAppTheme.light(),
           home: Builder(
             builder: (context) {
               spacing = context.spacing;

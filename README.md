@@ -7,9 +7,9 @@ catalog.
 ## Features
 
 - **Two-tier design tokens** — primitive tokens (`ColorTokens`, `SpacingTokens`, …)
-  mapped to a semantic layer (`AppColors`, `AppSpacing`, …) so re-theming touches
+  mapped to a semantic layer (`GHAppColors`, `GHAppSpacing`, …) so re-theming touches
   one place.
-- **Material 3** — light & dark `ThemeData` via `AppTheme.light()` / `AppTheme.dark()`.
+- **Material 3** — light & dark `ThemeData` via `GHAppTheme.light()` / `GHAppTheme.dark()`.
 - **Ergonomic access** — read tokens with `context.colors`, `context.spacing`,
   `context.radii`, `context.textStyles`.
 - Components are added incrementally (see the roadmap in `PLAN.md`).
@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
+      theme: GHAppTheme.light(),
+      darkTheme: GHAppTheme.dark(),
       home: Builder(
         builder: (context) => Scaffold(
           backgroundColor: context.colors.background,

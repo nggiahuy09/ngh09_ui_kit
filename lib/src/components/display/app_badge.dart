@@ -4,13 +4,13 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A small status indicator built on the kit's semantic tokens.
 ///
-/// `AppBadge` comes in two shapes:
+/// `GHAppBadge` comes in two shapes:
 /// * A **labelled** badge (default constructor) shows short text — typically a
 ///   count or status word — inside a rounded pill.
-/// * A **dot** badge ([AppBadge.dot]) is a tiny filled circle with no label,
+/// * A **dot** badge ([GHAppBadge.dot]) is a tiny filled circle with no label,
 ///   used to flag the presence of something (e.g. unread state).
 ///
-/// A count badge ([AppBadge.count]) is a convenience over the labelled badge
+/// A count badge ([GHAppBadge.count]) is a convenience over the labelled badge
 /// that renders an integer and can clamp large values to `"<max>+"`.
 ///
 /// The [status] selects a semantic color role (`neutral` / `success` /
@@ -20,14 +20,14 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// hardcoded.
 ///
 /// ```dart
-/// const AppBadge(label: 'New', status: BadgeStatus.success);
-/// AppBadge.count(count: 128, max: 99, status: BadgeStatus.danger);
-/// const AppBadge.dot(status: BadgeStatus.warning);
-/// const AppBadge(label: 'Pending', expanded: true);
+/// const GHAppBadge(label: 'New', status: BadgeStatus.success);
+/// GHAppBadge.count(count: 128, max: 99, status: BadgeStatus.danger);
+/// const GHAppBadge.dot(status: BadgeStatus.warning);
+/// const GHAppBadge(label: 'Pending', expanded: true);
 /// ```
-class AppBadge extends StatelessWidget {
+class GHAppBadge extends StatelessWidget {
   /// Creates a labelled badge showing [label].
-  const AppBadge({
+  const GHAppBadge({
     required this.label,
     this.status = BadgeStatus.neutral,
     this.size = BadgeSize.medium,
@@ -36,7 +36,7 @@ class AppBadge extends StatelessWidget {
   }) : _isDot = false;
 
   /// Creates a dot badge — a small filled circle with no label.
-  const AppBadge.dot({
+  const GHAppBadge.dot({
     this.status = BadgeStatus.neutral,
     this.size = BadgeSize.medium,
     super.key,
@@ -48,7 +48,7 @@ class AppBadge extends StatelessWidget {
   ///
   /// When `max` is provided and `count` exceeds it, the label is clamped to
   /// `"<max>+"` (e.g. `count: 128, max: 99` renders `"99+"`).
-  factory AppBadge.count({
+  factory GHAppBadge.count({
     required int count,
     int? max,
     BadgeStatus status = BadgeStatus.neutral,
@@ -57,7 +57,7 @@ class AppBadge extends StatelessWidget {
     Key? key,
   }) {
     final label = (max != null && count > max) ? '$max+' : '$count';
-    return AppBadge(
+    return GHAppBadge(
       label: label,
       status: status,
       size: size,
@@ -66,7 +66,7 @@ class AppBadge extends StatelessWidget {
     );
   }
 
-  /// The badge's text. `null` for a [AppBadge.dot] badge.
+  /// The badge's text. `null` for a [GHAppBadge.dot] badge.
   final String? label;
 
   /// The semantic status, selecting the badge's color. See [BadgeStatus].
@@ -77,7 +77,7 @@ class AppBadge extends StatelessWidget {
 
   /// Whether the badge should stretch to fill the available horizontal space.
   ///
-  /// Has no effect on a [AppBadge.dot] badge, which is always a fixed circle.
+  /// Has no effect on a [GHAppBadge.dot] badge, which is always a fixed circle.
   final bool expanded;
 
   /// Whether this badge renders as a dot rather than a label.

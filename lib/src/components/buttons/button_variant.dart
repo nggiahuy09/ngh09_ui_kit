@@ -1,4 +1,4 @@
-/// The visual emphasis of an `AppButton`.
+/// The visual emphasis of an `GHAppButton`.
 ///
 /// Variants map to the Material 3 button hierarchy but are resolved against the
 /// kit's semantic color roles (`context.colors`) rather than the raw
@@ -19,7 +19,7 @@ enum ButtonVariant {
   text,
 }
 
-/// The size of an `AppButton`, controlling height, padding and label style.
+/// The size of an `GHAppButton`, controlling height, padding and label style.
 enum ButtonSize {
   /// Compact button — for dense layouts and secondary actions.
   small,

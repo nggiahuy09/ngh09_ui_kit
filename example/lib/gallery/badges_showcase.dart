@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// Every [AppBadge] status and shape.
+/// Every [GHAppBadge] status and shape.
 class BadgesShowcase extends StatelessWidget {
   const BadgesShowcase({super.key});
 
@@ -17,7 +17,7 @@ class BadgesShowcase extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             for (final status in BadgeStatus.values)
-              AppBadge(label: status.name, status: status),
+              GHAppBadge(label: status.name, status: status),
           ],
         ),
         SizedBox(height: spacing.md),
@@ -26,13 +26,13 @@ class BadgesShowcase extends StatelessWidget {
           runSpacing: spacing.sm,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            const AppBadge(label: 'New', status: BadgeStatus.info),
-            AppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
-            const AppBadge.dot(status: BadgeStatus.success),
+            const GHAppBadge(label: 'New', status: BadgeStatus.info),
+            GHAppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
+            const GHAppBadge.dot(status: BadgeStatus.success),
           ],
         ),
         SizedBox(height: spacing.md),
-        const AppBadge(
+        const GHAppBadge(
           label: 'Expanded',
           status: BadgeStatus.warning,
           expanded: true,

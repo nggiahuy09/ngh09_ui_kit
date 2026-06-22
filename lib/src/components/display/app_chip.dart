@@ -5,7 +5,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A compact, interactive element built on the kit's semantic tokens.
 ///
-/// `AppChip` covers the three Material 3 chip families through [ChipVariant]:
+/// `GHAppChip` covers the three Material 3 chip families through [ChipVariant]:
 /// * [ChipVariant.input] — a discrete entry (tag, recipient) with an optional
 ///   [leading] icon and a trailing delete affordance ([onDeleted]).
 /// * [ChipVariant.filter] — a toggleable filter reflecting [selected]; tapping
@@ -23,22 +23,22 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// input.
 ///
 /// ```dart
-/// AppChip.filter(
+/// GHAppChip.filter(
 ///   label: 'Unread',
 ///   selected: _unreadOnly,
 ///   onSelected: (value) => setState(() => _unreadOnly = value),
 /// );
 ///
-/// AppChip.input(
+/// GHAppChip.input(
 ///   label: 'design',
 ///   leading: const Icon(Icons.tag),
 ///   onDeleted: () => _removeTag('design'),
 /// );
 /// ```
-class AppChip extends StatelessWidget {
+class GHAppChip extends StatelessWidget {
   /// Creates a chip with an explicit [variant] (defaults to
   /// [ChipVariant.input]).
-  const AppChip({
+  const GHAppChip({
     required this.label,
     this.variant = ChipVariant.input,
     this.size = ChipSize.medium,
@@ -54,7 +54,7 @@ class AppChip extends StatelessWidget {
 
   /// Creates a [ChipVariant.input] chip — a discrete entry with an optional
   /// [leading] icon and a trailing delete affordance ([onDeleted]).
-  const AppChip.input({
+  const GHAppChip.input({
     required this.label,
     this.size = ChipSize.medium,
     this.enabled = true,
@@ -69,7 +69,7 @@ class AppChip extends StatelessWidget {
 
   /// Creates a [ChipVariant.filter] chip — a toggleable filter reflecting
   /// [selected] and reporting the next state through [onSelected].
-  const AppChip.filter({
+  const GHAppChip.filter({
     required this.label,
     required this.selected,
     this.size = ChipSize.medium,
@@ -84,7 +84,7 @@ class AppChip extends StatelessWidget {
 
   /// Creates a [ChipVariant.choice] chip — a single selection from a set,
   /// reflecting [selected] and reporting the next state through [onSelected].
-  const AppChip.choice({
+  const GHAppChip.choice({
     required this.label,
     required this.selected,
     this.size = ChipSize.medium,
@@ -227,12 +227,12 @@ class AppChip extends StatelessWidget {
     };
   }
 
-  Color _backgroundColor(AppColors colors) {
+  Color _backgroundColor(GHAppColors colors) {
     if (selected) return colors.primaryContainer;
     return colors.surfaceVariant;
   }
 
-  Color _foregroundColor(AppColors colors) {
+  Color _foregroundColor(GHAppColors colors) {
     if (selected) return colors.onPrimaryContainer;
     return colors.onSurfaceVariant;
   }
@@ -260,7 +260,7 @@ class AppChip extends StatelessWidget {
 }
 
 /// Lays out the leading icon, label and optional delete affordance of an
-/// [AppChip].
+/// [GHAppChip].
 class _ChipContent extends StatelessWidget {
   const _ChipContent({
     required this.label,

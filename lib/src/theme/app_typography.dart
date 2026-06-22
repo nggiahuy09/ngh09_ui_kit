@@ -7,9 +7,9 @@ import 'package:ngh09_ui_kit/src/tokens/typography.dart';
 /// the Material 3 type roles (display → label). Components reference these
 /// roles instead of hardcoding sizes/weights.
 @immutable
-class AppTypography extends ThemeExtension<AppTypography> {
+class GHAppTypography extends ThemeExtension<GHAppTypography> {
   /// Creates a typography set.
-  const AppTypography({
+  const GHAppTypography({
     required this.displayLarge,
     required this.displayMedium,
     required this.displaySmall,
@@ -28,7 +28,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
   });
 
   /// The default typography scale (Material 3 type roles).
-  const AppTypography.standard()
+  const GHAppTypography.standard()
     : displayLarge = const TextStyle(
         fontSize: TypographyTokens.sizeDisplayLarge,
         fontWeight: TypographyTokens.regular,
@@ -173,7 +173,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
   }
 
   @override
-  AppTypography copyWith({
+  GHAppTypography copyWith({
     TextStyle? displayLarge,
     TextStyle? displayMedium,
     TextStyle? displaySmall,
@@ -190,7 +190,7 @@ class AppTypography extends ThemeExtension<AppTypography> {
     TextStyle? labelMedium,
     TextStyle? labelSmall,
   }) {
-    return AppTypography(
+    return GHAppTypography(
       displayLarge: displayLarge ?? this.displayLarge,
       displayMedium: displayMedium ?? this.displayMedium,
       displaySmall: displaySmall ?? this.displaySmall,
@@ -210,9 +210,9 @@ class AppTypography extends ThemeExtension<AppTypography> {
   }
 
   @override
-  AppTypography lerp(ThemeExtension<AppTypography>? other, double t) {
-    if (other is! AppTypography) return this;
-    return AppTypography(
+  GHAppTypography lerp(ThemeExtension<GHAppTypography>? other, double t) {
+    if (other is! GHAppTypography) return this;
+    return GHAppTypography(
       displayLarge: TextStyle.lerp(displayLarge, other.displayLarge, t)!,
       displayMedium: TextStyle.lerp(displayMedium, other.displayMedium, t)!,
       displaySmall: TextStyle.lerp(displaySmall, other.displaySmall, t)!,

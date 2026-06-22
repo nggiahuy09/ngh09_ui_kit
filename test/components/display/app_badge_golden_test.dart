@@ -12,12 +12,12 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// snapshot a little breathing room.
 Widget _themed(Widget child, {required Brightness brightness}) {
   final theme = brightness == Brightness.light
-      ? AppTheme.light()
-      : AppTheme.dark();
+      ? GHAppTheme.light()
+      : GHAppTheme.dark();
   return Theme(
     data: theme,
     child: ColoredBox(
-      color: theme.extension<AppColors>()!.background,
+      color: theme.extension<GHAppColors>()!.background,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: child,
@@ -33,7 +33,7 @@ List<GoldenTestScenario> _statusScenarios(Brightness brightness) {
       GoldenTestScenario(
         name: status.name,
         child: _themed(
-          AppBadge(label: status.name, status: status),
+          GHAppBadge(label: status.name, status: status),
           brightness: brightness,
         ),
       ),
@@ -41,7 +41,7 @@ List<GoldenTestScenario> _statusScenarios(Brightness brightness) {
 }
 
 void main() {
-  group('AppBadge golden', () {
+  group('GHAppBadge golden', () {
     goldenTest(
       'statuses — light',
       fileName: 'app_badge_statuses_light',
@@ -69,21 +69,21 @@ void main() {
           GoldenTestScenario(
             name: 'label',
             child: _themed(
-              const AppBadge(label: 'New', status: BadgeStatus.info),
+              const GHAppBadge(label: 'New', status: BadgeStatus.info),
               brightness: Brightness.light,
             ),
           ),
           GoldenTestScenario(
             name: 'count',
             child: _themed(
-              AppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
+              GHAppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
               brightness: Brightness.light,
             ),
           ),
           GoldenTestScenario(
             name: 'dot',
             child: _themed(
-              const AppBadge.dot(status: BadgeStatus.success),
+              const GHAppBadge.dot(status: BadgeStatus.success),
               brightness: Brightness.light,
             ),
           ),
@@ -102,7 +102,7 @@ void main() {
             child: _themed(
               const SizedBox(
                 width: 160,
-                child: AppBadge(
+                child: GHAppBadge(
                   label: 'Pending',
                   status: BadgeStatus.warning,
                   expanded: true,
@@ -125,7 +125,7 @@ void main() {
             GoldenTestScenario(
               name: size.name,
               child: _themed(
-                AppBadge(
+                GHAppBadge(
                   label: '9',
                   size: size,
                   status: BadgeStatus.success,

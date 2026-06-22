@@ -6,21 +6,22 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// resolve `context.colors` / `context.radii` etc.
 Widget _wrap(Widget child, {Brightness brightness = Brightness.light}) {
   return MaterialApp(
-    theme: brightness == Brightness.light ? AppTheme.light() : AppTheme.dark(),
+    theme:
+        brightness == Brightness.light ? GHAppTheme.light() : GHAppTheme.dark(),
     home: Scaffold(body: Center(child: child)),
   );
 }
 
 void main() {
-  group('AppChip', () {
+  group('GHAppChip', () {
     testWidgets('renders its label', (tester) async {
-      await tester.pumpWidget(_wrap(const AppChip(label: 'design')));
+      await tester.pumpWidget(_wrap(const GHAppChip(label: 'design')));
       expect(find.text('design'), findsOneWidget);
     });
 
     testWidgets('renders a leading icon when provided', (tester) async {
       await tester.pumpWidget(
-        _wrap(const AppChip(label: 'design', leading: Icon(Icons.tag))),
+        _wrap(const GHAppChip(label: 'design', leading: Icon(Icons.tag))),
       );
       expect(find.byIcon(Icons.tag), findsOneWidget);
     });
@@ -28,7 +29,7 @@ void main() {
     testWidgets('input chip fires onPressed when tapped', (tester) async {
       var tapped = 0;
       await tester.pumpWidget(
-        _wrap(AppChip.input(label: 'tag', onPressed: () => tapped++)),
+        _wrap(GHAppChip.input(label: 'tag', onPressed: () => tapped++)),
       );
       await tester.tap(find.text('tag'));
       expect(tapped, 1);
@@ -37,11 +38,11 @@ void main() {
     testWidgets('input chip shows delete affordance only with onDeleted', (
       tester,
     ) async {
-      await tester.pumpWidget(_wrap(const AppChip.input(label: 'tag')));
+      await tester.pumpWidget(_wrap(const GHAppChip.input(label: 'tag')));
       expect(find.byIcon(Icons.close), findsNothing);
 
       await tester.pumpWidget(
-        _wrap(AppChip.input(label: 'tag', onDeleted: () {})),
+        _wrap(GHAppChip.input(label: 'tag', onDeleted: () {})),
       );
       expect(find.byIcon(Icons.close), findsOneWidget);
     });
@@ -51,7 +52,7 @@ void main() {
     ) async {
       var deleted = 0;
       await tester.pumpWidget(
-        _wrap(AppChip.input(label: 'tag', onDeleted: () => deleted++)),
+        _wrap(GHAppChip.input(label: 'tag', onDeleted: () => deleted++)),
       );
       await tester.tap(find.byIcon(Icons.close));
       expect(deleted, 1);
@@ -61,7 +62,7 @@ void main() {
       bool? reported;
       await tester.pumpWidget(
         _wrap(
-          AppChip.filter(
+          GHAppChip.filter(
             label: 'Unread',
             selected: false,
             onSelected: (value) => reported = value,
@@ -78,7 +79,7 @@ void main() {
       bool? reported;
       await tester.pumpWidget(
         _wrap(
-          AppChip.filter(
+          GHAppChip.filter(
             label: 'Unread',
             selected: true,
             onSelected: (value) => reported = value,
@@ -93,7 +94,7 @@ void main() {
       bool? reported;
       await tester.pumpWidget(
         _wrap(
-          AppChip.choice(
+          GHAppChip.choice(
             label: 'A',
             selected: false,
             onSelected: (value) => reported = value,
@@ -108,7 +109,7 @@ void main() {
       var reported = false;
       await tester.pumpWidget(
         _wrap(
-          AppChip.filter(
+          GHAppChip.filter(
             label: 'Unread',
             selected: false,
             enabled: false,
@@ -124,7 +125,7 @@ void main() {
       var deleted = false;
       await tester.pumpWidget(
         _wrap(
-          AppChip.input(
+          GHAppChip.input(
             label: 'tag',
             enabled: false,
             onDeleted: () => deleted = true,
@@ -141,7 +142,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         _wrap(
-          AppChip.filter(label: 'Unread', selected: true, onSelected: (_) {}),
+          GHAppChip.filter(label: 'Unread', selected: true, onSelected: (_) {}),
         ),
       );
       expect(
@@ -164,15 +165,15 @@ void main() {
       // constraints of a Center: a normal chip hugs its label, while an
       // expanded one grows to the available width.
       final body = find.descendant(
-        of: find.byType(AppChip),
+        of: find.byType(GHAppChip),
         matching: find.byType(Container),
       );
 
-      await tester.pumpWidget(_wrap(const AppChip(label: 'X')));
+      await tester.pumpWidget(_wrap(const GHAppChip(label: 'X')));
       final narrow = tester.getSize(body).width;
 
       await tester.pumpWidget(
-        _wrap(const AppChip(label: 'X', expanded: true)),
+        _wrap(const GHAppChip(label: 'X', expanded: true)),
       );
       final wide = tester.getSize(body).width;
 
@@ -182,7 +183,7 @@ void main() {
     testWidgets('variant is configurable without throwing', (tester) async {
       for (final variant in ChipVariant.values) {
         await tester.pumpWidget(
-          _wrap(AppChip(label: variant.name, variant: variant)),
+          _wrap(GHAppChip(label: variant.name, variant: variant)),
         );
         expect(find.text(variant.name), findsOneWidget);
       }

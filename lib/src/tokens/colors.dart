@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 ///
 /// These are the lowest-level tokens: fixed hues with no meaning attached.
 /// Do **not** consume them directly in widgets — use the semantic theme layer
-/// (`AppColors`, via `context.colors`) instead, so re-theming touches one spot.
+/// (`GHAppColors`, via `context.colors`) instead, so re-theming touches one
+/// spot.
 ///
 /// Each hue is provided as a 50–900 ramp following the Material tonal model.
 abstract final class ColorTokens {

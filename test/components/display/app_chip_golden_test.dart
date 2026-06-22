@@ -12,12 +12,12 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// snapshot a little breathing room.
 Widget _themed(Widget child, {required Brightness brightness}) {
   final theme = brightness == Brightness.light
-      ? AppTheme.light()
-      : AppTheme.dark();
+      ? GHAppTheme.light()
+      : GHAppTheme.dark();
   return Theme(
     data: theme,
     child: ColoredBox(
-      color: theme.extension<AppColors>()!.background,
+      color: theme.extension<GHAppColors>()!.background,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: child,
@@ -33,7 +33,7 @@ List<GoldenTestScenario> _variantScenarios(Brightness brightness) {
     GoldenTestScenario(
       name: 'input',
       child: _themed(
-        AppChip.input(
+        GHAppChip.input(
           label: 'design',
           leading: const Icon(Icons.tag),
           onDeleted: () {},
@@ -44,28 +44,28 @@ List<GoldenTestScenario> _variantScenarios(Brightness brightness) {
     GoldenTestScenario(
       name: 'filter (off)',
       child: _themed(
-        AppChip.filter(label: 'Unread', selected: false, onSelected: (_) {}),
+        GHAppChip.filter(label: 'Unread', selected: false, onSelected: (_) {}),
         brightness: brightness,
       ),
     ),
     GoldenTestScenario(
       name: 'filter (on)',
       child: _themed(
-        AppChip.filter(label: 'Unread', selected: true, onSelected: (_) {}),
+        GHAppChip.filter(label: 'Unread', selected: true, onSelected: (_) {}),
         brightness: brightness,
       ),
     ),
     GoldenTestScenario(
       name: 'choice (off)',
       child: _themed(
-        AppChip.choice(label: 'Option', selected: false, onSelected: (_) {}),
+        GHAppChip.choice(label: 'Option', selected: false, onSelected: (_) {}),
         brightness: brightness,
       ),
     ),
     GoldenTestScenario(
       name: 'choice (on)',
       child: _themed(
-        AppChip.choice(label: 'Option', selected: true, onSelected: (_) {}),
+        GHAppChip.choice(label: 'Option', selected: true, onSelected: (_) {}),
         brightness: brightness,
       ),
     ),
@@ -73,7 +73,7 @@ List<GoldenTestScenario> _variantScenarios(Brightness brightness) {
 }
 
 void main() {
-  group('AppChip golden', () {
+  group('GHAppChip golden', () {
     goldenTest(
       'variants — light',
       fileName: 'app_chip_variants_light',
@@ -102,7 +102,7 @@ void main() {
             GoldenTestScenario(
               name: size.name,
               child: _themed(
-                AppChip.filter(
+                GHAppChip.filter(
                   label: size.name,
                   selected: true,
                   size: size,
@@ -126,7 +126,7 @@ void main() {
             child: _themed(
               SizedBox(
                 width: 220,
-                child: AppChip.filter(
+                child: GHAppChip.filter(
                   label: 'All',
                   selected: true,
                   expanded: true,
@@ -149,14 +149,14 @@ void main() {
           GoldenTestScenario(
             name: 'enabled',
             child: _themed(
-              AppChip.filter(label: 'On', selected: true, onSelected: (_) {}),
+              GHAppChip.filter(label: 'On', selected: true, onSelected: (_) {}),
               brightness: Brightness.light,
             ),
           ),
           GoldenTestScenario(
             name: 'disabled',
             child: _themed(
-              AppChip.filter(
+              GHAppChip.filter(
                 label: 'On',
                 selected: true,
                 enabled: false,

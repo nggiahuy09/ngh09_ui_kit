@@ -12,7 +12,7 @@
 dựa trên **Material 3 + design tokens riêng**, publish được lên pub.dev, có catalog bằng
 **Widgetbook** và kiểm thử **Unit + Widget + Golden**.
 
-Trạng thái hiện tại: **Foundation đã xong + 1 component (`AppButton`)**.
+Trạng thái hiện tại: **Foundation đã xong + 1 component (`GHAppButton`)**.
 
 ---
 
@@ -53,7 +53,7 @@ Mỗi file là một `ThemeExtension<T>` với `copyWith` + `lerp`:
 - `theme/app_typography.dart` — 15 text style ngữ nghĩa + `toTextTheme()`.
 - `theme/app_spacing.dart`, `theme/app_radii.dart` — (radii còn có getter
   `borderRadiusMd` tiện dùng).
-- `theme/app_theme.dart` — **điểm lắp ráp**: `AppTheme.light()/dark()` build
+- `theme/app_theme.dart` — **điểm lắp ráp**: `GHAppTheme.light()/dark()` build
   `ThemeData` M3, chiếu semantic colors→`ColorScheme`, typography→`TextTheme`, rồi
   gắn 4 extension vào. Nhận tham số `colors`/`typography` tùy biến để **re-brand**.
 
@@ -85,12 +85,12 @@ Mỗi file là một `ThemeExtension<T>` với `copyWith` + `lerp`:
 
 ---
 
-## 2. Flow IMPLEMENT một component (theo đúng mẫu `AppButton`)
+## 2. Flow IMPLEMENT một component (theo đúng mẫu `GHAppButton`)
 
 Luồng dữ liệu khi chạy:
 
 ```
-primitive token → semantic extension → AppTheme gắn vào ThemeData
+primitive token → semantic extension → GHAppTheme gắn vào ThemeData
   → MaterialApp(theme:) → widget đọc qua context.colors/...
 ```
 
@@ -100,7 +100,7 @@ Khi viết component mới, lặp lại đúng 6 bước (định nghĩa "Done" 
 2. **Widget** trong `components/<nhóm>/app_xxx.dart` — `StatelessWidget`, `const`
    constructor, named constructor cho từng variant; mọi màu/spacing/radius lấy từ
    `context.*`; dùng `switch` expression để map variant→token (xem
-   `_foregroundColor`/`_backgroundColor` trong `AppButton`).
+   `_foregroundColor`/`_backgroundColor` trong `GHAppButton`).
 3. **Doc comment `///`** cho class + mọi public member (bắt buộc cho pub points —
    lint `public_member_api_docs`).
 4. **Export** qua barrel `lib/ngh09_ui_kit.dart`.
@@ -125,7 +125,7 @@ Cơ chế quan trọng:
   goldens** (pixel-exact, ổn định mọi máy → ít flaky). Alchemist tự load font thật
   nên chữ không bị box vuông.
 - Pattern test luôn có helper `_wrap`/`_themed` bọc widget trong
-  `AppTheme.light()/dark()` để `context.*` resolve được.
+  `GHAppTheme.light()/dark()` để `context.*` resolve được.
 - Golden cho `loading` dùng `pumpBeforeTest: pumpOnce` vì spinner quay vô hạn →
   `pumpAndSettle` sẽ treo.
 - Cập nhật golden là thao tác thủ công có review: `flutter test --update-goldens`
@@ -144,7 +144,7 @@ flutter test --update-goldens      # khi cố ý đổi UI
 
 ## Tóm lại — mental model
 
-> **Token thô → gán ý nghĩa (semantic) → `AppTheme` đóng gói vào `ThemeData` →
+> **Token thô → gán ý nghĩa (semantic) → `GHAppTheme` đóng gói vào `ThemeData` →
 > widget chỉ "đọc" qua `context.*`.** Đổi brand/theme chỉ sửa **một chỗ** (semantic
 > layer), mọi component tự đổi theo. Mỗi component "xong" khi đủ: code token-driven +
 > doc `///` + Widgetbook use case + widget test (gồm a11y) + golden test light/dark.

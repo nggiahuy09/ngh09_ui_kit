@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// Every [AppButton] variant, size and state.
+/// Every [GHAppButton] variant, size and state.
 class ButtonsShowcase extends StatelessWidget {
   const ButtonsShowcase({super.key});
 
@@ -16,7 +16,7 @@ class ButtonsShowcase extends StatelessWidget {
           runSpacing: spacing.sm,
           children: [
             for (final variant in ButtonVariant.values)
-              AppButton(
+              GHAppButton(
                 label: variant.name,
                 variant: variant,
                 onPressed: () {},
@@ -30,7 +30,7 @@ class ButtonsShowcase extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             for (final size in ButtonSize.values)
-              AppButton(label: size.name, size: size, onPressed: () {}),
+              GHAppButton(label: size.name, size: size, onPressed: () {}),
           ],
         ),
         SizedBox(height: spacing.md),
@@ -38,14 +38,14 @@ class ButtonsShowcase extends StatelessWidget {
           spacing: spacing.sm,
           runSpacing: spacing.sm,
           children: [
-            AppButton(
+            GHAppButton(
               label: 'With icons',
               leading: const Icon(Icons.check),
               trailing: const Icon(Icons.arrow_forward),
               onPressed: () {},
             ),
-            const AppButton(label: 'Disabled'),
-            AppButton(label: 'Loading', isLoading: true, onPressed: () {}),
+            const GHAppButton(label: 'Disabled'),
+            GHAppButton(label: 'Loading', isLoading: true, onPressed: () {}),
           ],
         ),
       ],

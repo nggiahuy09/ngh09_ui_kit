@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// Every [AppChip] variant with live selection / deletion.
+/// Every [GHAppChip] variant with live selection / deletion.
 class ChipsShowcase extends StatefulWidget {
   const ChipsShowcase({super.key});
 
@@ -29,7 +29,7 @@ class _ChipsShowcaseState extends State<ChipsShowcase> {
           runSpacing: spacing.sm,
           children: [
             for (final tag in _tags)
-              AppChip.input(
+              GHAppChip.input(
                 label: tag,
                 leading: const Icon(Icons.tag),
                 onDeleted: () => setState(() => _tags.remove(tag)),
@@ -43,7 +43,7 @@ class _ChipsShowcaseState extends State<ChipsShowcase> {
           runSpacing: spacing.sm,
           children: [
             for (final filter in filters)
-              AppChip.filter(
+              GHAppChip.filter(
                 label: filter,
                 selected: _filters.contains(filter),
                 onSelected: (selected) => setState(() {
@@ -63,7 +63,7 @@ class _ChipsShowcaseState extends State<ChipsShowcase> {
           runSpacing: spacing.sm,
           children: [
             for (final choice in choices)
-              AppChip.choice(
+              GHAppChip.choice(
                 label: choice,
                 selected: _choice == choice,
                 onSelected: (_) => setState(() => _choice = choice),
@@ -72,7 +72,7 @@ class _ChipsShowcaseState extends State<ChipsShowcase> {
         ),
         SizedBox(height: spacing.md),
         // Expanded chip — stretches to the full available width.
-        AppChip.filter(
+        GHAppChip.filter(
           label: 'Expanded',
           selected: true,
           expanded: true,

@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Foundation skeleton: primitive design tokens (`ColorTokens`, `SpacingTokens`,
   `RadiusTokens`, `ElevationTokens`, `DurationTokens`, `BreakpointTokens`,
   `TypographyTokens`).
-- Semantic theme layer (`AppColors`, `AppSpacing`, `AppRadii`, `AppTypography`)
-  and `AppTheme.light()` / `AppTheme.dark()`.
+- Semantic theme layer (`GHAppColors`, `GHAppSpacing`, `GHAppRadii`, `GHAppTypography`)
+  and `GHAppTheme.light()` / `GHAppTheme.dark()`.
 - `context.colors` / `context.spacing` / `context.radii` / `context.textStyles`
   accessors.
 
