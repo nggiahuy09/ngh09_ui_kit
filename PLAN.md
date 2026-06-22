@@ -156,8 +156,8 @@ ngh09_ui_kit/
 
 ### Phase D — Display & feedback (status tokens đã sẵn sàng cho nhóm này)
 
-11. **AppBadge** — `display/app_badge.dart` — count + dot, variant theo status
-    (`neutral`/`success`/`warning`/`danger`/`info`). **Nhỏ, reuse cao → ứng viên template tốt.**
+11. **AppBadge** ✅ — `display/app_badge.dart` — label + count + dot, variant theo status
+    (`neutral`/`success`/`warning`/`danger`/`info`), sizes sm/md. **Nhỏ, reuse cao → template tốt.**
 12. **AppChip** — `display/app_chip.dart` — `input` / `filter` / `choice`; selected dùng
     `primaryContainer`; hỗ trợ leading icon + onDeleted.
 13. **AppAlert / AppBanner** — `feedback/app_alert.dart` — inline status messaging, map 1:1
@@ -323,6 +323,20 @@ qua GitHub OIDC, không cần token).
 
 **Bước 4 — Build components (Phase B → C → D)**
 - [ ] Lặp lại pattern của AppButton cho từng component theo thứ tự ưu tiên.
+- [x] **AppBadge** (Phase D) end-to-end (2026-06-22):
+      - Code: `display/badge_status.dart` (enum `BadgeStatus`
+        neutral/success/warning/danger/info + `background`/`foreground` map sang semantic token;
+        enum `BadgeSize` sm/md), `display/app_badge.dart` (3 ctor: default label,
+        `.dot`, `.count(count, max)` clamp `"max+"`; pill bo `borderRadiusFull`; đọc 100% từ
+        `context.colors`/`radii`/`textStyles`, không hardcode). Export qua barrel.
+      - Doc `///` đầy đủ cho class + mọi public member.
+      - Use case Widgetbook: Playground (knobs cho mọi prop), Statuses, Shapes
+        (folder `Display` mới trong catalog).
+      - Widget test (13 ca): render label, count, clamp max, dot không có text,
+        a11y semantics của label, count factory map đúng, mọi status render được.
+      - Golden test (alchemist, 4 file): statuses×{light,dark}, shapes (label/count/dot), sizes.
+      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
+        (package + widgetbook), `flutter test` 49/49 pass (gồm golden compare).
 
 **Bước 5 — CI & publish**
 - [ ] Thêm `.github/workflows/ci.yaml`.

@@ -14,6 +14,8 @@ library;
 // Components (Phase B onward).
 export 'src/components/buttons/app_button.dart';
 export 'src/components/buttons/button_variant.dart';
+export 'src/components/display/app_badge.dart';
+export 'src/components/display/badge_status.dart';
 // Foundation — semantic theme layer.
 export 'src/theme/app_colors.dart';
 export 'src/theme/app_radii.dart';

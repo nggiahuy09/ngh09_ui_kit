@@ -57,7 +57,7 @@ class _FoundationGallery extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: AppBar(
-        title: const Text('ngh09_ui_kit · Foundation'),
+        title: const Text('ngh09_ui_kit'),
         actions: [
           IconButton(
             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
@@ -70,6 +70,8 @@ class _FoundationGallery extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(spacing.md),
         children: const [
+          _Section(title: 'Buttons', child: _ButtonsShowcase()),
+          _Section(title: 'Badges', child: _BadgesShowcase()),
           _Section(title: 'Colors', child: _ColorsShowcase()),
           _Section(title: 'Typography', child: _TypographyShowcase()),
           _Section(title: 'Spacing', child: _SpacingShowcase()),
@@ -107,6 +109,99 @@ class _Section extends StatelessWidget {
           child,
         ],
       ),
+    );
+  }
+}
+
+/// Every [AppButton] variant, size and state.
+class _ButtonsShowcase extends StatelessWidget {
+  const _ButtonsShowcase();
+
+  @override
+  Widget build(BuildContext context) {
+    final spacing = context.spacing;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          children: [
+            for (final variant in ButtonVariant.values)
+              AppButton(
+                label: variant.name,
+                variant: variant,
+                onPressed: () {},
+              ),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            for (final size in ButtonSize.values)
+              AppButton(label: size.name, size: size, onPressed: () {}),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          children: [
+            AppButton(
+              label: 'With icons',
+              leading: const Icon(Icons.check),
+              trailing: const Icon(Icons.arrow_forward),
+              onPressed: () {},
+            ),
+            const AppButton(label: 'Disabled'),
+            AppButton(label: 'Loading', isLoading: true, onPressed: () {}),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Every [AppBadge] status and shape.
+class _BadgesShowcase extends StatelessWidget {
+  const _BadgesShowcase();
+
+  @override
+  Widget build(BuildContext context) {
+    final spacing = context.spacing;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            for (final status in BadgeStatus.values)
+              AppBadge(label: status.name, status: status),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        Wrap(
+          spacing: spacing.md,
+          runSpacing: spacing.sm,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            const AppBadge(label: 'New', status: BadgeStatus.info),
+            AppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
+            const AppBadge.dot(status: BadgeStatus.success),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        const AppBadge(
+          label: 'Expanded',
+          status: BadgeStatus.warning,
+          expanded: true,
+        ),
+      ],
     );
   }
 }
