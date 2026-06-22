@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-/// The Widgetbook component entry for [AppButton], grouping all of its
+/// The Widgetbook component entry for [GHAppButton], grouping all of its
 /// use cases.
 ///
 /// Declared by hand (no code generation) so the catalog stays a plain Dart
 /// project that anyone can read and extend.
 WidgetbookComponent buildAppButtonComponent() {
   return WidgetbookComponent(
-    name: 'AppButton',
+    name: 'GHAppButton',
     useCases: [
       WidgetbookUseCase(
         name: 'Playground',
@@ -53,7 +53,7 @@ Widget _playgroundUseCase(BuildContext context) {
   final showTrailing = knobs.boolean(label: 'Trailing icon');
 
   return Center(
-    child: AppButton(
+    child: GHAppButton(
       label: label,
       variant: variant,
       size: size,
@@ -74,7 +74,7 @@ Widget _variantsUseCase(BuildContext context) {
       runSpacing: context.spacing.md,
       children: [
         for (final variant in ButtonVariant.values)
-          AppButton(
+          GHAppButton(
             label: variant.name,
             variant: variant,
             onPressed: () {},
@@ -93,7 +93,7 @@ Widget _sizesUseCase(BuildContext context) {
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         for (final size in ButtonSize.values)
-          AppButton(
+          GHAppButton(
             label: size.name,
             size: size,
             onPressed: () {},

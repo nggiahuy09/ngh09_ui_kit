@@ -49,7 +49,7 @@ ngh09_ui_kit/
 │       │   └── theme_extensions.dart# Helper: context.colors, context.spacing...
 │       │
 │       ├── foundations/             # Khối nền dùng lại nội bộ
-│       │   ├── icons.dart           # AppIcons (icon set)
+│       │   ├── icons.dart           # GHAppIcons (icon set)
 │       │   └── assets.dart          # Đường dẫn asset (nếu có)
 │       │
 │       ├── components/              # Các widget public, mỗi loại 1 folder
@@ -120,7 +120,7 @@ ngh09_ui_kit/
 
 ## 2. Các thành phần cần implement (theo thứ tự ưu tiên)
 
-> **Trạng thái hiện tại (2026-06-21):** Foundation (Phase A) ✅ và **AppButton** ✅ đã xong.
+> **Trạng thái hiện tại (2026-06-21):** Foundation (Phase A) ✅ và **GHAppButton** ✅ đã xong.
 > Các component bên dưới là roadmap kế tiếp. Token set hiện tại **đã đủ** để build phần lớn
 > các component này mà không cần thêm token mới — đặc biệt status colors
 > (`success`/`warning`/`danger`/`info` + `on*`), surfaces, outline, elevation đã sẵn sàng.
@@ -128,69 +128,69 @@ ngh09_ui_kit/
 ### Phase A — Foundation (làm trước, mọi thứ phụ thuộc vào đây) ✅
 1. **Design tokens** (`tokens/`): color palette, spacing scale (4/8pt), typography scale,
    radii, elevation, durations.
-2. **ThemeExtensions** (`theme/`): `AppColors`, `AppTypography`, `AppSpacing`, `AppRadii`.
-3. **AppTheme**: `buildLightTheme()`, `buildDarkTheme()` trả `ThemeData` đã gắn extensions.
+2. **ThemeExtensions** (`theme/`): `GHAppColors`, `GHAppTypography`, `GHAppSpacing`, `GHAppRadii`.
+3. **GHAppTheme**: `buildLightTheme()`, `buildDarkTheme()` trả `ThemeData` đã gắn extensions.
 4. **Context extensions**: `context.colors`, `context.spacing`, `context.textStyles`.
 
 ### Phase B — Core components ✅ (một phần) — dùng nhiều nhất
-5. **AppButton** ✅ (variants: filled / tonal / outlined / text; sizes: sm/md/lg; states:
+5. **GHAppButton** ✅ (variants: filled / tonal / outlined / text; sizes: sm/md/lg; states:
    loading, disabled; leading/trailing icon).
 
 ### Phase C — Forms & input (ưu tiên cao nhất kế tiếp)
 
-> Đây là nhóm "đáng tiền" nhất sau button. Bắt đầu bằng **AppTextField** vì nó thiết lập
+> Đây là nhóm "đáng tiền" nhất sau button. Bắt đầu bằng **GHAppTextField** vì nó thiết lập
 > quy ước trạng thái focus/error/disabled mà checkbox/switch/dropdown sẽ kế thừa.
 
-6. **AppTextField** — `inputs/app_text_field.dart`
+6. **GHAppTextField** — `inputs/app_text_field.dart`
    - Variants: `outlined` / `filled` (enum `TextFieldVariant`).
    - States: default / focused / error / disabled.
    - Props: `label`, `hint`, `helperText`, `errorText`, `prefix`/`suffix` (icon hoặc widget),
      `obscureText`, `maxLines`, `keyboardType`, `onChanged`, `controller`.
    - Token: viền dùng `outline`/`primary`/`danger`; nền filled dùng `surfaceVariant`.
    - ⚠️ Component **stateful** đầu tiên — chốt convention focus/error tại đây.
-7. **AppCheckbox** — `inputs/app_checkbox.dart` — tri-state tùy chọn, label đi kèm, disabled.
-8. **AppRadio** / **AppRadioGroup** — `inputs/app_radio.dart` — generic `<T>`, group quản lý value.
-9. **AppSwitch** — `inputs/app_switch.dart` — on/off, label, disabled; dùng `primary`/`outline`.
-10. **AppDropdown / AppSelect** — `inputs/app_dropdown.dart` — generic `<T>`, menu-backed,
-    có label/hint/error giống AppTextField.
+7. **GHAppCheckbox** — `inputs/app_checkbox.dart` — tri-state tùy chọn, label đi kèm, disabled.
+8. **GHAppRadio** / **GHAppRadioGroup** — `inputs/app_radio.dart` — generic `<T>`, group quản lý value.
+9. **GHAppSwitch** — `inputs/app_switch.dart` — on/off, label, disabled; dùng `primary`/`outline`.
+10. **GHAppDropdown / GHAppSelect** — `inputs/app_dropdown.dart` — generic `<T>`, menu-backed,
+    có label/hint/error giống GHAppTextField.
 
 ### Phase D — Display & feedback (status tokens đã sẵn sàng cho nhóm này)
 
-11. **AppBadge** — `display/app_badge.dart` — count + dot, variant theo status
-    (`neutral`/`success`/`warning`/`danger`/`info`). **Nhỏ, reuse cao → ứng viên template tốt.**
-12. **AppChip** — `display/app_chip.dart` — `input` / `filter` / `choice`; selected dùng
+11. **GHAppBadge** ✅ — `display/app_badge.dart` — label + count + dot, variant theo status
+    (`neutral`/`success`/`warning`/`danger`/`info`), sizes sm/md. **Nhỏ, reuse cao → template tốt.**
+12. **GHAppChip** ✅ — `display/app_chip.dart` — `input` / `filter` / `choice`; selected dùng
     `primaryContainer`; hỗ trợ leading icon + onDeleted.
-13. **AppAlert / AppBanner** — `feedback/app_alert.dart` — inline status messaging, map 1:1
+13. **GHAppAlert / GHAppBanner** — `feedback/app_alert.dart` — inline status messaging, map 1:1
     với 4 status color; có title/description/icon + action tùy chọn.
-14. **AppCard** — `display/app_card.dart` — surface + elevation token; variants
+14. **GHAppCard** — `display/app_card.dart` — surface + elevation token; variants
     `elevated`/`outlined`/`filled`; slot header/body/footer.
-15. **AppAvatar** — `display/app_avatar.dart` — image / initials / icon fallback; sizes sm/md/lg.
-16. **AppDivider** — `display/app_divider.dart` — horizontal/vertical, dùng `outlineVariant`.
+15. **GHAppAvatar** — `display/app_avatar.dart` — image / initials / icon fallback; sizes sm/md/lg.
+16. **GHAppDivider** — `display/app_divider.dart` — horizontal/vertical, dùng `outlineVariant`.
 
 ### Phase E — Indicators & overlays
 
-17. **AppProgressIndicator** — `feedback/app_progress.dart` — linear + circular, xác định/không
-    xác định. **Tách spinner đang nằm trong `AppButton._ButtonContent` ra dùng chung.**
-18. **AppSkeleton / Shimmer** — `feedback/app_skeleton.dart` — placeholder loading.
-19. **AppTooltip** — `feedback/app_tooltip.dart`.
-20. **AppSnackbar / Toast** — `feedback/app_snackbar.dart` — status variants, action.
-21. **AppDialog** — `feedback/app_dialog.dart` — alert/confirm, dùng `AppButton` cho actions.
-22. **AppBottomSheet** — `feedback/app_bottom_sheet.dart` — modal/persistent.
+17. **GHAppProgressIndicator** — `feedback/app_progress.dart` — linear + circular, xác định/không
+    xác định. **Tách spinner đang nằm trong `GHAppButton._ButtonContent` ra dùng chung.**
+18. **GHAppSkeleton / Shimmer** — `feedback/app_skeleton.dart` — placeholder loading.
+19. **GHAppTooltip** — `feedback/app_tooltip.dart`.
+20. **GHAppSnackbar / Toast** — `feedback/app_snackbar.dart` — status variants, action.
+21. **GHAppDialog** — `feedback/app_dialog.dart` — alert/confirm, dùng `GHAppButton` cho actions.
+22. **GHAppBottomSheet** — `feedback/app_bottom_sheet.dart` — modal/persistent.
 
 ### Phase F — Layout & navigation
 
-23. **AppListTile** — `layout/app_list_tile.dart` — leading/title/subtitle/trailing.
-24. **AppGap** — `layout/app_gap.dart` — `Gap(context.spacing.md)` helper.
-25. **AppTabs** — `navigation/app_tabs.dart`.
-26. **AppAppBar** — `navigation/app_app_bar.dart`.
-27. **AppBottomNav** — `navigation/app_bottom_nav.dart`.
-28. **AppScaffold** — `layout/app_scaffold.dart` — wrap Material Scaffold với token mặc định.
-29. **AppText** (tùy chọn) — typography widget với style ngữ nghĩa (`displayLarge`, `bodyMedium`…).
+23. **GHAppListTile** — `layout/app_list_tile.dart` — leading/title/subtitle/trailing.
+24. **GHAppGap** — `layout/app_gap.dart` — `Gap(context.spacing.md)` helper.
+25. **GHAppTabs** — `navigation/app_tabs.dart`.
+26. **GHAppAppBar** — `navigation/app_app_bar.dart`.
+27. **GHAppBottomNav** — `navigation/app_bottom_nav.dart`.
+28. **GHAppScaffold** — `layout/app_scaffold.dart` — wrap Material Scaffold với token mặc định.
+29. **GHAppText** (tùy chọn) — typography widget với style ngữ nghĩa (`displayLarge`, `bodyMedium`…).
 
 > **Thứ tự đề xuất bắt đầu Phase tiếp theo:**
-> 1. **AppBadge** (Phase D) — nhỏ, stateless, làm template sạch cho status colors + radii.
-> 2. **AppChip** (Phase D) — củng cố pattern variant+selected state.
-> 3. **AppTextField** (Phase C) — component stateful đầu tiên, giá trị cao nhất.
+> 1. **GHAppBadge** (Phase D) — nhỏ, stateless, làm template sạch cho status colors + radii.
+> 2. **GHAppChip** (Phase D) — củng cố pattern variant+selected state.
+> 3. **GHAppTextField** (Phase C) — component stateful đầu tiên, giá trị cao nhất.
 
 > Mỗi component khi "xong" = code + doc comment `///` + use case Widgetbook + widget test + golden test
 > (xem mục 9 — Định nghĩa "Done").
@@ -199,7 +199,7 @@ ngh09_ui_kit/
 
 ## 3. Quy ước style & coding convention
 
-- **Đặt tên:** mọi widget public prefix `App` (`AppButton`) để tránh xung đột với Material.
+- **Đặt tên:** mọi widget public prefix `App` (`GHAppButton`) để tránh xung đột với Material.
 - **Variant/size dùng `enum`** + factory constructor, không truyền String.
 - **Không hardcode** màu/spacing trong component → luôn `context.colors` / `context.spacing`.
 - **API rõ ràng:** mọi public class/method có doc comment `///` (ảnh hưởng pub points).
@@ -284,10 +284,10 @@ qua GitHub OIDC, không cần token).
 - [x] `tokens/`: palette đầy đủ (brand/neutral 50–900 + status success/warning/danger/info),
       spacing 4pt (none…xxl), type scale Material 3 (display→label) với weights & line-heights.
       `radii/elevation/durations/breakpoints` giữ nguyên (đã hợp lý).
-- [x] `theme/`: `AppColors` (semantic roles đầy đủ + `toColorScheme()`), `AppTypography`
-      (15 type roles + `toTextTheme()`), `AppSpacing`, `AppRadii` (+ `BorderRadius` getters).
+- [x] `theme/`: `GHAppColors` (semantic roles đầy đủ + `toColorScheme()`), `GHAppTypography`
+      (15 type roles + `toTextTheme()`), `GHAppSpacing`, `GHAppRadii` (+ `BorderRadius` getters).
       Mỗi extension có `copyWith` + `lerp`.
-- [x] `AppTheme.light()/dark()`: build `ThemeData` M3, chiếu semantic colors→`ColorScheme`,
+- [x] `GHAppTheme.light()/dark()`: build `ThemeData` M3, chiếu semantic colors→`ColorScheme`,
       typography→`TextTheme`, gắn 4 extensions; nhận custom `colors`/`typography` để brand.
 - [x] `utils/context_extensions.dart` (`context.colors/spacing/radii/textStyles/isDarkMode`
       + MediaQuery helpers) và `utils/responsive.dart` (`ScreenType`, `responsiveValue`,
@@ -304,9 +304,9 @@ qua GitHub OIDC, không cần token).
 - [x] Khởi tạo `widgetbook/` (project con, `path: ../`, `widgetbook ^3.0.0` → resolve 3.21.0).
       `main.dart`: `Widgetbook.material` + directories (Category→Folder→Component), khai báo
       use case **bằng tay** (không code-gen). Addons: `MaterialThemeAddon` (Light/Dark dùng
-      `AppTheme.light/dark`), `TextScaleAddon`, `AlignmentAddon`, `ViewportAddon`
+      `GHAppTheme.light/dark`), `TextScaleAddon`, `AlignmentAddon`, `ViewportAddon`
       (thay `DeviceFrameAddon` đã deprecated). Thêm platform `web` để build styleguide.
-- [x] **AppButton** end-to-end (template cho các component sau):
+- [x] **GHAppButton** end-to-end (template cho các component sau):
       - Code: `button_variant.dart` (enum `ButtonVariant` filled/tonal/outlined/text +
         `ButtonSize` sm/md/lg), `app_button.dart` (4 named ctor, leading/trailing icon,
         `isLoading`/`disabled`/`expanded`, đọc 100% từ semantic token qua `context.*`,
@@ -322,7 +322,41 @@ qua GitHub OIDC, không cần token).
       `flutter build web` (widgetbook) build thành công.
 
 **Bước 4 — Build components (Phase B → C → D)**
-- [ ] Lặp lại pattern của AppButton cho từng component theo thứ tự ưu tiên.
+- [ ] Lặp lại pattern của GHAppButton cho từng component theo thứ tự ưu tiên.
+- [x] **GHAppBadge** (Phase D) end-to-end (2026-06-22):
+      - Code: `display/badge_status.dart` (enum `BadgeStatus`
+        neutral/success/warning/danger/info + `background`/`foreground` map sang semantic token;
+        enum `BadgeSize` sm/md), `display/app_badge.dart` (3 ctor: default label,
+        `.dot`, `.count(count, max)` clamp `"max+"`; pill bo `borderRadiusFull`; đọc 100% từ
+        `context.colors`/`radii`/`textStyles`, không hardcode). Export qua barrel.
+      - Doc `///` đầy đủ cho class + mọi public member.
+      - Use case Widgetbook: Playground (knobs cho mọi prop), Statuses, Shapes
+        (folder `Display` mới trong catalog).
+      - Widget test (13 ca): render label, count, clamp max, dot không có text,
+        a11y semantics của label, count factory map đúng, mọi status render được.
+      - Golden test (alchemist, 4 file): statuses×{light,dark}, shapes (label/count/dot), sizes.
+      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
+        (package + widgetbook), `flutter test` 49/49 pass (gồm golden compare).
+- [x] **GHAppChip** (Phase D) end-to-end (2026-06-22):
+      - Code: `display/chip_variant.dart` (enum `ChipVariant` input/filter/choice +
+        enum `ChipSize` sm/md), `display/app_chip.dart` (4 ctor: default,
+        `.input` (leading icon + `onDeleted`), `.filter`/`.choice` (toggle qua
+        `onSelected(!selected)`); selected fill `primaryContainer`/`onPrimaryContainer`,
+        unselected `surfaceVariant`/`onSurfaceVariant` + viền `outline`; pill
+        `borderRadiusFull`; `InkWell`-backed khi interactive; delete affordance là tap
+        target riêng (`GestureDetector`), ẩn khi `enabled == false`; đọc 100% từ
+        `context.colors`/`radii`/`spacing`/`textStyles`, không hardcode). Export qua barrel.
+      - Doc `///` đầy đủ cho class + mọi public member.
+      - Use case Widgetbook: Playground (knobs cho mọi prop), Variants, Sizes
+        (thêm vào folder `Display`).
+      - Widget test (12 ca): render label + leading icon, input `onPressed`/`onDeleted`,
+        delete affordance chỉ hiện khi có `onDeleted`, filter/choice report `!selected`,
+        disabled chặn tap & ẩn delete, a11y semantics (button + selected), mọi variant render.
+      - Golden test (alchemist, 4 file): variants×{light,dark} (input/filter/choice
+        on+off), sizes, states (enabled/disabled).
+      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
+        (package + widgetbook), `flutter test` 67/67 pass (gồm golden compare),
+        `flutter build web` (widgetbook) build thành công.
 
 **Bước 5 — CI & publish**
 - [ ] Thêm `.github/workflows/ci.yaml`.

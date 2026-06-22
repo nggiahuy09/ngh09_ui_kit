@@ -7,9 +7,9 @@ import 'package:ngh09_ui_kit/src/tokens/spacing.dart';
 ///
 /// Accessed via `context.spacing`. Maps to primitive [SpacingTokens].
 @immutable
-class AppSpacing extends ThemeExtension<AppSpacing> {
+class GHAppSpacing extends ThemeExtension<GHAppSpacing> {
   /// Creates a spacing set.
-  const AppSpacing({
+  const GHAppSpacing({
     required this.xxs,
     required this.xs,
     required this.sm,
@@ -21,7 +21,7 @@ class AppSpacing extends ThemeExtension<AppSpacing> {
   });
 
   /// The default spacing scale.
-  const AppSpacing.standard()
+  const GHAppSpacing.standard()
     : xxs = SpacingTokens.xxs,
       xs = SpacingTokens.xs,
       sm = SpacingTokens.sm,
@@ -56,7 +56,7 @@ class AppSpacing extends ThemeExtension<AppSpacing> {
   final double xxl;
 
   @override
-  AppSpacing copyWith({
+  GHAppSpacing copyWith({
     double? xxs,
     double? xs,
     double? sm,
@@ -66,7 +66,7 @@ class AppSpacing extends ThemeExtension<AppSpacing> {
     double? xl,
     double? xxl,
   }) {
-    return AppSpacing(
+    return GHAppSpacing(
       xxs: xxs ?? this.xxs,
       xs: xs ?? this.xs,
       sm: sm ?? this.sm,
@@ -79,9 +79,9 @@ class AppSpacing extends ThemeExtension<AppSpacing> {
   }
 
   @override
-  AppSpacing lerp(ThemeExtension<AppSpacing>? other, double t) {
-    if (other is! AppSpacing) return this;
-    return AppSpacing(
+  GHAppSpacing lerp(ThemeExtension<GHAppSpacing>? other, double t) {
+    if (other is! GHAppSpacing) return this;
+    return GHAppSpacing(
       xxs: lerpDouble(xxs, other.xxs, t)!,
       xs: lerpDouble(xs, other.xs, t)!,
       sm: lerpDouble(sm, other.sm, t)!,

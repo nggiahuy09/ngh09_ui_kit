@@ -12,12 +12,12 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// snapshot a little breathing room.
 Widget _themed(Widget child, {required Brightness brightness}) {
   final theme = brightness == Brightness.light
-      ? AppTheme.light()
-      : AppTheme.dark();
+      ? GHAppTheme.light()
+      : GHAppTheme.dark();
   return Theme(
     data: theme,
     child: ColoredBox(
-      color: theme.extension<AppColors>()!.background,
+      color: theme.extension<GHAppColors>()!.background,
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: child,
@@ -33,7 +33,7 @@ List<GoldenTestScenario> _variantScenarios(Brightness brightness) {
       GoldenTestScenario(
         name: variant.name,
         child: _themed(
-          AppButton(label: 'Button', variant: variant, onPressed: () {}),
+          GHAppButton(label: 'Button', variant: variant, onPressed: () {}),
           brightness: brightness,
         ),
       ),
@@ -41,7 +41,7 @@ List<GoldenTestScenario> _variantScenarios(Brightness brightness) {
 }
 
 void main() {
-  group('AppButton golden', () {
+  group('GHAppButton golden', () {
     goldenTest(
       'variants — light',
       fileName: 'app_button_variants_light',
@@ -70,7 +70,7 @@ void main() {
             GoldenTestScenario(
               name: size.name,
               child: _themed(
-                AppButton(label: 'Button', size: size, onPressed: () {}),
+                GHAppButton(label: 'Button', size: size, onPressed: () {}),
                 brightness: Brightness.light,
               ),
             ),
@@ -91,7 +91,7 @@ void main() {
           GoldenTestScenario(
             name: 'enabled with icons',
             child: _themed(
-              AppButton(
+              GHAppButton(
                 label: 'Save',
                 leading: const Icon(Icons.check),
                 trailing: const Icon(Icons.arrow_forward),
@@ -103,14 +103,14 @@ void main() {
           GoldenTestScenario(
             name: 'disabled',
             child: _themed(
-              const AppButton(label: 'Disabled'),
+              const GHAppButton(label: 'Disabled'),
               brightness: Brightness.light,
             ),
           ),
           GoldenTestScenario(
             name: 'loading',
             child: _themed(
-              AppButton(label: 'Loading', isLoading: true, onPressed: () {}),
+              GHAppButton(label: 'Loading', isLoading: true, onPressed: () {}),
               brightness: Brightness.light,
             ),
           ),

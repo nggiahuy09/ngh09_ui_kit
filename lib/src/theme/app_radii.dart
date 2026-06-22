@@ -8,9 +8,9 @@ import 'package:ngh09_ui_kit/src/tokens/radii.dart';
 /// Accessed via `context.radii`. Maps to primitive [RadiusTokens] and provides
 /// ready-made [BorderRadius] getters for component use.
 @immutable
-class AppRadii extends ThemeExtension<AppRadii> {
+class GHAppRadii extends ThemeExtension<GHAppRadii> {
   /// Creates a radius set.
-  const AppRadii({
+  const GHAppRadii({
     required this.none,
     required this.sm,
     required this.md,
@@ -19,7 +19,7 @@ class AppRadii extends ThemeExtension<AppRadii> {
   });
 
   /// The default radius scale.
-  const AppRadii.standard()
+  const GHAppRadii.standard()
     : none = RadiusTokens.none,
       sm = RadiusTokens.sm,
       md = RadiusTokens.md,
@@ -54,14 +54,14 @@ class AppRadii extends ThemeExtension<AppRadii> {
   BorderRadius get borderRadiusFull => BorderRadius.circular(full);
 
   @override
-  AppRadii copyWith({
+  GHAppRadii copyWith({
     double? none,
     double? sm,
     double? md,
     double? lg,
     double? full,
   }) {
-    return AppRadii(
+    return GHAppRadii(
       none: none ?? this.none,
       sm: sm ?? this.sm,
       md: md ?? this.md,
@@ -71,9 +71,9 @@ class AppRadii extends ThemeExtension<AppRadii> {
   }
 
   @override
-  AppRadii lerp(ThemeExtension<AppRadii>? other, double t) {
-    if (other is! AppRadii) return this;
-    return AppRadii(
+  GHAppRadii lerp(ThemeExtension<GHAppRadii>? other, double t) {
+    if (other is! GHAppRadii) return this;
+    return GHAppRadii(
       none: lerpDouble(none, other.none, t)!,
       sm: lerpDouble(sm, other.sm, t)!,
       md: lerpDouble(md, other.md, t)!,

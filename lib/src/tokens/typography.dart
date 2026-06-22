@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// Primitive typography tokens — raw font sizes, weights and line heights.
 ///
-/// Low-level values consumed by the semantic theme layer (`AppTypography`).
+/// Low-level values consumed by the semantic theme layer (`GHAppTypography`).
 /// Sizes follow the Material 3 type scale (display → label).
 abstract final class TypographyTokens {
   /// Default font family. `null` uses the platform default (Roboto on Android,
