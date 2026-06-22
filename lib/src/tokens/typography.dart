@@ -128,6 +128,69 @@ abstract final class TypographyTokens {
   /// Label small line height (16px).
   static const double lineHeightLabelSmall = 16;
 
+  // Height multipliers (line height ÷ font size) ----------------------------
+  // Derived from the absolute line heights above; this is what Flutter's
+  // `TextStyle.height` expects. Kept as named constants so the semantic layer
+  // stays terse (one short token per role).
+
+  /// Display large height multiplier (150 ÷ 120).
+  static const double heightDisplayLarge =
+      lineHeightDisplayLarge / sizeDisplayLarge;
+
+  /// Display medium height multiplier (120 ÷ 96).
+  static const double heightDisplayMedium =
+      lineHeightDisplayMedium / sizeDisplayMedium;
+
+  /// Display small height multiplier (90 ÷ 72).
+  static const double heightDisplaySmall =
+      lineHeightDisplaySmall / sizeDisplaySmall;
+
+  /// Headline large height multiplier (72 ÷ 60).
+  static const double heightHeadlineLarge =
+      lineHeightHeadlineLarge / sizeHeadlineLarge;
+
+  /// Headline medium height multiplier (60 ÷ 48).
+  static const double heightHeadlineMedium =
+      lineHeightHeadlineMedium / sizeHeadlineMedium;
+
+  /// Headline small height multiplier (44 ÷ 36).
+  static const double heightHeadlineSmall =
+      lineHeightHeadlineSmall / sizeHeadlineSmall;
+
+  /// Title large height multiplier (38 ÷ 30).
+  static const double heightTitleLarge =
+      lineHeightTitleLarge / sizeTitleLarge;
+
+  /// Title medium height multiplier (32 ÷ 24).
+  static const double heightTitleMedium =
+      lineHeightTitleMedium / sizeTitleMedium;
+
+  /// Title small height multiplier (30 ÷ 20).
+  static const double heightTitleSmall =
+      lineHeightTitleSmall / sizeTitleSmall;
+
+  /// Body large height multiplier (28 ÷ 18).
+  static const double heightBodyLarge = lineHeightBodyLarge / sizeBodyLarge;
+
+  /// Body medium height multiplier (24 ÷ 16).
+  static const double heightBodyMedium =
+      lineHeightBodyMedium / sizeBodyMedium;
+
+  /// Body small height multiplier (20 ÷ 14).
+  static const double heightBodySmall = lineHeightBodySmall / sizeBodySmall;
+
+  /// Label large height multiplier (20 ÷ 14).
+  static const double heightLabelLarge =
+      lineHeightLabelLarge / sizeLabelLarge;
+
+  /// Label medium height multiplier (18 ÷ 12).
+  static const double heightLabelMedium =
+      lineHeightLabelMedium / sizeLabelMedium;
+
+  /// Label small height multiplier (16 ÷ 10).
+  static const double heightLabelSmall =
+      lineHeightLabelSmall / sizeLabelSmall;
+
   // Letter spacing (logical px) ---------------------------------------------
   // Finesse applies -2% tracking to the larger steps (≥36px) and 0 elsewhere.
   // Resolved px = fontSize * -0.02.
