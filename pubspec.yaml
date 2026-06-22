@@ -1,7 +1,7 @@
 name: ngh09_ui_kit
 description: >-
-  A Material 3 based Flutter UI kit and design system with design tokens,
-  themeable components, and a Widgetbook catalog.
+  A Flutter UI kit and design system based on the Finesse UI Kit, with design
+  tokens, the Inter type scale, themeable components, and a Widgetbook catalog.
 version: 0.1.0
 repository: https://github.com/ngh09/ngh09_ui_kit
 homepage: https://github.com/ngh09/ngh09_ui_kit
@@ -29,3 +29,17 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  # Inter — the Finesse UI Kit typeface. Static latin weights bundled locally so
+  # the package stays free of runtime font dependencies.
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
