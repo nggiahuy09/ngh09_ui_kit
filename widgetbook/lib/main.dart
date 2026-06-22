@@ -3,6 +3,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_badge_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_button_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_chip_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/heroicon_use_cases.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void main() => runApp(const WidgetbookApp());
@@ -31,6 +32,10 @@ class WidgetbookApp extends StatelessWidget {
             WidgetbookFolder(
               name: 'Display',
               children: [buildAppBadgeComponent(), buildAppChipComponent()],
+            ),
+            WidgetbookFolder(
+              name: 'Icons',
+              children: [buildHeroIconComponent()],
             ),
           ],
         ),
