@@ -158,7 +158,7 @@ ngh09_ui_kit/
 
 11. **AppBadge** ✅ — `display/app_badge.dart` — label + count + dot, variant theo status
     (`neutral`/`success`/`warning`/`danger`/`info`), sizes sm/md. **Nhỏ, reuse cao → template tốt.**
-12. **AppChip** — `display/app_chip.dart` — `input` / `filter` / `choice`; selected dùng
+12. **AppChip** ✅ — `display/app_chip.dart` — `input` / `filter` / `choice`; selected dùng
     `primaryContainer`; hỗ trợ leading icon + onDeleted.
 13. **AppAlert / AppBanner** — `feedback/app_alert.dart` — inline status messaging, map 1:1
     với 4 status color; có title/description/icon + action tùy chọn.
@@ -337,6 +337,26 @@ qua GitHub OIDC, không cần token).
       - Golden test (alchemist, 4 file): statuses×{light,dark}, shapes (label/count/dot), sizes.
       - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
         (package + widgetbook), `flutter test` 49/49 pass (gồm golden compare).
+- [x] **AppChip** (Phase D) end-to-end (2026-06-22):
+      - Code: `display/chip_variant.dart` (enum `ChipVariant` input/filter/choice +
+        enum `ChipSize` sm/md), `display/app_chip.dart` (4 ctor: default,
+        `.input` (leading icon + `onDeleted`), `.filter`/`.choice` (toggle qua
+        `onSelected(!selected)`); selected fill `primaryContainer`/`onPrimaryContainer`,
+        unselected `surfaceVariant`/`onSurfaceVariant` + viền `outline`; pill
+        `borderRadiusFull`; `InkWell`-backed khi interactive; delete affordance là tap
+        target riêng (`GestureDetector`), ẩn khi `enabled == false`; đọc 100% từ
+        `context.colors`/`radii`/`spacing`/`textStyles`, không hardcode). Export qua barrel.
+      - Doc `///` đầy đủ cho class + mọi public member.
+      - Use case Widgetbook: Playground (knobs cho mọi prop), Variants, Sizes
+        (thêm vào folder `Display`).
+      - Widget test (12 ca): render label + leading icon, input `onPressed`/`onDeleted`,
+        delete affordance chỉ hiện khi có `onDeleted`, filter/choice report `!selected`,
+        disabled chặn tap & ẩn delete, a11y semantics (button + selected), mọi variant render.
+      - Golden test (alchemist, 4 file): variants×{light,dark} (input/filter/choice
+        on+off), sizes, states (enabled/disabled).
+      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
+        (package + widgetbook), `flutter test` 67/67 pass (gồm golden compare),
+        `flutter build web` (widgetbook) build thành công.
 
 **Bước 5 — CI & publish**
 - [ ] Thêm `.github/workflows/ci.yaml`.

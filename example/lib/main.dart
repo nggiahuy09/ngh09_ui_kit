@@ -72,6 +72,7 @@ class _FoundationGallery extends StatelessWidget {
         children: const [
           _Section(title: 'Buttons', child: _ButtonsShowcase()),
           _Section(title: 'Badges', child: _BadgesShowcase()),
+          _Section(title: 'Chips', child: _ChipsShowcase()),
           _Section(title: 'Colors', child: _ColorsShowcase()),
           _Section(title: 'Typography', child: _TypographyShowcase()),
           _Section(title: 'Spacing', child: _SpacingShowcase()),
@@ -200,6 +201,88 @@ class _BadgesShowcase extends StatelessWidget {
           label: 'Expanded',
           status: BadgeStatus.warning,
           expanded: true,
+        ),
+      ],
+    );
+  }
+}
+
+/// Every [AppChip] variant with live selection / deletion.
+class _ChipsShowcase extends StatefulWidget {
+  const _ChipsShowcase();
+
+  @override
+  State<_ChipsShowcase> createState() => _ChipsShowcaseState();
+}
+
+class _ChipsShowcaseState extends State<_ChipsShowcase> {
+  final List<String> _tags = ['design', 'flutter', 'ui-kit'];
+  final Set<String> _filters = {'Unread'};
+  String _choice = 'Medium';
+
+  @override
+  Widget build(BuildContext context) {
+    final spacing = context.spacing;
+    const filters = ['Unread', 'Starred', 'Archived'];
+    const choices = ['Low', 'Medium', 'High'];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Input chips — deletable tags.
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          children: [
+            for (final tag in _tags)
+              AppChip.input(
+                label: tag,
+                leading: const Icon(Icons.tag),
+                onDeleted: () => setState(() => _tags.remove(tag)),
+              ),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        // Filter chips — multi-select.
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          children: [
+            for (final filter in filters)
+              AppChip.filter(
+                label: filter,
+                selected: _filters.contains(filter),
+                onSelected: (selected) => setState(() {
+                  if (selected) {
+                    _filters.add(filter);
+                  } else {
+                    _filters.remove(filter);
+                  }
+                }),
+              ),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        // Choice chips — single-select.
+        Wrap(
+          spacing: spacing.sm,
+          runSpacing: spacing.sm,
+          children: [
+            for (final choice in choices)
+              AppChip.choice(
+                label: choice,
+                selected: _choice == choice,
+                onSelected: (_) => setState(() => _choice = choice),
+              ),
+          ],
+        ),
+        SizedBox(height: spacing.md),
+        // Expanded chip — stretches to the full available width.
+        AppChip.filter(
+          label: 'Expanded',
+          selected: true,
+          expanded: true,
+          onSelected: (_) {},
         ),
       ],
     );
