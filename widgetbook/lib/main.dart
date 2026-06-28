@@ -3,6 +3,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_badge_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_button_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_chip_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/company_logo_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/heroicon_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/user_avatar_use_cases.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -37,6 +38,10 @@ class WidgetbookApp extends StatelessWidget {
             WidgetbookFolder(
               name: 'Avatars',
               children: [buildUserAvatarComponent()],
+            ),
+            WidgetbookFolder(
+              name: 'Logos',
+              children: [buildCompanyLogoComponent()],
             ),
             WidgetbookFolder(
               name: 'Icons',
