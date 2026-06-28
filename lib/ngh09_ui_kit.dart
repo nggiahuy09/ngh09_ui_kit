@@ -12,6 +12,9 @@
 library;
 
 // Components (Phase B onward).
+export 'src/components/avatars/gh_avatar_interaction_state.dart';
+export 'src/components/avatars/gh_avatar_size.dart';
+export 'src/components/avatars/gh_avatar_status.dart';
 export 'src/components/avatars/gh_avatar_variant.dart';
 export 'src/components/avatars/gh_user_avatar.dart';
 export 'src/components/buttons/app_button.dart';
