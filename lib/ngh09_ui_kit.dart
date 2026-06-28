@@ -12,18 +12,28 @@
 library;
 
 // Components (Phase B onward).
+export 'src/components/avatars/gh_avatar_interaction_state.dart';
+export 'src/components/avatars/gh_avatar_size.dart';
+export 'src/components/avatars/gh_avatar_status.dart';
+export 'src/components/avatars/gh_avatar_variant.dart';
+export 'src/components/avatars/gh_user_avatar.dart';
 export 'src/components/buttons/app_button.dart';
 export 'src/components/buttons/button_variant.dart';
 export 'src/components/display/app_badge.dart';
 export 'src/components/display/app_chip.dart';
 export 'src/components/display/badge_status.dart';
 export 'src/components/display/chip_variant.dart';
+export 'src/components/feedback/gh_alert_state.dart';
+export 'src/components/feedback/gh_app_alert.dart';
 export 'src/components/flags/gh_country.dart';
 export 'src/components/flags/gh_country_flag.dart';
 export 'src/components/icons/gh_hero_icon.dart';
 export 'src/components/icons/gh_icon_data.dart';
 export 'src/components/icons/gh_icons.dart';
 export 'src/components/icons/heroicon_style.dart';
+export 'src/components/logos/gh_company.dart';
+export 'src/components/logos/gh_company_logo.dart';
+export 'src/components/logos/gh_logo_layer.dart';
 export 'src/components/payment/gh_payment_icon.dart';
 export 'src/components/payment/gh_payment_icon_size.dart';
 export 'src/components/payment/gh_payment_method.dart';
