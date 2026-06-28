@@ -20,6 +20,8 @@ export 'src/components/display/app_badge.dart';
 export 'src/components/display/app_chip.dart';
 export 'src/components/display/badge_status.dart';
 export 'src/components/display/chip_variant.dart';
+export 'src/components/feedback/gh_alert_state.dart';
+export 'src/components/feedback/gh_app_alert.dart';
 export 'src/components/flags/gh_country.dart';
 export 'src/components/flags/gh_country_flag.dart';
 export 'src/components/icons/gh_hero_icon.dart';
