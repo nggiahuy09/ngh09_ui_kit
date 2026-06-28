@@ -1,7 +1,7 @@
 name: ngh09_ui_kit
 description: >-
-  A Material 3 based Flutter UI kit and design system with design tokens,
-  themeable components, and a Widgetbook catalog.
+  A Flutter UI kit and design system based on the Finesse UI Kit, with design
+  tokens, the Inter type scale, themeable components, and a Widgetbook catalog.
 version: 0.1.0
 repository: https://github.com/ngh09/ngh09_ui_kit
 homepage: https://github.com/ngh09/ngh09_ui_kit
@@ -15,6 +15,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Renders the bundled Heroicons SVG assets (see assets/icons/heroicons/).
+  # Heroicons' outline style is stroke-based, so an icon font cannot reproduce
+  # it faithfully — SVG rendering is required to match the Finesse design.
+  flutter_svg: ^2.0.10
 
 dev_dependencies:
   # Golden / snapshot testing for components (CI-stable fonts & shadows).
@@ -29,3 +33,25 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  # Heroicons (https://heroicons.com, MIT) bundled as SVGs in three styles:
+  # `mini` (20×20 filled), `outline` (24×24 stroked) and `solid` (24×24 filled).
+  # Rendered through GHHeroIcon / the GHIcons catalog.
+  assets:
+    - assets/icons/heroicons/mini/
+    - assets/icons/heroicons/outline/
+    - assets/icons/heroicons/solid/
+
+  # Inter — the Finesse UI Kit typeface. Static latin weights bundled locally so
+  # the package stays free of runtime font dependencies.
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/theme/app_colors.dart';
 import 'package:ngh09_ui_kit/src/theme/app_radii.dart';
+import 'package:ngh09_ui_kit/src/theme/app_shadows.dart';
 import 'package:ngh09_ui_kit/src/theme/app_spacing.dart';
 import 'package:ngh09_ui_kit/src/theme/app_typography.dart';
 
 /// Entry point for building the UI kit's [ThemeData].
 ///
 /// Wraps Material 3 and attaches the kit's semantic [ThemeExtension]s
-/// ([GHAppColors], [GHAppSpacing], [GHAppRadii], [GHAppTypography]) so
-/// components can read tokens via `context.colors`, `context.spacing`, etc.
+/// ([GHAppColors], [GHAppSpacing], [GHAppRadii], [GHAppShadows],
+/// [GHAppTypography]) so components can read tokens via `context.colors`,
+/// `context.spacing`, `context.shadows`, etc.
 /// The semantic
 /// colors and typography are also projected onto the underlying Material
 /// [ColorScheme] and [TextTheme] so built-in Material widgets stay consistent.
@@ -34,6 +36,7 @@ abstract final class GHAppTheme {
   }) {
     const spacing = GHAppSpacing.standard();
     const radii = GHAppRadii.standard();
+    const shadows = GHAppShadows.standard();
     final colorScheme = colors.toColorScheme();
     final textTheme = typography.toTextTheme();
 
@@ -50,6 +53,7 @@ abstract final class GHAppTheme {
         colors,
         spacing,
         radii,
+        shadows,
         typography,
       ],
     );

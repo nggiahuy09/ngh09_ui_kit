@@ -40,50 +40,57 @@ class GHAppColors extends ThemeExtension<GHAppColors> {
   });
 
   /// The default light color set.
+  ///
+  /// Primary is Finesse's black brand. Surfaces/borders draw from the gray
+  /// ramp; status roles use each ramp's 500 fill with its 900 on-color. `info`
+  /// is a legacy non-Finesse role (see [info]).
   const GHAppColors.light()
     : brightness = Brightness.light,
-      primary = ColorTokens.brand500,
+      primary = ColorTokens.black,
       onPrimary = ColorTokens.white,
-      primaryContainer = ColorTokens.brand100,
-      onPrimaryContainer = ColorTokens.brand900,
-      background = ColorTokens.neutral50,
-      onBackground = ColorTokens.neutral900,
-      surface = ColorTokens.neutral0,
-      onSurface = ColorTokens.neutral900,
-      surfaceVariant = ColorTokens.neutral100,
-      onSurfaceVariant = ColorTokens.neutral600,
-      outline = ColorTokens.neutral300,
-      outlineVariant = ColorTokens.neutral200,
+      primaryContainer = ColorTokens.gray100,
+      onPrimaryContainer = ColorTokens.gray900,
+      background = ColorTokens.gray50,
+      onBackground = ColorTokens.gray900,
+      surface = ColorTokens.white,
+      onSurface = ColorTokens.gray900,
+      surfaceVariant = ColorTokens.gray100,
+      onSurfaceVariant = ColorTokens.gray600,
+      outline = ColorTokens.gray300,
+      outlineVariant = ColorTokens.gray200,
       success = ColorTokens.success500,
-      onSuccess = ColorTokens.white,
+      onSuccess = ColorTokens.success900,
       warning = ColorTokens.warning500,
-      onWarning = ColorTokens.neutral900,
-      danger = ColorTokens.danger500,
-      onDanger = ColorTokens.white,
+      onWarning = ColorTokens.warning900,
+      danger = ColorTokens.error500,
+      onDanger = ColorTokens.error900,
       info = ColorTokens.info500,
       onInfo = ColorTokens.white;
 
   /// The default dark color set.
+  ///
+  /// Primary inverts to white; surfaces step down the gray ramp. Status roles
+  /// are mode-independent (same fills as light).
   const GHAppColors.dark()
     : brightness = Brightness.dark,
-      primary = ColorTokens.brand300,
-      onPrimary = ColorTokens.brand900,
-      primaryContainer = ColorTokens.brand700,
-      onPrimaryContainer = ColorTokens.brand100,
-      background = ColorTokens.neutral900,
-      onBackground = ColorTokens.neutral50,
-      surface = ColorTokens.neutral800,
-      onSurface = ColorTokens.neutral50,
-      surfaceVariant = ColorTokens.neutral700,
-      onSurfaceVariant = ColorTokens.neutral300,
-      outline = ColorTokens.neutral600,
-      outlineVariant = ColorTokens.neutral700,
+      primary = ColorTokens.white,
+      onPrimary = ColorTokens.black,
+      primaryContainer = ColorTokens.gray800,
+      onPrimaryContainer = ColorTokens.gray50,
+      background = ColorTokens.gray1000,
+      onBackground = ColorTokens.gray50,
+      surface = ColorTokens.gray900,
+      onSurface = ColorTokens.gray50,
+      surfaceVariant = ColorTokens.gray800,
+      onSurfaceVariant = ColorTokens.gray300,
+      outline = ColorTokens.gray600,
+      outlineVariant = ColorTokens.gray700,
       success = ColorTokens.success500,
-      onSuccess = ColorTokens.white,
+      onSuccess = ColorTokens.success900,
       warning = ColorTokens.warning500,
-      onWarning = ColorTokens.neutral900,
-      danger = ColorTokens.danger500,
-      onDanger = ColorTokens.white,
+      onWarning = ColorTokens.warning900,
+      danger = ColorTokens.error500,
+      onDanger = ColorTokens.error900,
       info = ColorTokens.info500,
       onInfo = ColorTokens.white;
 
