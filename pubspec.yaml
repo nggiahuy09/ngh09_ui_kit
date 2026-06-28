@@ -41,6 +41,7 @@ flutter:
     - assets/icons/heroicons/mini/
     - assets/icons/heroicons/outline/
     - assets/icons/heroicons/solid/
+    - assets/images/avatars/
 
   # Inter — the Finesse UI Kit typeface. Static latin weights bundled locally so
   # the package stays free of runtime font dependencies.
