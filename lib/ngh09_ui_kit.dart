@@ -18,10 +18,15 @@ export 'src/components/display/app_badge.dart';
 export 'src/components/display/app_chip.dart';
 export 'src/components/display/badge_status.dart';
 export 'src/components/display/chip_variant.dart';
+export 'src/components/flags/gh_country.dart';
+export 'src/components/flags/gh_country_flag.dart';
 export 'src/components/icons/gh_hero_icon.dart';
 export 'src/components/icons/gh_icon_data.dart';
 export 'src/components/icons/gh_icons.dart';
 export 'src/components/icons/heroicon_style.dart';
+export 'src/components/payment/gh_payment_icon.dart';
+export 'src/components/payment/gh_payment_icon_size.dart';
+export 'src/components/payment/gh_payment_method.dart';
 // Foundation — semantic theme layer.
 export 'src/theme/app_colors.dart';
 export 'src/theme/app_radii.dart';
