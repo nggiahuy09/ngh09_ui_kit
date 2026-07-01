@@ -6,8 +6,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// resolve `context.colors` / `context.spacing` etc.
 Widget _wrap(Widget child, {Brightness brightness = Brightness.light}) {
   return MaterialApp(
-    theme:
-        brightness == Brightness.light ? GHAppTheme.light() : GHAppTheme.dark(),
+    theme: brightness == Brightness.light ? GHAppTheme.light() : GHAppTheme.dark(),
     home: Scaffold(body: Center(child: child)),
   );
 }
@@ -21,52 +20,32 @@ void main() {
 
     testWidgets('calls onPressed when tapped', (tester) async {
       var taps = 0;
-      await tester.pumpWidget(
-        _wrap(GHAppButton(label: 'Tap', onPressed: () => taps++)),
-      );
-
+      await tester.pumpWidget(_wrap(GHAppButton(label: 'Tap', onPressed: () => taps++)));
       await tester.tap(find.byType(GHAppButton));
       await tester.pump();
-
       expect(taps, 1);
     });
 
-    testWidgets('reports disabled state via semantics when onPressed is null', (
-      tester,
-    ) async {
+    testWidgets('reports disabled state via semantics when onPressed is null', (tester) async {
       await tester.pumpWidget(_wrap(const GHAppButton(label: 'Disabled')));
+      // GHAppButton wraps the Material button in a DecoratedBox for shadows;
+      // semantics live on the inner button, not on the wrapper.
       expect(
-        tester.getSemantics(find.byType(GHAppButton)),
-        matchesSemantics(
-          label: 'Disabled',
-          isButton: true,
-          hasEnabledState: true,
-        ),
+        tester.getSemantics(find.byType(FilledButton)),
+        matchesSemantics(label: 'Disabled', isButton: true, hasEnabledState: true),
       );
     });
 
     testWidgets('does not call onPressed while loading', (tester) async {
       var taps = 0;
-      await tester.pumpWidget(
-        _wrap(
-          GHAppButton(
-            label: 'Loading',
-            isLoading: true,
-            onPressed: () => taps++,
-          ),
-        ),
-      );
-
+      await tester.pumpWidget(_wrap(GHAppButton(label: 'Loading', isLoading: true, onPressed: () => taps++)));
       await tester.tap(find.byType(GHAppButton), warnIfMissed: false);
       await tester.pump();
-
       expect(taps, 0);
     });
 
     testWidgets('shows a progress indicator while loading', (tester) async {
-      await tester.pumpWidget(
-        _wrap(GHAppButton(label: 'Loading', isLoading: true, onPressed: () {})),
-      );
+      await tester.pumpWidget(_wrap(GHAppButton(label: 'Loading', isLoading: true, onPressed: () {})));
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       // Label is preserved so the footprint does not jump.
       expect(find.text('Loading'), findsOneWidget);
@@ -87,9 +66,7 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
-    testWidgets('renders leading and trailing icons when not loading', (
-      tester,
-    ) async {
+    testWidgets('renders leading and trailing icons when not loading', (tester) async {
       await tester.pumpWidget(
         _wrap(
           GHAppButton(
@@ -104,14 +81,12 @@ void main() {
       expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
     });
 
-    testWidgets('exposes button + enabled semantics for accessibility', (
-      tester,
-    ) async {
-      await tester.pumpWidget(
-        _wrap(GHAppButton(label: 'Accessible', onPressed: () {})),
-      );
+    testWidgets('exposes button + enabled semantics for accessibility', (tester) async {
+      await tester.pumpWidget(_wrap(GHAppButton(label: 'Accessible', onPressed: () {})));
+      // GHAppButton wraps the Material button in a DecoratedBox for shadows;
+      // semantics live on the inner button, not on the wrapper.
       expect(
-        tester.getSemantics(find.byType(GHAppButton)),
+        tester.getSemantics(find.byType(FilledButton)),
         matchesSemantics(
           label: 'Accessible',
           isButton: true,
@@ -125,47 +100,22 @@ void main() {
     });
 
     group('named constructors map to the right variant', () {
-      test('filled', () {
-        expect(
-          const GHAppButton.filled(label: 'x').variant,
-          ButtonVariant.filled,
-        );
-      });
-      test('tonal', () {
-        expect(
-          const GHAppButton.tonal(label: 'x').variant,
-          ButtonVariant.tonal,
-        );
-      });
-      test('outlined', () {
-        expect(
-          const GHAppButton.outlined(label: 'x').variant,
-          ButtonVariant.outlined,
-        );
-      });
-      test('text', () {
-        expect(const GHAppButton.text(label: 'x').variant, ButtonVariant.text);
-      });
+      test('filled', () => expect(const GHAppButton.filled(label: 'x').variant, ButtonVariant.filled));
+      test('tonal', () => expect(const GHAppButton.tonal(label: 'x').variant, ButtonVariant.tonal));
+      test('outlined', () => expect(const GHAppButton.outlined(label: 'x').variant, ButtonVariant.outlined));
+      test('text', () => expect(const GHAppButton.text(label: 'x').variant, ButtonVariant.text));
     });
 
     testWidgets('outlined variant renders an OutlinedButton', (tester) async {
-      await tester.pumpWidget(
-        _wrap(GHAppButton.outlined(label: 'Outlined', onPressed: () {})),
-      );
+      await tester.pumpWidget(_wrap(GHAppButton.outlined(label: 'Outlined', onPressed: () {})));
       expect(find.byType(OutlinedButton), findsOneWidget);
     });
 
-    testWidgets('expanded button is wider than a non-expanded one', (
-      tester,
-    ) async {
-      await tester.pumpWidget(
-        _wrap(GHAppButton(label: 'Narrow', onPressed: () {})),
-      );
+    testWidgets('expanded button is wider than a non-expanded one', (tester) async {
+      await tester.pumpWidget(_wrap(GHAppButton(label: 'Narrow', onPressed: () {})));
       final narrow = tester.getSize(find.byType(FilledButton)).width;
 
-      await tester.pumpWidget(
-        _wrap(GHAppButton(label: 'Narrow', expanded: true, onPressed: () {})),
-      );
+      await tester.pumpWidget(_wrap(GHAppButton(label: 'Narrow', expanded: true, onPressed: () {})));
       final wide = tester.getSize(find.byType(FilledButton)).width;
 
       expect(wide, greaterThan(narrow));

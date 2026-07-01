@@ -18,6 +18,7 @@ export 'src/components/avatars/gh_avatar_status.dart';
 export 'src/components/avatars/gh_avatar_variant.dart';
 export 'src/components/avatars/gh_user_avatar.dart';
 export 'src/components/buttons/app_button.dart';
+export 'src/components/buttons/button_corner.dart';
 export 'src/components/buttons/button_variant.dart';
 export 'src/components/display/app_badge.dart';
 export 'src/components/display/app_chip.dart';
