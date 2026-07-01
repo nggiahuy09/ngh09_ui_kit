@@ -32,6 +32,8 @@ export 'src/components/icons/gh_hero_icon.dart';
 export 'src/components/icons/gh_icon_data.dart';
 export 'src/components/icons/gh_icons.dart';
 export 'src/components/icons/heroicon_style.dart';
+export 'src/components/inputs/gh_app_toggle.dart';
+export 'src/components/inputs/toggle_size.dart';
 export 'src/components/logos/gh_company.dart';
 export 'src/components/logos/gh_company_logo.dart';
 export 'src/components/logos/gh_logo_layer.dart';

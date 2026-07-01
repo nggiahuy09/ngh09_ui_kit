@@ -4,6 +4,7 @@ import 'package:ngh09_ui_kit_widgetbook/use_cases/app_alert_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_badge_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_button_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_chip_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_toggle_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/company_logo_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/heroicon_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/user_avatar_use_cases.dart';
@@ -31,6 +32,10 @@ class WidgetbookApp extends StatelessWidget {
             WidgetbookFolder(
               name: 'Buttons',
               children: [buildAppButtonComponent()],
+            ),
+            WidgetbookFolder(
+              name: 'Inputs',
+              children: [buildAppToggleComponent()],
             ),
             WidgetbookFolder(
               name: 'Feedback',
