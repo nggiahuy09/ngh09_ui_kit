@@ -23,6 +23,10 @@ WidgetbookComponent buildAppButtonComponent() {
         name: 'Sizes',
         builder: _sizesUseCase,
       ),
+      WidgetbookUseCase(
+        name: 'Corners',
+        builder: _cornersUseCase,
+      ),
     ],
   );
 }
@@ -46,6 +50,12 @@ Widget _playgroundUseCase(BuildContext context) {
     initialOption: ButtonSize.medium,
     labelBuilder: (value) => value.name,
   );
+  final corner = knobs.object.dropdown<ButtonCorner>(
+    label: 'Corner',
+    options: ButtonCorner.values,
+    initialOption: ButtonCorner.medium,
+    labelBuilder: (value) => value.name,
+  );
   final isLoading = knobs.boolean(label: 'Loading');
   final disabled = knobs.boolean(label: 'Disabled');
   final expanded = knobs.boolean(label: 'Expanded');
@@ -57,9 +67,10 @@ Widget _playgroundUseCase(BuildContext context) {
       label: label,
       variant: variant,
       size: size,
+      corner: corner,
       isLoading: isLoading,
       expanded: expanded,
-      leading: showLeading ? const Icon(Icons.star) : null,
+      leading: showLeading ? const Icon(Icons.mail_outline) : null,
       trailing: showTrailing ? const Icon(Icons.arrow_forward) : null,
       onPressed: disabled ? null : () {},
     ),
@@ -77,6 +88,8 @@ Widget _variantsUseCase(BuildContext context) {
           GHAppButton(
             label: variant.name,
             variant: variant,
+            leading: const Icon(Icons.mail_outline),
+            trailing: const Icon(Icons.arrow_forward),
             onPressed: () {},
           ),
       ],
@@ -87,15 +100,37 @@ Widget _variantsUseCase(BuildContext context) {
 /// Static gallery of every [ButtonSize].
 Widget _sizesUseCase(BuildContext context) {
   return Center(
-    child: Wrap(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       spacing: context.spacing.md,
-      runSpacing: context.spacing.md,
-      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         for (final size in ButtonSize.values)
           GHAppButton(
             label: size.name,
             size: size,
+            leading: const Icon(Icons.mail_outline),
+            trailing: const Icon(Icons.arrow_forward),
+            onPressed: () {},
+          ),
+      ],
+    ),
+  );
+}
+
+/// Static gallery of every [ButtonCorner] shape.
+Widget _cornersUseCase(BuildContext context) {
+  return Center(
+    child: Wrap(
+      spacing: context.spacing.md,
+      runSpacing: context.spacing.md,
+      children: [
+        for (final corner in ButtonCorner.values)
+          GHAppButton(
+            label: corner.name,
+            corner: corner,
+            leading: const Icon(Icons.mail_outline),
+            trailing: const Icon(Icons.arrow_forward),
             onPressed: () {},
           ),
       ],
