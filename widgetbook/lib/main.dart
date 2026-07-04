@@ -12,6 +12,7 @@ import 'package:ngh09_ui_kit_widgetbook/use_cases/app_text_area_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_text_field_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_toggle_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/company_logo_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/gh_tooltip_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/heroicon_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/user_avatar_use_cases.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -37,7 +38,10 @@ class WidgetbookApp extends StatelessWidget {
           children: [
             WidgetbookFolder(
               name: 'Buttons',
-              children: [buildAppButtonComponent(), buildAppIconButtonComponent()],
+              children: [
+                buildAppButtonComponent(),
+                buildAppIconButtonComponent(),
+              ],
             ),
             WidgetbookFolder(
               name: 'Inputs',
@@ -55,7 +59,7 @@ class WidgetbookApp extends StatelessWidget {
             ),
             WidgetbookFolder(
               name: 'Feedback',
-              children: [buildAppAlertComponent()],
+              children: [buildAppAlertComponent(), buildTooltipComponent()],
             ),
             WidgetbookFolder(
               name: 'Display',
