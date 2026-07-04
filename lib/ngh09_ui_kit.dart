@@ -31,6 +31,8 @@ export 'src/components/display/badge_size.dart';
 export 'src/components/display/chip_variant.dart';
 export 'src/components/feedback/gh_alert_state.dart';
 export 'src/components/feedback/gh_app_alert.dart';
+export 'src/components/feedback/gh_snackbar.dart';
+export 'src/components/feedback/gh_snackbar_state.dart';
 export 'src/components/feedback/gh_tooltip.dart';
 export 'src/components/feedback/tooltip_arrow.dart';
 export 'src/components/feedback/tooltip_corner.dart';
