@@ -7,7 +7,9 @@ import 'package:ngh09_ui_kit_widgetbook/use_cases/app_checkbox_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_chip_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_icon_button_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_radio_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_range_slider_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_segmented_control_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_slider_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_text_area_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_text_field_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_toggle_use_cases.dart';
@@ -54,6 +56,8 @@ class WidgetbookApp extends StatelessWidget {
                 buildAppRadioComponent(),
                 buildAppTextFieldComponent(),
                 buildAppTextAreaComponent(),
+                buildAppSliderComponent(),
+                buildAppRangeSliderComponent(),
               ],
             ),
             WidgetbookFolder(
