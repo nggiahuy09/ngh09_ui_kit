@@ -38,6 +38,8 @@ export 'src/components/icons/heroicon_style.dart';
 export 'src/components/inputs/checkbox_size.dart';
 export 'src/components/inputs/gh_app_checkbox.dart';
 export 'src/components/inputs/gh_app_radio.dart';
+export 'src/components/inputs/gh_app_text_area.dart';
+export 'src/components/inputs/gh_app_text_field.dart';
 export 'src/components/inputs/gh_app_toggle.dart';
 export 'src/components/inputs/radio_size.dart';
 export 'src/components/inputs/toggle_size.dart';
