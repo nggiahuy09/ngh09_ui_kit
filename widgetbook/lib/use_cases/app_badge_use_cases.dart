@@ -11,18 +11,11 @@ WidgetbookComponent buildAppBadgeComponent() {
   return WidgetbookComponent(
     name: 'GHAppBadge',
     useCases: [
-      WidgetbookUseCase(
-        name: 'Playground',
-        builder: _playgroundUseCase,
-      ),
-      WidgetbookUseCase(
-        name: 'Statuses',
-        builder: _statusesUseCase,
-      ),
-      WidgetbookUseCase(
-        name: 'Shapes',
-        builder: _shapesUseCase,
-      ),
+      WidgetbookUseCase(name: 'Playground', builder: _playgroundUseCase),
+      WidgetbookUseCase(name: 'Colors', builder: _colorsUseCase),
+      WidgetbookUseCase(name: 'Types', builder: _typesUseCase),
+      WidgetbookUseCase(name: 'Sizes', builder: _sizesUseCase),
+      WidgetbookUseCase(name: 'Corners', builder: _cornersUseCase),
     ],
   );
 }
@@ -31,13 +24,10 @@ WidgetbookComponent buildAppBadgeComponent() {
 Widget _playgroundUseCase(BuildContext context) {
   final knobs = context.knobs;
 
-  final label = knobs.string(
-    label: 'Label',
-    initialValue: 'New',
-  );
-  final status = knobs.object.dropdown<BadgeStatus>(
-    label: 'Status',
-    options: BadgeStatus.values,
+  final label = knobs.string(label: 'Label', initialValue: 'New');
+  final color = knobs.object.dropdown<BadgeColor>(
+    label: 'Color',
+    options: BadgeColor.values,
     labelBuilder: (value) => value.name,
   );
   final size = knobs.object.dropdown<BadgeSize>(
@@ -46,46 +36,73 @@ Widget _playgroundUseCase(BuildContext context) {
     initialOption: BadgeSize.medium,
     labelBuilder: (value) => value.name,
   );
-  final isDot = knobs.boolean(label: 'Dot');
+  final corner = knobs.object.dropdown<BadgeCorner>(
+    label: 'Corner',
+    options: BadgeCorner.values,
+    initialOption: BadgeCorner.smooth,
+    labelBuilder: (value) => value.name,
+  );
   final expanded = knobs.boolean(label: 'Expanded');
 
   return Center(
-    child: isDot
-        ? GHAppBadge.dot(status: status, size: size)
-        : GHAppBadge(
-            label: label,
-            status: status,
-            size: size,
-            expanded: expanded,
-          ),
+    child: GHAppBadge(label: label, color: color, size: size, corner: corner, expanded: expanded),
   );
 }
 
-/// Static gallery of every [BadgeStatus].
-Widget _statusesUseCase(BuildContext context) {
+/// Static gallery of every [BadgeColor].
+Widget _colorsUseCase(BuildContext context) {
   return Center(
     child: Wrap(
       spacing: context.spacing.md,
       runSpacing: context.spacing.md,
       children: [
-        for (final status in BadgeStatus.values)
-          GHAppBadge(label: status.name, status: status),
+        for (final color in BadgeColor.values) GHAppBadge(label: color.name, color: color),
       ],
     ),
   );
 }
 
-/// Static gallery of the label / count / dot shapes.
-Widget _shapesUseCase(BuildContext context) {
+/// Static gallery of the five leading-visual types.
+Widget _typesUseCase(BuildContext context) {
   return Center(
     child: Wrap(
       spacing: context.spacing.md,
       runSpacing: context.spacing.md,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        const GHAppBadge(label: 'New', status: BadgeStatus.info),
-        GHAppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
-        const GHAppBadge.dot(status: BadgeStatus.success),
+        const GHAppBadge(label: 'Simple'),
+        const GHAppBadge.dot(label: 'Dot', color: BadgeColor.success),
+        GHAppBadge.icon(label: 'Icon', leadingIcon: const Icon(Icons.check), color: BadgeColor.warning),
+        const GHAppBadge.avatar(label: 'Avatar', avatar: FlutterLogo()),
+        GHAppBadge.flag(label: 'Flag', country: GHCountry.unitedStates, color: BadgeColor.error),
+        GHAppBadge.count(count: 128, max: 99, color: BadgeColor.error),
+      ],
+    ),
+  );
+}
+
+/// Static gallery of every [BadgeSize].
+Widget _sizesUseCase(BuildContext context) {
+  return Center(
+    child: Wrap(
+      spacing: context.spacing.md,
+      runSpacing: context.spacing.md,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        for (final size in BadgeSize.values) GHAppBadge.dot(label: size.name, size: size, color: BadgeColor.success),
+      ],
+    ),
+  );
+}
+
+/// Static gallery of every [BadgeCorner].
+Widget _cornersUseCase(BuildContext context) {
+  return Center(
+    child: Wrap(
+      spacing: context.spacing.md,
+      runSpacing: context.spacing.md,
+      children: [
+        for (final corner in BadgeCorner.values) GHAppBadge(label: corner.name, corner: corner),
       ],
     ),
   );

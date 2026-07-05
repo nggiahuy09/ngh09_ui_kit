@@ -7,8 +7,17 @@ import 'package:ngh09_ui_kit_widgetbook/use_cases/app_checkbox_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_chip_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_icon_button_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_radio_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_range_slider_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_segmented_control_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_slider_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_text_area_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/app_text_field_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/app_toggle_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/company_logo_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/gh_breadcrumbs_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/gh_crumb_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/gh_snackbar_use_cases.dart';
+import 'package:ngh09_ui_kit_widgetbook/use_cases/gh_tooltip_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/heroicon_use_cases.dart';
 import 'package:ngh09_ui_kit_widgetbook/use_cases/user_avatar_use_cases.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -34,15 +43,38 @@ class WidgetbookApp extends StatelessWidget {
           children: [
             WidgetbookFolder(
               name: 'Buttons',
-              children: [buildAppButtonComponent(), buildAppIconButtonComponent()],
+              children: [
+                buildAppButtonComponent(),
+                buildAppIconButtonComponent(),
+              ],
             ),
             WidgetbookFolder(
               name: 'Inputs',
-              children: [buildAppToggleComponent(), buildAppCheckboxComponent(), buildAppRadioComponent()],
+              children: [
+                buildAppToggleComponent(),
+                buildAppCheckboxComponent(),
+                buildAppRadioComponent(),
+                buildAppTextFieldComponent(),
+                buildAppTextAreaComponent(),
+                buildAppSliderComponent(),
+                buildAppRangeSliderComponent(),
+              ],
+            ),
+            WidgetbookFolder(
+              name: 'Navigation',
+              children: [
+                buildAppSegmentedControlComponent(),
+                buildCrumbComponent(),
+                buildBreadcrumbsComponent(),
+              ],
             ),
             WidgetbookFolder(
               name: 'Feedback',
-              children: [buildAppAlertComponent()],
+              children: [
+                buildAppAlertComponent(),
+                buildSnackbarComponent(),
+                buildTooltipComponent(),
+              ],
             ),
             WidgetbookFolder(
               name: 'Display',

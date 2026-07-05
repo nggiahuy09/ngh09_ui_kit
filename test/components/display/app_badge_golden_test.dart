@@ -11,31 +11,23 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// golden snapshots reflect the real themed appearance. A [Padding] gives the
 /// snapshot a little breathing room.
 Widget _themed(Widget child, {required Brightness brightness}) {
-  final theme = brightness == Brightness.light
-      ? GHAppTheme.light()
-      : GHAppTheme.dark();
+  final theme = brightness == Brightness.light ? GHAppTheme.light() : GHAppTheme.dark();
   return Theme(
     data: theme,
     child: ColoredBox(
       color: theme.extension<GHAppColors>()!.background,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: child,
-      ),
+      child: Padding(padding: const EdgeInsets.all(8), child: child),
     ),
   );
 }
 
-/// One scenario per [BadgeStatus], rendered for the given [brightness].
-List<GoldenTestScenario> _statusScenarios(Brightness brightness) {
+/// One scenario per [BadgeColor], rendered for the given [brightness].
+List<GoldenTestScenario> _colorScenarios(Brightness brightness) {
   return [
-    for (final status in BadgeStatus.values)
+    for (final color in BadgeColor.values)
       GoldenTestScenario(
-        name: status.name,
-        child: _themed(
-          GHAppBadge(label: status.name, status: status),
-          brightness: brightness,
-        ),
+        name: color.name,
+        child: _themed(GHAppBadge(label: color.name, color: color), brightness: brightness),
       ),
   ];
 }
@@ -43,47 +35,59 @@ List<GoldenTestScenario> _statusScenarios(Brightness brightness) {
 void main() {
   group('GHAppBadge golden', () {
     goldenTest(
-      'statuses — light',
-      fileName: 'app_badge_statuses_light',
-      builder: () => GoldenTestGroup(
-        columns: 3,
-        children: _statusScenarios(Brightness.light),
-      ),
+      'colors — light',
+      fileName: 'app_badge_colors_light',
+      builder: () => GoldenTestGroup(columns: 4, children: _colorScenarios(Brightness.light)),
     );
 
     goldenTest(
-      'statuses — dark',
-      fileName: 'app_badge_statuses_dark',
-      builder: () => GoldenTestGroup(
-        columns: 3,
-        children: _statusScenarios(Brightness.dark),
-      ),
+      'colors — dark',
+      fileName: 'app_badge_colors_dark',
+      builder: () => GoldenTestGroup(columns: 4, children: _colorScenarios(Brightness.dark)),
     );
 
     goldenTest(
-      'shapes',
-      fileName: 'app_badge_shapes',
+      'types',
+      fileName: 'app_badge_types',
       builder: () => GoldenTestGroup(
         columns: 3,
         children: [
           GoldenTestScenario(
-            name: 'label',
+            name: 'simple',
+            child: _themed(const GHAppBadge(label: 'Simple'), brightness: Brightness.light),
+          ),
+          GoldenTestScenario(
+            name: 'dot',
             child: _themed(
-              const GHAppBadge(label: 'New', status: BadgeStatus.info),
+              const GHAppBadge.dot(label: 'Live', color: BadgeColor.success),
+              brightness: Brightness.light,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'icon',
+            child: _themed(
+              const GHAppBadge.icon(label: 'Verified', leadingIcon: Icon(Icons.check), color: BadgeColor.warning),
+              brightness: Brightness.light,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'avatar',
+            child: _themed(
+              const GHAppBadge.avatar(label: 'Avatar', avatar: FlutterLogo()),
+              brightness: Brightness.light,
+            ),
+          ),
+          GoldenTestScenario(
+            name: 'flag',
+            child: _themed(
+              const GHAppBadge.flag(label: 'US', country: GHCountry.unitedStates, color: BadgeColor.error),
               brightness: Brightness.light,
             ),
           ),
           GoldenTestScenario(
             name: 'count',
             child: _themed(
-              GHAppBadge.count(count: 128, max: 99, status: BadgeStatus.danger),
-              brightness: Brightness.light,
-            ),
-          ),
-          GoldenTestScenario(
-            name: 'dot',
-            child: _themed(
-              const GHAppBadge.dot(status: BadgeStatus.success),
+              GHAppBadge.count(count: 128, max: 99, color: BadgeColor.error),
               brightness: Brightness.light,
             ),
           ),
@@ -100,14 +104,7 @@ void main() {
           GoldenTestScenario(
             name: 'fills its parent width',
             child: _themed(
-              const SizedBox(
-                width: 160,
-                child: GHAppBadge(
-                  label: 'Pending',
-                  status: BadgeStatus.warning,
-                  expanded: true,
-                ),
-              ),
+              const SizedBox(width: 160, child: GHAppBadge(label: 'Pending', color: BadgeColor.warning, expanded: true)),
               brightness: Brightness.light,
             ),
           ),
@@ -119,19 +116,30 @@ void main() {
       'sizes',
       fileName: 'app_badge_sizes',
       builder: () => GoldenTestGroup(
-        columns: 2,
+        columns: 3,
         children: [
           for (final size in BadgeSize.values)
             GoldenTestScenario(
               name: size.name,
               child: _themed(
-                GHAppBadge(
-                  label: '9',
-                  size: size,
-                  status: BadgeStatus.success,
-                ),
+                GHAppBadge.dot(label: size.name, size: size, color: BadgeColor.success),
                 brightness: Brightness.light,
               ),
+            ),
+        ],
+      ),
+    );
+
+    goldenTest(
+      'corners',
+      fileName: 'app_badge_corners',
+      builder: () => GoldenTestGroup(
+        columns: 2,
+        children: [
+          for (final corner in BadgeCorner.values)
+            GoldenTestScenario(
+              name: corner.name,
+              child: _themed(GHAppBadge(label: corner.name, corner: corner), brightness: Brightness.light),
             ),
         ],
       ),
