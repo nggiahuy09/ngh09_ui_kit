@@ -6,6 +6,7 @@ import 'package:ngh09_ui_kit/src/components/inputs/gh_app_dropdown.dart';
 import 'package:ngh09_ui_kit/src/components/inputs/gh_app_dropdown_list.dart';
 import 'package:ngh09_ui_kit/src/components/inputs/gh_app_dropdown_list_item.dart';
 import 'package:ngh09_ui_kit/src/components/inputs/gh_dropdown_menu_item.dart';
+import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
@@ -37,15 +38,8 @@ class GHAppInputDropdown<T> extends StatefulWidget {
   ///
   /// Not a `const` constructor: [items].length must be validated at runtime,
   /// which Dart's const evaluator cannot do for a `List`.
-  GHAppInputDropdown({
-    required this.items,
-    required this.onChanged,
-    this.placeholder = 'Search',
-    this.searchable = true,
-    this.width,
-    this.menuMaxHeight,
-    super.key,
-  }) : assert(items.isNotEmpty, 'GHAppInputDropdown needs at least one item.');
+  GHAppInputDropdown({required this.items, required this.onChanged, this.placeholder = 'Search', this.searchable = true, this.width, super.key})
+    : assert(items.isNotEmpty, 'GHAppInputDropdown needs at least one item.');
 
   /// The selectable options, in order.
   final List<GHDropdownMenuItem<T>> items;
@@ -66,11 +60,6 @@ class GHAppInputDropdown<T> extends StatefulWidget {
   /// its parent's constraints and the menu matches the field's measured
   /// width.
   final double? width;
-
-  /// The maximum height of the opened menu. When the items exceed this, the
-  /// menu becomes vertically scrollable. When `null`, the menu grows to fit
-  /// all items.
-  final double? menuMaxHeight;
 
   @override
   State<GHAppInputDropdown<T>> createState() => _GHAppInputDropdownState<T>();
@@ -167,7 +156,6 @@ class _GHAppInputDropdownState<T> extends State<GHAppInputDropdown<T>> {
 
     return GHAppDropdown(
       width: widget.width ?? _measuredWidth,
-      maxHeight: widget.menuMaxHeight,
       sections: [GHAppDropdownList(items: rows)],
     );
   }
@@ -175,16 +163,15 @@ class _GHAppInputDropdownState<T> extends State<GHAppInputDropdown<T>> {
   @override
   Widget build(BuildContext context) {
     final textStyles = context.textStyles;
-    final colors = context.colors;
-    final valueColor = _isEnabled ? colors.onSurface : colors.outline;
-    final iconColor = _isEnabled ? colors.onSurfaceVariant : colors.outlineVariant;
+    final valueColor = _isEnabled ? ColorTokens.gray900 : ColorTokens.gray400;
+    final iconColor = _isEnabled ? ColorTokens.gray500 : ColorTokens.gray300;
 
     final field = AnimatedContainer(
       key: _triggerKey,
       duration: DurationTokens.fast,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
-        color: _isEnabled ? colors.surface : colors.surfaceVariant,
+        color: _isEnabled ? ColorTokens.white : ColorTokens.gray100,
         borderRadius: context.radii.borderRadiusMd,
         boxShadow: _shadow(context),
       ),
@@ -199,13 +186,13 @@ class _GHAppInputDropdownState<T> extends State<GHAppInputDropdown<T>> {
               enabled: _isEnabled,
               readOnly: !widget.searchable,
               onChanged: (_) => setState(() {}),
-              cursorColor: colors.onSurface,
+              cursorColor: Colors.black,
               style: textStyles.bodyMedium.copyWith(color: valueColor),
               decoration: InputDecoration(
                 isCollapsed: true,
                 border: InputBorder.none,
                 hintText: widget.placeholder,
-                hintStyle: textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant),
+                hintStyle: textStyles.bodyMedium.copyWith(color: ColorTokens.gray400),
               ),
             ),
           ),

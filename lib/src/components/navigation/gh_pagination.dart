@@ -95,29 +95,20 @@ class GHPagination extends StatelessWidget {
           onPressed: _hasPrevious ? () => onPageChanged(currentPage - 1) : null,
         ),
         if (type == PaginationType.simple)
-          Flexible(
-            child: Text(
-              'Page $currentPage of $totalPages',
-              style: context.textStyles.bodySmall.copyWith(fontWeight: FontWeight.w600, color: context.colors.onSurface),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
+          Text(
+            'Page $currentPage of $totalPages',
+            style: context.textStyles.bodySmall.copyWith(fontWeight: FontWeight.w600, color: context.colors.onSurface),
           )
         else
-          Flexible(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                spacing: context.spacing.xs,
-                children: [
-                  for (final page in paginationRange(current: currentPage, total: totalPages, siblingCount: siblingCount, boundaryCount: boundaryCount))
-                    page == null
-                        ? const _PageEllipsis()
-                        : _PageNumber(page: page, active: page == currentPage, onTap: page == currentPage ? null : () => onPageChanged(page)),
-                ],
-              ),
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: context.spacing.xs,
+            children: [
+              for (final page in paginationRange(current: currentPage, total: totalPages, siblingCount: siblingCount, boundaryCount: boundaryCount))
+                page == null
+                    ? const _PageEllipsis()
+                    : _PageNumber(page: page, active: page == currentPage, onTap: page == currentPage ? null : () => onPageChanged(page)),
+            ],
           ),
         _NavButton(
           direction: _NavDirection.next,
