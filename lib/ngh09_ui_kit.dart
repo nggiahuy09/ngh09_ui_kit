@@ -69,6 +69,11 @@ export 'src/components/navigation/segmented_control_corner.dart';
 export 'src/components/payment/gh_payment_icon.dart';
 export 'src/components/payment/gh_payment_icon_size.dart';
 export 'src/components/payment/gh_payment_method.dart';
+export 'src/components/progress/gh_progress_bar.dart';
+export 'src/components/progress/gh_progress_step.dart';
+export 'src/components/progress/gh_progress_stepper.dart';
+export 'src/components/progress/progress_bar_indicator.dart';
+export 'src/components/progress/progress_step_indicator.dart';
 // Foundation — semantic theme layer.
 export 'src/theme/app_colors.dart';
 export 'src/theme/app_radii.dart';
