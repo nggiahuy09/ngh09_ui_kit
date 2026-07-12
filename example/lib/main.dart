@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_home_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/home_screen.dart';
 
 void main() => runApp(const ExampleApp());
 
 /// Design System Explorer: a navigable showcase of the ngh09_ui_kit's
-/// components (buttons, inputs, navigation, feedback, media and more) and
-/// foundation tokens (colors, typography, spacing, radii, shadows,
-/// breakpoints, durations), built entirely on the kit's real widgets and
+/// components (Buttons, Badges, Chips) and foundation tokens (Colors,
+/// Typography, Spacing, Radii), built entirely on the kit's real widgets and
 /// theme layer.
 class ExampleApp extends StatefulWidget {
   /// Creates the example app.
@@ -27,7 +26,7 @@ class _ExampleAppState extends State<ExampleApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ngh09 UI Kit',
+      title: 'GH09 UI Kit',
       theme: GHAppTheme.light(),
       darkTheme: GHAppTheme.dark(),
       themeMode: _themeMode,
