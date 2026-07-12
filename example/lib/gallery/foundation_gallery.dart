@@ -11,11 +11,7 @@ import 'package:ngh09_ui_kit_example/gallery/typography_showcase.dart';
 
 /// A scrollable gallery showcasing the kit's components and foundation tokens.
 class FoundationGallery extends StatelessWidget {
-  const FoundationGallery({
-    required this.isDark,
-    required this.onToggleTheme,
-    super.key,
-  });
+  const FoundationGallery({required this.isDark, required this.onToggleTheme, super.key});
 
   final bool isDark;
   final VoidCallback onToggleTheme;
@@ -27,7 +23,7 @@ class FoundationGallery extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: AppBar(
-        title: const Text('ngh09_ui_kit'),
+        title: const Text('GH09 UI Kit'),
         actions: [
           IconButton(
             tooltip: isDark ? 'Switch to light' : 'Switch to dark',
