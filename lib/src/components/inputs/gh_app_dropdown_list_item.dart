@@ -145,23 +145,25 @@ class _GHAppDropdownListItemState extends State<GHAppDropdownListItem> {
 
   TextStyle _labelStyle(BuildContext context) {
     final base = widget.size == GHDropdownItemSize.small ? context.textStyles.bodySmall : context.textStyles.bodyMedium;
+    final colors = context.colors;
     return base.copyWith(
       fontWeight: FontWeight.w500,
-      color: _isEnabled ? ColorTokens.gray900 : ColorTokens.gray400,
+      color: _isEnabled ? colors.onSurface : colors.outline,
     );
   }
 
-  TextStyle _supportingStyle(BuildContext context) => context.textStyles.bodySmall.copyWith(color: _isEnabled ? ColorTokens.gray500 : ColorTokens.gray300);
+  TextStyle _supportingStyle(BuildContext context) =>
+      context.textStyles.bodySmall.copyWith(color: _isEnabled ? context.colors.onSurfaceVariant : context.colors.outlineVariant);
 
   // ── Colors ─────────────────────────────────────────────────────────────────
 
-  Color get _backgroundColor {
+  Color _backgroundColor(BuildContext context) {
     if (!_isEnabled) return ColorTokens.transparent;
-    if (_hovered || widget.selected) return ColorTokens.gray50;
+    if (_hovered || widget.selected) return context.colors.surfaceVariant;
     return ColorTokens.transparent;
   }
 
-  Color get _contentColor => _isEnabled ? ColorTokens.gray700 : ColorTokens.gray300;
+  Color _contentColor(BuildContext context) => _isEnabled ? context.colors.onSurfaceVariant : context.colors.outlineVariant;
 
   // ── Interaction ────────────────────────────────────────────────────────────
 
@@ -178,12 +180,12 @@ class _GHAppDropdownListItemState extends State<GHAppDropdownListItem> {
 
   // ── Leading / trailing ────────────────────────────────────────────────────
 
-  Widget? _buildLeading() {
+  Widget? _buildLeading(BuildContext context) {
     switch (widget.leadingType) {
       case GHDropdownLeadingType.none:
         return null;
       case GHDropdownLeadingType.icon:
-        return GHHeroIcon(widget.leadingIcon!, size: _iconSize, color: _contentColor);
+        return GHHeroIcon(widget.leadingIcon!, size: _iconSize, color: _contentColor(context));
       case GHDropdownLeadingType.avatar:
       case GHDropdownLeadingType.flag:
         return widget.leading;
@@ -193,17 +195,18 @@ class _GHAppDropdownListItemState extends State<GHAppDropdownListItem> {
   }
 
   Widget? _buildTrailing(BuildContext context) {
+    final colors = context.colors;
     switch (widget.trailingType) {
       case GHDropdownTrailingType.none:
         return null;
       case GHDropdownTrailingType.chevron:
-        return const GHHeroIcon(GHIcons.chevronRight, style: HeroIconStyle.mini, size: 16, color: ColorTokens.gray400);
+        return GHHeroIcon(GHIcons.chevronRight, style: HeroIconStyle.mini, size: 16, color: colors.onSurfaceVariant);
       case GHDropdownTrailingType.checkmark:
-        return SizedBox(width: 18, child: widget.selected ? const GHHeroIcon(GHIcons.check, size: 18, color: ColorTokens.gray900) : null);
+        return SizedBox(width: 18, child: widget.selected ? GHHeroIcon(GHIcons.check, size: 18, color: colors.onSurface) : null);
       case GHDropdownTrailingType.toggle:
         return GHAppToggle(value: widget.toggleValue, onChanged: widget.onToggleChanged);
       case GHDropdownTrailingType.label:
-        return Text(widget.trailingLabel ?? '', style: context.textStyles.bodySmall.copyWith(color: ColorTokens.gray400));
+        return Text(widget.trailingLabel ?? '', style: context.textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant));
     }
   }
 
@@ -211,14 +214,14 @@ class _GHAppDropdownListItemState extends State<GHAppDropdownListItem> {
 
   @override
   Widget build(BuildContext context) {
-    final leading = _buildLeading();
+    final leading = _buildLeading(context);
     final trailing = _buildTrailing(context);
     final spacing = context.spacing;
 
     final content = AnimatedContainer(
       duration: DurationTokens.fast,
       padding: EdgeInsets.symmetric(horizontal: spacing.smd, vertical: _verticalPadding),
-      decoration: BoxDecoration(color: _backgroundColor, borderRadius: context.radii.borderRadiusSm),
+      decoration: BoxDecoration(color: _backgroundColor(context), borderRadius: context.radii.borderRadiusSm),
       child: Row(
         children: [
           if (leading != null) ...[leading, SizedBox(width: spacing.sm)],
@@ -283,7 +286,10 @@ class _CheckboxIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final background = !enabled ? (checked ? ColorTokens.gray400 : ColorTokens.gray200) : (checked ? ColorTokens.black : ColorTokens.white);
+    final colors = context.colors;
+    final background = !enabled
+        ? (checked ? colors.outline : colors.surfaceVariant)
+        : (checked ? colors.primary : colors.surface);
 
     return Container(
       width: 16,
@@ -292,9 +298,9 @@ class _CheckboxIndicator extends StatelessWidget {
       decoration: BoxDecoration(
         color: background,
         borderRadius: context.radii.borderRadiusSm,
-        border: checked ? null : Border.all(color: enabled ? ColorTokens.gray300 : ColorTokens.gray200),
+        border: checked ? null : Border.all(color: enabled ? colors.outline : colors.outlineVariant),
       ),
-      child: checked ? GHHeroIcon(GHIcons.check, size: 12, color: enabled ? ColorTokens.white : ColorTokens.gray300) : null,
+      child: checked ? GHHeroIcon(GHIcons.check, size: 12, color: enabled ? colors.onPrimary : colors.outlineVariant) : null,
     );
   }
 }

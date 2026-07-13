@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A single crumb — the atomic building block of a `GHBreadcrumbs` trail.
@@ -56,7 +55,8 @@ class GHCrumb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = active ? ColorTokens.black : ColorTokens.gray500;
+    final colors = context.colors;
+    final color = active ? colors.onSurface : colors.onSurfaceVariant;
     final style = context.textStyles.bodySmall.copyWith(fontWeight: FontWeight.w600, color: color);
 
     final content = Row(
