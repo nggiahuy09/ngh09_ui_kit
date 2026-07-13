@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/components/inputs/gh_app_dropdown_list.dart';
-import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// The floating menu surface of the Finesse UI Kit "Dropdowns" spec.
@@ -39,7 +38,7 @@ class GHAppDropdown extends StatelessWidget {
   ///
   /// Not a `const` constructor: [sections].length must be validated at
   /// runtime, which Dart's const evaluator cannot do for a `List`.
-  GHAppDropdown({required this.sections, this.width, super.key}) : assert(sections.isNotEmpty, 'GHAppDropdown needs at least one section.');
+  GHAppDropdown({required this.sections, this.width, this.maxHeight, super.key}) : assert(sections.isNotEmpty, 'GHAppDropdown needs at least one section.');
 
   /// The stacked [GHAppDropdownList] sections, top to bottom.
   final List<GHAppDropdownList> sections;
@@ -47,21 +46,35 @@ class GHAppDropdown extends StatelessWidget {
   /// A fixed width for the surface. When `null`, it hugs its content.
   final double? width;
 
+  /// The maximum height for the surface. When the stacked [sections] exceed
+  /// this, the menu becomes vertically scrollable. When `null`, the surface
+  /// grows to fit its content.
+  final double? maxHeight;
+
   @override
   Widget build(BuildContext context) {
+    Widget content = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: sections,
+    );
+
+    if (maxHeight != null) {
+      content = ConstrainedBox(
+        constraints: BoxConstraints(maxHeight: maxHeight!),
+        child: SingleChildScrollView(child: content),
+      );
+    }
+
     return Container(
       width: width,
       padding: EdgeInsets.symmetric(vertical: context.spacing.xs),
       decoration: BoxDecoration(
-        color: ColorTokens.white,
+        color: context.colors.surface,
         borderRadius: context.radii.borderRadiusMd,
         boxShadow: context.shadows.large,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: sections,
-      ),
+      child: content,
     );
   }
 }

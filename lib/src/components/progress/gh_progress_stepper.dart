@@ -69,10 +69,13 @@ class GHProgressStepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (indicator == GHProgressStepIndicator.chip) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: context.spacing.sm,
-        children: [for (var i = 0; i < steps.length; i++) _StepChip(state: _stateOf(i))],
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: context.spacing.sm,
+          children: [for (var i = 0; i < steps.length; i++) _StepChip(state: _stateOf(i))],
+        ),
       );
     }
 
@@ -86,7 +89,17 @@ class GHProgressStepper extends StatelessWidget {
       }
     }
 
-    return Row(mainAxisSize: showLabels ? MainAxisSize.min : MainAxisSize.max, children: children);
+    // Labeled steppers size to their content and can exceed the available
+    // width; let them scroll horizontally. Unlabeled steppers use Expanded
+    // connectors to fill the width, so they never overflow.
+    if (showLabels) {
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(mainAxisSize: MainAxisSize.min, children: children),
+      );
+    }
+
+    return Row(children: children);
   }
 
   Widget _connector(BuildContext context) => Container(height: 2, color: context.colors.surfaceVariant);

@@ -26,17 +26,17 @@ void main() {
       expect(find.byIcon(Icons.arrow_forward), findsOneWidget);
     });
 
-    testWidgets('renders black bold text when active', (tester) async {
+    testWidgets('renders prominent bold text when active', (tester) async {
       await tester.pumpWidget(_wrap(const GHCrumb(label: 'Home', active: true)));
       final text = tester.widget<Text>(find.text('Home'));
-      expect(text.style!.color, const Color(0xFF000000));
+      expect(text.style!.color, const GHAppColors.light().onSurface);
       expect(text.style!.fontWeight, FontWeight.w600);
     });
 
-    testWidgets('renders muted gray text when inactive', (tester) async {
+    testWidgets('renders muted text when inactive', (tester) async {
       await tester.pumpWidget(_wrap(const GHCrumb(label: 'Home')));
       final text = tester.widget<Text>(find.text('Home'));
-      expect(text.style!.color, const Color(0xFF676E76));
+      expect(text.style!.color, const GHAppColors.light().onSurfaceVariant);
     });
   });
 

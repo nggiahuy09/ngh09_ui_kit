@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
+import 'package:ngh09_ui_kit_example/explorer/breakpoints_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/colors_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/durations_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
+import 'package:ngh09_ui_kit_example/explorer/flags_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/icons_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/logos_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/payment_icons_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_alert_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_avatar_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/playground_badge_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_breadcrumbs_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/playground_button_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_checkbox_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/playground_chip_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_dropdown_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_icon_button_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_input_dropdown_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_pagination_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_progress_bar_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_progress_stepper_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_radio_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_range_slider_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_segmented_control_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_slider_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_snackbar_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_text_area_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_text_field_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_toggle_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/playground_tooltip_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/radii_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/shadows_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/spacing_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/typography_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/component_list_tile.dart';
@@ -58,24 +85,25 @@ class ExplorerHomeScreen extends StatelessWidget {
             ),
             SizedBox(height: spacing.xxs),
             Text(
-              'Design system explorer · 7 categories',
+              'Design system explorer · 12 categories',
               style: textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant),
             ),
             SizedBox(height: spacing.md),
-            Text(
-              'COMPONENTS',
-              style: GoogleFonts.jetBrainsMono(
-                fontSize: 10.5,
-                letterSpacing: 1.4,
-                color: colors.onSurfaceVariant.withValues(alpha: 0.8),
-              ),
-            ),
+
+            const ExplorerEyebrow('COMPONENTS'),
             SizedBox(height: spacing.sm),
             ComponentListTile(
               title: 'Buttons',
               subtitle: '5 variants · 5 sizes · icons & states',
               leading: _ButtonPreview(colors: colors),
               onTap: () => _push(context, const ButtonPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Icon buttons',
+              subtitle: '7 sizes · sharp & smooth',
+              leading: _IconSwatch(colors: colors, icon: Icons.favorite),
+              onTap: () => _push(context, const IconButtonPlaygroundScreen()),
             ),
             SizedBox(height: spacing.sm),
             ComponentListTile(
@@ -87,19 +115,182 @@ class ExplorerHomeScreen extends StatelessWidget {
             SizedBox(height: spacing.sm),
             ComponentListTile(
               title: 'Chips',
-              subtitle: 'input · filter',
+              subtitle: 'input · filter · choice',
               leading: _ChipPreview(colors: colors),
               onTap: () => _push(context, const ChipPlaygroundScreen()),
             ),
-            SizedBox(height: spacing.lg),
-            Text(
-              'FOUNDATIONS',
-              style: GoogleFonts.jetBrainsMono(
-                fontSize: 10.5,
-                letterSpacing: 1.4,
-                color: colors.onSurfaceVariant.withValues(alpha: 0.8),
-              ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Avatars',
+              subtitle: '14 variants · initials · status',
+              leading: _IconSwatch(colors: colors, icon: Icons.person),
+              onTap: () => _push(context, const AvatarPlaygroundScreen()),
             ),
+            SizedBox(height: spacing.lg),
+
+            const ExplorerEyebrow('FEEDBACK'),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Alerts',
+              subtitle: 'active · error · warning · success',
+              leading: _IconSwatch(colors: colors, icon: Icons.info_outline),
+              onTap: () => _push(context, const AlertPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Snackbars',
+              subtitle: 'states · CTA · live overlay',
+              leading: _IconSwatch(colors: colors, icon: Icons.chat_bubble_outline),
+              onTap: () => _push(context, const SnackbarPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Tooltips',
+              subtitle: 'arrow · size · corner',
+              leading: _IconSwatch(colors: colors, icon: Icons.help_outline),
+              onTap: () => _push(context, const TooltipPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.lg),
+
+            const ExplorerEyebrow('INPUTS'),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Checkbox',
+              subtitle: '3 sizes · checked & disabled',
+              leading: _IconSwatch(colors: colors, icon: Icons.check_box_outlined),
+              onTap: () => _push(context, const CheckboxPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Radio',
+              subtitle: '3 sizes · checked & disabled',
+              leading: _IconSwatch(colors: colors, icon: Icons.radio_button_checked),
+              onTap: () => _push(context, const RadioPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Toggle',
+              subtitle: '3 sizes · on/off & disabled',
+              leading: _IconSwatch(colors: colors, icon: Icons.toggle_on_outlined),
+              onTap: () => _push(context, const TogglePlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Slider',
+              subtitle: 'min · max · step · value label',
+              leading: _IconSwatch(colors: colors, icon: Icons.tune),
+              onTap: () => _push(context, const SliderPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Range slider',
+              subtitle: 'dual handles · indicator styles',
+              leading: _IconSwatch(colors: colors, icon: Icons.linear_scale),
+              onTap: () => _push(context, const RangeSliderPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Text field',
+              subtitle: 'status · obscure · leading icon',
+              leading: _IconSwatch(colors: colors, icon: Icons.text_fields),
+              onTap: () => _push(context, const TextFieldPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Text area',
+              subtitle: 'status · min/max lines',
+              leading: _IconSwatch(colors: colors, icon: Icons.notes),
+              onTap: () => _push(context, const TextAreaPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Dropdown',
+              subtitle: 'sections · leading & trailing types',
+              leading: _IconSwatch(colors: colors, icon: Icons.arrow_drop_down_circle_outlined),
+              onTap: () => _push(context, const DropdownPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Input dropdown',
+              subtitle: 'searchable · placeholder',
+              leading: _IconSwatch(colors: colors, icon: Icons.search),
+              onTap: () => _push(context, const InputDropdownPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.lg),
+
+            const ExplorerEyebrow('NAVIGATION'),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Segmented control',
+              subtitle: '2-4 segments · label & icon',
+              leading: _IconSwatch(colors: colors, icon: Icons.view_column_outlined),
+              onTap: () => _push(context, const SegmentedControlPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Breadcrumbs',
+              subtitle: 'text · icon · auto-collapse',
+              leading: _IconSwatch(colors: colors, icon: Icons.more_horiz),
+              onTap: () => _push(context, const BreadcrumbsPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Pagination',
+              subtitle: 'numbered · simple · collapsing',
+              leading: _IconSwatch(colors: colors, icon: Icons.last_page),
+              onTap: () => _push(context, const PaginationPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.lg),
+
+            const ExplorerEyebrow('PROGRESS'),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Progress bar',
+              subtitle: 'value · indicator styles',
+              leading: _IconSwatch(colors: colors, icon: Icons.horizontal_rule),
+              onTap: () => _push(context, const ProgressBarPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Progress stepper',
+              subtitle: 'chip · number · icon indicators',
+              leading: _IconSwatch(colors: colors, icon: Icons.linear_scale_outlined),
+              onTap: () => _push(context, const ProgressStepperPlaygroundScreen()),
+            ),
+            SizedBox(height: spacing.lg),
+
+            const ExplorerEyebrow('MEDIA'),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Flags',
+              subtitle: '215 countries · searchable',
+              leading: _IconSwatch(colors: colors, icon: Icons.flag_outlined),
+              onTap: () => _push(context, const FlagsScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Icons',
+              subtitle: '293 Heroicons · mini/outline/solid',
+              leading: _IconSwatch(colors: colors, icon: Icons.emoji_symbols_outlined),
+              onTap: () => _push(context, const IconsScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Logos',
+              subtitle: '137 companies · searchable',
+              leading: _IconSwatch(colors: colors, icon: Icons.business_outlined),
+              onTap: () => _push(context, const LogosScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Payment icons',
+              subtitle: 'cards & wallets · 3 sizes',
+              leading: _IconSwatch(colors: colors, icon: Icons.credit_card),
+              onTap: () => _push(context, const PaymentIconsScreen()),
+            ),
+            SizedBox(height: spacing.lg),
+
+            const ExplorerEyebrow('FOUNDATIONS'),
             SizedBox(height: spacing.sm),
             ComponentListTile(
               title: 'Colors',
@@ -128,6 +319,27 @@ class ExplorerHomeScreen extends StatelessWidget {
               leading: _RadiiPreview(colors: colors),
               onTap: () => _push(context, const RadiiScreen()),
             ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Shadows',
+              subtitle: '13 tokens · elevation & focus',
+              leading: _IconSwatch(colors: colors, icon: Icons.blur_on),
+              onTap: () => _push(context, const ShadowsScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Breakpoints',
+              subtitle: 'mobile · tablet · desktop',
+              leading: _IconSwatch(colors: colors, icon: Icons.devices),
+              onTap: () => _push(context, const BreakpointsScreen()),
+            ),
+            SizedBox(height: spacing.sm),
+            ComponentListTile(
+              title: 'Durations',
+              subtitle: 'fast · normal · slow',
+              leading: _IconSwatch(colors: colors, icon: Icons.timer_outlined),
+              onTap: () => _push(context, const DurationsScreen()),
+            ),
           ],
         ),
       ),
@@ -145,6 +357,21 @@ Widget _swatch(GHAppColors colors, {required Widget child}) {
     ),
     child: Center(child: child),
   );
+}
+
+/// A generic leading-icon swatch used by every new component tile: a single
+/// Material icon centered in the same 46x46 rounded surface the bespoke
+/// previews use.
+class _IconSwatch extends StatelessWidget {
+  const _IconSwatch({required this.colors, required this.icon});
+
+  final GHAppColors colors;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return _swatch(colors, child: Icon(icon, size: 20, color: colors.onSurfaceVariant));
+  }
 }
 
 class _ButtonPreview extends StatelessWidget {

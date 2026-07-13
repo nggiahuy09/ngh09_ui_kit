@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/gh_segmented_control_item.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/segmented_control_corner.dart';
-import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
@@ -65,14 +64,16 @@ class GHAppSegmentedControl extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         for (final (index, segment) in segments.indexed)
-          _Segment(
-            key: ValueKey(index),
-            item: segment,
-            selected: index == selectedIndex,
-            isFirst: index == 0,
-            isLast: index == segments.length - 1,
-            radius: radius,
-            onSelected: _isEnabled ? () => onSelectedIndexChanged!(index) : null,
+          Flexible(
+            child: _Segment(
+              key: ValueKey(index),
+              item: segment,
+              selected: index == selectedIndex,
+              isFirst: index == 0,
+              isLast: index == segments.length - 1,
+              radius: radius,
+              onSelected: _isEnabled ? () => onSelectedIndexChanged!(index) : null,
+            ),
           ),
       ],
     );
@@ -112,18 +113,20 @@ class _SegmentState extends State<_Segment> {
 
   // ── Colors ─────────────────────────────────────────────────────────────────
 
-  Color get _backgroundColor {
-    if (!_isEnabled) return widget.selected ? ColorTokens.gray400 : Colors.white;
-    if (widget.selected) return Colors.black;
-    if (_hovered) return ColorTokens.gray100;
-    return Colors.white;
+  Color _backgroundColor(BuildContext context) {
+    final colors = context.colors;
+    if (!_isEnabled) return widget.selected ? colors.outline : colors.surface;
+    if (widget.selected) return colors.primary;
+    if (_hovered) return colors.surfaceVariant;
+    return colors.surface;
   }
 
-  Color get _foregroundColor {
-    if (!_isEnabled) return widget.selected ? Colors.white : ColorTokens.gray300;
-    if (widget.selected) return Colors.white;
-    if (_hovered) return ColorTokens.gray900;
-    return ColorTokens.gray700;
+  Color _foregroundColor(BuildContext context) {
+    final colors = context.colors;
+    if (!_isEnabled) return widget.selected ? colors.onPrimary : colors.outline;
+    if (widget.selected) return colors.onPrimary;
+    if (_hovered) return colors.onSurface;
+    return colors.onSurfaceVariant;
   }
 
   // ── Shadows ────────────────────────────────────────────────────────────────
@@ -160,7 +163,7 @@ class _SegmentState extends State<_Segment> {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = _foregroundColor;
+    final foreground = _foregroundColor(context);
     final labelStyle = context.textStyles.bodySmall.copyWith(fontWeight: FontWeight.w600, color: foreground);
 
     final content = _iconOnly
@@ -178,21 +181,29 @@ class _SegmentState extends State<_Segment> {
                 ),
                 const SizedBox(width: 8),
               ],
-              Text(widget.item.label!, style: labelStyle),
+              Flexible(
+                child: Text(
+                  widget.item.label!,
+                  style: labelStyle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           );
 
+    final borderSide = BorderSide(color: context.colors.outlineVariant);
     final segment = AnimatedContainer(
       duration: DurationTokens.fast,
       padding: _iconOnly ? const EdgeInsets.all(10) : const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
       decoration: BoxDecoration(
-        color: _backgroundColor,
+        color: _backgroundColor(context),
         borderRadius: _cornerRadius,
         border: Border(
-          top: const BorderSide(color: ColorTokens.gray200),
-          bottom: const BorderSide(color: ColorTokens.gray200),
-          right: const BorderSide(color: ColorTokens.gray200),
-          left: widget.isFirst ? const BorderSide(color: ColorTokens.gray200) : BorderSide.none,
+          top: borderSide,
+          bottom: borderSide,
+          right: borderSide,
+          left: widget.isFirst ? borderSide : BorderSide.none,
         ),
         boxShadow: _boxShadow(context),
       ),

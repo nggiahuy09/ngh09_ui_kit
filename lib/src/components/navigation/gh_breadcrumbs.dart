@@ -5,7 +5,7 @@ import 'package:ngh09_ui_kit/src/components/icons/heroicon_style.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/breadcrumb_type.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/gh_breadcrumb_item.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/gh_crumb.dart';
-import 'package:ngh09_ui_kit/src/tokens/colors.dart';
+import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A horizontal trail of `GHCrumb`s showing the user's place in the
 /// information hierarchy, per the Finesse UI Kit spec.
@@ -86,7 +86,10 @@ class _GHBreadcrumbsState extends State<GHBreadcrumbs> {
       );
     }
 
-    return Row(mainAxisSize: MainAxisSize.min, spacing: 4, children: children);
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(mainAxisSize: MainAxisSize.min, spacing: 4, children: children),
+    );
   }
 }
 
@@ -96,6 +99,6 @@ class _BreadcrumbSeparator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GHHeroIcon(GHIcons.chevronRight, style: HeroIconStyle.mini, size: 14, color: ColorTokens.gray500);
+    return GHHeroIcon(GHIcons.chevronRight, style: HeroIconStyle.mini, size: 14, color: context.colors.onSurfaceVariant);
   }
 }

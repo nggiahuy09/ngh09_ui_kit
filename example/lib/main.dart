@@ -5,8 +5,9 @@ import 'package:ngh09_ui_kit_example/explorer/home_screen.dart';
 void main() => runApp(const ExampleApp());
 
 /// Design System Explorer: a navigable showcase of the ngh09_ui_kit's
-/// components (Buttons, Badges, Chips) and foundation tokens (Colors,
-/// Typography, Spacing, Radii), built entirely on the kit's real widgets and
+/// components (buttons, inputs, navigation, feedback, media and more) and
+/// foundation tokens (colors, typography, spacing, radii, shadows,
+/// breakpoints, durations), built entirely on the kit's real widgets and
 /// theme layer.
 class ExampleApp extends StatefulWidget {
   /// Creates the example app.
@@ -20,7 +21,7 @@ class _ExampleAppState extends State<ExampleApp> {
   ThemeMode _themeMode = ThemeMode.light;
 
   void _toggleTheme() {
-    setState(() => _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light; );
+    setState(() => _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
   }
 
   @override
