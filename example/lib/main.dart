@@ -26,7 +26,7 @@ class _ExampleAppState extends State<ExampleApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GH09 UI Kit',
+      title: 'ngh09 UI Kit',
       theme: GHAppTheme.light(),
       darkTheme: GHAppTheme.dark(),
       themeMode: _themeMode,
