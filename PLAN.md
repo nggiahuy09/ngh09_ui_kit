@@ -1,8 +1,9 @@
 # Kế hoạch xây dựng Flutter UI Kit — `ngh09_ui_kit`
 
-> Mục tiêu: Một Flutter **package** (không phải app) đóng vai trò UI Kit / Design System,
+> Mục tiêu: Một Flutter **package** đóng vai trò UI Kit / Design System,
 > publish được lên **pub.dev**, dựa trên **Material 3 + design tokens riêng**,
-> có catalog bằng **Widgetbook**, và được kiểm thử đầy đủ **Unit + Widget + Golden**.
+> đi kèm **app demo** (`example/` — Design System Explorer) làm living catalog,
+> và được kiểm thử đầy đủ **Unit + Widget + Golden**.
 
 ---
 
@@ -10,15 +11,15 @@
 
 | Hạng mục | Lựa chọn |
 |---|---|
-| Phân phối | Publish lên pub.dev (package thuần, không app) |
+| Phân phối | Publish lên pub.dev (package) + app demo `example/` |
 | Theming | Material 3 (`ThemeExtension`) + design tokens custom |
-| Catalog | Widgetbook |
+| Catalog | App demo `example/` (Design System Explorer) |
 | Kiểm thử | Unit + Widget + Golden (alchemist) |
 
 **Hệ quả kiến trúc:**
 - Repo hiện tại là `flutter create` app mặc định → cần **chuyển thành package**: xoá `main.dart`,
   xoá thư mục platform không cần (`android/ios/linux/macos/windows/web`) khỏi package gốc
-  (giữ lại trong thư mục `example/` và `widgetbook/`), bỏ `publish_to: 'none'`.
+  (giữ lại trong thư mục `example/`), bỏ `publish_to: 'none'`.
 - Vì publish pub.dev: cần `CHANGELOG.md`, `LICENSE`, `example/`, doc comments `///`,
   versioning theo SemVer, đạt pub points cao (format, analyze, doc coverage).
 
@@ -86,13 +87,10 @@ ngh09_ui_kit/
 │           ├── context_extensions.dart  # MediaQuery, theme shortcuts
 │           └── responsive.dart          # Responsive builder theo breakpoints
 │
-├── example/                         # App demo tối thiểu (yêu cầu của pub.dev)
-│   └── lib/main.dart
-│
-├── widgetbook/                      # App Widgetbook catalog (project riêng)
+├── example/                         # App demo — Design System Explorer
 │   ├── lib/
 │   │   ├── main.dart
-│   │   └── use_cases/               # .usecase.dart cho mỗi component
+│   │   └── explorer/                # Home + playground screen cho mỗi component
 │   └── pubspec.yaml                 # depend ngh09_ui_kit qua path: ../
 │
 ├── test/
@@ -192,8 +190,9 @@ ngh09_ui_kit/
 > 2. **GHAppChip** (Phase D) — củng cố pattern variant+selected state.
 > 3. **GHAppTextField** (Phase C) — component stateful đầu tiên, giá trị cao nhất.
 
-> Mỗi component khi "xong" = code + doc comment `///` + use case Widgetbook + widget test + golden test
-> (xem mục 9 — Định nghĩa "Done").
+> Mỗi component khi "xong" = code + doc comment `///` + widget test + golden test
+> (xem mục 9 — Định nghĩa "Done"). Khuyến nghị thêm playground screen vào
+> `example/lib/explorer/` để showcase trong app demo.
 
 ---
 
@@ -232,15 +231,16 @@ phân tách rõ "CI goldens" (so khớp pixel chính xác) vs "platform goldens"
 
 ---
 
-## 5. Widgetbook catalog
+## 5. App demo — Design System Explorer
 
-- `widgetbook/` là **project Flutter riêng** depend `ngh09_ui_kit` qua `path: ../`.
-- Mỗi component có 1+ **use case** (`@UseCase` annotation + `widgetbook_generator`, hoặc khai báo tay).
-- **Addons** bật: `ThemeAddon` (light/dark dùng chính `buildLightTheme/buildDarkTheme`),
-  `TextScaleAddon`, `DeviceFrameAddon`, `AlignmentAddon`.
-- **Knobs** cho props chính (text, boolean disabled/loading, enum variant) để demo tương tác.
-- Build web: `flutter build web` trong `widgetbook/` → deploy lên GitHub Pages/Netlify làm
-  "living styleguide" cho team.
+- `example/` là **app Flutter runnable** depend `ngh09_ui_kit` qua `path: ../`, đồng
+  thời thoả yêu cầu `example/` của pub.dev.
+- `example/lib/explorer/` — home screen liệt kê components + foundation tokens theo
+  nhóm, mỗi mục navigate sang một **playground screen** riêng showcase component đó.
+- Playground dùng chính widget & theme layer thật của kit (light/dark qua `themeMode`),
+  cho phép chỉnh props chính (variant, size, disabled/loading…) để demo tương tác —
+  đóng vai trò "living catalog" thay cho một catalog tách rời.
+- App có thể build cho mọi platform Flutter và deploy web làm styleguide cho team.
 
 ---
 
@@ -253,7 +253,7 @@ Pipeline chạy mỗi PR:
 4. `flutter test --coverage`
 5. Golden verify (nằm trong bước test) — fail nếu UI đổi ngoài ý muốn; upload diff khi fail.
 6. (Tùy chọn) `dart pub publish --dry-run` để đảm bảo luôn publish được.
-7. (Tùy chọn) Build & deploy Widgetbook web lên GitHub Pages.
+7. (Tùy chọn) Build & deploy app demo `example/` (web) lên GitHub Pages.
 
 Release: tag `vX.Y.Z` → workflow `dart pub publish` (dùng pub.dev automated publishing
 qua GitHub OIDC, không cần token).
@@ -266,8 +266,7 @@ qua GitHub OIDC, không cần token).
 - [x] Xoá `lib/main.dart` + `test/widget_test.dart`, tạo `lib/ngh09_ui_kit.dart` (barrel).
 - [x] Sửa `pubspec.yaml`: bỏ `publish_to: 'none'`, description thật, `version: 0.1.0`,
       repository/homepage/issue_tracker, `sdk: ^3.9.0`. Dev deps: `alchemist ^0.14.0`,
-      `very_good_analysis ^10.0.0`. (Widgetbook để ở project con `widgetbook/`, không nằm trong
-      dev_deps của package publish.)
+      `very_good_analysis ^10.0.0`.
 - [x] Xoá thư mục platform khỏi root (`android/ios/linux/macos/windows/web`, `.iml`) +
       `git rm --cached` để git phản ánh đúng (nếu không `pub publish` vẫn đọc từ git).
 - [x] Thêm `LICENSE` (MIT), `CHANGELOG.md`, `.gitignore`; cập nhật `README.md`,
@@ -298,28 +297,25 @@ qua GitHub OIDC, không cần token).
 - [x] Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue (cả package & example),
       `flutter test` 18/18 pass.
 
-**Bước 3 — Hạ tầng test & catalog** ✅ ĐÃ XONG (2026-06-21)
+**Bước 3 — Hạ tầng test & template component** ✅ ĐÃ XONG (2026-06-21)
 - [x] `test/flutter_test_config.dart`: bọc `AlchemistConfig.runWithConfig`, tắt platform
       goldens (chỉ giữ CI goldens — pixel-exact, ổn định mọi máy); alchemist tự load font.
-- [x] Khởi tạo `widgetbook/` (project con, `path: ../`, `widgetbook ^3.0.0` → resolve 3.21.0).
-      `main.dart`: `Widgetbook.material` + directories (Category→Folder→Component), khai báo
-      use case **bằng tay** (không code-gen). Addons: `MaterialThemeAddon` (Light/Dark dùng
-      `GHAppTheme.light/dark`), `TextScaleAddon`, `AlignmentAddon`, `ViewportAddon`
-      (thay `DeviceFrameAddon` đã deprecated). Thêm platform `web` để build styleguide.
 - [x] **GHAppButton** end-to-end (template cho các component sau):
       - Code: `button_variant.dart` (enum `ButtonVariant` filled/tonal/outlined/text +
         `ButtonSize` sm/md/lg), `app_button.dart` (4 named ctor, leading/trailing icon,
         `isLoading`/`disabled`/`expanded`, đọc 100% từ semantic token qua `context.*`,
         không hardcode). Export qua barrel.
       - Doc `///` đầy đủ cho class + mọi public member (đạt pub points).
-      - Use case Widgetbook: Playground (knobs cho mọi prop), Variants, Sizes.
       - Widget test (14 ca): render, tap callback, disabled/loading, ẩn icon khi loading,
         a11y semantics (`matchesSemantics`), map named-ctor→variant, expanded width.
       - Golden test (alchemist, 4 file): variants×{light,dark}, sizes, states
         (loading dùng `pumpBeforeTest: pumpOnce` tránh spinner vô hạn).
 - [x] Kiểm chứng: `dart format` sạch (24 file), `flutter analyze --fatal-infos` 0 issue
-      (package + example + widgetbook), `flutter test` 36/36 pass (gồm golden compare),
-      `flutter build web` (widgetbook) build thành công.
+      (package + example), `flutter test` 36/36 pass (gồm golden compare).
+
+> Ghi chú (2026-07-18): ban đầu có một project catalog `widgetbook/` riêng, nhưng đã
+> **gỡ bỏ hoàn toàn** — app demo `example/` (Design System Explorer) nay đảm nhận vai
+> trò living catalog, tránh trùng lặp & giảm chi phí maintain.
 
 **Bước 4 — Build components (Phase B → C → D)**
 - [ ] Lặp lại pattern của GHAppButton cho từng component theo thứ tự ưu tiên.
@@ -330,13 +326,11 @@ qua GitHub OIDC, không cần token).
         `.dot`, `.count(count, max)` clamp `"max+"`; pill bo `borderRadiusFull`; đọc 100% từ
         `context.colors`/`radii`/`textStyles`, không hardcode). Export qua barrel.
       - Doc `///` đầy đủ cho class + mọi public member.
-      - Use case Widgetbook: Playground (knobs cho mọi prop), Statuses, Shapes
-        (folder `Display` mới trong catalog).
       - Widget test (13 ca): render label, count, clamp max, dot không có text,
         a11y semantics của label, count factory map đúng, mọi status render được.
       - Golden test (alchemist, 4 file): statuses×{light,dark}, shapes (label/count/dot), sizes.
-      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
-        (package + widgetbook), `flutter test` 49/49 pass (gồm golden compare).
+      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue,
+        `flutter test` 49/49 pass (gồm golden compare).
 - [x] **GHAppChip** (Phase D) end-to-end (2026-06-22):
       - Code: `display/chip_variant.dart` (enum `ChipVariant` input/filter/choice +
         enum `ChipSize` sm/md), `display/app_chip.dart` (4 ctor: default,
@@ -347,16 +341,13 @@ qua GitHub OIDC, không cần token).
         target riêng (`GestureDetector`), ẩn khi `enabled == false`; đọc 100% từ
         `context.colors`/`radii`/`spacing`/`textStyles`, không hardcode). Export qua barrel.
       - Doc `///` đầy đủ cho class + mọi public member.
-      - Use case Widgetbook: Playground (knobs cho mọi prop), Variants, Sizes
-        (thêm vào folder `Display`).
       - Widget test (12 ca): render label + leading icon, input `onPressed`/`onDeleted`,
         delete affordance chỉ hiện khi có `onDeleted`, filter/choice report `!selected`,
         disabled chặn tap & ẩn delete, a11y semantics (button + selected), mọi variant render.
       - Golden test (alchemist, 4 file): variants×{light,dark} (input/filter/choice
         on+off), sizes, states (enabled/disabled).
-      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue
-        (package + widgetbook), `flutter test` 67/67 pass (gồm golden compare),
-        `flutter build web` (widgetbook) build thành công.
+      - Kiểm chứng: `dart format` sạch, `flutter analyze --fatal-infos` 0 issue,
+        `flutter test` 67/67 pass (gồm golden compare).
 
 **Bước 5 — CI & publish**
 - [ ] Thêm `.github/workflows/ci.yaml`.
@@ -376,15 +367,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^10.x
   alchemist: ^0.x          # golden testing
-  widgetbook: ^3.x
-  widgetbook_annotation: ^3.x
-  widgetbook_generator: ^3.x
-  build_runner: ^2.x
 ```
-> Triết lý: **zero/minimal runtime dependency**. Mọi thứ phục vụ dev (test/catalog) để ở `dev_dependencies`
-> hoặc trong project con (`widgetbook/`), không lọt vào dependency của package publish.
+> Triết lý: **zero/minimal runtime dependency**. Mọi thứ phục vụ dev (test) để ở
+> `dev_dependencies`; các dependency của app demo nằm ở `example/pubspec.yaml`, không
+> lọt vào dependency của package publish.
 
 ---
 
@@ -393,8 +381,8 @@ dev_dependencies:
 Một component được coi là hoàn thành khi:
 1. Code dùng semantic token, có variant/size bằng enum, hỗ trợ light/dark.
 2. Có doc comment `///` cho class và mọi public member.
-3. Có ≥1 use case trong Widgetbook (kèm knobs).
-4. Có widget test (render + tương tác + a11y semantics).
-5. Có golden test cho các variant chính ở cả light & dark.
-6. `dart format`, `flutter analyze` sạch.
+3. Có widget test (render + tương tác + a11y semantics).
+4. Có golden test cho các variant chính ở cả light & dark.
+5. `dart format`, `flutter analyze` sạch.
+6. (Khuyến nghị) Có playground screen trong `example/lib/explorer/` để showcase.
 ```

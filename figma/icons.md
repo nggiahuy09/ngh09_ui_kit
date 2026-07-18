@@ -154,9 +154,8 @@ Files touched:
 - `lib/ngh09_ui_kit.dart` — exports the four icon files.
 - `pubspec.yaml` — added `flutter_svg: ^2.0.10`; registered the three asset
   dirs.
-- `widgetbook/lib/use_cases/heroicon_use_cases.dart` + `widgetbook/lib/main.dart`
-  — a **Components ▸ Icons** catalog page reproducing the design (doc header +
-  searchable 3-style grid), plus Playground and "Styles & sizes" use cases.
+- `example/lib/explorer/icons_screen.dart` — a **Media ▸ Icons** catalog screen
+  reproducing the design (doc header + searchable 3-style grid) in the app demo.
 
 ### API
 
@@ -201,7 +200,7 @@ Figma artwork size for pixel-accurate rendering.
    the kit's largest regular body role (`bodyLarge`) is 18px; the catalog header
    uses 18px. No 20px regular role exists in the type scale (20px is
    `titleSmall`, Medium). Revisit only if a 20px regular role is added.
-3. **FINESSE logo** — the Figma top-bar logo is a raster image; the Widgetbook
+3. **FINESSE logo** — the Figma top-bar logo is a raster image; the catalog
    header renders a styled `❖ FINESSE` wordmark instead (no logo asset bundled).
    Swap in the real asset if exact reproduction is required.
 4. **Set size** — 293 of Heroicons' 880+ icons (the subset present in this free

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:ngh09_ui_kit_example/explorer/about_sheet.dart';
 import 'package:ngh09_ui_kit_example/explorer/breakpoints_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/colors_screen.dart';
 import 'package:ngh09_ui_kit_example/explorer/durations_screen.dart';
@@ -65,21 +67,30 @@ class ExplorerHomeScreen extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  'GH09 UI Kit',
+                  'ngh09 UI',
                   style: textStyles.headlineSmall.copyWith(color: colors.onBackground, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(width: spacing.sm),
-                Text(
-                  'v2.0',
-                  style: GoogleFonts.jetBrainsMono(fontSize: 11, color: colors.onSurfaceVariant),
-                ),
+                const _AppVersionLabel(),
                 const Spacer(),
-                GHAppIconButton(
-                  icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-                  size: IconButtonSize.extraSmall,
-                  corner: IconButtonCorner.smooth,
-                  semanticLabel: isDark ? 'Switch to light theme' : 'Switch to dark theme',
-                  onPressed: onToggleTheme,
+                Row(
+                  spacing: spacing.xs,
+                  children: [
+                    GHAppIconButton(
+                      icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+                      size: IconButtonSize.extraSmall,
+                      corner: IconButtonCorner.smooth,
+                      semanticLabel: isDark ? 'Switch to light theme' : 'Switch to dark theme',
+                      onPressed: onToggleTheme,
+                    ),
+                    GHAppIconButton(
+                      icon: const GHHeroIcon(GHIcons.informationCircle),
+                      size: IconButtonSize.extraSmall,
+                      corner: IconButtonCorner.smooth,
+                      semanticLabel: 'About this app',
+                      onPressed: () => showAboutAppSheet(context),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -347,6 +358,36 @@ class ExplorerHomeScreen extends StatelessWidget {
   }
 
   Future<void> _push(BuildContext context, Widget screen) => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
+}
+
+/// The version chip shown next to the app title, read from the bundle at
+/// runtime. Falls back to a blank chip until the async read resolves.
+class _AppVersionLabel extends StatefulWidget {
+  const _AppVersionLabel();
+
+  @override
+  State<_AppVersionLabel> createState() => _AppVersionLabelState();
+}
+
+class _AppVersionLabelState extends State<_AppVersionLabel> {
+  String? _version;
+
+  @override
+  void initState() {
+    super.initState();
+    PackageInfo.fromPlatform().then((info) {
+      if (mounted) setState(() => _version = 'v${info.version}');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Text(
+      _version ?? '',
+      style: GoogleFonts.jetBrainsMono(fontSize: 11, color: colors.onSurfaceVariant),
+    );
+  }
 }
 
 Widget _swatch(GHAppColors colors, {required Widget child}) {

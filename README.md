@@ -1,8 +1,7 @@
 # ngh09_ui_kit
 
 A Material 3 based Flutter **UI kit & design system**: design tokens, a semantic
-theme layer built on `ThemeExtension`, themeable components, and a Widgetbook
-catalog.
+theme layer built on `ThemeExtension`, and themeable components.
 
 ## Features
 
