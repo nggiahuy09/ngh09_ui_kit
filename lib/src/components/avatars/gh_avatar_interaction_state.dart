@@ -1,7 +1,7 @@
 /// Interaction state that controls the box-shadow ring on [GHUserAvatar].
 ///
 /// In a production interactive widget, drive this from a [MouseRegion] or
-/// [FocusNode] callback. In Widgetbook or tests, set it directly to preview
+/// [FocusNode] callback. In the demo app or tests, set it directly to preview
 /// each state without requiring user interaction.
 enum GHAvatarInteractionState {
   /// No shadow — default resting state.

@@ -9,8 +9,8 @@
 ## Tổng quan
 
 Đây là một **Flutter package** (không phải app) đóng vai trò **UI Kit / Design System**
-dựa trên **Material 3 + design tokens riêng**, publish được lên pub.dev, có catalog bằng
-**Widgetbook** và kiểm thử **Unit + Widget + Golden**.
+dựa trên **Material 3 + design tokens riêng**, publish được lên pub.dev, có app demo
+`example/` và kiểm thử **Unit + Widget + Golden**.
 
 Trạng thái hiện tại: **Foundation đã xong + 1 component (`GHAppButton`)**.
 
@@ -79,9 +79,8 @@ Mỗi file là một `ThemeExtension<T>` với `copyWith` + `lerp`:
 
 ### Project con (không thuộc package publish)
 
-- `example/` — app demo runnable (yêu cầu pub.dev).
-- `widgetbook/` — catalog Flutter riêng, depend ngược qua `path: ../`, **không lọt
-  vào dependency** của package.
+- `example/` — app demo runnable (Design System Explorer), depend ngược qua
+  `path: ../`, **không lọt vào dependency** của package.
 
 ---
 
@@ -94,7 +93,7 @@ primitive token → semantic extension → GHAppTheme gắn vào ThemeData
   → MaterialApp(theme:) → widget đọc qua context.colors/...
 ```
 
-Khi viết component mới, lặp lại đúng 6 bước (định nghĩa "Done" ở mục 9 của PLAN):
+Khi viết component mới, lặp lại đúng 5 bước (định nghĩa "Done" ở mục 9 của PLAN):
 
 1. **Enum variant/size** trong file riêng (`*_variant.dart`) — không dùng String.
 2. **Widget** trong `components/<nhóm>/app_xxx.dart` — `StatelessWidget`, `const`
@@ -104,9 +103,8 @@ Khi viết component mới, lặp lại đúng 6 bước (định nghĩa "Done" 
 3. **Doc comment `///`** cho class + mọi public member (bắt buộc cho pub points —
    lint `public_member_api_docs`).
 4. **Export** qua barrel `lib/ngh09_ui_kit.dart`.
-5. **Use case Widgetbook** trong `widgetbook/lib/use_cases/` (Playground + Variants +
-   Sizes), rồi đăng ký vào `widgetbook/lib/main.dart`.
-6. **Test** (xem mục 3).
+5. **Test** (xem mục 3), và (khuyến nghị) thêm playground screen vào
+   `example/lib/explorer/` để showcase component trong app demo.
 
 ---
 
@@ -147,4 +145,4 @@ flutter test --update-goldens      # khi cố ý đổi UI
 > **Token thô → gán ý nghĩa (semantic) → `GHAppTheme` đóng gói vào `ThemeData` →
 > widget chỉ "đọc" qua `context.*`.** Đổi brand/theme chỉ sửa **một chỗ** (semantic
 > layer), mọi component tự đổi theo. Mỗi component "xong" khi đủ: code token-driven +
-> doc `///` + Widgetbook use case + widget test (gồm a11y) + golden test light/dark.
+> doc `///` + widget test (gồm a11y) + golden test light/dark.

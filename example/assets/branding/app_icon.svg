@@ -1,0 +1,22 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    ngh09_ui_kit app icon.
+    Monochrome black/white brand mark: a solid black tile with a white "09"
+    monogram (the distinguishing suffix of `ngh09`). The two glyphs echo the
+    kit's two-tier token model and read as paired component "chips".
+    Source of truth; the launcher PNGs are rendered from this via
+    tool/render_icon.py. Keep the two files in sync.
+  -->
+  <!-- Background: pure brand black, full-bleed (iOS masks the corners). -->
+  <rect width="1024" height="1024" fill="#000000"/>
+
+  <!-- Zero: an outlined ring so the mark reads at small sizes. -->
+  <circle cx="376" cy="496" r="186" stroke="#FFFFFF" stroke-width="80"/>
+
+  <!-- Nine: a solid bowl with a punched counter, plus a descending stem. -->
+  <g fill="#FFFFFF">
+    <circle cx="672" cy="440" r="150"/>
+    <circle cx="672" cy="440" r="66" fill="#000000"/>
+    <rect x="742" y="430" width="80" height="330" rx="40"/>
+  </g>
+</svg>

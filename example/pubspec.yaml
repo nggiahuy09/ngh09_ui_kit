@@ -13,11 +13,26 @@ dependencies:
   google_fonts: ^6.2.1
   ngh09_ui_kit:
     path: ../
+  # Reads the app version from the bundle at runtime (shown in the About sheet).
+  package_info_plus: ^8.1.2
+  # Opens the Finesse UI Kit Figma link from the About sheet.
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Generates the platform launcher icons from the black/white "09" brand mark
+  # in assets/branding/. The master PNG is produced by tool/render_icon.py.
+  # Regenerate with: dart run flutter_launcher_icons
+  flutter_launcher_icons: ^0.14.4
   very_good_analysis: ^10.0.0
 
 flutter:
   uses-material-design: true
+
+# App icon: brand black tile with a white "09" monogram. Only iOS is set up as a
+# platform for this example, so only iOS icons are generated.
+flutter_launcher_icons:
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/branding/app_icon.png"
