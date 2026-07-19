@@ -6,9 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 /// The Finesse UI Kit this app's design system is derived from.
 const _finesseTitle = 'Finesse UI – Figma UI Kit and Design System';
 const _finesseSubtitle = 'FREE (Community) · Version 1.0';
-final _finesseUrl = Uri.parse(
-  'https://www.figma.com/community/file/1227728490805632361',
-);
+final Uri _finesseUrl = Uri.parse('https://www.figma.com/community/file/1227728490805632361');
 
 /// Shows the "About" modal bottom sheet describing the app: what it contains,
 /// its version, and the Finesse UI Kit it is built on.
@@ -52,7 +50,6 @@ class _AboutSheet extends StatelessWidget {
           children: [
             // App identity.
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _AppMark(colors: colors, radii: radii),
                 SizedBox(width: spacing.md),
@@ -78,10 +75,10 @@ class _AboutSheet extends StatelessWidget {
 
             Text(
               'A design system explorer for the ngh09_ui_kit: a navigable '
-              'showcase of the kit\'s components — buttons, inputs, navigation, '
+              "showcase of the kit's components — buttons, inputs, navigation, "
               'feedback, media — and its foundation tokens: colors, typography, '
               'spacing, radii, shadows, breakpoints and durations, all built on '
-              'the kit\'s real widgets and theme layer.',
+              "the kit's real widgets and theme layer.",
               style: textStyles.bodyMedium.copyWith(
                 color: colors.onSurfaceVariant,
                 height: 1.5,
@@ -145,9 +142,9 @@ class _VersionLineState extends State<_VersionLine> {
   String? _version;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    PackageInfo.fromPlatform().then((info) {
+    await PackageInfo.fromPlatform().then((info) {
       if (mounted) {
         setState(() => _version = 'v${info.version} (${info.buildNumber})');
       }

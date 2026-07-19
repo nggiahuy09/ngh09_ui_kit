@@ -69,7 +69,7 @@ class _DropdownPlaygroundScreenState extends State<DropdownPlaygroundScreen> {
         return GHAppDropdownListItem(
           label: 'Sample Item',
           leadingType: GHDropdownLeadingType.avatar,
-          leading: GHUserAvatar.initials('SI', size: GHAvatarSize.sm),
+          leading: const GHUserAvatar.initials('SI', size: GHAvatarSize.sm),
           trailingType: GHDropdownTrailingType.checkmark,
           selected: _sampleSelected,
           size: _size,

@@ -47,8 +47,8 @@ class _TooltipPlaygroundScreenState extends State<TooltipPlaygroundScreen> {
   String? get _supportingText => _supportingController.text.isEmpty ? null : _supportingController.text;
 
   String get _spec {
-    final parts = <String>['headline: \'$_headline\''];
-    if (_supportingText != null) parts.add('supportingText: \'$_supportingText\'');
+    final parts = <String>["headline: '$_headline'"];
+    if (_supportingText != null) parts.add("supportingText: '$_supportingText'");
     if (_arrow != TooltipArrow.none) parts.add('arrow: ${_arrow.name}');
     if (_size != TooltipSize.small) parts.add('size: ${_size.name}');
     if (_corner != TooltipCorner.sharp) parts.add('corner: ${_corner.name}');

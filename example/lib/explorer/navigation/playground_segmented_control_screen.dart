@@ -8,7 +8,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 enum _SegmentMode { label, icon, both }
 
 const _labels = ['Day', 'Week', 'Month', 'Year'];
-const _icons = [Icons.today, Icons.view_week, Icons.calendar_view_month, Icons.calendar_today];
+const List<IconData> _icons = [Icons.today, Icons.view_week, Icons.calendar_view_month, Icons.calendar_today];
 
 /// A live playground for [GHAppSegmentedControl]: pick a segment count, a
 /// label/icon/both mode, and a corner shape, with a genuinely interactive
@@ -46,7 +46,7 @@ class _SegmentedControlPlaygroundScreenState extends State<SegmentedControlPlayg
   }
 
   String get _spec {
-    final parts = <String>['segments: <${_segmentCount} items>', 'selectedIndex: $_selectedIndex', 'onSelectedIndexChanged: (i) {}'];
+    final parts = <String>['segments: <$_segmentCount items>', 'selectedIndex: $_selectedIndex', 'onSelectedIndexChanged: (i) {}'];
     if (_corner != SegmentedControlCorner.sharp) parts.add('corner: ${_corner.name}');
     return 'GHAppSegmentedControl(${parts.join(', ')})';
   }

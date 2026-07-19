@@ -21,9 +21,9 @@ class DurationsScreen extends StatelessWidget {
     final spacing = context.spacing;
 
     final steps = [
-      _DurationStep('fast', DurationTokens.fast),
-      _DurationStep('normal', DurationTokens.normal),
-      _DurationStep('slow', DurationTokens.slow),
+      const _DurationStep('fast', DurationTokens.fast),
+      const _DurationStep('normal', DurationTokens.normal),
+      const _DurationStep('slow', DurationTokens.slow),
     ];
 
     return ExplorerScaffold(

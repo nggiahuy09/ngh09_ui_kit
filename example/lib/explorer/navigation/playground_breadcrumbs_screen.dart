@@ -44,7 +44,7 @@ class _BreadcrumbsPlaygroundScreenState extends State<BreadcrumbsPlaygroundScree
   }
 
   String get _spec {
-    final parts = <String>['items: <${_itemCount} items>'];
+    final parts = <String>['items: <$_itemCount items>'];
     if (_type != BreadcrumbType.textAndIcon) parts.add('type: ${_type.name}');
     return 'GHBreadcrumbs(${parts.join(', ')})';
   }

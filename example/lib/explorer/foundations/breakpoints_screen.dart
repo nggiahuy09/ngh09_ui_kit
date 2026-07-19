@@ -21,9 +21,9 @@ class BreakpointsScreen extends StatelessWidget {
     final spacing = context.spacing;
 
     final steps = [
-      _BreakpointStep('mobile', BreakpointTokens.mobile),
-      _BreakpointStep('tablet', BreakpointTokens.tablet),
-      _BreakpointStep('desktop', BreakpointTokens.desktop),
+      const _BreakpointStep('mobile', BreakpointTokens.mobile),
+      const _BreakpointStep('tablet', BreakpointTokens.tablet),
+      const _BreakpointStep('desktop', BreakpointTokens.desktop),
     ];
 
     final maxValue = steps.map((s) => s.value).reduce((a, b) => a > b ? a : b);

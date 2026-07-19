@@ -48,11 +48,11 @@ class _SnackbarPlaygroundScreenState extends State<SnackbarPlaygroundScreen> {
   String get _ctaLabel => _ctaLabelController.text.isEmpty ? 'Dismiss' : _ctaLabelController.text;
 
   String get _spec {
-    final parts = <String>['message: \'$_message\''];
+    final parts = <String>["message: '$_message'"];
     if (_state != GHSnackbarState.active) parts.add('state: ${_state.name}');
     if (_smooth) parts.add('smooth: true');
     if (!_showLeadingIcon) parts.add('showLeadingIcon: false');
-    if (_ctaButton) parts.add('ctaButton: true, ctaLabel: \'$_ctaLabel\'');
+    if (_ctaButton) parts.add("ctaButton: true, ctaLabel: '$_ctaLabel'");
     parts.add('onDismiss: () {}');
     return 'GHSnackbar(${parts.join(', ')})';
   }

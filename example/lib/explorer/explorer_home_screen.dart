@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:ngh09_ui_kit_example/explorer/about_sheet.dart';
+import 'package:ngh09_ui_kit_example/explorer/app_version_widget.dart';
 import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
 import 'package:ngh09_ui_kit_example/explorer/explorer_screens.dart';
 
-/// The Explorer's home screen: a list of components and foundation tokens,
-/// each navigating to its own detail screen.
 class ExplorerHomeScreen extends StatelessWidget {
   const ExplorerHomeScreen({required this.isDark, required this.onToggleTheme, super.key});
 
-  /// Whether the app is currently showing its dark theme.
   final bool isDark;
-
-  /// Called to switch between the light and dark themes.
   final VoidCallback onToggleTheme;
+
+  Future<void> _push(BuildContext context, Widget screen) => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class ExplorerHomeScreen extends StatelessWidget {
                   style: textStyles.headlineSmall.copyWith(color: colors.onBackground, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(width: spacing.sm),
-                const _AppVersionLabel(),
+                const AppVersionLabel(),
                 const Spacer(),
                 Row(
                   spacing: spacing.xs,
@@ -124,7 +120,7 @@ class ExplorerHomeScreen extends StatelessWidget {
             SizedBox(height: spacing.sm),
             ComponentListTile(
               title: 'Tooltips',
-              subtitle: 'arrow · size · corner',
+              subtitle: 'arrow · size · corner  ',
               leading: IconSwatch(colors: colors, icon: Icons.help_outline),
               onTap: () => _push(context, const TooltipPlaygroundScreen()),
             ),
@@ -321,38 +317,6 @@ class ExplorerHomeScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Future<void> _push(BuildContext context, Widget screen) => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
-}
-
-/// The version chip shown next to the app title, read from the bundle at
-/// runtime. Falls back to a blank chip until the async read resolves.
-class _AppVersionLabel extends StatefulWidget {
-  const _AppVersionLabel();
-
-  @override
-  State<_AppVersionLabel> createState() => _AppVersionLabelState();
-}
-
-class _AppVersionLabelState extends State<_AppVersionLabel> {
-  String? _version;
-
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((info) {
-      if (mounted) setState(() => _version = 'v${info.version}');
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    return Text(
-      _version ?? '',
-      style: GoogleFonts.jetBrainsMono(fontSize: 11, color: colors.onSurfaceVariant),
     );
   }
 }

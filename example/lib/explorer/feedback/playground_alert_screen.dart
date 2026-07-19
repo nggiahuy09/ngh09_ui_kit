@@ -47,10 +47,10 @@ class _AlertPlaygroundScreenState extends State<AlertPlaygroundScreen> {
   String? get _supportingText => _supportingController.text.isEmpty ? null : _supportingController.text;
 
   String get _spec {
-    final parts = <String>['headline: \'$_headline\''];
+    final parts = <String>["headline: '$_headline'"];
     if (_state != GHAlertState.active) parts.add('state: ${_state.name}');
-    if (_supportingText != null) parts.add('supportingText: \'$_supportingText\'');
-    if (_showAction) parts.add('actionLabel: \'Learn More\', onAction: () {}');
+    if (_supportingText != null) parts.add("supportingText: '$_supportingText'");
+    if (_showAction) parts.add("actionLabel: 'Learn More', onAction: () {}");
     if (_smooth) parts.add('smooth: true');
     if (!_showLeadingIcon) parts.add('showLeadingIcon: false');
     return 'GHAppAlert(${parts.join(', ')})';

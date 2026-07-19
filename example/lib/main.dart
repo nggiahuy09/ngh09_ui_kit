@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/home_screen.dart';
+import 'package:ngh09_ui_kit_example/explorer/explorer_home_screen.dart';
 
 void main() => runApp(const ExampleApp());
 
