@@ -1,148 +1,153 @@
-# Kiến trúc & Flow của `ngh09_ui_kit`
+# Architecture & Flow of `ngh09_ui_kit`
 
-> Tài liệu giải thích tổng quan repo: các folder/module quan trọng, flow implement
-> một component, và flow test. Dành cho người mới tham gia hoặc cần nắm nhanh cách
-> kit vận hành. Roadmap component nằm ở [PLAN.md](PLAN.md).
-
----
-
-## Tổng quan
-
-Đây là một **Flutter package** (không phải app) đóng vai trò **UI Kit / Design System**
-dựa trên **Material 3 + design tokens riêng**, publish được lên pub.dev, có app demo
-`example/` và kiểm thử **Unit + Widget + Golden**.
-
-Trạng thái hiện tại: **Foundation đã xong + 1 component (`GHAppButton`)**.
+> This document gives a repo-wide overview: the important folders/modules, the flow
+> for implementing a component, and the test flow. It's for newcomers or anyone who
+> needs to grasp quickly how the kit works. The component roadmap lives in
+> [PLAN.md](PLAN.md).
 
 ---
 
-## 1. Bản đồ folder / module
+## Overview
+
+This is a **Flutter package** (not an app) that acts as a **UI Kit / Design System**
+built on **Material 3 + its own design tokens**. It is publishable to pub.dev, ships
+with a runnable `example/` demo app, and is tested with **Unit + Widget + Golden**.
+
+Current status: **Foundation complete + 1 component (`GHAppButton`)**.
+
+---
+
+## 1. Folder / module map
 
 ```
 lib/
-├── ngh09_ui_kit.dart          ← Barrel export: public API DUY NHẤT của package
-└── src/                       ← Toàn bộ là private (consumer không import trực tiếp)
-    ├── tokens/      (Tầng 1 — PRIMITIVE)   giá trị thô, không ngữ nghĩa
-    ├── theme/       (Tầng 2 — SEMANTIC)    ánh xạ primitive → vai trò, đổi theo light/dark
-    ├── components/  (Tầng 3 — WIDGET)      widget public, chỉ đọc từ semantic layer
+├── ngh09_ui_kit.dart          ← Barrel export: the ONLY public API of the package
+└── src/                       ← Entirely private (consumers never import it directly)
+    ├── tokens/      (Tier 1 — PRIMITIVE)   raw values, no meaning
+    ├── theme/       (Tier 2 — SEMANTIC)    maps primitives → roles, varies by light/dark
+    ├── components/  (Tier 3 — WIDGET)      public widgets, read only from the semantic layer
     └── utils/                              context extensions + responsive helpers
 ```
 
-Điểm cốt lõi của kiến trúc là **2 tầng token** — đây là "linh hồn" của cả kit.
+The core of the architecture is the **two-tier token system** — this is the "soul"
+of the whole kit.
 
-### Tầng 1 — `tokens/` (primitive, giá trị thô)
+### Tier 1 — `tokens/` (primitive, raw values)
 
-Các `abstract final class` chứa hằng số `static const`, **không mang ý nghĩa**:
+`abstract final class`es holding `static const` constants, carrying **no meaning**:
 
-- `tokens/colors.dart` — palette `brand50→900`, `neutral0→900`, status ramps
+- `tokens/colors.dart` — palettes `brand50→900`, `neutral0→900`, status ramps
   `success/warning/danger/info` (50/500/700).
-- `tokens/spacing.dart` — thang 4pt: `xs=4, sm=8, md=16, lg=24…`
-- `tokens/typography.dart` — font size/weight/line-height theo type scale M3.
+- `tokens/spacing.dart` — 4pt scale: `xs=4, sm=8, md=16, lg=24…`
+- `tokens/typography.dart` — font size/weight/line-height following the M3 type scale.
 - `tokens/radii.dart`, `tokens/elevation.dart`, `tokens/durations.dart`,
   `tokens/breakpoints.dart` — `mobile=600, tablet=1024, desktop=1440`.
 
-> **Quy tắc vàng:** widget **KHÔNG BAO GIỜ** đọc trực tiếp `ColorTokens.brand500`.
+> **The Golden Rule:** a widget **NEVER** reads `ColorTokens.brand500` directly.
 
-### Tầng 2 — `theme/` (semantic, ánh xạ có ý nghĩa)
+### Tier 2 — `theme/` (semantic, meaningful mapping)
 
-Mỗi file là một `ThemeExtension<T>` với `copyWith` + `lerp`:
+Each file is a `ThemeExtension<T>` with `copyWith` + `lerp`:
 
-- `theme/app_colors.dart` — vai trò ngữ nghĩa (`primary`, `surface`, `onSurface`,
-  `outline`, `danger`…). Có 2 preset `.light()`/`.dark()` map primitive khác nhau,
-  và `toColorScheme()` để chiếu sang `ColorScheme` của Material.
-- `theme/app_typography.dart` — 15 text style ngữ nghĩa + `toTextTheme()`.
-- `theme/app_spacing.dart`, `theme/app_radii.dart` — (radii còn có getter
-  `borderRadiusMd` tiện dùng).
-- `theme/app_theme.dart` — **điểm lắp ráp**: `GHAppTheme.light()/dark()` build
-  `ThemeData` M3, chiếu semantic colors→`ColorScheme`, typography→`TextTheme`, rồi
-  gắn 4 extension vào. Nhận tham số `colors`/`typography` tùy biến để **re-brand**.
+- `theme/app_colors.dart` — semantic roles (`primary`, `surface`, `onSurface`,
+  `outline`, `danger`…). Has two presets `.light()`/`.dark()` mapping different
+  primitives, plus `toColorScheme()` to project onto Material's `ColorScheme`.
+- `theme/app_typography.dart` — 15 semantic text styles + `toTextTheme()`.
+- `theme/app_spacing.dart`, `theme/app_radii.dart` — (radii also has a convenience
+  getter `borderRadiusMd`).
+- `theme/app_theme.dart` — the **assembly point**: `GHAppTheme.light()/dark()` builds
+  the M3 `ThemeData`, projects semantic colors→`ColorScheme`, typography→`TextTheme`,
+  then attaches the four extensions. Takes `colors`/`typography` params for
+  **re-branding**.
 
 ### `utils/`
 
-- `utils/context_extensions.dart` — đường tắt `context.colors`, `context.spacing`,
-  `context.radii`, `context.textStyles`, `context.isDarkMode` (thay cho
-  `Theme.of(context).extension<...>()!` dài dòng) + helpers MediaQuery
+- `utils/context_extensions.dart` — shortcuts `context.colors`, `context.spacing`,
+  `context.radii`, `context.textStyles`, `context.isDarkMode` (instead of the verbose
+  `Theme.of(context).extension<...>()!`) + MediaQuery helpers
   (`isMobile/isTablet/isDesktop`).
 - `utils/responsive.dart` — `enum ScreenType`,
-  `context.responsiveValue(mobile:…, tablet:…, desktop:…)` (có fallback xuống
-  breakpoint nhỏ hơn), và widget `ResponsiveBuilder`.
+  `context.responsiveValue(mobile:…, tablet:…, desktop:…)` (with fallback down to a
+  smaller breakpoint), and the `ResponsiveBuilder` widget.
 
-### Tầng 3 — `components/`
+### Tier 3 — `components/`
 
 - `components/buttons/button_variant.dart` — `enum ButtonVariant`
   (filled/tonal/outlined/text) + `enum ButtonSize` (small/medium/large).
-- `components/buttons/app_button.dart` — `StatelessWidget`, đọc **100% từ
-  `context.*`**, không hardcode. Có default + 4 named constructor, `leading/trailing`,
-  `isLoading`/`disabled` (`onPressed == null`)/`expanded`. Loading giữ nguyên label
-  để layout không nhảy. Tận dụng semantics có sẵn của
+- `components/buttons/app_button.dart` — a `StatelessWidget` that reads **100% from
+  `context.*`** with nothing hardcoded. Has a default + 4 named constructors,
+  `leading/trailing`, `isLoading`/`disabled` (`onPressed == null`)/`expanded`. Loading
+  keeps the label so the layout doesn't jump. Leans on the built-in semantics of
   `FilledButton/OutlinedButton/TextButton`.
 
-### Project con (không thuộc package publish)
+### Sub-project (not part of the published package)
 
-- `example/` — app demo runnable (Design System Explorer), depend ngược qua
-  `path: ../`, **không lọt vào dependency** của package.
-
----
-
-## 2. Flow IMPLEMENT một component (theo đúng mẫu `GHAppButton`)
-
-Luồng dữ liệu khi chạy:
-
-```
-primitive token → semantic extension → GHAppTheme gắn vào ThemeData
-  → MaterialApp(theme:) → widget đọc qua context.colors/...
-```
-
-Khi viết component mới, lặp lại đúng 5 bước (định nghĩa "Done" ở mục 9 của PLAN):
-
-1. **Enum variant/size** trong file riêng (`*_variant.dart`) — không dùng String.
-2. **Widget** trong `components/<nhóm>/app_xxx.dart` — `StatelessWidget`, `const`
-   constructor, named constructor cho từng variant; mọi màu/spacing/radius lấy từ
-   `context.*`; dùng `switch` expression để map variant→token (xem
-   `_foregroundColor`/`_backgroundColor` trong `GHAppButton`).
-3. **Doc comment `///`** cho class + mọi public member (bắt buộc cho pub points —
-   lint `public_member_api_docs`).
-4. **Export** qua barrel `lib/ngh09_ui_kit.dart`.
-5. **Test** (xem mục 3), và (khuyến nghị) thêm playground screen vào
-   `example/lib/explorer/` để showcase component trong app demo.
+- `example/` — the runnable demo app (Design System Explorer), depending back through
+  `path: ../`, so it **never leaks into** the package's dependencies.
 
 ---
 
-## 3. Flow TEST (3 tầng)
+## 2. Flow to IMPLEMENT a component (following the `GHAppButton` template)
 
-| Tầng | Công cụ | Test gì | File |
-|---|---|---|---|
-| **Unit** | `flutter_test` | giá trị token, mapping theme→`ColorScheme`/`TextTheme`, `copyWith`/`lerp`, `ScreenType`, context extensions | `test/tokens/app_theme_test.dart` |
-| **Widget** | `flutter_test` | render đúng, tap callback, disabled/loading, ẩn icon khi loading, **a11y semantics** (`matchesSemantics`), named-ctor→variant, expanded width | `test/components/buttons/app_button_test.dart` |
-| **Golden** | **alchemist** | snapshot UI mỗi variant × light/dark, sizes, states | `test/components/buttons/app_button_golden_test.dart` + ảnh trong `goldens/ci/` |
+The data flow at runtime:
 
-Cơ chế quan trọng:
+```
+primitive token → semantic extension → GHAppTheme attaches into ThemeData
+  → MaterialApp(theme:) → widget reads via context.colors/...
+```
 
-- **`test/flutter_test_config.dart`** — Flutter tự chạy file này trước mọi test. Nó
-  bọc `AlchemistConfig.runWithConfig` và **tắt platform goldens**, chỉ giữ **CI
-  goldens** (pixel-exact, ổn định mọi máy → ít flaky). Alchemist tự load font thật
-  nên chữ không bị box vuông.
-- Pattern test luôn có helper `_wrap`/`_themed` bọc widget trong
-  `GHAppTheme.light()/dark()` để `context.*` resolve được.
-- Golden cho `loading` dùng `pumpBeforeTest: pumpOnce` vì spinner quay vô hạn →
-  `pumpAndSettle` sẽ treo.
-- Cập nhật golden là thao tác thủ công có review: `flutter test --update-goldens`
-  (CI chỉ verify, cấm update).
+When writing a new component, repeat these exact 5 steps (the "Done" definition is in
+§9 of PLAN):
 
-**Lệnh chạy thực tế (dùng fvm Flutter 3.35.6):**
+1. **Variant/size enum** in its own file (`*_variant.dart`) — never a String.
+2. **Widget** in `components/<group>/app_xxx.dart` — a `StatelessWidget`, `const`
+   constructor, a named constructor per variant; every color/spacing/radius comes from
+   `context.*`; use a `switch` expression to map variant→token (see
+   `_foregroundColor`/`_backgroundColor` in `GHAppButton`).
+3. **Doc comment `///`** on the class + every public member (required for pub points —
+   the `public_member_api_docs` lint).
+4. **Export** through the barrel `lib/ngh09_ui_kit.dart`.
+5. **Test** (see §3), and (recommended) add a playground screen to
+   `example/lib/explorer/` to showcase the component in the demo app.
+
+---
+
+## 3. TEST flow (3 tiers)
+
+| Tier       | Tool           | What it tests                                                                                                                                              | File                                                                            |
+| ---------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| **Unit**   | `flutter_test` | token values, theme→`ColorScheme`/`TextTheme` mapping, `copyWith`/`lerp`, `ScreenType`, context extensions                                                 | `test/tokens/app_theme_test.dart`                                               |
+| **Widget** | `flutter_test` | correct render, tap callback, disabled/loading, hiding the icon while loading, **a11y semantics** (`matchesSemantics`), named-ctor→variant, expanded width | `test/components/buttons/app_button_test.dart`                                  |
+| **Golden** | **alchemist**  | UI snapshot per variant × light/dark, sizes, states                                                                                                        | `test/components/buttons/app_button_golden_test.dart` + images in `goldens/ci/` |
+
+Key mechanics:
+
+- **`test/flutter_test_config.dart`** — Flutter runs this file automatically before
+  every test. It wraps `AlchemistConfig.runWithConfig` and **turns off platform
+  goldens**, keeping only **CI goldens** (pixel-exact, stable on every machine → less
+  flaky). Alchemist loads real fonts so text isn't rendered as boxes.
+- The test pattern always has a `_wrap`/`_themed` helper that wraps the widget in
+  `GHAppTheme.light()/dark()` so `context.*` can resolve.
+- Goldens for `loading` use `pumpBeforeTest: pumpOnce` because the spinner spins
+  infinitely → `pumpAndSettle` would hang.
+- Updating goldens is a manual, reviewed action: `flutter test --update-goldens`
+  (CI only verifies; updating is forbidden there).
+
+**Actual commands (using fvm Flutter 3.44.6):**
 
 ```bash
 dart format .
 flutter analyze --fatal-infos
-flutter test                       # gồm cả golden compare
-flutter test --update-goldens      # khi cố ý đổi UI
+flutter test                       # includes the golden compare
+flutter test --update-goldens      # when the UI is changed intentionally
 ```
 
 ---
 
-## Tóm lại — mental model
+## In short — the mental model
 
-> **Token thô → gán ý nghĩa (semantic) → `GHAppTheme` đóng gói vào `ThemeData` →
-> widget chỉ "đọc" qua `context.*`.** Đổi brand/theme chỉ sửa **một chỗ** (semantic
-> layer), mọi component tự đổi theo. Mỗi component "xong" khi đủ: code token-driven +
-> doc `///` + widget test (gồm a11y) + golden test light/dark.
+> **Raw token → assign meaning (semantic) → `GHAppTheme` packages it into `ThemeData`
+> → widget only "reads" via `context.*`.** Changing the brand/theme touches **one
+> place** (the semantic layer), and every component follows automatically. A component
+> is "done" only when it has: token-driven code + `///` docs + widget test (including
+> a11y) + light/dark golden test.
