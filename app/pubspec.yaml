@@ -1,5 +1,5 @@
-name: ngh09_ui_kit_example
-description: Example app demonstrating ngh09_ui_kit.
+name: ngh09_ui_kit_app
+description: Mobile app (Design System Explorer) demonstrating ngh09_ui_kit.
 publish_to: 'none'
 version: 1.0.0+1
 

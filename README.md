@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-See the [`example/`](example/) app for a runnable demo, [ARCHITECTURE.md](ARCHITECTURE.md)
+See the [`app/`](app/) mobile app for a runnable demo, [ARCHITECTURE.md](ARCHITECTURE.md)
 for how the kit is structured and how to add/test a component, and [PLAN.md](PLAN.md)
 for the full roadmap.
 

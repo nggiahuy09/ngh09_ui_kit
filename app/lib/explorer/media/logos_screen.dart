@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
+import 'package:ngh09_ui_kit_app/explorer/explorer_scaffold.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/segmented_picker.dart';
 
 /// A searchable reference grid of every [GHCompany] in the logo catalog,
 /// rendered live via [GHCompanyLogo].

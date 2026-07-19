@@ -4,7 +4,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// The Finesse UI Kit this app's design system is derived from.
-const _finesseTitle = 'Finesse UI – Figma UI Kit and Design System';
+const _finesseTitle = 'Finesse UI - Figma UI Kit and Design System';
 const _finesseSubtitle = 'FREE (Community) · Version 1.0';
 final Uri _finesseUrl = Uri.parse('https://www.figma.com/community/file/1227728490805632361');
 

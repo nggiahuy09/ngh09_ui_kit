@@ -9,6 +9,7 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - "app/**"
     - "example/**"
   language:
     strict-casts: true

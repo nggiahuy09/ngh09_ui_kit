@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
+import 'package:ngh09_ui_kit_app/explorer/explorer_scaffold.dart';
 
 class _BreakpointStep {
   const _BreakpointStep(this.name, this.value);

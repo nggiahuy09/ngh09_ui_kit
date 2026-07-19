@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/option_toggle_row.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
+import 'package:ngh09_ui_kit_app/explorer/explorer_scaffold.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/option_toggle_row.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/preview_card.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/segmented_picker.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/spec_panel.dart';
 
 /// A live playground for [GHAppToggle]: pick a size and toggle
 /// on/off and disabled, with a spec string reflecting the choice.

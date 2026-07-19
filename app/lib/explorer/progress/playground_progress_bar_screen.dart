@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/label_field.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
-import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
+import 'package:ngh09_ui_kit_app/explorer/explorer_scaffold.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/label_field.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/preview_card.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/segmented_picker.dart';
+import 'package:ngh09_ui_kit_app/explorer/widgets/spec_panel.dart';
 
 /// A live playground for [GHProgressBar]: drag a slider to drive the value,
 /// pick an indicator style, and edit the status label, with a spec string

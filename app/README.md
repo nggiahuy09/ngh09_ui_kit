@@ -1,4 +1,4 @@
-# ngh09_ui_kit_example — Design System Explorer
+# ngh09_ui_kit_app — Design System Explorer
 
 A runnable demo for [`ngh09_ui_kit`](../). It is a **Design System Explorer**: a
 navigable showcase that exercises every kit component and foundation token on the
@@ -33,7 +33,7 @@ Uses **fvm Flutter 3.44.6** (pinned in the repo `.fvmrc`). Only **iOS** is set u
 as a platform.
 
 ```bash
-cd example
+cd app
 flutter pub get
 flutter run
 ```

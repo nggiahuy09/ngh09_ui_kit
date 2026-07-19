@@ -51,6 +51,39 @@ void main() {
       expect(find.text('Loading'), findsOneWidget);
     });
 
+    testWidgets('does not throw when transitioning an enabled button to disabled or loading', (tester) async {
+      // Regression: toggling the live button into disabled/loading rebuilds it
+      // with onPressed: null / isLoading: true. The Material button then calls
+      // statesController.update() mid-build, which previously fired setState
+      // during the build phase and tripped the framework's '!_dirty' assertion.
+      var enabled = true;
+      var loading = false;
+      await tester.pumpWidget(
+        _wrap(
+          StatefulBuilder(
+            builder: (context, setState) => Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GHAppButton(label: 'Action', isLoading: loading, onPressed: enabled ? () {} : null),
+                TextButton(onPressed: () => setState(() => enabled = false), child: const Text('disable')),
+                TextButton(onPressed: () => setState(() => loading = true), child: const Text('load')),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('disable'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
+      expect(tester.takeException(), isNull);
+
+      await tester.tap(find.text('load'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 200));
+      expect(tester.takeException(), isNull);
+    });
+
     testWidgets('hides leading icon while loading', (tester) async {
       await tester.pumpWidget(
         _wrap(

@@ -11,7 +11,7 @@
 
 This is a **Flutter package** (not an app) that acts as a **UI Kit / Design System**
 built on **Material 3 + its own design tokens**. It is publishable to pub.dev, ships
-with a runnable `example/` demo app, and is tested with **Unit + Widget + Golden**.
+with a runnable `app/` mobile app (demo), and is tested with **Unit + Widget + Golden**.
 
 Current status: **Foundation complete + 1 component (`GHAppButton`)**.
 
@@ -82,8 +82,9 @@ Each file is a `ThemeExtension<T>` with `copyWith` + `lerp`:
 
 ### Sub-project (not part of the published package)
 
-- `example/` — the runnable demo app (Design System Explorer), depending back through
-  `path: ../`, so it **never leaks into** the package's dependencies.
+- `app/` — the runnable mobile app / demo (Design System Explorer), depending back
+  through `path: ../`, so it **never leaks into** the package's dependencies. An
+  `example/` symlink points at it for pub.dev's example detection.
 
 ---
 
@@ -108,7 +109,7 @@ When writing a new component, repeat these exact 5 steps (the "Done" definition 
    the `public_member_api_docs` lint).
 4. **Export** through the barrel `lib/ngh09_ui_kit.dart`.
 5. **Test** (see §3), and (recommended) add a playground screen to
-   `example/lib/explorer/` to showcase the component in the demo app.
+   `app/lib/explorer/` to showcase the component in the mobile app.
 
 ---
 

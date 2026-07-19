@@ -1,4 +1,4 @@
-# CLAUDE.md — `example/` (Design System Explorer)
+# CLAUDE.md — `app/` (Design System Explorer, the mobile app)
 
 This is the **demo app** for `ngh09_ui_kit` (`publish_to: 'none'`). It depends on
 the kit via `path: ../` and exists to **showcase and exercise components** in a
@@ -14,7 +14,7 @@ Read BEFORE writing code:
 
 | File                          | Read BEFORE                                                        |
 |-------------------------------|-------------------------------------------------------------------|
-| `example/CLAUDE.md`           | **(This file)** Any change under `example/`                        |
+| `app/CLAUDE.md`               | **(This file)** Any change under `app/`                            |
 | [../CLAUDE.md](../CLAUDE.md)  | Understanding how kit components/tokens are meant to be consumed   |
 | [../PLAN.md](../PLAN.md)      | Adding a playground for a newly built component                    |
 
@@ -29,7 +29,7 @@ Read BEFORE writing code:
 
 ---
 
-## Layout (`example/lib/`)
+## Layout (`app/lib/`)
 
 ```
 lib/
@@ -55,13 +55,13 @@ Foundation screens are `<token>_screen.dart` under `foundations/`.
 
 ---
 
-## Imports (in `example/`)
+## Imports (in `app/`)
 
 Grouped, alphabetical within each group:
 1. `package:flutter/...` and external packages (`google_fonts`, `url_launcher`, …)
 2. blank line
 3. `package:ngh09_ui_kit/ngh09_ui_kit.dart` (the barrel)
-4. `package:ngh09_ui_kit_example/explorer/...` (this app's own files, by package name)
+4. `package:ngh09_ui_kit_app/explorer/...` (this app's own files, by package name)
 
 ---
 
@@ -105,11 +105,11 @@ Grouped, alphabetical within each group:
 
 ## Running & Analysis
 
-- **fvm Flutter 3.44.6** (pinned in the repo `.fvmrc`). Run from the `example/` directory.
+- **fvm Flutter 3.44.6** (pinned in the repo `.fvmrc`). Run from the `app/` directory.
 - `flutter pub get` then `flutter run` (only **iOS** is configured as a platform;
   see `flutter_launcher_icons` in `pubspec.yaml`).
 - App icons are generated from `assets/branding/app_icon.png`
   (`dart run flutter_launcher_icons`); the master is rendered by
   `tool/render_icon.py`. Don't hand-edit generated icon assets.
-- `flutter analyze` inside `example/` to lint the demo. Fix errors first.
+- `flutter analyze` inside `app/` to lint the demo. Fix errors first.
 - Do NOT run `format`, code generation, or compile-at-end unless asked.

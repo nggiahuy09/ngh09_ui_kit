@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/explorer/about_sheet.dart';
-import 'package:ngh09_ui_kit_example/explorer/app_version_widget.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
-import 'package:ngh09_ui_kit_example/explorer/explorer_screens.dart';
+import 'package:ngh09_ui_kit_app/explorer/about_sheet.dart';
+import 'package:ngh09_ui_kit_app/explorer/app_version_widget.dart';
+import 'package:ngh09_ui_kit_app/explorer/explorer_scaffold.dart';
+import 'package:ngh09_ui_kit_app/explorer/explorer_screens.dart';
 
 class ExplorerHomeScreen extends StatelessWidget {
   const ExplorerHomeScreen({required this.isDark, required this.onToggleTheme, super.key});
