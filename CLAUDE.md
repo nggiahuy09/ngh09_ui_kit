@@ -1,10 +1,11 @@
 # CLAUDE.md — `ngh09_ui_kit` (package)
 
 This is a **Flutter package / design system** (published to pub.dev). It is a
-**two-tier token architecture** with themeable Material 3 widgets. The mobile
-app (demo / Design System Explorer) lives in [app/](app/) and has its own
-[app/CLAUDE.md](app/CLAUDE.md). An `example/` symlink points at `app/` so
-pub.dev still detects the package example.
+**two-tier token architecture** with themeable Material 3 widgets. A minimal
+runnable demo lives in [example/](example/) — a single-screen
+[example/lib/main.dart](example/lib/main.dart) that themes a `MaterialApp` with
+`GHAppTheme` and composes the kit's `GH*` widgets — so pub.dev detects the
+package example.
 
 ## Documentation Guide — MANDATORY
 
@@ -24,7 +25,7 @@ multiple rows, read all matching files.
 - New component end-to-end: `CLAUDE.md` + `ARCHITECTURE.md` (§2 implement flow, §3 test flow) + `PLAN.md`
 - New/changed token or semantic theme: `CLAUDE.md` + `ARCHITECTURE.md` (two-tier token section)
 - Test-only change: `CLAUDE.md` + `ARCHITECTURE.md` (§3)
-- Demo/showcase change: `app/CLAUDE.md`
+- Demo/example change: `CLAUDE.md` + [example/lib/main.dart](example/lib/main.dart)
 
 **If you skip reading a required file before implementing, the output is considered non-compliant.**
 
@@ -228,7 +229,7 @@ A component is "done" only when ALL hold:
 3. `///` docs on the class and every public member.
 4. Exported from the barrel `lib/ngh09_ui_kit.dart` (alphabetical in its section).
 5. Widget test (including a11y) + golden test (light/dark).
-6. (Recommended) A playground screen added to the demo — see `app/CLAUDE.md`.
+6. (Recommended) Showcased in the demo — see [example/lib/main.dart](example/lib/main.dart).
 
 ---
 
@@ -255,6 +256,6 @@ suppressions just to avoid review.**
 - Run `flutter analyze` on changed files/folders; fix **errors first**.
   `analysis_options.yaml` is strict (`strict-casts`/`inference`/`raw-types`,
   `public_member_api_docs`). Missing docs surface here.
-- `app/**` (the mobile app) and generated files are excluded from analysis.
+- `example/**` (the demo app) and generated files are excluded from analysis.
 - Do NOT run `format`. Do NOT compile/run code at the end of changes. Do NOT run
   code generation. This project uses **fvm Flutter 3.44.6** (pinned in `.fvmrc`).
