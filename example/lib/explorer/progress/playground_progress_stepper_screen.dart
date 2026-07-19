@@ -26,7 +26,7 @@ class ProgressStepperPlaygroundScreen extends StatefulWidget {
 
 class _ProgressStepperPlaygroundScreenState extends State<ProgressStepperPlaygroundScreen> {
   static const _labels = ['Home', 'Settings', 'Account', 'Billing', 'Review'];
-  static const _icons = [GHIcons.home, GHIcons.cog6Tooth, GHIcons.user, GHIcons.creditCard, GHIcons.checkCircle];
+  static const List<GHIconData> _icons = [GHIcons.home, GHIcons.cog6Tooth, GHIcons.user, GHIcons.creditCard, GHIcons.checkCircle];
 
   int _stepCount = 3;
   int _currentStep = 1;
@@ -128,7 +128,7 @@ class _ProgressStepperPlaygroundScreenState extends State<ProgressStepperPlaygro
           SizedBox(height: spacing.sm),
           OptionToggleRow(
             title: 'Show labels',
-            subtitle: _labelsAllowed ? 'Show each step\'s label beside its node' : 'Not supported with the chip indicator',
+            subtitle: _labelsAllowed ? "Show each step's label beside its node" : 'Not supported with the chip indicator',
             value: _showLabels && _labelsAllowed,
             onChanged: _labelsAllowed ? (v) => setState(() => _showLabels = v) : (_) {},
           ),

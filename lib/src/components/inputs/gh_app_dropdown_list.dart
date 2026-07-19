@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/components/inputs/gh_app_dropdown_list_item.dart';
+import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A group of [GHAppDropdownListItem]s, per the Finesse UI Kit "Dropdown
@@ -48,7 +49,7 @@ class GHAppDropdownList extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(spacing.smd, spacing.sm, spacing.smd, spacing.xs),
             child: Text(
               header!,
-              style: context.textStyles.labelSmall.copyWith(color: context.colors.onSurfaceVariant, fontWeight: FontWeight.w600),
+              style: context.textStyles.labelSmall.copyWith(color: ColorTokens.gray400, fontWeight: FontWeight.w600),
             ),
           ),
         ...items,

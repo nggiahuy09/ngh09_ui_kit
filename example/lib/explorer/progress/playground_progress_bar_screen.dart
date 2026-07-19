@@ -67,7 +67,6 @@ class _ProgressBarPlaygroundScreenState extends State<ProgressBarPlaygroundScree
           SizedBox(height: spacing.sm),
           Slider(
             value: _value,
-            min: 0,
             max: 100,
             divisions: 100,
             label: _value.toStringAsFixed(0),
