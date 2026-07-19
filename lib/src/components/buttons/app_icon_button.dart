@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:ngh09_ui_kit/src/components/buttons/icon_button_corner.dart';
 import 'package:ngh09_ui_kit/src/components/buttons/icon_button_size.dart';
 import 'package:ngh09_ui_kit/src/theme/app_shadows.dart';
@@ -86,7 +87,21 @@ class _GHAppIconButtonState extends State<GHAppIconButton> {
   }
 
   void _onStatesChanged() {
-    if (mounted) setState(() {});
+    if (!mounted) return;
+    // The underlying Material button calls _statesController.update() during
+    // its own build/didUpdateWidget — e.g. when this button is rebuilt into a
+    // disabled state, it flips WidgetState.disabled mid-build. Calling setState
+    // synchronously then would violate Flutter's "no setState during build"
+    // invariant (the '!_dirty' assertion), so defer to after the frame when a
+    // build is already in flight; otherwise (hover/focus/press at rest) rebuild
+    // immediately so the shadow layer reacts without a frame's lag.
+    if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.persistentCallbacks) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) setState(() {});
+      });
+    } else {
+      setState(() {});
+    }
   }
 
   @override
