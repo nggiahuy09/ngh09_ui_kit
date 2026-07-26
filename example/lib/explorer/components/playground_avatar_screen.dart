@@ -125,7 +125,6 @@ class _AvatarPlaygroundScreenState extends State<AvatarPlaygroundScreen> {
             GHAppInputDropdown<GHAvatarVariant>(
               searchable: false,
               placeholder: _variant.name,
-              menuMaxHeight: 240,
               onChanged: (v) => setState(() => _variant = v),
               items: [
                 for (final v in GHAvatarVariant.values) GHDropdownMenuItem(value: v, label: v.name),
