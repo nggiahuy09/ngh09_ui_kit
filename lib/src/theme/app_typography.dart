@@ -27,82 +27,116 @@ class GHAppTypography extends ThemeExtension<GHAppTypography> {
     required this.labelSmall,
   });
 
-  /// The default typography scale (Material 3 type roles).
+  /// The default typography scale — the Finesse type scale mapped onto the
+  /// Material type-role names. Each role binds the Inter family, its Finesse
+  /// font size, a per-role `height` (line-height px ÷ font size) and letter
+  /// spacing. Weights are retained per role (the Finesse design does not
+  /// annotate weight per step). See `figma/typography.md`.
   const GHAppTypography.standard()
     : displayLarge = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeDisplayLarge,
         fontWeight: TypographyTokens.regular,
-        height: TypographyTokens.heightTight,
+        height: TypographyTokens.heightDisplayLarge,
+        letterSpacing: TypographyTokens.letterSpacingDisplayLarge,
       ),
       displayMedium = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeDisplayMedium,
         fontWeight: TypographyTokens.regular,
-        height: TypographyTokens.heightTight,
+        height: TypographyTokens.heightDisplayMedium,
+        letterSpacing: TypographyTokens.letterSpacingDisplayMedium,
       ),
       displaySmall = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeDisplaySmall,
         fontWeight: TypographyTokens.regular,
-        height: TypographyTokens.heightTight,
+        height: TypographyTokens.heightDisplaySmall,
+        letterSpacing: TypographyTokens.letterSpacingDisplaySmall,
       ),
       headlineLarge = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeHeadlineLarge,
         fontWeight: TypographyTokens.semiBold,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightHeadlineLarge,
+        letterSpacing: TypographyTokens.letterSpacingHeadlineLarge,
       ),
       headlineMedium = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeHeadlineMedium,
         fontWeight: TypographyTokens.semiBold,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightHeadlineMedium,
+        letterSpacing: TypographyTokens.letterSpacingHeadlineMedium,
       ),
       headlineSmall = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeHeadlineSmall,
         fontWeight: TypographyTokens.semiBold,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightHeadlineSmall,
+        letterSpacing: TypographyTokens.letterSpacingHeadlineSmall,
       ),
       titleLarge = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeTitleLarge,
         fontWeight: TypographyTokens.semiBold,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightTitleLarge,
+        letterSpacing: TypographyTokens.letterSpacingTitleLarge,
       ),
       titleMedium = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeTitleMedium,
         fontWeight: TypographyTokens.medium,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightTitleMedium,
+        letterSpacing: TypographyTokens.letterSpacingTitleMedium,
       ),
       titleSmall = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeTitleSmall,
         fontWeight: TypographyTokens.medium,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightTitleSmall,
+        letterSpacing: TypographyTokens.letterSpacingTitleSmall,
       ),
       bodyLarge = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeBodyLarge,
         fontWeight: TypographyTokens.regular,
-        height: TypographyTokens.heightRelaxed,
+        height: TypographyTokens.heightBodyLarge,
+        letterSpacing: TypographyTokens.letterSpacingBodyLarge,
       ),
       bodyMedium = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeBodyMedium,
         fontWeight: TypographyTokens.regular,
-        height: TypographyTokens.heightRelaxed,
+        height: TypographyTokens.heightBodyMedium,
+        letterSpacing: TypographyTokens.letterSpacingBodyMedium,
       ),
       bodySmall = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeBodySmall,
         fontWeight: TypographyTokens.regular,
-        height: TypographyTokens.heightRelaxed,
+        height: TypographyTokens.heightBodySmall,
+        letterSpacing: TypographyTokens.letterSpacingBodySmall,
       ),
       labelLarge = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeLabelLarge,
         fontWeight: TypographyTokens.medium,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightLabelLarge,
+        letterSpacing: TypographyTokens.letterSpacingLabelLarge,
       ),
       labelMedium = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeLabelMedium,
         fontWeight: TypographyTokens.medium,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightLabelMedium,
+        letterSpacing: TypographyTokens.letterSpacingLabelMedium,
       ),
       labelSmall = const TextStyle(
+        fontFamily: TypographyTokens.fontFamily,
         fontSize: TypographyTokens.sizeLabelSmall,
         fontWeight: TypographyTokens.medium,
-        height: TypographyTokens.heightSnug,
+        height: TypographyTokens.heightLabelSmall,
+        letterSpacing: TypographyTokens.letterSpacingLabelSmall,
       );
 
   /// Largest display style — hero headings.

@@ -7,125 +7,182 @@ import 'package:flutter/widgets.dart';
 /// (`GHAppColors`, via `context.colors`) instead, so re-theming touches one
 /// spot.
 ///
-/// Each hue is provided as a 50–900 ramp following the Material tonal model.
+/// Values come from the **Finesse UI Kit** color system (see `figma/colors.md`).
+/// Each ramp runs 50–1000. Finesse's primary/brand is deliberately black &
+/// white, so there is no colored brand ramp.
 abstract final class ColorTokens {
-  /// Pure white.
+  /// Pure white — the Finesse `Primary/White`.
   static const Color white = Color(0xFFFFFFFF);
 
-  /// Pure black.
+  /// Pure black — the Finesse `Primary/Black` (the brand/primary color).
   static const Color black = Color(0xFF000000);
 
   /// Fully transparent.
   static const Color transparent = Color(0x00000000);
 
   // ---------------------------------------------------------------------------
-  // Brand (indigo) — the primary accent ramp.
+  // Gray — neutral foundation (text, fields, surfaces, borders, dividers).
   // ---------------------------------------------------------------------------
 
-  /// Brand 50 — lightest tint.
-  static const Color brand50 = Color(0xFFEEF0FF);
+  /// Gray 50 — lightest neutral.
+  static const Color gray50 = Color(0xFFFAFAFA);
 
-  /// Brand 100.
-  static const Color brand100 = Color(0xFFD9DEFF);
+  /// Gray 100.
+  static const Color gray100 = Color(0xFFF6F7F9);
 
-  /// Brand 200.
-  static const Color brand200 = Color(0xFFB3BCFF);
+  /// Gray 200.
+  static const Color gray200 = Color(0xFFE5E7EA);
 
-  /// Brand 300.
-  static const Color brand300 = Color(0xFF8A97FB);
+  /// Gray 300.
+  static const Color gray300 = Color(0xFFCED2D6);
 
-  /// Brand 400.
-  static const Color brand400 = Color(0xFF6675F2);
+  /// Gray 400.
+  static const Color gray400 = Color(0xFF9EA5AD);
 
-  /// Brand 500 — the base brand color.
-  static const Color brand500 = Color(0xFF4754E0);
+  /// Gray 500 — mid neutral.
+  static const Color gray500 = Color(0xFF676E76);
 
-  /// Brand 600.
-  static const Color brand600 = Color(0xFF3641C2);
+  /// Gray 600.
+  static const Color gray600 = Color(0xFF596066);
 
-  /// Brand 700.
-  static const Color brand700 = Color(0xFF2A3399);
+  /// Gray 700.
+  static const Color gray700 = Color(0xFF454C52);
 
-  /// Brand 800.
-  static const Color brand800 = Color(0xFF1F2670);
+  /// Gray 800.
+  static const Color gray800 = Color(0xFF383F45);
 
-  /// Brand 900 — darkest shade.
-  static const Color brand900 = Color(0xFF141A4D);
+  /// Gray 900.
+  static const Color gray900 = Color(0xFF24292E);
 
-  // ---------------------------------------------------------------------------
-  // Neutral (slate-gray) — surfaces, text, borders.
-  // ---------------------------------------------------------------------------
-
-  /// Neutral 0 — white surface.
-  static const Color neutral0 = Color(0xFFFFFFFF);
-
-  /// Neutral 50.
-  static const Color neutral50 = Color(0xFFF7F8FA);
-
-  /// Neutral 100.
-  static const Color neutral100 = Color(0xFFEDEFF3);
-
-  /// Neutral 200.
-  static const Color neutral200 = Color(0xFFD9DDE5);
-
-  /// Neutral 300.
-  static const Color neutral300 = Color(0xFFBFC5D2);
-
-  /// Neutral 400.
-  static const Color neutral400 = Color(0xFF98A1B3);
-
-  /// Neutral 500.
-  static const Color neutral500 = Color(0xFF6B7384);
-
-  /// Neutral 600.
-  static const Color neutral600 = Color(0xFF4D5462);
-
-  /// Neutral 700.
-  static const Color neutral700 = Color(0xFF373D49);
-
-  /// Neutral 800.
-  static const Color neutral800 = Color(0xFF22272F);
-
-  /// Neutral 900 — near-black surface.
-  static const Color neutral900 = Color(0xFF13161B);
+  /// Gray 1000 — darkest neutral.
+  static const Color gray1000 = Color(0xFF1A1D1F);
 
   // ---------------------------------------------------------------------------
-  // Semantic status ramps — success / warning / danger / info.
+  // Error — red (destructive / negative states).
+  // ---------------------------------------------------------------------------
+
+  // TODO(colors): Error/50 is #FAFAFA (a neutral gray) in the Finesse free kit
+  // rather than a pale red — likely a design slip. Captured verbatim; confirm
+  // with design whether it should be a light red.
+  /// Error 50 — see TODO above (captured as a neutral gray).
+  static const Color error50 = Color(0xFFFAFAFA);
+
+  /// Error 100.
+  static const Color error100 = Color(0xFFFEF2F2);
+
+  /// Error 200.
+  static const Color error200 = Color(0xFFFDE9E9);
+
+  /// Error 300.
+  static const Color error300 = Color(0xFFFAC7C7);
+
+  /// Error 400.
+  static const Color error400 = Color(0xFFF7A1A1);
+
+  /// Error 500 — base error color.
+  static const Color error500 = Color(0xFFF37373);
+
+  /// Error 600.
+  static const Color error600 = Color(0xFFF34141);
+
+  /// Error 700.
+  static const Color error700 = Color(0xFFCD3636);
+
+  /// Error 800.
+  static const Color error800 = Color(0xFFA32E2E);
+
+  /// Error 900.
+  static const Color error900 = Color(0xFF7C2323);
+
+  /// Error 1000 — darkest error shade.
+  static const Color error1000 = Color(0xFF601B1B);
+
+  // ---------------------------------------------------------------------------
+  // Warning — amber (caution / on-hold states).
+  // ---------------------------------------------------------------------------
+
+  /// Warning 50.
+  static const Color warning50 = Color(0xFFFFFCF5);
+
+  /// Warning 100.
+  static const Color warning100 = Color(0xFFFEFAF5);
+
+  /// Warning 200.
+  static const Color warning200 = Color(0xFFFBF2CB);
+
+  /// Warning 300.
+  static const Color warning300 = Color(0xFFFDE57E);
+
+  /// Warning 400.
+  static const Color warning400 = Color(0xFFFFD16A);
+
+  /// Warning 500 — base warning color.
+  static const Color warning500 = Color(0xFFFBBC55);
+
+  /// Warning 600.
+  static const Color warning600 = Color(0xFFE9A23B);
+
+  /// Warning 700.
+  static const Color warning700 = Color(0xFFC8811A);
+
+  /// Warning 800.
+  static const Color warning800 = Color(0xFFA35C00);
+
+  /// Warning 900.
+  static const Color warning900 = Color(0xFF8B4400);
+
+  /// Warning 1000 — darkest warning shade.
+  static const Color warning1000 = Color(0xFF78310B);
+
+  // ---------------------------------------------------------------------------
+  // Success — green (positive / confirmation states).
   // ---------------------------------------------------------------------------
 
   /// Success 50.
-  static const Color success50 = Color(0xFFE7F8EF);
+  static const Color success50 = Color(0xFFF6FEF9);
+
+  /// Success 100.
+  static const Color success100 = Color(0xFFEFFDF6);
+
+  /// Success 200.
+  static const Color success200 = Color(0xFFD9F9E6);
+
+  /// Success 300.
+  static const Color success300 = Color(0xFFB8F1D2);
+
+  /// Success 400.
+  static const Color success400 = Color(0xFF8EE4BA);
 
   /// Success 500 — base success color.
-  static const Color success500 = Color(0xFF1FA463);
+  static const Color success500 = Color(0xFF6AD09D);
+
+  /// Success 600.
+  static const Color success600 = Color(0xFF53B483);
 
   /// Success 700.
-  static const Color success700 = Color(0xFF137045);
+  static const Color success700 = Color(0xFF2F9461);
 
-  /// Warning 50.
-  static const Color warning50 = Color(0xFFFFF6E5);
+  /// Success 800.
+  static const Color success800 = Color(0xFF2F7657);
 
-  /// Warning 500 — base warning color.
-  static const Color warning500 = Color(0xFFE0962E);
+  /// Success 900.
+  static const Color success900 = Color(0xFF255E46);
 
-  /// Warning 700.
-  static const Color warning700 = Color(0xFF98631A);
+  /// Success 1000 — darkest success shade.
+  static const Color success1000 = Color(0xFF1E4D3A);
 
-  /// Danger 50.
-  static const Color danger50 = Color(0xFFFDEBEC);
+  // ---------------------------------------------------------------------------
+  // Info — LEGACY blue. NOT part of the Finesse palette; retained for
+  // back-compat (e.g. `BadgeStatus.info`) during the migration. Deprecated —
+  // remove once consumers no longer reference the `info` role.
+  // ---------------------------------------------------------------------------
 
-  /// Danger 500 — base danger/error color.
-  static const Color danger500 = Color(0xFFDC3545);
-
-  /// Danger 700.
-  static const Color danger700 = Color(0xFF98232E);
-
-  /// Info 50.
+  /// Info 50 (legacy, non-Finesse).
   static const Color info50 = Color(0xFFE6F4FB);
 
-  /// Info 500 — base informational color.
+  /// Info 500 — base informational color (legacy, non-Finesse).
   static const Color info500 = Color(0xFF2196C3);
 
-  /// Info 700.
+  /// Info 700 (legacy, non-Finesse).
   static const Color info700 = Color(0xFF166585);
 }

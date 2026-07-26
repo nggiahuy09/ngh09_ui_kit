@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
-import 'package:ngh09_ui_kit_example/gallery/foundation_gallery.dart';
+import 'package:ngh09_ui_kit_example/explorer/explorer_home_screen.dart';
 
 void main() => runApp(const ExampleApp());
 
-/// Minimal example demonstrating the ngh09_ui_kit foundation: design tokens,
-/// the semantic theme layer, and light/dark theming.
+/// Design System Explorer: a navigable showcase of the ngh09_ui_kit's
+/// components (Buttons, Badges, Chips) and foundation tokens (Colors,
+/// Typography, Spacing, Radii), built entirely on the kit's real widgets and
+/// theme layer.
 class ExampleApp extends StatefulWidget {
   /// Creates the example app.
   const ExampleApp({super.key});
@@ -18,22 +20,18 @@ class _ExampleAppState extends State<ExampleApp> {
   ThemeMode _themeMode = ThemeMode.light;
 
   void _toggleTheme() {
-    setState(() {
-      _themeMode = _themeMode == ThemeMode.light
-          ? ThemeMode.dark
-          : ThemeMode.light;
-    });
+    setState(() => _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ngh09_ui_kit example',
+      title: 'ngh09 UI Kit',
       theme: GHAppTheme.light(),
       darkTheme: GHAppTheme.dark(),
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
-      home: FoundationGallery(
+      home: ExplorerHomeScreen(
         isDark: _themeMode == ThemeMode.dark,
         onToggleTheme: _toggleTheme,
       ),

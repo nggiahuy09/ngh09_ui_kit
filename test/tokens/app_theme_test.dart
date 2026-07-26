@@ -9,6 +9,7 @@ void main() {
       expect(theme.extension<GHAppColors>(), isNotNull);
       expect(theme.extension<GHAppSpacing>(), isNotNull);
       expect(theme.extension<GHAppRadii>(), isNotNull);
+      expect(theme.extension<GHAppShadows>(), isNotNull);
       expect(theme.extension<GHAppTypography>(), isNotNull);
       expect(theme.brightness, Brightness.light);
       expect(theme.useMaterial3, isTrue);
@@ -19,7 +20,7 @@ void main() {
       expect(theme.brightness, Brightness.dark);
       expect(
         theme.extension<GHAppColors>()!.background,
-        ColorTokens.neutral900,
+        ColorTokens.gray1000,
       );
     });
 
@@ -158,7 +159,7 @@ void main() {
       );
 
       expect(spacing.md, SpacingTokens.md);
-      expect(colors.background, ColorTokens.neutral50);
+      expect(colors.background, ColorTokens.gray50);
       expect(typography.bodyMedium.fontSize, TypographyTokens.sizeBodyMedium);
       expect(isDark, isFalse);
       expect(screenType, isA<ScreenType>());

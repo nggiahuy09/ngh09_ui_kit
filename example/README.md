@@ -1,16 +1,18 @@
 # ngh09_ui_kit_example
 
-A new Flutter project.
+Minimal example for [`ngh09_ui_kit`](../) — a single screen that themes a
+`MaterialApp` with `GHAppTheme.light()` / `GHAppTheme.dark()` and composes the
+kit's `GH*` widgets (buttons, badges, chips, avatars, inputs, alerts).
 
-## Getting Started
+Because every widget reads its colors, spacing, radii and type from the
+semantic theme layer, the ☀/☾ app-bar toggle re-styles the whole screen with no
+per-widget changes.
 
-This project is a starting point for a Flutter application.
+## Run
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+cd example
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+See [`lib/main.dart`](lib/main.dart) for the whole example.

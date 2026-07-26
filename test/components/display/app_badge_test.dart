@@ -6,8 +6,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// resolve `context.colors` / `context.radii` etc.
 Widget _wrap(Widget child, {Brightness brightness = Brightness.light}) {
   return MaterialApp(
-    theme:
-        brightness == Brightness.light ? GHAppTheme.light() : GHAppTheme.dark(),
+    theme: brightness == Brightness.light ? GHAppTheme.light() : GHAppTheme.dark(),
     home: Scaffold(body: Center(child: child)),
   );
 }
@@ -24,32 +23,45 @@ void main() {
       expect(find.text('7'), findsOneWidget);
     });
 
-    testWidgets('count badge clamps values above max to "max+"', (
-      tester,
-    ) async {
+    testWidgets('count badge clamps values above max to "max+"', (tester) async {
       await tester.pumpWidget(_wrap(GHAppBadge.count(count: 128, max: 99)));
       expect(find.text('99+'), findsOneWidget);
       expect(find.text('128'), findsNothing);
     });
 
-    testWidgets('count badge keeps values at or below max unchanged', (
-      tester,
-    ) async {
+    testWidgets('count badge keeps values at or below max unchanged', (tester) async {
       await tester.pumpWidget(_wrap(GHAppBadge.count(count: 99, max: 99)));
       expect(find.text('99'), findsOneWidget);
     });
 
-    testWidgets('dot badge renders no text', (tester) async {
-      await tester.pumpWidget(_wrap(const GHAppBadge.dot()));
-      expect(find.byType(Text), findsNothing);
+    testWidgets('dot badge renders both the dot and the label', (tester) async {
+      await tester.pumpWidget(_wrap(const GHAppBadge.dot(label: 'Live')));
+      expect(find.text('Live'), findsOneWidget);
+    });
+
+    testWidgets('icon badge shows the leading icon', (tester) async {
+      await tester.pumpWidget(_wrap(const GHAppBadge.icon(label: 'Verified', leadingIcon: Icon(Icons.check))));
+      expect(find.byIcon(Icons.check), findsOneWidget);
+    });
+
+    testWidgets('icon badge shows the trailing icon', (tester) async {
+      await tester.pumpWidget(_wrap(const GHAppBadge.icon(label: 'Close', trailingIcon: Icon(Icons.close))));
+      expect(find.byIcon(Icons.close), findsOneWidget);
+    });
+
+    testWidgets('avatar badge shows the avatar', (tester) async {
+      await tester.pumpWidget(_wrap(const GHAppBadge.avatar(label: 'Avatar', avatar: FlutterLogo())));
+      expect(find.byType(FlutterLogo), findsOneWidget);
+    });
+
+    testWidgets('flag badge shows the country flag', (tester) async {
+      await tester.pumpWidget(_wrap(const GHAppBadge.flag(label: 'US', country: GHCountry.unitedStates)));
+      expect(find.byType(GHCountryFlag), findsOneWidget);
     });
 
     testWidgets('exposes the label to accessibility', (tester) async {
       await tester.pumpWidget(_wrap(const GHAppBadge(label: 'Online')));
-      expect(
-        tester.getSemantics(find.text('Online')),
-        matchesSemantics(label: 'Online'),
-      );
+      expect(tester.getSemantics(find.text('Online')), matchesSemantics(label: 'Online'));
     });
 
     group('count factory maps inputs to the right label', () {
@@ -63,35 +75,40 @@ void main() {
       });
     });
 
-    testWidgets('expanded badge is wider than a non-expanded one', (
-      tester,
-    ) async {
+    testWidgets('expanded badge is wider than a non-expanded one', (tester) async {
       // Measure the decorated Container the badge renders, under the loose
       // constraints of a Center: a normal badge hugs its label, while an
       // expanded one grows to the available width.
-      final pill = find.descendant(
-        of: find.byType(GHAppBadge),
-        matching: find.byType(Container),
-      );
+      final pill = find.descendant(of: find.byType(GHAppBadge), matching: find.byType(Container));
 
       await tester.pumpWidget(_wrap(const GHAppBadge(label: 'X')));
       final narrow = tester.getSize(pill).width;
 
-      await tester.pumpWidget(
-        _wrap(const GHAppBadge(label: 'X', expanded: true)),
-      );
+      await tester.pumpWidget(_wrap(const GHAppBadge(label: 'X', expanded: true)));
       final wide = tester.getSize(pill).width;
 
       expect(wide, greaterThan(narrow));
     });
 
-    testWidgets('status is configurable without throwing', (tester) async {
-      for (final status in BadgeStatus.values) {
-        await tester.pumpWidget(
-          _wrap(GHAppBadge(label: status.name, status: status)),
-        );
-        expect(find.text(status.name), findsOneWidget);
+    testWidgets('color is configurable without throwing', (tester) async {
+      for (final color in BadgeColor.values) {
+        await tester.pumpWidget(_wrap(GHAppBadge(label: color.name, color: color)));
+        expect(find.text(color.name), findsOneWidget);
       }
+    });
+
+    group('BadgeSize dimensions', () {
+      for (final (size, height) in [(BadgeSize.small, 22.0), (BadgeSize.medium, 26.0), (BadgeSize.large, 32.0)]) {
+        testWidgets('$size renders at $height dp tall', (tester) async {
+          await tester.pumpWidget(_wrap(GHAppBadge(label: '9', size: size)));
+          final pill = find.descendant(of: find.byType(GHAppBadge), matching: find.byType(Container));
+          expect(tester.getSize(pill).height, height);
+        });
+      }
+    });
+
+    test('icon badge asserts at least one icon is provided', () {
+      expect(() => GHAppBadge.icon(label: 'Empty'), throwsAssertionError);
     });
   });
 }

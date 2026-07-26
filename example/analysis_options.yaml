@@ -1,7 +1,14 @@
-# The example app reuses the package's strict lint set so demos stay idiomatic.
 include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
 
 linter:
   rules:
-    # Demo entry points are fine without library-level docs.
+    # The example intentionally hardcodes a couple of layout constants; the
+    # kit's own style rules live in the package's analysis_options.yaml.
+    lines_longer_than_80_chars: false
     public_member_api_docs: false

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/theme/app_colors.dart';
 import 'package:ngh09_ui_kit/src/theme/app_radii.dart';
+import 'package:ngh09_ui_kit/src/theme/app_shadows.dart';
 import 'package:ngh09_ui_kit/src/theme/app_spacing.dart';
 import 'package:ngh09_ui_kit/src/theme/app_typography.dart';
 import 'package:ngh09_ui_kit/src/tokens/breakpoints.dart';
@@ -25,6 +26,9 @@ extension GHAppThemeContext on BuildContext {
 
   /// The semantic radius scale for the current theme.
   GHAppRadii get radii => Theme.of(this).extension<GHAppRadii>()!;
+
+  /// The semantic shadow set for the current theme.
+  GHAppShadows get shadows => Theme.of(this).extension<GHAppShadows>()!;
 
   /// The semantic text styles for the current theme.
   GHAppTypography get textStyles =>
