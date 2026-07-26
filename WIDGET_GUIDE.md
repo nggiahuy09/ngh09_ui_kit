@@ -36,8 +36,8 @@ When building UI:
 1. Find a likely widget category in the inventory.
 2. Open the widget's file under `lib/src/components/<group>/` and read its `///`
    docs and named constructors — those are the source of truth for its API.
-3. Look at the matching playground in
-   [example/lib/explorer/](example/lib/explorer/) for a live, wired usage.
+3. Look at [example/lib/main.dart](example/lib/main.dart) for live, wired usage
+   of the common widgets.
 4. Reuse an established variant/size before adding a new one.
 5. Only create a new primitive when no existing `GH*` widget fits — and then follow
    the component flow in [ARCHITECTURE.md](ARCHITECTURE.md) §2.
@@ -72,8 +72,9 @@ real enums exported from the barrel.
 | Logos       | `GHCompanyLogo` (`GHCompany`, `GHLogoLayer`)            | 137 companies · searchable                                                                                                                                                                 | `components/logos/`      |
 | Payment     | `GHPaymentIcon` (`GHPaymentMethod`)                     | cards & wallets · `GHPaymentIconSize`                                                                                                                                                      | `components/payment/`    |
 
-> The demo app [example/](example/) has a playground screen for nearly every row
-> above — the fastest way to see a widget wired to all its options.
+> The demo app [example/](example/) wires up the common widgets from the rows
+> above in a single screen — the fastest way to see them themed and composed.
+> For the full API of any widget, read its `///` docs under `lib/src/components/`.
 
 ## Foundation — reading tokens
 
@@ -163,8 +164,8 @@ Padding(
   equivalent.
 - Read the widget's `///` docs and named constructors for its real API — this guide
   is a map, not the full reference.
-- Follow the pattern of the nearest existing playground/screen when several widgets
-  could fit.
+- Follow the pattern of the demo ([example/lib/main.dart](example/lib/main.dart))
+  when several widgets could fit.
 - Keep app-specific behavior in the consuming app; only genuinely reusable behavior
   belongs in a shared `GH*` primitive.
 
@@ -174,7 +175,7 @@ Padding(
 
 - Building a screen and looking for an existing widget to reuse
 - Choosing between widget categories / variants
-- Finding where to inspect a widget's real usage (playgrounds)
+- Finding where to inspect a widget's real usage (the demo + `///` docs)
 
 **Do NOT use for:**
 

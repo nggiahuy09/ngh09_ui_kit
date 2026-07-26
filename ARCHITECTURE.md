@@ -82,8 +82,10 @@ Each file is a `ThemeExtension<T>` with `copyWith` + `lerp`:
 
 ### Sub-project (not part of the published package)
 
-- `example/` — the runnable demo app (Design System Explorer), depending back through
-  `path: ../`, so it **never leaks into** the package's dependencies.
+- `example/` — the runnable demo app, depending back through `path: ../`, so it
+  **never leaks into** the package's dependencies. A single-screen
+  `example/lib/main.dart` themes a `MaterialApp` with `GHAppTheme` and composes
+  the kit's `GH*` widgets; pub.dev detects it as the package example.
 
 ---
 
@@ -107,8 +109,8 @@ When writing a new component, repeat these exact 5 steps (the "Done" definition 
 3. **Doc comment `///`** on the class + every public member (required for pub points —
    the `public_member_api_docs` lint).
 4. **Export** through the barrel `lib/ngh09_ui_kit.dart`.
-5. **Test** (see §3), and (recommended) add a playground screen to
-   `example/lib/explorer/` to showcase the component in the demo app.
+5. **Test** (see §3), and (recommended) showcase the component in the demo
+   (`example/lib/main.dart`).
 
 ---
 
