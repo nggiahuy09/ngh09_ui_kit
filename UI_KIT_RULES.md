@@ -186,7 +186,8 @@ test/
 6. **MUST** — Field/param ordering follows [CLAUDE.md](CLAUDE.md): grouped by type
    (Collections → UI types → user-defined → enums → Duration/DateTime → primitives
    `String > double > int > bool` → callbacks), sorted by name within each group.
-   Call sites follow the constructor's declaration order exactly.
+   Call sites follow the constructor's declaration order exactly, and the final
+   fields are declared in the same order as the constructor params.
 7. **NEVER** — Pass `BuildContext` as a component parameter.
 8. **NEVER** — Put `Scaffold`, `MaterialApp`, or `SafeArea` inside a small
    component. A component makes no assumption about its position in the tree.
@@ -205,6 +206,11 @@ test/
 14. **MUST** — Callback types: `VoidCallback` for no-arg, `ValueChanged<T>` for a
     single value. These are the Flutter idiom and what the package uses throughout.
     Use an explicit `void Function(T1, T2)` only for 2+ params or a return value.
+    **NEVER** replace them with a bare `void Function()` to "reduce dependency" —
+    they are `dart:ui` / `foundation.dart` typedefs, i.e. the same type with no
+    extra import, so the swap gains nothing and loses the shared vocabulary.
+    Order within the callback group: `VoidCallback` → `ValueChanged<T>` →
+    `void Function(T1, T2)` → `T Function()` → `T Function(T p)`.
 15. **MUST** — Widgets always use named params (§6.3), but for **non-widget**
     methods and helper classes the rule is the general one: named params when there
     are > 3 params or when 2+ params share a type; **named params are forbidden for a
@@ -320,11 +326,11 @@ splitting them into the `material_ui` / `cupertino_ui` packages.
 
 ## 12. Testing — three tiers
 
-| Tier       | Tool           | Covers                                                                          |
-|------------|----------------|---------------------------------------------------------------------------------|
-| **Unit**   | `flutter_test` | token values, theme → `ColorScheme`/`TextTheme`, `copyWith`/`lerp`, extensions   |
+| Tier       | Tool           | Covers                                                                                        |
+| ---------- | -------------- | --------------------------------------------------------------------------------------------- |
+| **Unit**   | `flutter_test` | token values, theme → `ColorScheme`/`TextTheme`, `copyWith`/`lerp`, extensions                |
 | **Widget** | `flutter_test` | render, tap, disabled/loading, icon hiding, **a11y (`matchesSemantics`)**, named-ctor→variant |
-| **Golden** | **alchemist**  | a snapshot per variant × light/dark × size × state                              |
+| **Golden** | **alchemist**  | a snapshot per variant × light/dark × size × state                                            |
 
 1. **MUST** — Every public component has at least: one render widget test, one
    interaction test (if it has a callback), one a11y assertion, and one light + dark
@@ -350,6 +356,7 @@ splitting them into the `material_ui` / `cupertino_ui` packages.
 11. **SHOULD** — Cover the two a11y/robustness cases §8.4 and §14 require but that
     **no test currently exercises** — the whole suite has zero `TextScaler` usage.
     Add them for new components, and to existing ones when you touch their tests:
+
     ```dart
     // text scale 2.0 — must not overflow
     await tester.pumpWidget(_wrap(
@@ -361,6 +368,7 @@ splitting them into the `material_ui` / `cupertino_ui` packages.
     // narrow constraint (320px) — the smallest supported width
     await tester.pumpWidget(_wrap(const SizedBox(width: 320.0, child: …)));
     ```
+
     Use `TextScaler`, never the deprecated `textScaleFactor`. Keep these out of the
     golden suite — assert no-overflow in widget tests instead, so you don't multiply
     golden images per scale factor.
@@ -372,7 +380,7 @@ splitting them into the `material_ui` / `cupertino_ui` packages.
 1. **MUST** — **Every** public class and public member has a `///` dartdoc — the
    `public_member_api_docs` lint is on and the pub.dev score depends on it. Reference
    density: [`app_button.dart`](lib/src/components/buttons/app_button.dart).
-   - Class doc: what it is, which variants/sizes/states it supports, a ```dart```
+   - Class doc: what it is, which variants/sizes/states it supports, a `dart`
      usage block, and behavioural notes (disabled/loading semantics).
    - Each field: one line; note interactions ("Hidden while [isLoading].").
    - Use `[SquareBracket]` references to link related symbols.
@@ -423,21 +431,21 @@ only when **all** of these hold:
 
 Recorded so nobody later "fixes" this file back toward the template:
 
-| Generic template                       | `ngh09_ui_kit` (actual)                                                      |
-|----------------------------------------|------------------------------------------------------------------------------|
-| `src/foundations/`                     | `src/tokens/` (primitive) + `src/theme/` (semantic); `foundations/` is empty  |
-| Barrel `ui_kit.dart`                   | `lib/ngh09_ui_kit.dart`                                                      |
-| Style split into `*_style.dart`         | private `switch` getters inside the widget file                              |
-| Every public type prefixed `GH`         | Widgets: required. Tokens: `{Kind}Tokens` (deliberate). Existing enums: unchanged |
-| All widget files `gh_*.dart`            | the older `app_*.dart` set stays; new code uses `gh_*.dart`                  |
-| Spacing `xs=4 … xxl=48`                 | adds `none=0, xxs=2, smd=12, xxxl=64`                                        |
-| `dart format` + `--fatal-infos`         | **No** format run; `flutter analyze` on changed files                        |
-| Widgetbook catalog                     | `example/lib/main.dart`, a single screen                                     |
-| Goldens in `test/.../goldens/`          | `test/components/<group>/goldens/ci/` (CI goldens only)                       |
-| `flutter_lints`                        | `very_good_analysis` + strict casts/inference/raw-types                      |
-| Files > 300 lines must be split         | exempts data-catalog files (`gh_icons`, `gh_company`, `gh_country`)          |
-| Prefer `void Function(...)` callbacks   | `VoidCallback` / `ValueChanged<T>` — the Flutter idiom, 32 uses vs 0 (§6.14) |
-| Barrel/relative imports, `mapNotNull`   | absolute `package:` imports (§2.4); no collection-extension utils (§19.7)     |
+| Generic template                      | `ngh09_ui_kit` (actual)                                                           |
+| ------------------------------------- | --------------------------------------------------------------------------------- |
+| `src/foundations/`                    | `src/tokens/` (primitive) + `src/theme/` (semantic); `foundations/` is empty      |
+| Barrel `ui_kit.dart`                  | `lib/ngh09_ui_kit.dart`                                                           |
+| Style split into `*_style.dart`       | private `switch` getters inside the widget file                                   |
+| Every public type prefixed `GH`       | Widgets: required. Tokens: `{Kind}Tokens` (deliberate). Existing enums: unchanged |
+| All widget files `gh_*.dart`          | the older `app_*.dart` set stays; new code uses `gh_*.dart`                       |
+| Spacing `xs=4 … xxl=48`               | adds `none=0, xxs=2, smd=12, xxxl=64`                                             |
+| `dart format` + `--fatal-infos`       | **No** format run; `flutter analyze` on changed files                             |
+| Widgetbook catalog                    | `example/lib/main.dart`, a single screen                                          |
+| Goldens in `test/.../goldens/`        | `test/components/<group>/goldens/ci/` (CI goldens only)                           |
+| `flutter_lints`                       | `very_good_analysis` + strict casts/inference/raw-types                           |
+| Files > 300 lines must be split       | exempts data-catalog files (`gh_icons`, `gh_company`, `gh_country`)               |
+| Prefer `void Function(...)` callbacks | `VoidCallback` / `ValueChanged<T>` — the Flutter idiom, 32 uses vs 0 (§6.14)      |
+| Barrel/relative imports, `mapNotNull` | absolute `package:` imports (§2.4); no collection-extension utils (§19.7)         |
 
 ---
 
@@ -488,8 +496,7 @@ exceed it — respecting it is on you and the reviewer.
 
 1. **MUST** — Public API documentation uses `///` dartdoc, never `//` (§13.1). Use
    `//` only for **implementation notes aimed at maintainers**.
-2. **SHOULD** — Wrap `///` doc text at **~80 characters** even though code may run to
-   180. Docs are read as prose and rendered on pub.dev, where narrow lines read
+2. **SHOULD** — Wrap `///` doc text at **~80 characters** even though code may run to 180. Docs are read as prose and rendered on pub.dev, where narrow lines read
    better. Current state: of 2,723 `///` lines, only 6 exceed 80.
 3. **SHOULD** — Group members inside a large widget with **section banner comments**,
    the established pattern in
@@ -559,12 +566,12 @@ component files, every one carrying a message.** It was undocumented until now.
    (`assert(segments.length >= 2, …)`), an **index in bounds** against the collection
    it indexes, a **numeric range** (`value` within `[0, max]`), and **at least one of
    two optional slots** (`assert(label != null || icon != null, 'Provide a label, an
-   icon, or both.')`).
+icon, or both.')`).
 4. **MUST** — A class with an `assert` in its initializer list **cannot** stay `const`
    in every position, so it loses the `const` constructor. That trade is accepted
    where it already exists (`GHBreadcrumbs`, `GHAppDropdown`, `GHPagination`) — a
    caught bug beats a const literal. Don't drop a needed assert to win back `const`.
-5. **NEVER** — Use `assert` to validate *runtime* data that legitimately varies (an
+5. **NEVER** — Use `assert` to validate _runtime_ data that legitimately varies (an
    empty list from an API is a UI state, not a programmer error). Asserts are compiled
    out in release; they encode **programmer** contracts only. Render an empty/error
    state instead.
@@ -650,10 +657,10 @@ Eight components take a `List` prop (`items`, `segments`, `steps`, `sections`,
 §1.3 forbids user-facing strings inside components, because the app owns i18n. Two
 components currently violate it with English defaults:
 
-| Component | Param | Default |
-|-----------|-------|---------|
+| Component                                                                          | Param         | Default    |
+| ---------------------------------------------------------------------------------- | ------------- | ---------- |
 | [`GHAppDropdownButton`](lib/src/components/inputs/gh_app_dropdown_button.dart#L43) | `placeholder` | `'Select'` |
-| [`GHAppInputDropdown`](lib/src/components/inputs/gh_app_input_dropdown.dart#L41) | `placeholder` | `'Search'` |
+| [`GHAppInputDropdown`](lib/src/components/inputs/gh_app_input_dropdown.dart#L41)   | `placeholder` | `'Search'` |
 
 1. **NEVER** — Add a new user-facing string default to a component. Make the param
    `required`, or default it to `null` and render nothing.

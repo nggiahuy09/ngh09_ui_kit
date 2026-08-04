@@ -185,36 +185,59 @@ This package uses **absolute `package:` imports internally**:
 ## Field / Parameter Ordering
 
 Group by type, in this order; sort by name within each group:
-1. Collections (List, Map, Set)
-2. UI types (Widget, Controller, FocusNode)
+1. Collections (List, Map, Set) — regardless of element type. A widget prop is a
+   plain `List<T>`; never mutate it (see [UI_KIT_RULES.md](UI_KIT_RULES.md) §19).
+   The "expose collections as unmodifiable views" rule for domain entities does
+   **not** apply to widgets.
+2. UI types (Widget, Controller, FocusNode, Services)
 3. User-defined classes (tokens, enums-as-classes)
 4. Enums
 5. Complex Dart types (Duration, DateTime, Stream)
 6. Primitives — exact order: `String` > `double` > `int` > `bool`
 7. Callbacks — `VoidCallback` for no-arg, `ValueChanged<T>` for single-value; these
    are the Flutter idiom and what this package uses throughout (16 + 16 = 32
-   declarations, 0 uses of bare `void Function`). Order by arity within the group:
-   `VoidCallback` → `ValueChanged<T>` → `void Function(T1, T2)` → `T Function(...)`.
+   declarations, 0 uses of bare `void Function`). Order by arity, then by return
+   type, within the group:
+   `VoidCallback` → `ValueChanged<T>` → `void Function(T1, T2)` → `T Function()` →
+   `T Function(T p)`.
    Reach for an explicit `void Function(...)` only when the signature has 2+ params
    or a return value, where no Flutter typedef fits.
 
+> **Do not** swap `VoidCallback`/`ValueChanged<T>` for a bare `void Function()` to
+> "reduce dependency" — they are `dart:ui` / `foundation.dart` typedefs, so they are
+> the *same type* with no extra import. Spelling them out costs the shared vocabulary
+> and the signal that `ValueChanged` carries, and diverges from how the SDK itself
+> declares `InkWell.onTap` / `TextField.onChanged`. Gains nothing.
+
 Constructor parameters follow declaration order regardless of nullability;
 call sites follow constructor declaration order strictly.
+
+Named parameters: required for **all** widget constructors (see §Widgets). For
+non-widget methods and helper classes, use them when there are > 3 parameters or
+≥ 2 parameters share a type — and **never** for a single-parameter method.
 
 ## Class Member Ordering
 
 1. Constructors (default first, then named variant constructors)
 2. `static const` values of the class's own type (e.g. token/catalog entries), then
    static factory-ish methods returning that same type
-3. Final fields from the constructor (the public props, doc-commented)
+3. Final fields from the constructor (the public props, doc-commented) — in the
+   same order as the constructor parameters, per §Field / Parameter Ordering
 4. Other static members
 5. `createState()` (for `StatefulWidget`)
 6. State: controllers/fields, then getters, private helper getters/methods
    (grouped by concern with `// ── Section ──` banners, as in `app_button.dart`)
-7. Overridden getters/methods that aren't `build`
-8. `build` method
-9. `operator ==`, `hashCode`, `toString`, diagnostics — always last (see
-   [gh_icon_data.dart](lib/src/components/icons/gh_icon_data.dart))
+7. Read-only properties (except `hashCode`)
+8. Overridden getters/methods that aren't `build`
+9. Operators other than `==`
+10. `build` method
+11. `operator ==`, `hashCode`, `toString`, diagnostics — always last (see
+    [gh_icon_data.dart](lib/src/components/icons/gh_icon_data.dart))
+
+Public widgets and tokens in this package are **immutable** — `lib/` currently has
+zero setters, and a `GH*` widget must not gain one. If a `State` class genuinely
+needs a mutable property, keep the trio adjacent with **no blank lines between
+them**, in the order getter → private field → setter, and place it in tier 6.
 
 For `ThemeExtension`s: fields → `copyWith` → `lerp` → any projection helpers
 (`toColorScheme()`, `toTextTheme()`).
