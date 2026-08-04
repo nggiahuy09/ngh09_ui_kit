@@ -19,7 +19,11 @@ multiple rows, read all matching files.
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Adding/changing any component, token, or theme; understanding data flow; the test flow |
 | [PLAN.md](PLAN.md)         | Picking up the roadmap, checking a component's "Done" definition & status     |
 | [WIDGET_GUIDE.md](WIDGET_GUIDE.md) | Discovering which `GH*` widget exists for a UI need before building/consuming |
+| [UI_KIT_RULES.md](UI_KIT_RULES.md) | MUST/SHOULD/NEVER checklist: a11y, perf, responsive, semver, line length, comments/codegen, asserts, collections, composition |
 | [README.md](README.md)     | Public-facing usage, install, consumer-facing API                            |
+
+> `UI_KIT_RULES.md` is a checklist layered on top of this file. Where the two
+> disagree, **`CLAUDE.md` wins**.
 
 **Minimum reads per task type:**
 - New component end-to-end: `CLAUDE.md` + `ARCHITECTURE.md` (§2 implement flow, §3 test flow) + `PLAN.md`
@@ -64,8 +68,9 @@ lib/
 - `tokens/` — never has semantics. `theme/` — maps primitives → roles. `theme/app_theme.dart`
   is the assembly point (`GHAppTheme.light()/dark()`), and takes `colors`/`typography`
   params for re-branding.
-- Components live under `components/<group>/` (buttons, inputs, feedback, navigation,
-  display, progress, avatars, flags, logos, icons, payment, layout).
+- Components live under `components/<group>/`: buttons, inputs, feedback, navigation,
+  display, progress, avatars, flags, logos, icons, payment. (`layout/` exists as an
+  empty placeholder — see [PLAN.md](PLAN.md) for the widgets slated to land there.)
 
 ---
 
@@ -91,9 +96,9 @@ This package uses **absolute `package:` imports internally**:
 | Thing                | Pattern                          | Example                                   |
 |----------------------|----------------------------------|-------------------------------------------|
 | Public widget        | `GH`-prefixed class in `gh_*.dart` (or `app_*.dart` for the older set) | `GHUserAvatar` in `gh_user_avatar.dart`; `GHAppButton` in `app_button.dart` |
-| Variant/size enum    | `{concept}_variant.dart` / `{concept}_size.dart` | `ButtonVariant` in `button_variant.dart`; `ButtonSize` in `icon_button_size.dart` |
-| Primitive token      | `{Kind}Tokens` abstract final class | `ColorTokens`, `SpacingTokens` in `tokens/colors.dart` |
-| Semantic extension   | `GHApp{Kind}` `ThemeExtension`   | `GHAppColors`, `GHAppSpacing` in `theme/app_colors.dart` |
+| Variant/size enum    | `{concept}_variant.dart` / `{concept}_size.dart` | `ButtonVariant` + `ButtonSize` in `button_variant.dart`; `IconButtonSize` in `icon_button_size.dart` |
+| Primitive token      | `{Kind}Tokens` abstract final class | `ColorTokens` in `tokens/colors.dart`; `SpacingTokens` in `tokens/spacing.dart` — one file per kind |
+| Semantic extension   | `GHApp{Kind}` `ThemeExtension`   | `GHAppColors` in `theme/app_colors.dart`; `GHAppSpacing` in `theme/app_spacing.dart` — one file per kind |
 | Extension file       | `{type}_extensions.dart`         | `context_extensions.dart`                 |
 
 - **`GH` prefix** for all public component classes. `PascalCase` classes,
@@ -131,7 +136,16 @@ This package uses **absolute `package:` imports internally**:
   hacks, or lint suppressions just to avoid review.**
 
 ### Formatting
-- Max line length: 180 (`lines_longer_than_80_chars` is intentionally ignored).
+- Max line length: **180 characters** (`lines_longer_than_80_chars` is intentionally
+  ignored, so the analyzer does NOT enforce this — it's a convention). Count
+  characters, not bytes: `─`/`×`/`≥` are multi-byte, so `awk 'length>180'` and
+  `wc -L` over-report. Today **0 lines exceed 180**; the longest is 159. It's a
+  ceiling, not a target — don't collapse a readable widget tree to use up the budget.
+  Full rule: [UI_KIT_RULES.md](UI_KIT_RULES.md) §16.
+- Wrap `///` doc text at ~80 chars even though code may reach 180 — docs render as
+  prose on pub.dev. Group members in large widgets with
+  `// ── Section ──` banners padded to exactly 80 chars (see `app_button.dart`);
+  `Build` goes last. Comments explain **why**, not **what**. See §17.
 - Prefer `const` everywhere possible (const constructors, const literals).
 - Rounded doubles must carry `.0` (`12.0`, not `12`) — but a `switch` returning
   Finesse spec ints (e.g. `18`) that Dart coerces to `double` follows the
@@ -177,8 +191,12 @@ Group by type, in this order; sort by name within each group:
 4. Enums
 5. Complex Dart types (Duration, DateTime, Stream)
 6. Primitives — exact order: `String` > `double` > `int` > `bool`
-7. Callbacks — prefer explicit `void Function(...)` signatures over
-   `VoidCallback`/`ValueChanged<T>` where it reduces coupling.
+7. Callbacks — `VoidCallback` for no-arg, `ValueChanged<T>` for single-value; these
+   are the Flutter idiom and what this package uses throughout (16 + 16 = 32
+   declarations, 0 uses of bare `void Function`). Order by arity within the group:
+   `VoidCallback` → `ValueChanged<T>` → `void Function(T1, T2)` → `T Function(...)`.
+   Reach for an explicit `void Function(...)` only when the signature has 2+ params
+   or a return value, where no Flutter typedef fits.
 
 Constructor parameters follow declaration order regardless of nullability;
 call sites follow constructor declaration order strictly.
@@ -186,11 +204,17 @@ call sites follow constructor declaration order strictly.
 ## Class Member Ordering
 
 1. Constructors (default first, then named variant constructors)
-2. Final fields from the constructor (the public props, doc-commented)
-3. `createState()` (for `StatefulWidget`)
-4. State: controllers/fields, then getters, private helper getters/methods
+2. `static const` values of the class's own type (e.g. token/catalog entries), then
+   static factory-ish methods returning that same type
+3. Final fields from the constructor (the public props, doc-commented)
+4. Other static members
+5. `createState()` (for `StatefulWidget`)
+6. State: controllers/fields, then getters, private helper getters/methods
    (grouped by concern with `// ── Section ──` banners, as in `app_button.dart`)
-5. `build` method last (before any `==`/`hashCode`/`toString`)
+7. Overridden getters/methods that aren't `build`
+8. `build` method
+9. `operator ==`, `hashCode`, `toString`, diagnostics — always last (see
+   [gh_icon_data.dart](lib/src/components/icons/gh_icon_data.dart))
 
 For `ThemeExtension`s: fields → `copyWith` → `lerp` → any projection helpers
 (`toColorScheme()`, `toTextTheme()`).
@@ -213,7 +237,8 @@ For `ThemeExtension`s: fields → `copyWith` → `lerp` → any projection helpe
   `context.*` resolves.
 - Infinite-animation goldens (spinners) use `pumpBeforeTest: pumpOnce` — never
   `pumpAndSettle` (it hangs).
-- Golden images live in `goldens/ci/`. Updating them is a **manual, reviewed**
+- Golden images live beside their test, in `test/components/<group>/goldens/ci/`
+  (there is no root-level `goldens/`). Updating them is a **manual, reviewed**
   action (`flutter test --update-goldens`); CI only verifies. Do NOT
   `--update-goldens` unless the user explicitly asks and the UI change is intentional.
 - `failures/` dirs are diff artifacts — never commit or hand-edit them.
