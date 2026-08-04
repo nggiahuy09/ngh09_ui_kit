@@ -80,7 +80,15 @@ class GHProgressStepper extends StatelessWidget {
     for (var i = 0; i < steps.length; i++) {
       final state = _stateOf(i);
       children.add(_StepNode(step: steps[i], index: i, state: state, indicator: indicator));
-      if (showLabels) children.addAll([SizedBox(width: context.spacing.xs), Text(steps[i].label!, style: _labelStyle(context, state))]);
+      if (showLabels) {
+        children.addAll([
+          SizedBox(width: context.spacing.xs),
+          // Flexible so a long label (or a large text scale) ellipsizes instead
+          // of overflowing the row — the labelled stepper sizes to its content,
+          // so an unconstrained Text would force the row past the viewport.
+          Flexible(child: Text(steps[i].label!, style: _labelStyle(context, state), maxLines: 1, overflow: TextOverflow.ellipsis)),
+        ]);
+      }
       if (i != steps.length - 1) {
         children.add(showLabels ? SizedBox(width: context.spacing.lg, child: _connector(context)) : Expanded(child: _connector(context)));
       }
