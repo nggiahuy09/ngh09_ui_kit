@@ -16,9 +16,7 @@ const List<({String label, GHIconData icon})> _trail = [
   (label: 'Done', icon: GHIcons.flag),
 ];
 
-/// A live playground for [GHBreadcrumbs]: pick a crumb type and an item
-/// count (2 through 8) to demonstrate the trail's auto-collapse-at-5
-/// behavior, with a spec string reflecting the choice.
+/// A live playground for [GHBreadcrumbs]: pick a crumb type and an item count (2 through 8) to demonstrate the trail's auto-collapse-at-5 behavior, with a spec string reflecting the choice.
 class BreadcrumbsPlaygroundScreen extends StatefulWidget {
   const BreadcrumbsPlaygroundScreen({super.key});
 
@@ -59,7 +57,9 @@ class _BreadcrumbsPlaygroundScreenState extends State<BreadcrumbsPlaygroundScree
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
         children: [
-          PreviewCard(child: GHBreadcrumbs(items: _items, type: _type)),
+          PreviewCard(
+            child: GHBreadcrumbs(items: _items, type: _type),
+          ),
           SpecPanel(spec: _spec),
           SizedBox(height: spacing.lg),
           const ExplorerEyebrow('TYPE'),

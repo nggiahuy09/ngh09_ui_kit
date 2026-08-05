@@ -5,13 +5,13 @@ import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
 
 class _ColorToken {
   const _ColorToken(this.name, this.background, this.foreground);
+
   final String name;
   final Color background;
   final Color foreground;
 }
 
-/// A static reference grid of the kit's semantic color roles, read live from
-/// [GHAppColors] rather than hardcoded hex values.
+/// A static reference grid of the kit's semantic color roles, read live from [GHAppColors] rather than hardcoded hex values.
 class ColorsScreen extends StatelessWidget {
   const ColorsScreen({super.key});
 
@@ -36,12 +36,7 @@ class ColorsScreen extends StatelessWidget {
       trailing: const ExplorerMeta('8 tokens'),
       body: GridView.builder(
         padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
-          childAspectRatio: 1.4,
-        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 12, crossAxisSpacing: 12, childAspectRatio: 1.4),
         itemCount: tokens.length,
         itemBuilder: (context, index) {
           final token = tokens[index];

@@ -3,8 +3,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 
-/// A searchable reference grid of every [GHIconData] in [GHIcons.values],
-/// rendered live via [GHHeroIcon].
+/// A searchable reference grid of every [GHIconData] in [GHIcons.values], rendered live via [GHHeroIcon].
 class IconsScreen extends StatefulWidget {
   const IconsScreen({super.key});
 
@@ -82,10 +81,7 @@ class _IconsScreenState extends State<IconsScreen> {
           Expanded(
             child: filtered.isEmpty
                 ? Center(
-                    child: Text(
-                      'No results',
-                      style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant),
-                    ),
+                    child: Text('No results', style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant)),
                   )
                 : GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
@@ -130,8 +126,7 @@ class _IconsScreenState extends State<IconsScreen> {
   }
 }
 
-/// Converts a space-separated kebab-derived name (e.g. `academic cap`) into a
-/// Title Case display label (e.g. `Academic Cap`).
+/// Converts a space-separated kebab-derived name (e.g. `academic cap`) into a Title Case display label (e.g. `Academic Cap`).
 String _titleCase(String words) {
   return words.split(' ').where((word) => word.isNotEmpty).map((word) => '${word[0].toUpperCase()}${word.substring(1)}').join(' ');
 }

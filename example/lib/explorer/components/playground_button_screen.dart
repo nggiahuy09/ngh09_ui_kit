@@ -9,8 +9,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
 enum _ButtonState { normal, loading, disabled }
 
-/// A live playground for [GHAppButton]: pick a variant, size, state, and
-/// toggle leading/trailing icons, with a spec string reflecting the choice.
+/// A live playground for [GHAppButton]: pick a variant, size, state, and toggle leading/trailing icons, with a spec string reflecting the choice.
 class ButtonPlaygroundScreen extends StatefulWidget {
   const ButtonPlaygroundScreen({super.key});
 

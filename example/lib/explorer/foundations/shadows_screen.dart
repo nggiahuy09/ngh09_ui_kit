@@ -10,8 +10,7 @@ class _ShadowStep {
   final List<BoxShadow> value;
 }
 
-/// A static reference grid of the kit's shadow roles, read live from
-/// [GHAppShadows].
+/// A static reference grid of the kit's shadow roles, read live from [GHAppShadows].
 class ShadowsScreen extends StatelessWidget {
   const ShadowsScreen({super.key});
 
@@ -60,11 +59,7 @@ class ShadowsScreen extends StatelessWidget {
                 Container(
                   width: 74,
                   height: 74,
-                  decoration: BoxDecoration(
-                    color: colors.surface,
-                    borderRadius: context.radii.borderRadiusMd,
-                    boxShadow: step.value,
-                  ),
+                  decoration: BoxDecoration(color: colors.surface, borderRadius: context.radii.borderRadiusMd, boxShadow: step.value),
                 ),
                 SizedBox(height: spacing.smd),
                 Text(

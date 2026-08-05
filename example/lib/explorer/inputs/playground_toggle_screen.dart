@@ -6,8 +6,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHAppToggle]: pick a size and toggle
-/// on/off and disabled, with a spec string reflecting the choice.
+/// A live playground for [GHAppToggle]: pick a size and toggle on/off and disabled, with a spec string reflecting the choice.
 class TogglePlaygroundScreen extends StatefulWidget {
   const TogglePlaygroundScreen({super.key});
 
@@ -45,11 +44,7 @@ class _TogglePlaygroundScreenState extends State<TogglePlaygroundScreen> {
         padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
         children: [
           PreviewCard(
-            child: GHAppToggle(
-              value: _on,
-              size: _size,
-              onChanged: _disabled ? null : (v) => setState(() => _on = v),
-            ),
+            child: GHAppToggle(value: _on, size: _size, onChanged: _disabled ? null : (v) => setState(() => _on = v)),
           ),
           SpecPanel(spec: _spec),
           SizedBox(height: spacing.lg),

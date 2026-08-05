@@ -9,8 +9,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
 enum _BadgeLeading { none, dot, icon }
 
-/// A live playground for [GHAppBadge]: pick a color, leading visual, and
-/// corner shape, with a spec string reflecting the choice.
+/// A live playground for [GHAppBadge]: pick a color, leading visual, and corner shape, with a spec string reflecting the choice.
 class BadgePlaygroundScreen extends StatefulWidget {
   const BadgePlaygroundScreen({super.key});
 

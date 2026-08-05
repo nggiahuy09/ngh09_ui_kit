@@ -12,13 +12,9 @@ class SegmentedPickerOption<T> {
   final String label;
 }
 
-/// A row of mutually-exclusive pill options, used for VARIANT / SIZE / STATE
-/// / COLOR / SHAPE / KIND pickers in the playground screens.
+/// A row of mutually-exclusive pill options, used for VARIANT / SIZE / STATE / COLOR / SHAPE / KIND pickers in the playground screens.
 ///
-/// [pill] renders each option as a standalone rounded pill (used for
-/// multi-row-wrapping choices like button variant); otherwise options are
-/// laid out as equal-width segments inside a single track (used for compact
-/// choices like size/state).
+/// [pill] renders each option as a standalone rounded pill (used for multi-row-wrapping choices like button variant); otherwise options are laid out as equal-width segments inside a single track (used for compact choices like size/state).
 class SegmentedPicker<T> extends StatelessWidget {
   const SegmentedPicker({required this.options, required this.selected, required this.onSelected, this.pill = false, super.key});
 
@@ -64,11 +60,7 @@ class SegmentedPicker<T> extends StatelessWidget {
         children: [
           for (final option in options)
             Expanded(
-              child: _Segment(
-                label: option.label,
-                active: option.value == selected,
-                onTap: () => onSelected(option.value),
-              ),
+              child: _Segment(label: option.label, active: option.value == selected, onTap: () => onSelected(option.value)),
             ),
         ],
       ),
@@ -135,10 +127,7 @@ class _Segment extends StatelessWidget {
           child: Text(
             label,
             textAlign: TextAlign.center,
-            style: context.textStyles.labelMedium.copyWith(
-              fontWeight: FontWeight.w600,
-              color: active ? colors.onPrimaryContainer : colors.onSurfaceVariant,
-            ),
+            style: context.textStyles.labelMedium.copyWith(fontWeight: FontWeight.w600, color: active ? colors.onPrimaryContainer : colors.onSurfaceVariant),
           ),
         ),
       ),

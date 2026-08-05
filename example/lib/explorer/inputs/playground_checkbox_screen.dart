@@ -6,8 +6,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHAppCheckbox]: pick a size and toggle
-/// checked/disabled, with a spec string reflecting the choice.
+/// A live playground for [GHAppCheckbox]: pick a size and toggle checked/disabled, with a spec string reflecting the choice.
 class CheckboxPlaygroundScreen extends StatefulWidget {
   const CheckboxPlaygroundScreen({super.key});
 

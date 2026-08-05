@@ -11,9 +11,7 @@ enum _AvatarKind { portrait, initials }
 
 enum _StatusKind { none, online, verified, number }
 
-/// A live playground for [GHUserAvatar]: switch between the portrait and
-/// [GHUserAvatar.initials] constructors, pick a size, status badge, and
-/// interaction state, with a spec string reflecting the choice.
+/// A live playground for [GHUserAvatar]: switch between the portrait and [GHUserAvatar.initials] constructors, pick a size, status badge, and interaction state, with a spec string reflecting the choice.
 class AvatarPlaygroundScreen extends StatefulWidget {
   const AvatarPlaygroundScreen({super.key});
 
@@ -80,18 +78,8 @@ class _AvatarPlaygroundScreenState extends State<AvatarPlaygroundScreen> {
 
   Widget get _avatar {
     return switch (_kind) {
-      _AvatarKind.portrait => GHUserAvatar(
-        _variant,
-        size: _size,
-        status: _status,
-        interactionState: _interactionState,
-      ),
-      _AvatarKind.initials => GHUserAvatar.initials(
-        _initials,
-        size: _size,
-        status: _status,
-        interactionState: _interactionState,
-      ),
+      _AvatarKind.portrait => GHUserAvatar(_variant, size: _size, status: _status, interactionState: _interactionState),
+      _AvatarKind.initials => GHUserAvatar.initials(_initials, size: _size, status: _status, interactionState: _interactionState),
     };
   }
 
@@ -133,10 +121,7 @@ class _AvatarPlaygroundScreenState extends State<AvatarPlaygroundScreen> {
           ] else ...[
             const ExplorerEyebrow('INITIALS'),
             SizedBox(height: spacing.sm),
-            LabelField(
-              controller: _initialsController,
-              onChanged: () => setState(() {}),
-            ),
+            LabelField(controller: _initialsController, onChanged: () => setState(() {})),
           ],
           SizedBox(height: spacing.lg),
           const ExplorerEyebrow('SIZE'),

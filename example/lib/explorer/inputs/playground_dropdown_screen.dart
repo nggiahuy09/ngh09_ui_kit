@@ -7,10 +7,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
 enum _LeadingTrailingCombo { iconChevron, avatarCheckmark, flagLabel, checkboxNone, iconToggle }
 
-/// A live playground for the [GHAppDropdown] family: a composed
-/// [GHAppDropdownList] with a header and several [GHAppDropdownListItem]
-/// entries, where one sample item's leading/trailing combo and size can be
-/// swapped live, with a spec string reflecting the sample item's choice.
+/// A live playground for the [GHAppDropdown] family: a composed [GHAppDropdownList] with a header and several [GHAppDropdownListItem] entries, where one sample item's leading/trailing combo and size can be swapped live, with a spec string reflecting the sample item's choice.
 class DropdownPlaygroundScreen extends StatefulWidget {
   const DropdownPlaygroundScreen({super.key});
 

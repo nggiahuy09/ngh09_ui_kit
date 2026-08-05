@@ -10,9 +10,7 @@ class _DurationStep {
   final Duration value;
 }
 
-/// A static reference display of the kit's animation durations, read live
-/// from [DurationTokens]. Tap a row to replay a short animated demo at that
-/// duration so the different speeds can be felt, not just read.
+/// A static reference display of the kit's animation durations, read live from [DurationTokens]. Tap a row to replay a short animated demo at that duration so the different speeds can be felt, not just read.
 class DurationsScreen extends StatelessWidget {
   const DurationsScreen({super.key});
 

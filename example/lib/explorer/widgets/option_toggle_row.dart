@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// A row with a title/subtitle pair and a trailing switch, used for the
-/// icon/expanded/selected/dismissible toggles in the playground screens.
+/// A row with a title/subtitle pair and a trailing switch, used for the icon/expanded/selected/dismissible toggles in the playground screens.
 class OptionToggleRow extends StatelessWidget {
   const OptionToggleRow({required this.title, required this.subtitle, required this.value, required this.onChanged, super.key});
 
@@ -48,18 +47,11 @@ class OptionToggleRow extends StatelessWidget {
                       style: textStyles.bodyMedium.copyWith(fontWeight: FontWeight.w600, color: colors.onSurface),
                     ),
                     SizedBox(height: spacing.xxs),
-                    Text(
-                      subtitle,
-                      style: textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant),
-                    ),
+                    Text(subtitle, style: textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant)),
                   ],
                 ),
               ),
-              Switch(
-                value: value,
-                onChanged: onChanged,
-                activeTrackColor: colors.success,
-              ),
+              Switch(value: value, onChanged: onChanged, activeTrackColor: colors.success),
             ],
           ),
         ),

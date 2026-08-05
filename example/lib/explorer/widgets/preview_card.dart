@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// The dotted-grid preview card a playground screen renders its live
-/// component inside of.
+/// The dotted-grid preview card a playground screen renders its live component inside of.
 class PreviewCard extends StatelessWidget {
   const PreviewCard({required this.child, super.key});
 

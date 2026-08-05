@@ -7,9 +7,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHAppChip]: pick a kind (input/filter/choice) and
-/// toggle selected/leading/dismissible/expanded/size/enabled, with a spec
-/// string reflecting the choice.
+/// A live playground for [GHAppChip]: pick a kind (input/filter/choice) and toggle selected/leading/dismissible/expanded/size/enabled, with a spec string reflecting the choice.
 class ChipPlaygroundScreen extends StatefulWidget {
   const ChipPlaygroundScreen({super.key});
 
@@ -171,10 +169,7 @@ class _ChipPlaygroundScreenState extends State<ChipPlaygroundScreen> {
           SizedBox(height: spacing.lg),
           const ExplorerEyebrow('LABEL'),
           SizedBox(height: spacing.sm),
-          LabelField(
-            controller: _labelController,
-            onChanged: () => setState(() {}),
-          ),
+          LabelField(controller: _labelController, onChanged: () => setState(() {})),
         ],
       ),
     );

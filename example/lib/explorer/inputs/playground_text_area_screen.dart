@@ -18,12 +18,10 @@ class _LinesPreset {
 const _presets = [
   _LinesPreset(label: '3 lines', minLines: 3, maxLines: 3),
   _LinesPreset(label: '5 lines', minLines: 5, maxLines: 5),
-  _LinesPreset(label: '3–8 lines', minLines: 3, maxLines: 8),
+  _LinesPreset(label: '3-8 lines', minLines: 3, maxLines: 8),
 ];
 
-/// A live playground for [GHAppTextArea]: pick a status, a minLines/maxLines
-/// preset, toggle enabled/readOnly, and edit the label, placeholder, and
-/// helper text, with a spec string reflecting the choice.
+/// A live playground for [GHAppTextArea]: pick a status, a minLines/maxLines preset, toggle enabled/readOnly, and edit the label, placeholder, and helper text, with a spec string reflecting the choice.
 class TextAreaPlaygroundScreen extends StatefulWidget {
   const TextAreaPlaygroundScreen({super.key});
 

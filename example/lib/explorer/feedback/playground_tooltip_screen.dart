@@ -7,9 +7,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHTooltip]: pick an arrow direction, size, and
-/// corner shape, and toggle the close button, with a spec string reflecting
-/// the choice.
+/// A live playground for [GHTooltip]: pick an arrow direction, size, and corner shape, and toggle the close button, with a spec string reflecting the choice.
 class TooltipPlaygroundScreen extends StatefulWidget {
   const TooltipPlaygroundScreen({super.key});
 

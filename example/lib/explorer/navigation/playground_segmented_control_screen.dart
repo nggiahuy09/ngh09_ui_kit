@@ -10,9 +10,7 @@ enum _SegmentMode { label, icon, both }
 const _labels = ['Day', 'Week', 'Month', 'Year'];
 const List<IconData> _icons = [Icons.today, Icons.view_week, Icons.calendar_view_month, Icons.calendar_today];
 
-/// A live playground for [GHAppSegmentedControl]: pick a segment count, a
-/// label/icon/both mode, and a corner shape, with a genuinely interactive
-/// selection and a spec string reflecting the choice.
+/// A live playground for [GHAppSegmentedControl]: pick a segment count, a label/icon/both mode, and a corner shape, with a genuinely interactive selection and a spec string reflecting the choice.
 class SegmentedControlPlaygroundScreen extends StatefulWidget {
   const SegmentedControlPlaygroundScreen({super.key});
 
@@ -38,10 +36,7 @@ class _SegmentedControlPlaygroundScreenState extends State<SegmentedControlPlayg
   List<GHSegmentedControlItem> get _segments {
     return [
       for (var i = 0; i < _segmentCount; i++)
-        GHSegmentedControlItem(
-          label: _mode == _SegmentMode.icon ? null : _labels[i],
-          icon: _mode == _SegmentMode.label ? null : Icon(_icons[i]),
-        ),
+        GHSegmentedControlItem(label: _mode == _SegmentMode.icon ? null : _labels[i], icon: _mode == _SegmentMode.label ? null : Icon(_icons[i])),
     ];
   }
 

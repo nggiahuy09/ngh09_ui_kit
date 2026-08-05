@@ -3,8 +3,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 
-/// A searchable reference grid of every [GHPaymentMethod] in the payment
-/// icon catalog, rendered live via [GHPaymentIcon].
+/// A searchable reference grid of every [GHPaymentMethod] in the payment icon catalog, rendered live via [GHPaymentIcon].
 class PaymentIconsScreen extends StatefulWidget {
   const PaymentIconsScreen({super.key});
 
@@ -80,10 +79,7 @@ class _PaymentIconsScreenState extends State<PaymentIconsScreen> {
           Expanded(
             child: filtered.isEmpty
                 ? Center(
-                    child: Text(
-                      'No results',
-                      style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant),
-                    ),
+                    child: Text('No results', style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant)),
                   )
                 : GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),

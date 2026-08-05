@@ -7,10 +7,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHSnackbar]: pick a state, toggle smooth corners,
-/// the leading icon, and the CTA button, with a spec string reflecting the
-/// choice. Includes a "Show snackbar" button that fires the configured
-/// widget through a real [ScaffoldMessenger] overlay.
+/// A live playground for [GHSnackbar]: pick a state, toggle smooth corners, the leading icon, and the CTA button, with a spec string reflecting the  choice. Includes a "Show snackbar" button that fires the configured widget through a real [ScaffoldMessenger] overlay.
 class SnackbarPlaygroundScreen extends StatefulWidget {
   const SnackbarPlaygroundScreen({super.key});
 
@@ -57,17 +54,15 @@ class _SnackbarPlaygroundScreenState extends State<SnackbarPlaygroundScreen> {
     return 'GHSnackbar(${parts.join(', ')})';
   }
 
-  Widget get _snackbar {
-    return GHSnackbar(
-      message: _message,
-      state: _state,
-      smooth: _smooth,
-      showLeadingIcon: _showLeadingIcon,
-      ctaButton: _ctaButton,
-      ctaLabel: _ctaLabel,
-      onDismiss: () {},
-    );
-  }
+  Widget get _snackbar => GHSnackbar(
+    message: _message,
+    state: _state,
+    smooth: _smooth,
+    showLeadingIcon: _showLeadingIcon,
+    ctaButton: _ctaButton,
+    ctaLabel: _ctaLabel,
+    onDismiss: () {},
+  );
 
   void _showRealSnackbar() {
     ScaffoldMessenger.of(context)

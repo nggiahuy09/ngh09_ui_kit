@@ -15,14 +15,12 @@ class _RangePreset {
 }
 
 const _presets = [
-  _RangePreset(label: '0–100 · step 1', min: 0, max: 100, step: 1),
-  _RangePreset(label: '0–10 · step 0.5', min: 0, max: 10, step: 0.5),
-  _RangePreset(label: '0–1000 · step 50', min: 0, max: 1000, step: 50),
+  _RangePreset(label: '0-100 · step 1', min: 0, max: 100, step: 1),
+  _RangePreset(label: '0-10 · step 0.5', min: 0, max: 10, step: 0.5),
+  _RangePreset(label: '0-1000 · step 50', min: 0, max: 1000, step: 50),
 ];
 
-/// A live playground for [GHAppRangeSlider]: drag the real range slider,
-/// swap min/max/step presets, and pick the value indicator style, with a
-/// spec string reflecting the choice.
+/// A live playground for [GHAppRangeSlider]: drag the real range slider, swap min/max/step presets, and pick the value indicator style, with a spec string reflecting the choice.
 class RangeSliderPlaygroundScreen extends StatefulWidget {
   const RangeSliderPlaygroundScreen({super.key});
 
@@ -66,10 +64,7 @@ class _RangeSliderPlaygroundScreenState extends State<RangeSliderPlaygroundScree
         children: [
           PreviewCard(
             child: GHAppRangeSlider(
-              values: RangeValues(
-                _values.start.clamp(_preset.min, _preset.max),
-                _values.end.clamp(_preset.min, _preset.max),
-              ),
+              values: RangeValues(_values.start.clamp(_preset.min, _preset.max), _values.end.clamp(_preset.min, _preset.max)),
               min: _preset.min,
               max: _preset.max,
               step: _preset.step,
@@ -86,10 +81,7 @@ class _RangeSliderPlaygroundScreenState extends State<RangeSliderPlaygroundScree
             selected: _preset,
             onSelected: (v) => setState(() {
               _preset = v;
-              _values = RangeValues(
-                v.min + (v.max - v.min) * 0.2,
-                v.min + (v.max - v.min) * 0.7,
-              );
+              _values = RangeValues(v.min + (v.max - v.min) * 0.2, v.min + (v.max - v.min) * 0.7);
             }),
             options: [
               for (final p in _presets) SegmentedPickerOption(value: p, label: p.label),

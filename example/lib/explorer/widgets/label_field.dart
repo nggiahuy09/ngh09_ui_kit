@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// The text input a playground screen uses to edit its live component's
-/// label.
+/// The text input a playground screen uses to edit its live component's label.
 class LabelField extends StatelessWidget {
   const LabelField({required this.controller, required this.onChanged, super.key});
 

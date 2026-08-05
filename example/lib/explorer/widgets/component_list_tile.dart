@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// A tappable row on the Explorer home screen: a leading icon swatch, a
-/// title/subtitle pair, and a trailing chevron.
+/// A tappable row on the Explorer home screen: a leading icon swatch, a title/subtitle pair, and a trailing chevron.
 class ComponentListTile extends StatelessWidget {
   const ComponentListTile({required this.title, required this.subtitle, required this.leading, required this.onTap, super.key});
 
@@ -59,10 +58,7 @@ class ComponentListTile extends StatelessWidget {
                   ],
                 ),
               ),
-              Icon(
-                Icons.chevron_right,
-                color: colors.onSurfaceVariant.withValues(alpha: 0.5),
-              ),
+              Icon(Icons.chevron_right, color: colors.onSurfaceVariant.withValues(alpha: 0.5)),
             ],
           ),
         ),

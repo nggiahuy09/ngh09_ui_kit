@@ -6,9 +6,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHProgressBar]: drag a slider to drive the value,
-/// pick an indicator style, and edit the status label, with a spec string
-/// reflecting the choice.
+/// A live playground for [GHProgressBar]: drag a slider to drive the value, pick an indicator style, and edit the status label, with a spec string reflecting the choice.
 class ProgressBarPlaygroundScreen extends StatefulWidget {
   const ProgressBarPlaygroundScreen({super.key});
 
@@ -55,23 +53,13 @@ class _ProgressBarPlaygroundScreenState extends State<ProgressBarPlaygroundScree
         padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
         children: [
           PreviewCard(
-            child: GHProgressBar(
-              value: _value,
-              indicator: _indicator,
-              label: _label,
-            ),
+            child: GHProgressBar(value: _value, indicator: _indicator, label: _label),
           ),
           SpecPanel(spec: _spec),
           SizedBox(height: spacing.lg),
           const ExplorerEyebrow('VALUE'),
           SizedBox(height: spacing.sm),
-          Slider(
-            value: _value,
-            max: 100,
-            divisions: 100,
-            label: _value.toStringAsFixed(0),
-            onChanged: (v) => setState(() => _value = v),
-          ),
+          Slider(value: _value, max: 100, divisions: 100, label: _value.toStringAsFixed(0), onChanged: (v) => setState(() => _value = v)),
           SizedBox(height: spacing.lg),
           const ExplorerEyebrow('INDICATOR'),
           SizedBox(height: spacing.sm),
@@ -87,10 +75,7 @@ class _ProgressBarPlaygroundScreenState extends State<ProgressBarPlaygroundScree
           SizedBox(height: spacing.lg),
           const ExplorerEyebrow('LABEL'),
           SizedBox(height: spacing.sm),
-          LabelField(
-            controller: _labelController,
-            onChanged: () => setState(() {}),
-          ),
+          LabelField(controller: _labelController, onChanged: () => setState(() {})),
         ],
       ),
     );

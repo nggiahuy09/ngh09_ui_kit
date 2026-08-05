@@ -7,9 +7,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHAppTextField]: pick a status, toggle
-/// obscureText/leadingIcon/enabled/readOnly, and edit the label,
-/// placeholder, and helper text, with a spec string reflecting the choice.
+/// A live playground for [GHAppTextField]: pick a status, toggle obscureText/leadingIcon/enabled/readOnly, and edit the label, placeholder, and helper text, with a spec string reflecting the choice.
 class TextFieldPlaygroundScreen extends StatefulWidget {
   const TextFieldPlaygroundScreen({super.key});
 
