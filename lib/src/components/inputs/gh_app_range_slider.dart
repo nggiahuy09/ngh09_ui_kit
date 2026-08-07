@@ -4,14 +4,9 @@ import 'package:ngh09_ui_kit/src/components/inputs/slider_indicator.dart';
 import 'package:ngh09_ui_kit/src/components/inputs/slider_node.dart';
 import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 
-/// A themeable double-node ("range") slider built on the Finesse UI Kit
-/// design tokens.
+/// A themeable double-node ("range") slider built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppRangeSlider` drags two [SliderNode] handles along a shared track to
-/// select a sub-range between [min] and [max] — used for range filters like
-/// price or age brackets. [indicator] controls whether each handle shows no
-/// label, a text label, or a tooltip above it, formatted by [labelBuilder]
-/// (percentage by default).
+/// `GHAppRangeSlider` drags two [SliderNode] handles along a shared track to select a sub-range between [min] and [max] — used for range filters like price or age brackets. [indicator] controls whether each handle shows no label, a text label, or a tooltip above it, formatted by [labelBuilder] (percentage by default).
 ///
 /// ```dart
 /// GHAppRangeSlider(
@@ -41,12 +36,10 @@ class GHAppRangeSlider extends StatefulWidget {
   }) : assert(min < max, 'min must be less than max'),
        assert(step > 0, 'step must be positive');
 
-  /// The current start/end selection. Both must lie within [min] and [max],
-  /// with `values.start <= values.end`.
+  /// The current start/end selection. Both must lie within [min] and [max], with `values.start <= values.end`.
   final RangeValues values;
 
-  /// Called with the new range as the user drags or steps either handle.
-  /// Pass `null` to disable.
+  /// Called with the new range as the user drags or steps either handle. Pass `null` to disable.
   final ValueChanged<RangeValues>? onChanged;
 
   /// The lower bound of the slider's range.
@@ -150,13 +143,7 @@ class _GHAppRangeSliderState extends State<GHAppRangeSlider> {
     final fraction = _span == 0 ? 0.0 : ((value - widget.min) / _span).clamp(0.0, 1.0);
     final left = fraction * (trackWidth - SliderNode.size);
 
-    final node = SliderNode(
-      label: _label(value),
-      indicator: widget.indicator,
-      isEnabled: _isEnabled,
-      isHovered: hovered,
-      isFocused: focused,
-    );
+    final node = SliderNode(label: _label(value), indicator: widget.indicator, isEnabled: _isEnabled, isHovered: hovered, isFocused: focused);
 
     return Positioned(
       left: left,
@@ -221,7 +208,10 @@ class _GHAppRangeSliderState extends State<GHAppRangeSlider> {
                 left: 0,
                 right: 0,
                 bottom: 6,
-                child: Container(height: 8, decoration: BoxDecoration(color: ColorTokens.gray100, borderRadius: BorderRadius.circular(4))),
+                child: Container(
+                  height: 8,
+                  decoration: BoxDecoration(color: ColorTokens.gray100, borderRadius: BorderRadius.circular(4)),
+                ),
               ),
               Positioned(
                 left: startCenter,

@@ -1,5 +1,4 @@
-/// The size of a `GHTooltip`, controlling its text scale, padding and icon
-/// size.
+/// The size of a `GHTooltip`, controlling its text scale, padding and icon size.
 ///
 /// Matches the three sizes in the Finesse UI Kit "Tooltips" component set:
 ///

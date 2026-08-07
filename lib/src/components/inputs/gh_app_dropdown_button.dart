@@ -13,14 +13,10 @@ import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// An interactive, menu-backed select control — the Finesse UI Kit
-/// "Dropdowns" spec paired with an anchored, openable trigger.
+/// An interactive, menu-backed select control — the Finesse UI Kit "Dropdowns" spec paired with an anchored, openable trigger.
 ///
-/// `GHAppDropdownButton<T>` renders a field-shaped trigger showing the
-/// selected [items] entry's label (or [placeholder] when [value] is `null`).
-/// Tapping it opens a `GHAppDropdown` menu directly below, anchored to the
-/// trigger's width; picking a row calls [onChanged] and closes the menu.
-/// Tapping outside the menu also closes it.
+/// `GHAppDropdownButton<T>` renders a field-shaped trigger showing the selected [items] entry's label (or [placeholder] when [value] is `null`). Tapping it opens a `GHAppDropdown` menu directly below, anchored to the trigger's width; picking a row calls [onChanged] and closes the menu.
+///  Tapping outside the menu also closes it.
 ///
 /// ```dart
 /// GHAppDropdownButton<String>(
@@ -38,8 +34,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 class GHAppDropdownButton<T> extends StatefulWidget {
   /// Creates a dropdown select button over [items].
   ///
-  /// Not a `const` constructor: [items].length must be validated at runtime,
-  /// which Dart's const evaluator cannot do for a `List`.
+  /// Not a `const` constructor: [items].length must be validated at runtime, which Dart's const evaluator cannot do for a `List`.
   GHAppDropdownButton({required this.items, required this.onChanged, this.value, this.placeholder = 'Select', this.width, super.key})
     : assert(items.isNotEmpty, 'GHAppDropdownButton needs at least one item.');
 
@@ -57,9 +52,7 @@ class GHAppDropdownButton<T> extends StatefulWidget {
   /// Text shown in the trigger when [value] is `null`.
   final String placeholder;
 
-  /// A fixed width for the trigger and menu. When `null`, the trigger sizes
-  /// to its parent's constraints and the menu matches the trigger's measured
-  /// width.
+  /// A fixed width for the trigger and menu. When `null`, the trigger sizes to its parent's constraints and the menu matches the trigger's measured width.
   final double? width;
 
   @override
@@ -199,10 +192,7 @@ class _GHAppDropdownButtonState<T> extends State<GHAppDropdownButton<T>> {
               onTapOutside: (_) => _close(),
               child: Align(
                 alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: _buildMenu(context),
-                ),
+                child: Padding(padding: const EdgeInsets.only(top: 4), child: _buildMenu(context)),
               ),
             ),
           );

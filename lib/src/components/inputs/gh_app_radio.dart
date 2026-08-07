@@ -8,10 +8,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable radio button built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppRadio` is the canonical single-choice input for lists and forms. It
-/// supports three [RadioSize] values, hover / focus / disabled states with
-/// Finesse shadow transitions, and exposes the selected value via
-/// [onChanged].
+/// `GHAppRadio` is the canonical single-choice input for lists and forms. It supports three [RadioSize] values, hover / focus / disabled states with Finesse shadow transitions, and exposes the selected value via [onChanged].
 ///
 /// ```dart
 /// GHAppRadio(
@@ -40,8 +37,7 @@ class GHAppRadio extends StatefulWidget {
   /// The size variant. See [RadioSize].
   final RadioSize size;
 
-  /// Optional label read by screen readers instead of the default
-  /// "radio button" description.
+  /// Optional label read by screen readers instead of the default "radio button" description.
   final String? semanticLabel;
 
   @override
@@ -145,11 +141,9 @@ class _Dot extends StatelessWidget {
   final Color color;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+    width: size,
+    height: size,
+    decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+  );
 }

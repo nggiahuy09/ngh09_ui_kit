@@ -4,9 +4,7 @@ import 'package:ngh09_ui_kit/src/components/payment/gh_payment_method.dart';
 
 /// A payment-method badge rendered as a branded, rounded-rectangle container.
 ///
-/// Sizes match the Finesse design spec exactly (sm: 34x24, md: 46x32,
-/// lg: 58x40). Each badge uses official brand colors with a short label — no
-/// SVG assets required.
+/// Sizes match the Finesse design spec exactly (sm: 34x24, md: 46x32, lg: 58x40). Each badge uses official brand colors with a short label — no SVG assets required.
 ///
 /// ```dart
 /// GHPaymentIcon(GHPaymentMethod.visa)                           // sm, 34x24
@@ -29,31 +27,29 @@ class GHPaymentIcon extends StatelessWidget {
   final String? semanticLabel;
 
   @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      label: semanticLabel ?? method.displayName,
-      child: Container(
-        width: size.width,
-        height: size.height,
-        decoration: BoxDecoration(
-          color: method.backgroundColor,
-          borderRadius: BorderRadius.circular(4),
-          border: method.hasLightBackground ? Border.all(color: const Color(0xFFE5E7EB), width: 0.5) : null,
-        ),
-        child: Center(
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2),
-              child: Text(
-                method.label,
-                style: TextStyle(color: method.foregroundColor, fontSize: size.fontSize, fontWeight: FontWeight.w700, height: 1, letterSpacing: -0.2),
-                maxLines: 1,
-              ),
+  Widget build(BuildContext context) => Semantics(
+    label: semanticLabel ?? method.displayName,
+    child: Container(
+      width: size.width,
+      height: size.height,
+      decoration: BoxDecoration(
+        color: method.backgroundColor,
+        borderRadius: BorderRadius.circular(4),
+        border: method.hasLightBackground ? Border.all(color: const Color(0xFFE5E7EB), width: 0.5) : null,
+      ),
+      child: Center(
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
+            child: Text(
+              method.label,
+              style: TextStyle(color: method.foregroundColor, fontSize: size.fontSize, fontWeight: FontWeight.w700, height: 1, letterSpacing: -0.2),
+              maxLines: 1,
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }

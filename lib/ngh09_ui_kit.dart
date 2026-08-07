@@ -1,14 +1,12 @@
 /// ngh09_ui_kit — a Material 3 based Flutter UI kit and design system.
 ///
-/// This barrel file is the single public entry point of the package.
-/// Consumers import it as:
+/// This barrel file is the single public entry point of the package. Consumers import it as:
 ///
 /// ```dart
 /// import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 /// ```
 ///
-/// Everything under `lib/src/` is private to the package; only the symbols
-/// re-exported here form the public API.
+/// Everything under `lib/src/` is private to the package; only the symbols re-exported here form the public API.
 library;
 
 // Components (Phase B onward).

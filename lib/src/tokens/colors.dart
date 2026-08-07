@@ -3,13 +3,9 @@ import 'package:flutter/widgets.dart';
 /// Primitive color palette (raw, non-semantic values).
 ///
 /// These are the lowest-level tokens: fixed hues with no meaning attached.
-/// Do **not** consume them directly in widgets — use the semantic theme layer
-/// (`GHAppColors`, via `context.colors`) instead, so re-theming touches one
-/// spot.
+/// Do **not** consume them directly in widgets — use the semantic theme layer (`GHAppColors`, via `context.colors`) instead, so re-theming touches one spot.
 ///
-/// Values come from the **Finesse UI Kit** color system (see `figma/colors.md`).
-/// Each ramp runs 50–1000. Finesse's primary/brand is deliberately black &
-/// white, so there is no colored brand ramp.
+/// Values come from the **Finesse UI Kit** color system (see `figma/colors.md`). Each ramp runs 50–1000. Finesse's primary/brand is deliberately black & white, so there is no colored brand ramp.
 abstract final class ColorTokens {
   /// Pure white — the Finesse `Primary/White`.
   static const Color white = Color(0xFFFFFFFF);

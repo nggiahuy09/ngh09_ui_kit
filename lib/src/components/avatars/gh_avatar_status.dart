@@ -1,3 +1,5 @@
+import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
+
 /// Describes the optional status badge overlaid on a [GHUserAvatar].
 ///
 /// Construct a concrete sub-class to enable a badge:

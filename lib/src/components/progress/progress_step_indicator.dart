@@ -8,7 +8,6 @@ enum GHProgressStepIndicator {
   /// A circle showing the step's 1-based position.
   number,
 
-  /// A circle showing the step's `GHProgressStep.icon`, swapped for a
-  /// checkmark once the step is completed.
+  /// A circle showing the step's `GHProgressStep.icon`, swapped for a checkmark once the step is completed.
   icon,
 }

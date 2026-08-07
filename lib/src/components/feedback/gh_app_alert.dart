@@ -6,9 +6,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A contextual alert banner with four semantic states.
 ///
-/// Alerts communicate a short, time-sensitive message — an error, a warning, a
-/// success confirmation, or a neutral notice. They sit inline (not as overlays)
-/// and may include:
+/// Alerts communicate a short, time-sensitive message — an error, a warning, a success confirmation, or a neutral notice. They sit inline (not as overlays) and may include:
 ///
 /// * An optional leading icon indicating the state.
 /// * A bold headline.
@@ -127,11 +125,7 @@ class GHAppAlert extends StatelessWidget {
       container: true,
       label: '${state.name} alert: $headline',
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: state.backgroundColor,
-          borderRadius: smooth ? radii.borderRadiusMd : null,
-          boxShadow: _shadows,
-        ),
+        decoration: BoxDecoration(color: state.backgroundColor, borderRadius: smooth ? radii.borderRadiusMd : null, boxShadow: _shadows),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
@@ -144,13 +138,7 @@ class GHAppAlert extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 16,
                   children: [
-                    if (showLeadingIcon)
-                      GHHeroIcon(
-                        GHIcons.informationCircle,
-                        size: 20,
-                        color: accent,
-                        semanticLabel: state.name,
-                      ),
+                    if (showLeadingIcon) GHHeroIcon(GHIcons.informationCircle, size: 20, color: accent, semanticLabel: state.name),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

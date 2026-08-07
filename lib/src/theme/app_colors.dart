@@ -3,8 +3,7 @@ import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 
 /// Semantic color roles for the UI kit, exposed as a [ThemeExtension].
 ///
-/// Components read colors from here (via `context.colors`) instead of using
-/// primitive [ColorTokens] directly, so re-theming touches only one place.
+/// Components read colors from here (via `context.colors`) instead of using primitive [ColorTokens] directly, so re-theming touches only one place.
 ///
 /// Roles are grouped into:
 /// * **Brand** — [primary] / [onPrimary] / [primaryContainer] / …
@@ -13,8 +12,7 @@ import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 /// * **Status** — [success], [warning], [danger], [info] and their `on*`.
 @immutable
 class GHAppColors extends ThemeExtension<GHAppColors> {
-  /// Creates a semantic color set. Prefer the [GHAppColors.light] and
-  /// [GHAppColors.dark] presets unless you are building a custom brand theme.
+  /// Creates a semantic color set. Prefer the [GHAppColors.light] and [GHAppColors.dark] presets unless you are building a custom brand theme.
   const GHAppColors({
     required this.brightness,
     required this.primary,
@@ -41,9 +39,7 @@ class GHAppColors extends ThemeExtension<GHAppColors> {
 
   /// The default light color set.
   ///
-  /// Primary is Finesse's black brand. Surfaces/borders draw from the gray
-  /// ramp; status roles use each ramp's 500 fill with its 900 on-color. `info`
-  /// is a legacy non-Finesse role (see [info]).
+  /// Primary is Finesse's black brand. Surfaces/borders draw from the gray ramp; status roles use each ramp's 500 fill with its 900 on-color. `info` is a legacy non-Finesse role (see [info]).
   const GHAppColors.light()
     : brightness = Brightness.light,
       primary = ColorTokens.black,
@@ -69,8 +65,7 @@ class GHAppColors extends ThemeExtension<GHAppColors> {
 
   /// The default dark color set.
   ///
-  /// Primary inverts to white; surfaces step down the gray ramp. Status roles
-  /// are mode-independent (same fills as light).
+  /// Primary inverts to white; surfaces step down the gray ramp. Status roles are mode-independent (same fills as light).
   const GHAppColors.dark()
     : brightness = Brightness.dark,
       primary = ColorTokens.white,
@@ -157,8 +152,7 @@ class GHAppColors extends ThemeExtension<GHAppColors> {
   /// Content color drawn on top of [info].
   final Color onInfo;
 
-  /// Builds a Material [ColorScheme] from these semantic roles, so the kit's
-  /// theme stays consistent with built-in Material widgets.
+  /// Builds a Material [ColorScheme] from these semantic roles, so the kit's theme stays consistent with built-in Material widgets.
   ColorScheme toColorScheme() {
     return ColorScheme(
       brightness: brightness,
@@ -237,26 +231,14 @@ class GHAppColors extends ThemeExtension<GHAppColors> {
       brightness: t < 0.5 ? brightness : other.brightness,
       primary: Color.lerp(primary, other.primary, t)!,
       onPrimary: Color.lerp(onPrimary, other.onPrimary, t)!,
-      primaryContainer: Color.lerp(
-        primaryContainer,
-        other.primaryContainer,
-        t,
-      )!,
-      onPrimaryContainer: Color.lerp(
-        onPrimaryContainer,
-        other.onPrimaryContainer,
-        t,
-      )!,
+      primaryContainer: Color.lerp(primaryContainer, other.primaryContainer, t)!,
+      onPrimaryContainer: Color.lerp(onPrimaryContainer, other.onPrimaryContainer, t)!,
       background: Color.lerp(background, other.background, t)!,
       onBackground: Color.lerp(onBackground, other.onBackground, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
       onSurface: Color.lerp(onSurface, other.onSurface, t)!,
       surfaceVariant: Color.lerp(surfaceVariant, other.surfaceVariant, t)!,
-      onSurfaceVariant: Color.lerp(
-        onSurfaceVariant,
-        other.onSurfaceVariant,
-        t,
-      )!,
+      onSurfaceVariant: Color.lerp(onSurfaceVariant, other.onSurfaceVariant, t)!,
       outline: Color.lerp(outline, other.outline, t)!,
       outlineVariant: Color.lerp(outlineVariant, other.outlineVariant, t)!,
       success: Color.lerp(success, other.success, t)!,

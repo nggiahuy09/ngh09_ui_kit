@@ -4,11 +4,7 @@ import 'package:ngh09_ui_kit/src/components/logos/gh_company.dart';
 
 /// Renders a company logo from the Finesse UI Kit at a configurable height.
 ///
-/// Each logo is composed of one or more SVG layers absolutely positioned
-/// within a bounding box. The bounding box scales proportionally: the
-/// [height] you provide becomes the rendered height, and the width is
-/// derived automatically from the logo's natural aspect ratio so the mark
-/// never squishes or stretches.
+/// Each logo is composed of one or more SVG layers absolutely positioned within a bounding box. The bounding box scales proportionally: the [height] you provide becomes the rendered height, and the width is derived automatically from the logo's natural aspect ratio so the mark never squishes or stretches.
 ///
 /// ```dart
 /// const GHCompanyLogo(GHCompany.stripe)               // 24 px tall
@@ -17,13 +13,9 @@ import 'package:ngh09_ui_kit/src/components/logos/gh_company.dart';
 /// ```
 ///
 /// **Height.** Defaults to `24.0`, a comfortable one-line display size.
-/// The Figma source defines logos at 48 px tall — pass `height: 48` to
-/// render at the design's native resolution.
+/// The Figma source defines logos at 48 px tall — pass `height: 48` to render at the design's native resolution.
 ///
-/// **SVG layers.** Each logo is split into individual SVG vector paths
-/// bundled under `assets/images/logos/`. They are rendered via
-/// [SvgPicture.asset] and fill their positioned bounds with [BoxFit.fill],
-/// matching the `preserveAspectRatio="none"` flag on every asset.
+/// **SVG layers.** Each logo is split into individual SVG vector paths bundled under `assets/images/logos/`. They are rendered via [SvgPicture.asset] and fill their positioned bounds with [BoxFit.fill], matching the `preserveAspectRatio="none"` flag on every asset.
 class GHCompanyLogo extends StatelessWidget {
   /// Creates a company logo widget for [company].
   const GHCompanyLogo(this.company, {this.height = 24.0, this.semanticLabel, super.key});

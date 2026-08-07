@@ -3,14 +3,9 @@ import 'package:ngh09_ui_kit/src/components/inputs/gh_app_dropdown_list_item.dar
 import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A group of [GHAppDropdownListItem]s, per the Finesse UI Kit "Dropdown
-/// Lists" spec.
+/// A group of [GHAppDropdownListItem]s, per the Finesse UI Kit "Dropdown Lists" spec.
 ///
-/// `GHAppDropdownList` is the section-level building block: it lays out
-/// [items] in a column, with an optional [header] label above them (e.g.
-/// "Account", "Marketing") and an optional bottom [showDivider] hairline —
-/// the two ways Finesse distinguishes one section from the next when a
-/// `GHAppDropdown` stacks more than one list.
+/// `GHAppDropdownList` is the section-level building block: it lays out [items] in a column, with an optional [header] label above them (e.g. "Account", "Marketing") and an optional bottom [showDivider] hairline — the two ways Finesse distinguishes one section from the next when a `GHAppDropdown` stacks more than one list.
 ///
 /// ```dart
 /// GHAppDropdownList(
@@ -32,8 +27,7 @@ class GHAppDropdownList extends StatelessWidget {
   /// Optional section label shown above [items].
   final String? header;
 
-  /// Whether to render a hairline divider below the section — used to
-  /// separate this list from a following one inside a `GHAppDropdown`.
+  /// Whether to render a hairline divider below the section — used to separate this list from a following one inside a `GHAppDropdown`.
   final bool showDivider;
 
   @override

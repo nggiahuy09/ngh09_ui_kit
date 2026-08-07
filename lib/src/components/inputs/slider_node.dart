@@ -5,12 +5,9 @@ import 'package:ngh09_ui_kit/src/tokens/radii.dart';
 import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// The draggable circular handle shared by `GHAppSlider` and
-/// `GHAppRangeSlider`, with an optional value label or tooltip above it.
+/// The draggable circular handle shared by `GHAppSlider` and `GHAppRangeSlider`, with an optional value label or tooltip above it.
 ///
-/// This mirrors the Finesse "Slider Node" component. It is an internal
-/// building block — not exported from the package's public API — so both
-/// slider widgets stay pixel-identical.
+/// This mirrors the Finesse "Slider Node" component. It is an internal building block — not exported from the package's public API — so both slider widgets stay pixel-identical.
 class SliderNode extends StatelessWidget {
   /// Creates a slider node.
   const SliderNode({
@@ -49,8 +46,7 @@ class SliderNode extends StatelessWidget {
   /// Whether the node currently has input focus.
   final bool isFocused;
 
-  /// The vertical space an [indicator] reserves above the handle, including
-  /// its gap. Used by callers to size the space around a node.
+  /// The vertical space an [indicator] reserves above the handle, including its gap. Used by callers to size the space around a node.
   static double insetHeight(SliderIndicator indicator) => switch (indicator) {
     SliderIndicator.none => 0,
     SliderIndicator.text => textInsetHeight,
@@ -89,19 +85,16 @@ class SliderNode extends StatelessWidget {
   }
 }
 
-/// The tooltip bubble rendered above a [SliderNode] with
-/// [SliderIndicator.tooltip].
+/// The tooltip bubble rendered above a [SliderNode] with [SliderIndicator.tooltip].
 class _Tooltip extends StatelessWidget {
   const _Tooltip({required this.label});
 
   final String label;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(color: ColorTokens.white, borderRadius: BorderRadius.circular(RadiusTokens.md), boxShadow: ShadowTokens.large),
-      child: Text(label, style: context.textStyles.labelMedium.copyWith(color: ColorTokens.black)),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+    decoration: BoxDecoration(color: ColorTokens.white, borderRadius: BorderRadius.circular(RadiusTokens.md), boxShadow: ShadowTokens.large),
+    child: Text(label, style: context.textStyles.labelMedium.copyWith(color: ColorTokens.black)),
+  );
 }

@@ -4,10 +4,7 @@ import 'package:ngh09_ui_kit/src/components/inputs/dropdown_leading_type.dart';
 
 /// A single selectable option for `GHAppDropdownButton` / `GHAppInputDropdown`.
 ///
-/// Bundles the [value] returned on selection with the display properties a
-/// `GHAppDropdownListItem` needs to render the row: [label],
-/// [supportingText], and a leading affordance via [leadingType] +
-/// [leadingIcon] / [leading].
+/// Bundles the [value] returned on selection with the display properties a `GHAppDropdownListItem` needs to render the row: [label], [supportingText], and a leading affordance via [leadingType] + [leadingIcon] / [leading].
 ///
 /// ```dart
 /// GHDropdownMenuItem(value: 'healthcare', label: 'Healthcare');

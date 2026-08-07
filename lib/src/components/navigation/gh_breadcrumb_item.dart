@@ -15,7 +15,6 @@ class GHBreadcrumbItem {
 
   /// Called when this crumb is tapped.
   ///
-  /// Ignored for the trail's last (active/current) item, which is always
-  /// rendered non-interactive.
+  /// Ignored for the trail's last (active/current) item, which is always rendered non-interactive.
   final VoidCallback? onTap;
 }

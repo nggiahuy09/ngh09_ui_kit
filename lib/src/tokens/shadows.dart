@@ -2,9 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// Primitive shadow tokens — raw `BoxShadow` stacks.
 ///
-/// Low-level values consumed by the semantic theme layer (`GHAppShadows`).
-/// Mirror the **Finesse UI Kit** shadow effect styles (see `figma/shadows.md`).
-/// Each token is a `DROP_SHADOW` stack in Figma layer order; colors are literal
+/// Low-level values consumed by the semantic theme layer (`GHAppShadows`). Mirror the **Finesse UI Kit** shadow effect styles (see `figma/shadows.md`). Each token is a `DROP_SHADOW` stack in Figma layer order; colors are literal
 /// `0xAARRGGBB` ARGB values matching the design. The tints reuse the palette:
 /// `0x..676E76` = Gray/500, `0x..F34141` = Error/600, `0x..E9A23B` =
 /// Warning/600, `0x..53B483` = Success/600.

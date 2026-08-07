@@ -7,12 +7,9 @@ import 'package:ngh09_ui_kit/src/components/navigation/gh_breadcrumb_item.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/gh_crumb.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A horizontal trail of `GHCrumb`s showing the user's place in the
-/// information hierarchy, per the Finesse UI Kit spec.
+/// A horizontal trail of `GHCrumb`s showing the user's place in the information hierarchy, per the Finesse UI Kit spec.
 ///
-/// The last [items] entry is always rendered active (bold, non-interactive)
-/// — it represents the current page. Earlier entries render muted gray and
-/// call their [GHBreadcrumbItem.onTap] when tapped.
+/// The last [items] entry is always rendered active (bold, non-interactive) — it represents the current page. Earlier entries render muted gray and call their [GHBreadcrumbItem.onTap] when tapped.
 ///
 /// [type] controls whether crumbs show their icon, their label, or both.
 ///
@@ -26,16 +23,11 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// );
 /// ```
 ///
-/// **Long trails.** When there are more than five [items], the trail
-/// collapses to the first item, an intermediate "…" crumb, and the last
-/// three items — matching the Finesse spec (second item through
-/// currently-active-minus-two are folded into "…"). Tapping "…" expands the
-/// full trail inline.
+/// **Long trails.** When there are more than five [items], the trail collapses to the first item, an intermediate "…" crumb, and the last three items — matching the Finesse spec (second item through currently-active-minus-two are folded into "…"). Tapping "…" expands the full trail inline.
 class GHBreadcrumbs extends StatefulWidget {
   /// Creates a breadcrumb trail with at least one item.
   ///
-  /// Not a `const` constructor: [items] must be non-empty, which Dart's
-  /// const evaluator cannot validate for a `List`.
+  /// Not a `const` constructor: [items] must be non-empty, which Dart's const evaluator cannot validate for a `List`.
   GHBreadcrumbs({required this.items, this.type = BreadcrumbType.textAndIcon, super.key}) : assert(items.isNotEmpty, 'GHBreadcrumbs needs at least one item.');
 
   /// The trail's pages/sections, in order from root to current.
@@ -98,7 +90,5 @@ class _BreadcrumbSeparator extends StatelessWidget {
   const _BreadcrumbSeparator();
 
   @override
-  Widget build(BuildContext context) {
-    return GHHeroIcon(GHIcons.chevronRight, style: HeroIconStyle.mini, size: 14, color: context.colors.onSurfaceVariant);
-  }
+  Widget build(BuildContext context) => GHHeroIcon(GHIcons.chevronRight, style: HeroIconStyle.mini, size: 14, color: context.colors.onSurfaceVariant);
 }

@@ -2,9 +2,7 @@ import 'package:flutter/painting.dart';
 
 /// A payment method supported by the Finesse UI payment icon catalog.
 ///
-/// Each case bundles the brand colors and a short display label used by
-/// `GHPaymentIcon` to render a recognisable badge without requiring external
-/// SVG assets.
+/// Each case bundles the brand colors and a short display label used by `GHPaymentIcon` to render a recognisable badge without requiring external SVG assets.
 ///
 /// ```dart
 /// GHPaymentIcon(GHPaymentMethod.visa)
@@ -54,12 +52,7 @@ enum GHPaymentMethod {
   ethereum(Color(0xFF627EEA), Color(0xFFFFFFFF), 'ETH', 'Ethereum'),
 
   /// Forbrugsforeningen.
-  forbrugsforeningen(
-    Color(0xFF003087),
-    Color(0xFFFFFFFF),
-    'FbF',
-    'Forbrugsforeningen',
-  ),
+  forbrugsforeningen(Color(0xFF003087), Color(0xFFFFFFFF), 'FbF', 'Forbrugsforeningen'),
 
   /// Google Pay.
   googlePay(Color(0xFFFFFFFF), Color(0xFF3C4043), 'GPay', 'Google Pay'),
@@ -147,7 +140,6 @@ enum GHPaymentMethod {
   /// Full human-readable name used for accessibility (e.g. `'Mastercard'`).
   final String displayName;
 
-  /// Whether [backgroundColor] is white, in which case the widget adds a
-  /// subtle border to ensure the badge is visible on light surfaces.
+  /// Whether [backgroundColor] is white, in which case the widget adds a subtle border to ensure the badge is visible on light surfaces.
   bool get hasLightBackground => backgroundColor == const Color(0xFFFFFFFF);
 }

@@ -7,11 +7,9 @@ import 'package:ngh09_ui_kit/src/components/progress/progress_step_indicator.dar
 import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A horizontal row of pre-defined steps showing which are completed, which
-/// is current, and which are still pending — per the Finesse UI Kit spec.
+/// A horizontal row of pre-defined steps showing which are completed, which is current, and which are still pending — per the Finesse UI Kit spec.
 ///
-/// Steps before [currentStep] render as completed, the step at [currentStep]
-/// renders as current, and the rest render as pending.
+/// Steps before [currentStep] render as completed, the step at [currentStep] renders as current, and the rest render as pending.
 ///
 /// ```dart
 /// GHProgressStepper(
@@ -26,23 +24,16 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 class GHProgressStepper extends StatelessWidget {
   /// Creates a stepper for [steps], currently on [currentStep] (1-indexed).
   ///
-  /// Not `const` — [currentStep] and per-step field presence are validated
-  /// against [steps] at construction time, which Dart's const evaluator
-  /// cannot check for a `List`.
-  GHProgressStepper({
-    required this.steps,
-    required this.currentStep,
-    this.indicator = GHProgressStepIndicator.number,
-    this.showLabels = false,
-    super.key,
-  }) : assert(steps.isNotEmpty, 'GHProgressStepper needs at least one step.'),
-       assert(currentStep >= 1 && currentStep <= steps.length, 'currentStep must be within [1, steps.length].'),
-       assert(
-         indicator != GHProgressStepIndicator.icon || steps.every((s) => s.icon != null),
-         'Every step needs an icon when indicator is GHProgressStepIndicator.icon.',
-       ),
-       assert(!showLabels || steps.every((s) => s.label != null), 'Every step needs a label when showLabels is true.'),
-       assert(indicator != GHProgressStepIndicator.chip || !showLabels, 'Chip indicators do not support labels.');
+  /// Not `const` — [currentStep] and per-step field presence are validated against [steps] at construction time, which Dart's const evaluator cannot check for a `List`.
+  GHProgressStepper({required this.steps, required this.currentStep, this.indicator = GHProgressStepIndicator.number, this.showLabels = false, super.key})
+    : assert(steps.isNotEmpty, 'GHProgressStepper needs at least one step.'),
+      assert(currentStep >= 1 && currentStep <= steps.length, 'currentStep must be within [1, steps.length].'),
+      assert(
+        indicator != GHProgressStepIndicator.icon || steps.every((s) => s.icon != null),
+        'Every step needs an icon when indicator is GHProgressStepIndicator.icon.',
+      ),
+      assert(!showLabels || steps.every((s) => s.label != null), 'Every step needs a label when showLabels is true.'),
+      assert(indicator != GHProgressStepIndicator.chip || !showLabels, 'Chip indicators do not support labels.');
 
   /// The steps to display, in order.
   final List<GHProgressStep> steps;
@@ -55,8 +46,7 @@ class GHProgressStepper extends StatelessWidget {
 
   /// Whether each step's label is shown beside its node.
   ///
-  /// Ignored (and must be `false`) when [indicator] is
-  /// [GHProgressStepIndicator.chip].
+  /// Ignored (and must be `false`) when [indicator] is [GHProgressStepIndicator.chip].
   final bool showLabels;
 
   _StepState _stateOf(int index) {
@@ -83,10 +73,10 @@ class GHProgressStepper extends StatelessWidget {
       if (showLabels) {
         children.addAll([
           SizedBox(width: context.spacing.xs),
-          // Flexible so a long label (or a large text scale) ellipsizes instead
-          // of overflowing the row — the labelled stepper sizes to its content,
-          // so an unconstrained Text would force the row past the viewport.
-          Flexible(child: Text(steps[i].label!, style: _labelStyle(context, state), maxLines: 1, overflow: TextOverflow.ellipsis)),
+          // Flexible so a long label (or a large text scale) ellipsizes instead of overflowing the row — the labelled stepper sizes to its content, so an unconstrained Text would force the row past the viewport.
+          Flexible(
+            child: Text(steps[i].label!, style: _labelStyle(context, state), maxLines: 1, overflow: TextOverflow.ellipsis),
+          ),
         ]);
       }
       if (i != steps.length - 1) {

@@ -11,10 +11,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable checkbox built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppCheckbox` is the canonical binary-choice input for lists and forms.
-/// It supports three [CheckboxSize] values, hover / focus / disabled states
-/// with Finesse shadow transitions, and exposes the checked value via
-/// [onChanged].
+/// `GHAppCheckbox` is the canonical binary-choice input for lists and forms. It supports three [CheckboxSize] values, hover / focus / disabled states with Finesse shadow transitions, and exposes the checked value via [onChanged].
 ///
 /// ```dart
 /// GHAppCheckbox(
@@ -43,8 +40,7 @@ class GHAppCheckbox extends StatefulWidget {
   /// The size variant. See [CheckboxSize].
   final CheckboxSize size;
 
-  /// Optional label read by screen readers instead of the default
-  /// "checkbox" description.
+  /// Optional label read by screen readers instead of the default "checkbox" description.
   final String? semanticLabel;
 
   @override

@@ -6,11 +6,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable single-node slider built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppSlider` drags a single [SliderNode] handle along a track to select a
-/// value between [min] and [max] — the canonical control for settings like
-/// volume, brightness or a price cap. Enable [showValueLabel] to print the
-/// current value after the track, formatted by [labelBuilder] (percentage by
-/// default).
+/// `GHAppSlider` drags a single [SliderNode] handle along a track to select a value between [min] and [max] — the canonical control for settings like volume, brightness or a price cap. Enable [showValueLabel] to print the current value after the track, formatted by [labelBuilder] (percentage by default).
 ///
 /// ```dart
 /// GHAppSlider(
@@ -48,8 +44,7 @@ class GHAppSlider extends StatefulWidget {
   /// The current value. Must lie within [min] and [max].
   final double value;
 
-  /// Called with the new value as the user drags or steps the node. Pass
-  /// `null` to disable.
+  /// Called with the new value as the user drags or steps the node. Pass `null` to disable.
   final ValueChanged<double>? onChanged;
 
   /// The lower bound of the slider's range.

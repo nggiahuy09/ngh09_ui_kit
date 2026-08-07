@@ -12,26 +12,14 @@ import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// The atomic row of a dropdown menu, built on the Finesse UI Kit "Dropdown
-/// List Items" spec.
+/// The atomic row of a dropdown menu, built on the Finesse UI Kit "Dropdown List Items" spec.
 ///
-/// A `GHAppDropdownListItem` always shows a [label]. Everything else is
-/// optional and driven by the two "type" properties from the Finesse spec:
+/// A `GHAppDropdownListItem` always shows a [label]. Everything else is optional and driven by the two "type" properties from the Finesse spec:
 ///
-/// * [leadingType] — [GHDropdownLeadingType.none] / `.icon` / `.avatar` /
-///   `.flag` / `.checkbox`. Provide the matching content via [leadingIcon]
-///   (for `.icon`) or [leading] (for `.avatar` / `.flag`, e.g. a
-///   `GHUserAvatar` or `GHCountryFlag`).
-/// * [trailingType] — `.none` / `.chevron` / `.checkmark` / `.toggle` /
-///   `.label`. `.checkmark` only renders when [selected] is `true`;
-///   `.toggle` renders a `GHAppToggle` bound to [toggleValue] /
-///   [onToggleChanged]; `.label` renders [trailingLabel].
+/// * [leadingType] — [GHDropdownLeadingType.none] / `.icon` / `.avatar` / `.flag` / `.checkbox`. Provide the matching content via [leadingIcon] (for `.icon`) or [leading] (for `.avatar` / `.flag`, e.g. a `GHUserAvatar` or `GHCountryFlag`).
+/// * [trailingType] — `.none` / `.chevron` / `.checkmark` / `.toggle` / `.label`. `.checkmark` only renders when [selected] is `true`; `.toggle` renders a `GHAppToggle` bound to [toggleValue] /[onToggleChanged]; `.label` renders [trailingLabel].
 ///
-/// [supportingText] adds a muted secondary line next to [label] (e.g. an
-/// `@handle`). The row reflects the Finesse "Active / Hover / Focused /
-/// Selected / Disabled" states: hover and focus emerge from user
-/// interaction, [selected] and disabled (via a `null` [onTap]) are supplied
-/// by the caller.
+/// [supportingText] adds a muted secondary line next to [label] (e.g. an `@handle`). The row reflects the Finesse "Active / Hover / Focused / Selected / Disabled" states: hover and focus emerge from user interaction, [selected] and disabled (via a `null` [onTap]) are supplied by the caller.
 ///
 /// ```dart
 /// GHAppDropdownListItem(
@@ -87,9 +75,7 @@ class GHAppDropdownListItem extends StatefulWidget {
   /// The glyph shown when [leadingType] is [GHDropdownLeadingType.icon].
   final GHIconData? leadingIcon;
 
-  /// The widget shown when [leadingType] is [GHDropdownLeadingType.avatar] or
-  /// [GHDropdownLeadingType.flag] — typically a `GHUserAvatar` or
-  /// `GHCountryFlag`.
+  /// The widget shown when [leadingType] is [GHDropdownLeadingType.avatar] or [GHDropdownLeadingType.flag] — typically a `GHUserAvatar` or `GHCountryFlag`.
   final Widget? leading;
 
   /// The trailing affordance. See [GHDropdownTrailingType].
@@ -106,8 +92,7 @@ class GHAppDropdownListItem extends StatefulWidget {
   /// Only used when [trailingType] is [GHDropdownTrailingType.toggle].
   final ValueChanged<bool>? onToggleChanged;
 
-  /// Whether the row is selected — highlights the row and, combined with
-  /// [trailingType]/[leadingType], shows a checkmark or a checked checkbox.
+  /// Whether the row is selected — highlights the row and, combined with [trailingType]/[leadingType], shows a checkmark or a checked checkbox.
   final bool selected;
 
   /// The row's size. See [GHDropdownItemSize].
@@ -272,9 +257,7 @@ class _GHAppDropdownListItemState extends State<GHAppDropdownListItem> {
   }
 }
 
-/// The decorative (non-interactive) checkbox glyph shown by a
-/// [GHAppDropdownListItem] with [GHDropdownLeadingType.checkbox] — the row's
-/// own tap target drives [GHAppDropdownListItem.selected], not this box.
+/// The decorative (non-interactive) checkbox glyph shown by a [GHAppDropdownListItem] with [GHDropdownLeadingType.checkbox] — the row's own tap target drives [GHAppDropdownListItem.selected], not this box.
 class _CheckboxIndicator extends StatelessWidget {
   const _CheckboxIndicator({required this.checked, required this.enabled});
 

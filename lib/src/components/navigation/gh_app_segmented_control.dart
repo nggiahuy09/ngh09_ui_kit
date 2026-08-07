@@ -7,11 +7,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable segmented control built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppSegmentedControl` lets a user pick exactly one option from a small,
-/// fixed set of [segments] rendered as a single fused bar. Each segment can
-/// carry a label, an icon, or both (see [GHSegmentedControlItem]). Segments
-/// share hairline borders so the control reads as one control rather than a
-/// row of separate buttons, and the outer corners follow [corner].
+/// `GHAppSegmentedControl` lets a user pick exactly one option from a small, fixed set of [segments] rendered as a single fused bar. Each segment can carry a label, an icon, or both (see [GHSegmentedControlItem]). Segments share hairline borders so the control reads as one control rather than a row of separate buttons, and the outer corners follow [corner].
 ///
 /// ```dart
 /// GHAppSegmentedControl(
@@ -29,9 +25,8 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 class GHAppSegmentedControl extends StatelessWidget {
   /// Creates a segmented control with at least two [segments].
   ///
-  /// Not a `const` constructor: [segments].length must be validated at
-  /// runtime, which Dart's const evaluator cannot do for a `List`.
-  GHAppSegmentedControl({
+  /// Not a `const` constructor: [segments].length must be validated at runtime, which Dart's const evaluator cannot do for a `List`.
+  const GHAppSegmentedControl({
     required this.segments,
     required this.selectedIndex,
     required this.onSelectedIndexChanged,
@@ -182,12 +177,7 @@ class _SegmentState extends State<_Segment> {
                 const SizedBox(width: 8),
               ],
               Flexible(
-                child: Text(
-                  widget.item.label!,
-                  style: labelStyle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                child: Text(widget.item.label!, style: labelStyle, maxLines: 1, overflow: TextOverflow.ellipsis),
               ),
             ],
           );
@@ -199,12 +189,7 @@ class _SegmentState extends State<_Segment> {
       decoration: BoxDecoration(
         color: _backgroundColor(context),
         borderRadius: _cornerRadius,
-        border: Border(
-          top: borderSide,
-          bottom: borderSide,
-          right: borderSide,
-          left: widget.isFirst ? borderSide : BorderSide.none,
-        ),
+        border: Border(top: borderSide, bottom: borderSide, right: borderSide, left: widget.isFirst ? borderSide : BorderSide.none),
         boxShadow: _boxShadow(context),
       ),
       child: ExcludeSemantics(child: content),

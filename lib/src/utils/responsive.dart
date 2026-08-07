@@ -24,15 +24,13 @@ enum ScreenType {
 
 /// Picks a value based on the current [ScreenType].
 ///
-/// `tablet` and `desktop` fall back to smaller breakpoints when omitted, so
-/// only `mobile` is required:
+/// `tablet` and `desktop` fall back to smaller breakpoints when omitted, so only `mobile` is required:
 ///
 /// ```dart
 /// final columns = context.responsiveValue(mobile: 1, tablet: 2, desktop: 4);
 /// ```
 extension ResponsiveValueContext on BuildContext {
-  /// Returns the value matching the current [ScreenType], falling back to the
-  /// next-smaller breakpoint's value when a larger one is not provided.
+  /// Returns the value matching the current [ScreenType], falling back to the next-smaller breakpoint's value when a larger one is not provided.
   T responsiveValue<T>({required T mobile, T? tablet, T? desktop}) {
     switch (ScreenType.fromWidth(screenWidth)) {
       case ScreenType.desktop:
@@ -47,16 +45,10 @@ extension ResponsiveValueContext on BuildContext {
 
 /// Builds different widget subtrees per [ScreenType].
 ///
-/// [tablet] and [desktop] are optional and fall back to the next-smaller
-/// builder, so a single [mobile] builder is always sufficient.
+/// [tablet] and [desktop] are optional and fall back to the next-smaller builder, so a single [mobile] builder is always sufficient.
 class ResponsiveBuilder extends StatelessWidget {
   /// Creates a responsive builder. Only [mobile] is required.
-  const ResponsiveBuilder({
-    required this.mobile,
-    this.tablet,
-    this.desktop,
-    super.key,
-  });
+  const ResponsiveBuilder({required this.mobile, this.tablet, this.desktop, super.key});
 
   /// Builder used for the [ScreenType.mobile] range (and the default fallback).
   final WidgetBuilder mobile;

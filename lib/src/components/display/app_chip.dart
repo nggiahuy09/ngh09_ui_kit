@@ -13,14 +13,9 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// * [ChipVariant.choice] — a single selection from a set, also reflecting
 ///   [selected] via [onSelected].
 ///
-/// All colors, radii, spacing and text styles are read from the active theme
-/// (`context.colors`, `context.radii`, …), so the chip adapts to light/dark
-/// mode and any custom brand theme — nothing is hardcoded. When [selected], the
-/// chip fills with `primaryContainer`; otherwise it uses `surfaceVariant` with
-/// an `outline` border.
+/// All colors, radii, spacing and text styles are read from the active theme (`context.colors`, `context.radii`, …), so the chip adapts to light/dark mode and any custom brand theme — nothing is hardcoded. When [selected], the chip fills with `primaryContainer`; otherwise it uses `surfaceVariant` with an `outline` border.
 ///
-/// A chip is disabled when [enabled] is `false`, in which case it ignores all
-/// input.
+/// A chip is disabled when [enabled] is `false`, in which case it ignores all input.
 ///
 /// ```dart
 /// GHAppChip.filter(
@@ -36,8 +31,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// );
 /// ```
 class GHAppChip extends StatelessWidget {
-  /// Creates a chip with an explicit [variant] (defaults to
-  /// [ChipVariant.input]).
+  /// Creates a chip with an explicit [variant] (defaults to [ChipVariant.input]).
   const GHAppChip({
     required this.label,
     this.variant = ChipVariant.input,
@@ -52,8 +46,7 @@ class GHAppChip extends StatelessWidget {
     super.key,
   });
 
-  /// Creates a [ChipVariant.input] chip — a discrete entry with an optional
-  /// [leading] icon and a trailing delete affordance ([onDeleted]).
+  /// Creates a [ChipVariant.input] chip — a discrete entry with an optional [leading] icon and a trailing delete affordance ([onDeleted]).
   const GHAppChip.input({
     required this.label,
     this.size = ChipSize.medium,
@@ -67,8 +60,7 @@ class GHAppChip extends StatelessWidget {
        selected = false,
        onSelected = null;
 
-  /// Creates a [ChipVariant.filter] chip — a toggleable filter reflecting
-  /// [selected] and reporting the next state through [onSelected].
+  /// Creates a [ChipVariant.filter] chip — a toggleable filter reflecting [selected] and reporting the next state through [onSelected].
   const GHAppChip.filter({
     required this.label,
     required this.selected,
@@ -82,8 +74,7 @@ class GHAppChip extends StatelessWidget {
        onPressed = null,
        onDeleted = null;
 
-  /// Creates a [ChipVariant.choice] chip — a single selection from a set,
-  /// reflecting [selected] and reporting the next state through [onSelected].
+  /// Creates a [ChipVariant.choice] chip — a single selection from a set, reflecting [selected] and reporting the next state through [onSelected].
   const GHAppChip.choice({
     required this.label,
     required this.selected,
@@ -108,20 +99,17 @@ class GHAppChip extends StatelessWidget {
 
   /// Whether the chip is in its selected state.
   ///
-  /// Meaningful only for [ChipVariant.filter] and [ChipVariant.choice]; always
-  /// `false` for [ChipVariant.input].
+  /// Meaningful only for [ChipVariant.filter] and [ChipVariant.choice]; always `false` for [ChipVariant.input].
   final bool selected;
 
   /// Whether the chip currently reacts to input.
   ///
-  /// When `false`, the chip is rendered in its disabled state and does not fire
-  /// [onPressed], [onSelected] or [onDeleted].
+  /// When `false`, the chip is rendered in its disabled state and does not fire [onPressed], [onSelected] or [onDeleted].
   final bool enabled;
 
   /// Whether the chip should stretch to fill the available horizontal space.
   ///
-  /// When `false` (the default) the chip hugs its content; when `true` it grows
-  /// to the width offered by its parent, with content centered.
+  /// When `false` (the default) the chip hugs its content; when `true` it grows to the width offered by its parent, with content centered.
   final bool expanded;
 
   /// Optional widget shown before the [label] (typically an [Icon]).
@@ -132,12 +120,10 @@ class GHAppChip extends StatelessWidget {
   /// Ignored for filter/choice chips, which report through [onSelected].
   final VoidCallback? onPressed;
 
-  /// Called with the next selection state when a [ChipVariant.filter] or
-  /// [ChipVariant.choice] chip is tapped.
+  /// Called with the next selection state when a [ChipVariant.filter] or [ChipVariant.choice] chip is tapped.
   final ValueChanged<bool>? onSelected;
 
-  /// Called when the trailing delete affordance of an [ChipVariant.input] chip
-  /// is tapped.
+  /// Called when the trailing delete affordance of an [ChipVariant.input] chip is tapped.
   ///
   /// When `null`, no delete affordance is shown.
   final VoidCallback? onDeleted;
@@ -155,8 +141,7 @@ class GHAppChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final foreground = _foregroundColor(colors);
-    final showDelete =
-        enabled && variant == ChipVariant.input && onDeleted != null;
+    final showDelete = enabled && variant == ChipVariant.input && onDeleted != null;
 
     final content = _ChipContent(
       label: label,
@@ -170,13 +155,9 @@ class GHAppChip extends StatelessWidget {
     );
 
     final decorated = Container(
-      constraints: BoxConstraints(
-        minWidth: expanded ? double.infinity : 0,
-        minHeight: _height,
-      ),
+      constraints: BoxConstraints(minWidth: expanded ? double.infinity : 0, minHeight: _height),
       padding: _paddingFor(showDelete: showDelete),
-      // Only center within the box when expanded; an unconditional alignment
-      // would make the chip greedily fill loose constraints.
+      // Only center within the box when expanded; an unconditional alignment would make the chip greedily fill loose constraints.
       alignment: expanded ? Alignment.center : null,
       decoration: BoxDecoration(
         color: _backgroundColor(colors),
@@ -188,10 +169,7 @@ class GHAppChip extends StatelessWidget {
 
     if (!_isInteractive) {
       // Still expose selection state to accessibility for filter/choice chips.
-      return Semantics(
-        selected: variant == ChipVariant.input ? null : selected,
-        child: decorated,
-      );
+      return Semantics(selected: variant == ChipVariant.input ? null : selected, child: decorated);
     }
 
     return Semantics(
@@ -200,11 +178,7 @@ class GHAppChip extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         borderRadius: context.radii.borderRadiusFull,
-        child: InkWell(
-          onTap: _onTap,
-          borderRadius: context.radii.borderRadiusFull,
-          child: decorated,
-        ),
+        child: InkWell(onTap: _onTap, borderRadius: context.radii.borderRadiusFull, child: decorated),
       ),
     );
   }
@@ -248,14 +222,8 @@ class GHAppChip extends StatelessWidget {
   };
 
   EdgeInsetsGeometry _paddingFor({required bool showDelete}) => switch (size) {
-    ChipSize.small => EdgeInsets.only(
-      left: 8,
-      right: showDelete ? 4 : 8,
-    ),
-    ChipSize.medium => EdgeInsets.only(
-      left: 12,
-      right: showDelete ? 6 : 12,
-    ),
+    ChipSize.small => EdgeInsets.only(left: 8, right: showDelete ? 4 : 8),
+    ChipSize.medium => EdgeInsets.only(left: 12, right: showDelete ? 6 : 12),
   };
 }
 
@@ -296,26 +264,17 @@ class _ChipContent extends StatelessWidget {
           SizedBox(width: spacing),
         ],
         Flexible(
-          child: Text(
-            label,
-            style: labelStyle,
-            overflow: TextOverflow.ellipsis,
-          ),
+          child: Text(label, style: labelStyle, overflow: TextOverflow.ellipsis),
         ),
         if (showDelete) ...[
           SizedBox(width: spacing),
-          // The delete affordance is its own tap target so it does not fire the
-          // chip body's onTap.
+          // The delete affordance is its own tap target so it does not fire the chip body's onTap.
           GestureDetector(
             onTap: onDeleted,
             child: Semantics(
               button: true,
               label: 'Delete',
-              child: Icon(
-                Icons.close,
-                size: iconSize,
-                color: foreground,
-              ),
+              child: Icon(Icons.close, size: iconSize, color: foreground),
             ),
           ),
         ],

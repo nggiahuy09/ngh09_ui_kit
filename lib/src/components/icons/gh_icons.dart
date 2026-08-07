@@ -1,10 +1,8 @@
 import 'package:ngh09_ui_kit/src/components/icons/gh_icon_data.dart';
 
-/// The complete [Heroicons](https://heroicons.com) catalog (v2), as typed
-/// [GHIconData] constants.
+/// The complete [Heroicons](https://heroicons.com) catalog (v2), as typed [GHIconData] constants.
 ///
-/// Each constant names a glyph available in all three `HeroIconStyle`s
-/// (mini / outline / solid). Pass one to `GHHeroIcon`:
+/// Each constant names a glyph available in all three `HeroIconStyle`s (mini / outline / solid). Pass one to `GHHeroIcon`:
 ///
 /// ```dart
 /// GHHeroIcon(GHIcons.academicCap, style: HeroIconStyle.solid);
@@ -20,22 +18,16 @@ abstract final class GHIcons {
   static const GHIconData academicCap = GHIconData('academic-cap');
 
   /// The `adjustments-horizontal` Heroicon.
-  static const GHIconData adjustmentsHorizontal = GHIconData(
-    'adjustments-horizontal',
-  );
+  static const GHIconData adjustmentsHorizontal = GHIconData('adjustments-horizontal');
 
   /// The `adjustments-vertical` Heroicon.
-  static const GHIconData adjustmentsVertical = GHIconData(
-    'adjustments-vertical',
-  );
+  static const GHIconData adjustmentsVertical = GHIconData('adjustments-vertical');
 
   /// The `archive-box` Heroicon.
   static const GHIconData archiveBox = GHIconData('archive-box');
 
   /// The `archive-box-arrow-down` Heroicon.
-  static const GHIconData archiveBoxArrowDown = GHIconData(
-    'archive-box-arrow-down',
-  );
+  static const GHIconData archiveBoxArrowDown = GHIconData('archive-box-arrow-down');
 
   /// The `archive-box-x-mark` Heroicon.
   static const GHIconData archiveBoxXMark = GHIconData('archive-box-x-mark');
@@ -50,14 +42,10 @@ abstract final class GHIcons {
   static const GHIconData arrowDownLeft = GHIconData('arrow-down-left');
 
   /// The `arrow-down-on-square` Heroicon.
-  static const GHIconData arrowDownOnSquare = GHIconData(
-    'arrow-down-on-square',
-  );
+  static const GHIconData arrowDownOnSquare = GHIconData('arrow-down-on-square');
 
   /// The `arrow-down-on-square-stack` Heroicon.
-  static const GHIconData arrowDownOnSquareStack = GHIconData(
-    'arrow-down-on-square-stack',
-  );
+  static const GHIconData arrowDownOnSquareStack = GHIconData('arrow-down-on-square-stack');
 
   /// The `arrow-down-right` Heroicon.
   static const GHIconData arrowDownRight = GHIconData('arrow-down-right');
@@ -72,9 +60,7 @@ abstract final class GHIcons {
   static const GHIconData arrowLeftCircle = GHIconData('arrow-left-circle');
 
   /// The `arrow-left-on-rectangle` Heroicon.
-  static const GHIconData arrowLeftOnRectangle = GHIconData(
-    'arrow-left-on-rectangle',
-  );
+  static const GHIconData arrowLeftOnRectangle = GHIconData('arrow-left-on-rectangle');
 
   /// The `arrow-long-down` Heroicon.
   static const GHIconData arrowLongDown = GHIconData('arrow-long-down');
@@ -92,9 +78,7 @@ abstract final class GHIcons {
   static const GHIconData arrowPath = GHIconData('arrow-path');
 
   /// The `arrow-path-rounded-square` Heroicon.
-  static const GHIconData arrowPathRoundedSquare = GHIconData(
-    'arrow-path-rounded-square',
-  );
+  static const GHIconData arrowPathRoundedSquare = GHIconData('arrow-path-rounded-square');
 
   /// The `arrow-right` Heroicon.
   static const GHIconData arrowRight = GHIconData('arrow-right');
@@ -103,9 +87,7 @@ abstract final class GHIcons {
   static const GHIconData arrowRightCircle = GHIconData('arrow-right-circle');
 
   /// The `arrow-right-on-rectangle` Heroicon.
-  static const GHIconData arrowRightOnRectangle = GHIconData(
-    'arrow-right-on-rectangle',
-  );
+  static const GHIconData arrowRightOnRectangle = GHIconData('arrow-right-on-rectangle');
 
   /// The `arrow-small-down` Heroicon.
   static const GHIconData arrowSmallDown = GHIconData('arrow-small-down');
@@ -120,9 +102,7 @@ abstract final class GHIcons {
   static const GHIconData arrowSmallUp = GHIconData('arrow-small-up');
 
   /// The `arrow-top-right-on-square` Heroicon.
-  static const GHIconData arrowTopRightOnSquare = GHIconData(
-    'arrow-top-right-on-square',
-  );
+  static const GHIconData arrowTopRightOnSquare = GHIconData('arrow-top-right-on-square');
 
   /// The `arrow-trending-down` Heroicon.
   static const GHIconData arrowTrendingDown = GHIconData('arrow-trending-down');
@@ -143,9 +123,7 @@ abstract final class GHIcons {
   static const GHIconData arrowUpOnSquare = GHIconData('arrow-up-on-square');
 
   /// The `arrow-up-on-square-stack` Heroicon.
-  static const GHIconData arrowUpOnSquareStack = GHIconData(
-    'arrow-up-on-square-stack',
-  );
+  static const GHIconData arrowUpOnSquareStack = GHIconData('arrow-up-on-square-stack');
 
   /// The `arrow-up-right` Heroicon.
   static const GHIconData arrowUpRight = GHIconData('arrow-up-right');
@@ -271,9 +249,7 @@ abstract final class GHIcons {
   static const GHIconData buildingOffice2 = GHIconData('building-office-2');
 
   /// The `building-storefront` Heroicon.
-  static const GHIconData buildingStorefront = GHIconData(
-    'building-storefront',
-  );
+  static const GHIconData buildingStorefront = GHIconData('building-storefront');
 
   /// The `cake` Heroicon.
   static const GHIconData cake = GHIconData('cake');
@@ -300,37 +276,25 @@ abstract final class GHIcons {
   static const GHIconData chartPie = GHIconData('chart-pie');
 
   /// The `chat-bubble-bottom-center` Heroicon.
-  static const GHIconData chatBubbleBottomCenter = GHIconData(
-    'chat-bubble-bottom-center',
-  );
+  static const GHIconData chatBubbleBottomCenter = GHIconData('chat-bubble-bottom-center');
 
   /// The `chat-bubble-bottom-center-text` Heroicon.
-  static const GHIconData chatBubbleBottomCenterText = GHIconData(
-    'chat-bubble-bottom-center-text',
-  );
+  static const GHIconData chatBubbleBottomCenterText = GHIconData('chat-bubble-bottom-center-text');
 
   /// The `chat-bubble-left` Heroicon.
   static const GHIconData chatBubbleLeft = GHIconData('chat-bubble-left');
 
   /// The `chat-bubble-left-ellipsis` Heroicon.
-  static const GHIconData chatBubbleLeftEllipsis = GHIconData(
-    'chat-bubble-left-ellipsis',
-  );
+  static const GHIconData chatBubbleLeftEllipsis = GHIconData('chat-bubble-left-ellipsis');
 
   /// The `chat-bubble-left-right` Heroicon.
-  static const GHIconData chatBubbleLeftRight = GHIconData(
-    'chat-bubble-left-right',
-  );
+  static const GHIconData chatBubbleLeftRight = GHIconData('chat-bubble-left-right');
 
   /// The `chat-bubble-oval-left` Heroicon.
-  static const GHIconData chatBubbleOvalLeft = GHIconData(
-    'chat-bubble-oval-left',
-  );
+  static const GHIconData chatBubbleOvalLeft = GHIconData('chat-bubble-oval-left');
 
   /// The `chat-bubble-oval-left-ellipsis` Heroicon.
-  static const GHIconData chatBubbleOvalLeftEllipsis = GHIconData(
-    'chat-bubble-oval-left-ellipsis',
-  );
+  static const GHIconData chatBubbleOvalLeftEllipsis = GHIconData('chat-bubble-oval-left-ellipsis');
 
   /// The `check` Heroicon.
   static const GHIconData check = GHIconData('check');
@@ -348,9 +312,7 @@ abstract final class GHIcons {
   static const GHIconData chevronDoubleLeft = GHIconData('chevron-double-left');
 
   /// The `chevron-double-right` Heroicon.
-  static const GHIconData chevronDoubleRight = GHIconData(
-    'chevron-double-right',
-  );
+  static const GHIconData chevronDoubleRight = GHIconData('chevron-double-right');
 
   /// The `chevron-double-up` Heroicon.
   static const GHIconData chevronDoubleUp = GHIconData('chevron-double-up');
@@ -380,14 +342,10 @@ abstract final class GHIcons {
   static const GHIconData clipboardDocument = GHIconData('clipboard-document');
 
   /// The `clipboard-document-check` Heroicon.
-  static const GHIconData clipboardDocumentCheck = GHIconData(
-    'clipboard-document-check',
-  );
+  static const GHIconData clipboardDocumentCheck = GHIconData('clipboard-document-check');
 
   /// The `clipboard-document-list` Heroicon.
-  static const GHIconData clipboardDocumentList = GHIconData(
-    'clipboard-document-list',
-  );
+  static const GHIconData clipboardDocumentList = GHIconData('clipboard-document-list');
 
   /// The `clock` Heroicon.
   static const GHIconData clock = GHIconData('clock');
@@ -435,9 +393,7 @@ abstract final class GHIcons {
   static const GHIconData cubeTransparent = GHIconData('cube-transparent');
 
   /// The `currency-bangladeshi` Heroicon.
-  static const GHIconData currencyBangladeshi = GHIconData(
-    'currency-bangladeshi',
-  );
+  static const GHIconData currencyBangladeshi = GHIconData('currency-bangladeshi');
 
   /// The `currency-dollar` Heroicon.
   static const GHIconData currencyDollar = GHIconData('currency-dollar');
@@ -485,9 +441,7 @@ abstract final class GHIcons {
   static const GHIconData documentDuplicate = GHIconData('document-duplicate');
 
   /// The `document-magnifying-glass` Heroicon.
-  static const GHIconData documentMagnifyingGlass = GHIconData(
-    'document-magnifying-glass',
-  );
+  static const GHIconData documentMagnifyingGlass = GHIconData('document-magnifying-glass');
 
   /// The `document-minus` Heroicon.
   static const GHIconData documentMinus = GHIconData('document-minus');
@@ -499,14 +453,10 @@ abstract final class GHIcons {
   static const GHIconData documentText = GHIconData('document-text');
 
   /// The `ellipsis-horizontal` Heroicon.
-  static const GHIconData ellipsisHorizontal = GHIconData(
-    'ellipsis-horizontal',
-  );
+  static const GHIconData ellipsisHorizontal = GHIconData('ellipsis-horizontal');
 
   /// The `ellipsis-horizontal-circle` Heroicon.
-  static const GHIconData ellipsisHorizontalCircle = GHIconData(
-    'ellipsis-horizontal-circle',
-  );
+  static const GHIconData ellipsisHorizontalCircle = GHIconData('ellipsis-horizontal-circle');
 
   /// The `ellipsis-vertical` Heroicon.
   static const GHIconData ellipsisVertical = GHIconData('ellipsis-vertical');
@@ -521,9 +471,7 @@ abstract final class GHIcons {
   static const GHIconData exclamationCircle = GHIconData('exclamation-circle');
 
   /// The `exclamation-triangle` Heroicon.
-  static const GHIconData exclamationTriangle = GHIconData(
-    'exclamation-triangle',
-  );
+  static const GHIconData exclamationTriangle = GHIconData('exclamation-triangle');
 
   /// The `eye` Heroicon.
   static const GHIconData eye = GHIconData('eye');
@@ -589,9 +537,7 @@ abstract final class GHIcons {
   static const GHIconData globeAmericas = GHIconData('globe-americas');
 
   /// The `globe-asia-australia` Heroicon.
-  static const GHIconData globeAsiaAustralia = GHIconData(
-    'globe-asia-australia',
-  );
+  static const GHIconData globeAsiaAustralia = GHIconData('globe-asia-australia');
 
   /// The `globe-europe-africa` Heroicon.
   static const GHIconData globeEuropeAfrica = GHIconData('globe-europe-africa');
@@ -660,19 +606,13 @@ abstract final class GHIcons {
   static const GHIconData magnifyingGlass = GHIconData('magnifying-glass');
 
   /// The `magnifying-glass-circle` Heroicon.
-  static const GHIconData magnifyingGlassCircle = GHIconData(
-    'magnifying-glass-circle',
-  );
+  static const GHIconData magnifyingGlassCircle = GHIconData('magnifying-glass-circle');
 
   /// The `magnifying-glass-minus` Heroicon.
-  static const GHIconData magnifyingGlassMinus = GHIconData(
-    'magnifying-glass-minus',
-  );
+  static const GHIconData magnifyingGlassMinus = GHIconData('magnifying-glass-minus');
 
   /// The `magnifying-glass-plus` Heroicon.
-  static const GHIconData magnifyingGlassPlus = GHIconData(
-    'magnifying-glass-plus',
-  );
+  static const GHIconData magnifyingGlassPlus = GHIconData('magnifying-glass-plus');
 
   /// The `map` Heroicon.
   static const GHIconData map = GHIconData('map');
@@ -732,14 +672,10 @@ abstract final class GHIcons {
   static const GHIconData phone = GHIconData('phone');
 
   /// The `phone-arrow-down-left` Heroicon.
-  static const GHIconData phoneArrowDownLeft = GHIconData(
-    'phone-arrow-down-left',
-  );
+  static const GHIconData phoneArrowDownLeft = GHIconData('phone-arrow-down-left');
 
   /// The `phone-arrow-up-right` Heroicon.
-  static const GHIconData phoneArrowUpRight = GHIconData(
-    'phone-arrow-up-right',
-  );
+  static const GHIconData phoneArrowUpRight = GHIconData('phone-arrow-up-right');
 
   /// The `phone-x-mark` Heroicon.
   static const GHIconData phoneXMark = GHIconData('phone-x-mark');
@@ -769,14 +705,10 @@ abstract final class GHIcons {
   static const GHIconData power = GHIconData('power');
 
   /// The `presentation-chart-bar` Heroicon.
-  static const GHIconData presentationChartBar = GHIconData(
-    'presentation-chart-bar',
-  );
+  static const GHIconData presentationChartBar = GHIconData('presentation-chart-bar');
 
   /// The `presentation-chart-line` Heroicon.
-  static const GHIconData presentationChartLine = GHIconData(
-    'presentation-chart-line',
-  );
+  static const GHIconData presentationChartLine = GHIconData('presentation-chart-line');
 
   /// The `printer` Heroicon.
   static const GHIconData printer = GHIconData('printer');
@@ -788,9 +720,7 @@ abstract final class GHIcons {
   static const GHIconData qrCode = GHIconData('qr-code');
 
   /// The `question-mark-circle` Heroicon.
-  static const GHIconData questionMarkCircle = GHIconData(
-    'question-mark-circle',
-  );
+  static const GHIconData questionMarkCircle = GHIconData('question-mark-circle');
 
   /// The `queue-list` Heroicon.
   static const GHIconData queueList = GHIconData('queue-list');

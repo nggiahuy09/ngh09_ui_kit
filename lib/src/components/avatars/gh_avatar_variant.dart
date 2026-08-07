@@ -1,3 +1,5 @@
+import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
+
 /// The 14 illustrated user avatar variants from the Finesse UI Kit.
 ///
 /// Each variant corresponds to a unique hand-drawn portrait asset bundled

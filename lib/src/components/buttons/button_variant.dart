@@ -8,29 +8,23 @@
 /// * Outline → [outlined] — Lower-emphasis secondary action.
 /// * Text Only → [text] — Inline or lowest-emphasis action.
 enum ButtonVariant {
-  /// Highest emphasis: solid `primary` (black) fill with `onPrimary` (white)
-  /// content. Maps to the **Primary** button type in Finesse.
+  /// Highest emphasis: solid `primary` (black) fill with `onPrimary` (white) content. Maps to the **Primary** button type in Finesse.
   filled,
 
-  /// Medium emphasis: tonal `primaryContainer` fill with `onPrimaryContainer`
-  /// content. Maps to the **Secondary Color** button type in Finesse.
+  /// Medium emphasis: tonal `primaryContainer` fill with `onPrimaryContainer` content. Maps to the **Secondary Color** button type in Finesse.
   tonal,
 
-  /// Medium emphasis: `surface` (white) fill, shadow-rendered border, and
-  /// `onSurface` content. Maps to the **Secondary Grey** type in Finesse.
+  /// Medium emphasis: `surface` (white) fill, shadow-rendered border, and `onSurface` content. Maps to the **Secondary Grey** type in Finesse.
   secondaryGrey,
 
-  /// Lower emphasis: transparent fill with an `outline`-colored border and
-  /// `primary` content. Maps to the **Outline** button type in Finesse.
+  /// Lower emphasis: transparent fill with an `outline`-colored border and `primary` content. Maps to the **Outline** button type in Finesse.
   outlined,
 
-  /// Lowest emphasis: no fill or border, `primary` content only. Maps to the
-  /// **Text Only** button type in Finesse.
+  /// Lowest emphasis: no fill or border, `primary` content only. Maps to the **Text Only** button type in Finesse.
   text,
 }
 
-/// The size of a `GHAppButton`, controlling height, padding, icon size, gap
-/// and label style.
+/// The size of a `GHAppButton`, controlling height, padding, icon size, gap and label style.
 ///
 /// Matches the five sizes documented in the Finesse UI Kit:
 ///
@@ -45,8 +39,7 @@ enum ButtonSize {
   /// Extra-small button — 40 logical px tall. For very dense layouts.
   extraSmall,
 
-  /// Small button — 44 logical px tall. For compact layouts and secondary
-  /// actions.
+  /// Small button — 44 logical px tall. For compact layouts and secondary actions.
   small,
 
   /// Default button size — 52 logical px tall.

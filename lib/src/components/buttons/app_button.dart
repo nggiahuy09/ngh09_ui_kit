@@ -10,14 +10,9 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable button built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppButton` is the canonical action component. It supports all five
-/// [ButtonVariant] types (filled / tonal / secondaryGrey / outlined / text),
-/// five [ButtonSize] steps, four [ButtonCorner] shapes, optional
-/// [leading]/[trailing] icons, and `loading`/`disabled` states.
+/// `GHAppButton` is the canonical action component. It supports all five [ButtonVariant] types (filled / tonal / secondaryGrey / outlined / text), five [ButtonSize] steps, four [ButtonCorner] shapes, optional [leading]/[trailing] icons, and `loading`/`disabled` states.
 ///
-/// Hover and focus shadows are driven by the active theme's [GHAppShadows]
-/// so every state transition faithfully follows the Finesse specification —
-/// nothing is hardcoded.
+/// Hover and focus shadows are driven by the active theme's [GHAppShadows] so every state transition faithfully follows the Finesse specification — nothing is hardcoded.
 ///
 /// ```dart
 /// GHAppButton(
@@ -39,9 +34,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// );
 /// ```
 ///
-/// A button is disabled when [onPressed] is `null` or [isLoading] is `true`.
-/// While [isLoading] it shows a progress indicator in place of the icons and
-/// ignores taps, but keeps its label and footprint so the layout does not jump.
+/// A button is disabled when [onPressed] is `null` or [isLoading] is `true`. While [isLoading] it shows a progress indicator in place of the icons and ignores taps, but keeps its label and footprint so the layout does not jump.
 class GHAppButton extends StatefulWidget {
   /// Creates a button with an explicit [variant] (defaults to
   /// [ButtonVariant.filled]) and [corner] (defaults to [ButtonCorner.medium]).
@@ -130,8 +123,7 @@ class GHAppButton extends StatefulWidget {
 
   /// Called when the button is tapped.
   ///
-  /// When `null`, the button renders in its disabled state and does not
-  /// respond to input.
+  /// When `null`, the button renders in its disabled state and does not respond to input.
   final VoidCallback? onPressed;
 
   /// The visual type of the button. See [ButtonVariant].
@@ -166,8 +158,7 @@ class GHAppButton extends StatefulWidget {
 }
 
 class _GHAppButtonState extends State<GHAppButton> {
-  // Shared states controller lets the shadow layer read the same states that
-  // the underlying Material button reports (hover, focus, pressed, etc.).
+  // Shared states controller lets the shadow layer read the same states that the underlying Material button reports (hover, focus, pressed, etc.).
   final _statesController = WidgetStatesController();
 
   bool get _isEnabled => widget.onPressed != null && !widget.isLoading;
@@ -175,10 +166,7 @@ class _GHAppButtonState extends State<GHAppButton> {
   @override
   void initState() {
     super.initState();
-    // Defer listener registration to after the first frame. FilledButton calls
-    // statesController.update() during its own mount (to set the disabled
-    // state), which would fire _onStatesChanged mid-build and violate
-    // Flutter's "no setState during build" invariant.
+    // Defer listener registration to after the first frame. FilledButton calls statesController.update() during its own mount (to set the disabled state), which would fire _onStatesChanged mid-build and violate Flutter's "no setState during build" invariant.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _statesController.addListener(_onStatesChanged);
     });
@@ -186,13 +174,7 @@ class _GHAppButtonState extends State<GHAppButton> {
 
   void _onStatesChanged() {
     if (!mounted) return;
-    // The underlying Material button calls _statesController.update() during
-    // its own build/didUpdateWidget — e.g. when this button is rebuilt into a
-    // disabled/loading state, it flips WidgetState.disabled mid-build. Calling
-    // setState synchronously then would violate Flutter's "no setState during
-    // build" invariant (the '!_dirty' assertion), so defer to after the frame
-    // when a build is already in flight; otherwise (hover/focus/press at rest)
-    // rebuild immediately so the shadow layer reacts without a frame's lag.
+    // The underlying Material button calls _statesController.update() during its own build/didUpdateWidget — e.g. when this button is rebuilt into a disabled/loading state, it flips WidgetState.disabled mid-build. Calling setState synchronously then would violate Flutter's "no setState during build" invariant (the '!_dirty' assertion), so defer to after the frame when a build is already in flight; otherwise (hover/focus/press at rest) rebuild immediately so the shadow layer reacts without a frame's lag.
     if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.persistentCallbacks) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) setState(() {});
@@ -299,15 +281,12 @@ class _GHAppButtonState extends State<GHAppButton> {
     final background = _backgroundColor(colors);
     final borderRadius = _borderRadius(context);
 
-    // Disabled foreground for secondaryGrey uses the explicit Finesse token
-    // (Grey/300). For all other variants, Material's default disabled opacity
-    // (applied automatically) produces the correct result.
+    // Disabled foreground for secondaryGrey uses the explicit Finesse token (Grey/300). For all other variants, Material's default disabled opacity (applied automatically) produces the correct result.
     final disabledFg = widget.variant == ButtonVariant.secondaryGrey ? ColorTokens.gray300 : null;
 
     return ButtonStyle(
       animationDuration: DurationTokens.fast,
-      // Remove Material's built-in elevation so it doesn't compete with our
-      // custom box-shadow layer.
+      // Remove Material's built-in elevation so it doesn't compete with our custom box-shadow layer.
       elevation: const WidgetStatePropertyAll(0),
       minimumSize: const WidgetStatePropertyAll(Size.zero),
       padding: WidgetStatePropertyAll(_padding),
@@ -380,9 +359,7 @@ class _GHAppButtonState extends State<GHAppButton> {
     // Text-only buttons carry no shadow.
     if (!_hasShadow) return button;
 
-    // The shadow is re-evaluated on each build triggered by _onStatesChanged,
-    // so the correct resting / hover / focus shadow is always applied without
-    // an extra widget node in the tree.
+    // The shadow is re-evaluated on each build triggered by _onStatesChanged, so the correct resting / hover / focus shadow is always applied without an extra widget node in the tree.
     return DecoratedBox(
       decoration: BoxDecoration(borderRadius: borderRadius, boxShadow: _shadowForStates(_statesController.value, shadows)),
       child: button,
@@ -390,8 +367,7 @@ class _GHAppButtonState extends State<GHAppButton> {
   }
 }
 
-/// Lays out the leading icon, label and trailing icon of a [GHAppButton],
-/// swapping the icons for a progress indicator while loading.
+/// Lays out the leading icon, label and trailing icon of a [GHAppButton], swapping the icons for a progress indicator while loading.
 class _ButtonContent extends StatelessWidget {
   const _ButtonContent({
     required this.label,
@@ -431,12 +407,7 @@ class _ButtonContent extends StatelessWidget {
         ),
       if (isLoading || leading != null) SizedBox(width: spacing),
       Flexible(
-        child: Text(
-          label,
-          style: labelStyle,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-        ),
+        child: Text(label, style: labelStyle, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center),
       ),
       if (!isLoading && trailing != null) ...[
         SizedBox(width: spacing),
@@ -447,10 +418,6 @@ class _ButtonContent extends StatelessWidget {
       ],
     ];
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
-    );
+    return Row(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: children);
   }
 }

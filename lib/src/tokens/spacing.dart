@@ -1,8 +1,6 @@
 /// Primitive spacing scale based on a 4pt grid.
 ///
-/// Low-level tokens; widgets should read spacing from the semantic theme layer
-/// (`GHAppSpacing`, via `context.spacing`) rather than these constants
-/// directly.
+/// Low-level tokens; widgets should read spacing from the semantic theme layer (`GHAppSpacing`, via `context.spacing`) rather than these constants directly.
 abstract final class SpacingTokens {
   /// 0 logical pixels — no spacing.
   static const double none = 0;
