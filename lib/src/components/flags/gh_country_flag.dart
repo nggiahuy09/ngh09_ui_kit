@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/components/flags/gh_country.dart';
 
-/// Renders a country flag as a Unicode emoji, sized and optionally clipped to
-/// a circle.
+/// Renders a country flag as a Unicode emoji, sized and optionally clipped to a circle.
 ///
-/// Uses regional-indicator emoji derived from the country's ISO 3166-1 alpha-2
-/// code — zero assets, zero extra dependencies, works offline on all platforms.
+/// Uses regional-indicator emoji derived from the country's ISO 3166-1 alpha-2 code — zero assets, zero extra dependencies, works offline on all platforms.
 ///
 /// ```dart
 /// GHCountryFlag(GHCountry.unitedStates)              // 24px circular
@@ -15,8 +13,7 @@ import 'package:ngh09_ui_kit/src/components/flags/gh_country.dart';
 ///
 /// **Size.** Defaults to `24.0`, matching the Finesse design spec (24×24 px).
 ///
-/// **Circular.** When `true` (default) the widget clips to an [ClipOval],
-/// matching the circular flag symbols in the Figma catalog.
+/// **Circular.** When `true` (default) the widget clips to an [ClipOval], matching the circular flag symbols in the Figma catalog.
 class GHCountryFlag extends StatelessWidget {
   /// Creates a flag widget for [country].
   const GHCountryFlag(this.country, {this.size = 24.0, this.circular = true, this.semanticLabel, super.key});
@@ -39,11 +36,7 @@ class GHCountryFlag extends StatelessWidget {
     final flag = SizedBox.square(
       dimension: size,
       child: FittedBox(
-        child: Text(
-          country.flagEmoji,
-          style: const TextStyle(fontSize: 32, height: 1),
-          textScaler: TextScaler.noScaling,
-        ),
+        child: Text(country.flagEmoji, style: const TextStyle(fontSize: 32, height: 1), textScaler: TextScaler.noScaling),
       ),
     );
 

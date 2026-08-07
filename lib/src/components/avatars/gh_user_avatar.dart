@@ -8,8 +8,7 @@ import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 
 /// A circular user avatar from the Finesse UI Kit.
 ///
-/// Renders either a hand-drawn portrait illustration (primary constructor) or
-/// an initials placeholder ([GHUserAvatar.initials]).
+/// Renders either a hand-drawn portrait illustration (primary constructor) or an initials placeholder ([GHUserAvatar.initials]).
 ///
 /// ```dart
 /// // Illustrated portrait
@@ -85,8 +84,7 @@ class GHUserAvatar extends StatelessWidget {
 
   /// Accessibility label announced by screen readers.
   ///
-  /// Defaults to `"User avatar"` (image variant) or `"Avatar: <initials>"`
-  /// (initials variant) when `null`.
+  /// Defaults to `"User avatar"` (image variant) or `"Avatar: <initials>"` (initials variant) when `null`.
   final String? semanticLabel;
 
   // ── Design tokens
@@ -133,22 +131,11 @@ class GHUserAvatar extends StatelessWidget {
                 decoration: BoxDecoration(color: _background, shape: BoxShape.circle, boxShadow: _stateShadow),
                 child: ClipOval(
                   child: variant != null
-                      ? Image.asset(
-                          variant!.assetPath,
-                          width: dim,
-                          height: dim,
-                          fit: BoxFit.cover,
-                          excludeFromSemantics: true,
-                        )
+                      ? Image.asset(variant!.assetPath, width: dim, height: dim, fit: BoxFit.cover, excludeFromSemantics: true)
                       : Center(
                           child: Text(
                             _truncatedInitials,
-                            style: TextStyle(
-                              color: ColorTokens.gray900,
-                              fontSize: size.initialsFontSize,
-                              fontWeight: FontWeight.w500,
-                              height: 1,
-                            ),
+                            style: TextStyle(color: ColorTokens.gray900, fontSize: size.initialsFontSize, fontWeight: FontWeight.w500, height: 1),
                             maxLines: 1,
                             overflow: TextOverflow.clip,
                             semanticsLabel: '',
@@ -192,9 +179,7 @@ class GHUserAvatar extends StatelessWidget {
 
 // ── Private indicator sub-widgets ────────────────────────────────────────────
 //
-// Each indicator renders an outer white ring (matching the indicator slot
-// diameter) with an inner coloured circle. This mirrors the Finesse SVG
-// composition where the white separation ring is baked into the asset frame.
+// Each indicator renders an outer white ring (matching the indicator slot diameter) with an inner coloured circle. This mirrors the Finesse SVG composition where the white separation ring is baked into the asset frame.
 
 class _OnlineDot extends StatelessWidget {
   const _OnlineDot({required this.diameter, required this.isOnline});
@@ -239,11 +224,7 @@ class _VerifiedBadge extends StatelessWidget {
     return Container(
       width: diameter,
       height: diameter,
-      decoration: const BoxDecoration(
-        color: ColorTokens.white,
-        shape: BoxShape.circle,
-        boxShadow: ShadowTokens.small,
-      ),
+      decoration: const BoxDecoration(color: ColorTokens.white, shape: BoxShape.circle, boxShadow: ShadowTokens.small),
       child: Center(
         child: Container(
           width: inner,
@@ -270,11 +251,7 @@ class _NumberBadge extends StatelessWidget {
     return Container(
       width: diameter,
       height: diameter,
-      decoration: const BoxDecoration(
-        color: ColorTokens.white,
-        shape: BoxShape.circle,
-        boxShadow: ShadowTokens.small,
-      ),
+      decoration: const BoxDecoration(color: ColorTokens.white, shape: BoxShape.circle, boxShadow: ShadowTokens.small),
       child: Center(
         child: Container(
           width: inner,

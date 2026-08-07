@@ -1,7 +1,6 @@
 /// The leading affordance shown at the start of a `GHAppDropdownListItem`.
 ///
-/// Matches the Finesse UI Kit "Leading Type" property: [none], [icon],
-/// [avatar], [flag] and [checkbox].
+/// Matches the Finesse UI Kit "Leading Type" property: [none], [icon], [avatar], [flag] and [checkbox].
 enum GHDropdownLeadingType {
   /// No leading content — the label starts flush with the item's edge.
   none,
@@ -15,7 +14,6 @@ enum GHDropdownLeadingType {
   /// A `GHCountryFlag`, supplied via `leading`.
   flag,
 
-  /// A `GHAppCheckbox` bound to the item's `selected` state — used by
-  /// checklist-style dropdowns where tapping the row toggles membership.
+  /// A `GHAppCheckbox` bound to the item's `selected` state — used by checklist-style dropdowns where tapping the row toggles membership.
   checkbox,
 }

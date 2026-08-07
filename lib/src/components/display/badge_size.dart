@@ -1,5 +1,4 @@
-/// The size of a `GHAppBadge`, controlling height, padding, gap and label
-/// style.
+/// The size of a `GHAppBadge`, controlling height, padding, gap and label style.
 ///
 /// Matches the three sizes in the Finesse UI Kit "Badges" component set:
 ///

@@ -10,8 +10,7 @@ class _TypeRole {
   final TextStyle style;
 }
 
-/// A static reference list of the kit's 15 typography roles, read live from
-/// [GHAppTypography] rather than fixed pixel values.
+/// A static reference list of the kit's 15 typography roles, read live from [GHAppTypography] rather than fixed pixel values.
 class TypographyScreen extends StatelessWidget {
   const TypographyScreen({super.key});
 

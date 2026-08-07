@@ -1,5 +1,4 @@
-/// The size of a `GHAppIconButton`, controlling box, icon and corner-radius
-/// dimensions.
+/// The size of a `GHAppIconButton`, controlling box, icon and corner-radius dimensions.
 ///
 /// Matches the seven sizes documented in the Finesse UI Kit:
 ///

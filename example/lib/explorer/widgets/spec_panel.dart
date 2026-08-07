@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 
-/// A monospace panel showing the constructor call that reproduces the
-/// current playground selection, e.g. `GHAppButton(variant: filled, ...)`.
+/// A monospace panel showing the constructor call that reproduces the current playground selection, e.g. `GHAppButton(variant: filled, ...)`.
 class SpecPanel extends StatelessWidget {
   const SpecPanel({required this.spec, super.key});
 
@@ -24,10 +23,7 @@ class SpecPanel extends StatelessWidget {
         borderRadius: context.radii.borderRadiusMd,
         border: Border.all(color: colors.outlineVariant),
       ),
-      child: Text(
-        spec,
-        style: GoogleFonts.jetBrainsMono(fontSize: 11, height: 1.5, color: colors.onSurfaceVariant),
-      ),
+      child: Text(spec, style: GoogleFonts.jetBrainsMono(fontSize: 11, height: 1.5, color: colors.onSurfaceVariant)),
     );
   }
 }

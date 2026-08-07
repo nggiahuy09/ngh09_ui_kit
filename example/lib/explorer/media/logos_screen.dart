@@ -3,8 +3,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:ngh09_ui_kit_example/explorer/explorer_scaffold.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 
-/// A searchable reference grid of every [GHCompany] in the logo catalog,
-/// rendered live via [GHCompanyLogo].
+/// A searchable reference grid of every [GHCompany] in the logo catalog, rendered live via [GHCompanyLogo].
 class LogosScreen extends StatefulWidget {
   const LogosScreen({super.key});
 
@@ -82,10 +81,7 @@ class _LogosScreenState extends State<LogosScreen> {
           Expanded(
             child: filtered.isEmpty
                 ? Center(
-                    child: Text(
-                      'No results',
-                      style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant),
-                    ),
+                    child: Text('No results', style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant)),
                   )
                 : GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
@@ -130,8 +126,7 @@ class _LogosScreenState extends State<LogosScreen> {
   }
 }
 
-/// Converts a camelCase enum name (e.g. `activeCampaign`) into a Title Case
-/// display label (e.g. `Active Campaign`).
+/// Converts a camelCase enum name (e.g. `activeCampaign`) into a Title Case display label (e.g. `Active Campaign`).
 String _titleCase(String camelCase) {
   final buffer = StringBuffer();
 
@@ -143,9 +138,7 @@ String _titleCase(String camelCase) {
       continue;
     }
 
-    if (char.toUpperCase() == char && char.toLowerCase() != char) {
-      buffer.write(' ');
-    }
+    if (char.toUpperCase() == char && char.toLowerCase() != char) buffer.write(' ');
 
     buffer.write(char);
   }

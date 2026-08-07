@@ -1,5 +1,4 @@
-/// The three canonical sizes for a `GHPaymentIcon`, matching the Finesse
-/// design spec (sm: 34x24, md: 46x32, lg: 58x40).
+/// The three canonical sizes for a `GHPaymentIcon`, matching the Finesse design spec (sm: 34x24, md: 46x32, lg: 58x40).
 enum GHPaymentIconSize {
   /// Small -- 34x24 logical pixels.
   sm(width: 34, height: 24, fontSize: 7.5),

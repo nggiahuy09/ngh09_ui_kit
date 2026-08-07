@@ -8,14 +8,9 @@ import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A themeable single-line text input built on the Finesse UI Kit design
-/// tokens.
+/// A themeable single-line text input built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppTextField` pairs an optional [label] above the field with an
-/// optional [helperText] row below (prefixed with a status icon), and
-/// reflects hover / focus / disabled / read-only states plus a [status]
-/// (from [GHAlertState]) that tints the field for error, warning or success
-/// feedback.
+/// `GHAppTextField` pairs an optional [label] above the field with an optional [helperText] row below (prefixed with a status icon), and reflects hover / focus / disabled / read-only states plus a [status] (from [GHAlertState]) that tints the field for error, warning or success feedback.
 ///
 /// ```dart
 /// GHAppTextField(
@@ -32,8 +27,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// );
 /// ```
 ///
-/// The field is disabled when [enabled] is `false`, and read-only (visible
-/// but non-editable) when [readOnly] is `true`.
+/// The field is disabled when [enabled] is `false`, and read-only (visible but non-editable) when [readOnly] is `true`.
 class GHAppTextField extends StatefulWidget {
   /// Creates a single-line text field.
   const GHAppTextField({
@@ -58,8 +52,7 @@ class GHAppTextField extends StatefulWidget {
   /// Controls the field's text. When `null`, the field manages its own.
   final TextEditingController? controller;
 
-  /// The focus node backing the field. When `null`, the field creates and
-  /// owns one internally.
+  /// The focus node backing the field. When `null`, the field creates and owns one internally.
   final FocusNode? focusNode;
 
   /// Optional label shown above the field.
@@ -68,15 +61,13 @@ class GHAppTextField extends StatefulWidget {
   /// Optional placeholder shown when the field is empty.
   final String? placeholder;
 
-  /// Optional helper/error/warning/success message shown below the field,
-  /// prefixed with a status icon matching [status].
+  /// Optional helper/error/warning/success message shown below the field, prefixed with a status icon matching [status].
   final String? helperText;
 
   /// Optional leading icon shown inside the field, before the text.
   final Widget? leadingIcon;
 
-  /// The feedback state, tinting the field and [helperText]. Defaults to
-  /// [GHAlertState.active] (neutral).
+  /// The feedback state, tinting the field and [helperText]. Defaults to [GHAlertState.active] (neutral).
   final GHAlertState status;
 
   /// Whether to obscure the input, for password entry.
@@ -88,8 +79,7 @@ class GHAppTextField extends StatefulWidget {
   /// The action button to show on the software keyboard.
   final TextInputAction? textInputAction;
 
-  /// Whether the field accepts input. When `false`, it renders in its
-  /// disabled state.
+  /// Whether the field accepts input. When `false`, it renders in its disabled state.
   final bool enabled;
 
   /// Whether the field's content is visible but non-editable ("View Only").
@@ -115,8 +105,7 @@ class _GHAppTextFieldState extends State<GHAppTextField> {
 
   FocusNode get _focusNode => widget.focusNode ?? (_internalFocusNode ??= FocusNode());
 
-  // A field is "static" when it neither accepts input nor reacts to hover or
-  // focus — disabled and read-only share the same muted, fixed appearance.
+  // A field is "static" when it neither accepts input nor reacts to hover or focus — disabled and read-only share the same muted, fixed appearance.
   bool get _isStatic => !widget.enabled || widget.readOnly;
 
   @override

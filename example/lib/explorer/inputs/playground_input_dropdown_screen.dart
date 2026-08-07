@@ -6,20 +6,9 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/option_toggle_row.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-const _fruits = [
-  'Apple',
-  'Banana',
-  'Cherry',
-  'Dragonfruit',
-  'Elderberry',
-  'Fig',
-  'Grape',
-  'Honeydew',
-];
+const _fruits = ['Apple', 'Banana', 'Cherry', 'Dragonfruit', 'Elderberry', 'Fig', 'Grape', 'Honeydew'];
 
-/// A live playground for [GHAppInputDropdown]: pick a fruit from a real
-/// searchable list, toggle whether search is enabled, and edit the
-/// placeholder, with a spec string reflecting the choice.
+/// A live playground for [GHAppInputDropdown]: pick a fruit from a real searchable list, toggle whether search is enabled, and edit the placeholder, with a spec string reflecting the choice.
 class InputDropdownPlaygroundScreen extends StatefulWidget {
   const InputDropdownPlaygroundScreen({super.key});
 

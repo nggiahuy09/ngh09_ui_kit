@@ -11,8 +11,7 @@ class _RadiusStep {
   final String label;
 }
 
-/// A static reference grid of the kit's radius scale, read live from
-/// [GHAppRadii].
+/// A static reference grid of the kit's radius scale, read live from [GHAppRadii].
 class RadiiScreen extends StatelessWidget {
   const RadiiScreen({super.key});
 

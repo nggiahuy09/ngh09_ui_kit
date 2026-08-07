@@ -5,14 +5,11 @@ import 'package:ngh09_ui_kit/src/components/progress/progress_bar_indicator.dart
 import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A linear progress track that fills from left to right as [value]
-/// approaches [max] — per the Finesse UI Kit spec.
+/// A linear progress track that fills from left to right as [value] approaches [max] — per the Finesse UI Kit spec.
 ///
-/// The fill never fully disappears: even at `value == 0` it renders as a
-/// small rounded dot, so the bar's starting point stays visible.
+/// The fill never fully disappears: even at `value == 0` it renders as a small rounded dot, so the bar's starting point stays visible.
 ///
-/// Requires a bounded-width ancestor (e.g. a [SizedBox] or an [Expanded]
-/// inside a [Row]), the same constraint [LinearProgressIndicator] has.
+/// Requires a bounded-width ancestor (e.g. a [SizedBox] or an [Expanded] inside a [Row]), the same constraint [LinearProgressIndicator] has.
 ///
 /// ```dart
 /// GHProgressBar(value: 60);
@@ -24,14 +21,9 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// ```
 class GHProgressBar extends StatelessWidget {
   /// Creates a progress bar showing [value] out of [max].
-  const GHProgressBar({
-    required this.value,
-    this.max = 100,
-    this.indicator = GHProgressBarIndicator.none,
-    this.label,
-    super.key,
-  }) : assert(max > 0, 'GHProgressBar needs a positive max.'),
-       assert(value >= 0 && value <= max, 'value must be within [0, max].');
+  const GHProgressBar({required this.value, this.max = 100, this.indicator = GHProgressBarIndicator.none, this.label, super.key})
+    : assert(max > 0, 'GHProgressBar needs a positive max.'),
+      assert(value >= 0 && value <= max, 'value must be within [0, max].');
 
   /// The current progress, within `[0, max]`.
   final double value;
@@ -42,9 +34,7 @@ class GHProgressBar extends StatelessWidget {
   /// How the current value is annotated alongside the bar.
   final GHProgressBarIndicator indicator;
 
-  /// A custom status label shown when [indicator] is
-  /// [GHProgressBarIndicator.labelAndValue]. When `null`, a label is derived
-  /// from [value] ("Starting", "In Progress" or "Completed").
+  /// A custom status label shown when [indicator] is [GHProgressBarIndicator.labelAndValue]. When `null`, a label is derived from [value] ("Starting", "In Progress" or "Completed").
   final String? label;
 
   static const double _height = 6;

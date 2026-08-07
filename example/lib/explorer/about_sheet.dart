@@ -8,19 +8,17 @@ const _finesseTitle = 'Finesse UI – Figma UI Kit and Design System';
 const _finesseSubtitle = 'FREE (Community) · Version 1.0';
 final Uri _finesseUrl = Uri.parse('https://www.figma.com/community/file/1227728490805632361');
 
-/// Shows the "About" modal bottom sheet describing the app: what it contains,
-/// its version, and the Finesse UI Kit it is built on.
+/// Shows the "About" modal bottom sheet describing the app: what it contains, its version, and the Finesse UI Kit it is built on.
 Future<void> showAboutAppSheet(BuildContext context) {
   final colors = context.colors;
   final radii = context.radii;
+
   return showModalBottomSheet<void>(
     context: context,
     backgroundColor: colors.surface,
     isScrollControlled: true,
     showDragHandle: true,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(radii.lg)),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(radii.lg))),
     builder: (_) => const _AboutSheet(),
   );
 }
@@ -38,12 +36,7 @@ class _AboutSheet extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          spacing.lg,
-          spacing.xs,
-          spacing.lg,
-          spacing.lg,
-        ),
+        padding: EdgeInsets.fromLTRB(spacing.lg, spacing.xs, spacing.lg, spacing.lg),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,10 +52,7 @@ class _AboutSheet extends StatelessWidget {
                     children: [
                       Text(
                         'ngh09 UI',
-                        style: textStyles.titleLarge.copyWith(
-                          color: colors.onSurface,
-                          fontWeight: FontWeight.w800,
-                        ),
+                        style: textStyles.titleLarge.copyWith(color: colors.onSurface, fontWeight: FontWeight.w800),
                       ),
                       SizedBox(height: spacing.xxs),
                       const _VersionLine(),
@@ -79,20 +69,12 @@ class _AboutSheet extends StatelessWidget {
               'feedback, media — and its foundation tokens: colors, typography, '
               'spacing, radii, shadows, breakpoints and durations, all built on '
               "the kit's real widgets and theme layer.",
-              style: textStyles.bodyMedium.copyWith(
-                color: colors.onSurfaceVariant,
-                height: 1.5,
-              ),
+              style: textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant, height: 1.5),
             ),
             SizedBox(height: spacing.lg),
 
             // Credit / attribution to the Finesse UI Kit.
-            _CreditCard(
-              colors: colors,
-              spacing: spacing,
-              radii: radii,
-              textStyles: textStyles,
-            ),
+            _CreditCard(colors: colors, spacing: spacing, radii: radii, textStyles: textStyles),
           ],
         ),
       ),
@@ -112,19 +94,11 @@ class _AppMark extends StatelessWidget {
     return Container(
       width: 52,
       height: 52,
-      decoration: BoxDecoration(
-        color: colors.onSurface,
-        borderRadius: BorderRadius.circular(radii.md),
-      ),
+      decoration: BoxDecoration(color: colors.onSurface, borderRadius: BorderRadius.circular(radii.md)),
       alignment: Alignment.center,
       child: Text(
         '09',
-        style: TextStyle(
-          color: colors.surface,
-          fontSize: 22,
-          fontWeight: FontWeight.w800,
-          letterSpacing: -1,
-        ),
+        style: TextStyle(color: colors.surface, fontSize: 22, fontWeight: FontWeight.w800, letterSpacing: -1),
       ),
     );
   }
@@ -145,9 +119,7 @@ class _VersionLineState extends State<_VersionLine> {
   Future<void> initState() async {
     super.initState();
     await PackageInfo.fromPlatform().then((info) {
-      if (mounted) {
-        setState(() => _version = 'v${info.version} (${info.buildNumber})');
-      }
+      if (mounted) setState(() => _version = 'v${info.version} (${info.buildNumber})');
     });
   }
 
@@ -155,21 +127,13 @@ class _VersionLineState extends State<_VersionLine> {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final textStyles = context.textStyles;
-    return Text(
-      _version ?? 'Design system explorer',
-      style: textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant),
-    );
+    return Text(_version ?? 'Design system explorer', style: textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant));
   }
 }
 
 /// Attribution card linking to the Finesse UI Kit on the Figma community.
 class _CreditCard extends StatelessWidget {
-  const _CreditCard({
-    required this.colors,
-    required this.spacing,
-    required this.radii,
-    required this.textStyles,
-  });
+  const _CreditCard({required this.colors, required this.spacing, required this.radii, required this.textStyles});
 
   final GHAppColors colors;
   final GHAppSpacing spacing;
@@ -183,10 +147,7 @@ class _CreditCard extends StatelessWidget {
         ..hideCurrentSnackBar()
         ..showSnackBar(
           const SnackBar(
-            content: GHSnackbar(
-              message: 'Could not open the link.',
-              state: GHSnackbarState.error,
-            ),
+            content: GHSnackbar(message: 'Could not open the link.', state: GHSnackbarState.error),
             backgroundColor: Colors.transparent,
             elevation: 0,
             behavior: SnackBarBehavior.floating,
@@ -200,35 +161,23 @@ class _CreditCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(spacing.md),
-      decoration: BoxDecoration(
-        color: colors.surfaceVariant,
-        borderRadius: BorderRadius.circular(radii.md),
-      ),
+      decoration: BoxDecoration(color: colors.surfaceVariant, borderRadius: BorderRadius.circular(radii.md)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'BUILT ON',
-            style: textStyles.labelSmall.copyWith(
-              color: colors.onSurfaceVariant,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.8,
-            ),
+            style: textStyles.labelSmall.copyWith(color: colors.onSurfaceVariant, fontWeight: FontWeight.w700, letterSpacing: 0.8),
           ),
           SizedBox(height: spacing.sm),
           Text(
             '❖ $_finesseTitle',
-            style: textStyles.bodyMedium.copyWith(
-              color: colors.onSurface,
-              fontWeight: FontWeight.w600,
-            ),
+            style: textStyles.bodyMedium.copyWith(color: colors.onSurface, fontWeight: FontWeight.w600),
           ),
           SizedBox(height: spacing.xxs),
           Text(
             _finesseSubtitle,
-            style: textStyles.bodySmall.copyWith(
-              color: colors.onSurfaceVariant,
-            ),
+            style: textStyles.bodySmall.copyWith(color: colors.onSurfaceVariant),
           ),
           SizedBox(height: spacing.md),
           GHAppButton.outlined(

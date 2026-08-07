@@ -6,11 +6,9 @@ import 'package:ngh09_ui_kit/src/theme/app_spacing.dart';
 import 'package:ngh09_ui_kit/src/theme/app_typography.dart';
 import 'package:ngh09_ui_kit/src/tokens/breakpoints.dart';
 
-/// Convenience accessors for the UI kit's theme extensions and common
-/// `MediaQuery`/`Theme` lookups.
+/// Convenience accessors for the UI kit's theme extensions and common `MediaQuery`/`Theme` lookups.
 ///
-/// These let components read semantic tokens without verbose
-/// `Theme.of(context).extension<...>()!` calls:
+/// These let components read semantic tokens without verbose `Theme.of(context).extension<...>()!` calls:
 ///
 /// ```dart
 /// Container(color: context.colors.surface);
@@ -31,8 +29,7 @@ extension GHAppThemeContext on BuildContext {
   GHAppShadows get shadows => Theme.of(this).extension<GHAppShadows>()!;
 
   /// The semantic text styles for the current theme.
-  GHAppTypography get textStyles =>
-      Theme.of(this).extension<GHAppTypography>()!;
+  GHAppTypography get textStyles => Theme.of(this).extension<GHAppTypography>()!;
 
   /// Whether the active theme is dark.
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
@@ -52,11 +49,8 @@ extension GHAppMediaQueryContext on BuildContext {
   /// Whether the layout is in the mobile range (width < tablet breakpoint).
   bool get isMobile => screenWidth < BreakpointTokens.mobile;
 
-  /// Whether the layout is in the tablet range
-  /// (mobile breakpoint ≤ width < tablet breakpoint).
-  bool get isTablet =>
-      screenWidth >= BreakpointTokens.mobile &&
-      screenWidth < BreakpointTokens.tablet;
+  /// Whether the layout is in the tablet range (mobile breakpoint ≤ width < tablet breakpoint).
+  bool get isTablet => screenWidth >= BreakpointTokens.mobile && screenWidth < BreakpointTokens.tablet;
 
   /// Whether the layout is in the desktop range (width ≥ tablet breakpoint).
   bool get isDesktop => screenWidth >= BreakpointTokens.tablet;

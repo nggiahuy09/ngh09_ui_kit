@@ -13,8 +13,7 @@ extension on _FlagSize {
   };
 }
 
-/// A searchable reference grid of every [GHCountry] in the flag catalog,
-/// rendered live via [GHCountryFlag].
+/// A searchable reference grid of every [GHCountry] in the flag catalog, rendered live via [GHCountryFlag].
 class FlagsScreen extends StatefulWidget {
   const FlagsScreen({super.key});
 
@@ -92,10 +91,7 @@ class _FlagsScreenState extends State<FlagsScreen> {
                       ),
                     ),
                     SizedBox(width: spacing.smd),
-                    _CircularToggle(
-                      value: _circular,
-                      onChanged: (value) => setState(() => _circular = value),
-                    ),
+                    _CircularToggle(value: _circular, onChanged: (value) => setState(() => _circular = value)),
                   ],
                 ),
               ],
@@ -104,10 +100,7 @@ class _FlagsScreenState extends State<FlagsScreen> {
           Expanded(
             child: filtered.isEmpty
                 ? Center(
-                    child: Text(
-                      'No results',
-                      style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant),
-                    ),
+                    child: Text('No results', style: context.textStyles.bodyMedium.copyWith(color: colors.onSurfaceVariant)),
                   )
                 : GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
@@ -178,17 +171,10 @@ class _CircularToggle extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Circular',
-                style: context.textStyles.labelMedium.copyWith(color: colors.onSurfaceVariant),
-              ),
+              Text('Circular', style: context.textStyles.labelMedium.copyWith(color: colors.onSurfaceVariant)),
               SizedBox(
                 height: 24,
-                child: Switch(
-                  value: value,
-                  onChanged: onChanged,
-                  activeTrackColor: colors.success,
-                ),
+                child: Switch(value: value, onChanged: onChanged, activeTrackColor: colors.success),
               ),
             ],
           ),
@@ -198,8 +184,7 @@ class _CircularToggle extends StatelessWidget {
   }
 }
 
-/// Converts a camelCase enum name (e.g. `unitedStates`) into a Title Case
-/// display label (e.g. `United States`).
+/// Converts a camelCase enum name (e.g. `unitedStates`) into a Title Case display label (e.g. `United States`).
 String _titleCase(String camelCase) {
   final buffer = StringBuffer();
 
@@ -211,9 +196,7 @@ String _titleCase(String camelCase) {
       continue;
     }
 
-    if (char.toUpperCase() == char && char.toLowerCase() != char) {
-      buffer.write(' ');
-    }
+    if (char.toUpperCase() == char && char.toLowerCase() != char) buffer.write(' ');
 
     buffer.write(char);
   }

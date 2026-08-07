@@ -4,7 +4,7 @@ import 'package:ngh09_ui_kit/ngh09_ui_kit.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class AppVersionLabel extends StatefulWidget {
-  const AppVersionLabel();
+  const AppVersionLabel({super.key});
 
   @override
   State<AppVersionLabel> createState() => AppVersionLabelState();
@@ -14,9 +14,9 @@ class AppVersionLabelState extends State<AppVersionLabel> {
   String? _version;
 
   @override
-  void initState() {
+  Future<void> initState() async {
     super.initState();
-    PackageInfo.fromPlatform().then((info) {
+    await PackageInfo.fromPlatform().then((info) {
       if (mounted) setState(() => _version = 'v${info.version}');
     });
   }

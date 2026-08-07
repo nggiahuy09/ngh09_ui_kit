@@ -1,5 +1,4 @@
-/// The size of a `GHAppDropdownListItem`, controlling row padding and text
-/// scale.
+/// The size of a `GHAppDropdownListItem`, controlling row padding and text scale.
 ///
 /// | Finesse name | Dart value | Vertical padding | Text style   |
 /// |--------------|------------|-------------------|--------------|

@@ -6,17 +6,9 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHProgressStepper]: pick a step count, walk the
-/// current step forward/back, choose an indicator style, and toggle labels,
-/// with a spec string reflecting the choice.
+/// A live playground for [GHProgressStepper]: pick a step count, walk the current step forward/back, choose an indicator style, and toggle labels, with a spec string reflecting the choice.
 ///
-/// Every generated step carries both a [GHProgressStep.label] and a
-/// [GHProgressStep.icon] so the sample data satisfies
-/// [GHProgressStepper]'s assertions no matter which indicator is picked
-/// (icon indicator requires every step to have an icon; showing labels
-/// requires every step to have one). `showLabels` is forced off whenever the
-/// indicator is [GHProgressStepIndicator.chip], since chip indicators don't
-/// support labels.
+/// Every generated step carries both a [GHProgressStep.label] and a [GHProgressStep.icon] so the sample data satisfies [GHProgressStepper]'s assertions no matter which indicator is picked (icon indicator requires every step to have an icon; showing labels requires every step to have one). `showLabels` is forced off whenever the indicator is [GHProgressStepIndicator.chip], since chip indicators don't support labels.
 class ProgressStepperPlaygroundScreen extends StatefulWidget {
   const ProgressStepperPlaygroundScreen({super.key});
 
@@ -66,12 +58,7 @@ class _ProgressStepperPlaygroundScreenState extends State<ProgressStepperPlaygro
         padding: EdgeInsets.symmetric(horizontal: spacing.md).copyWith(bottom: spacing.xl),
         children: [
           PreviewCard(
-            child: GHProgressStepper(
-              steps: _steps,
-              currentStep: _currentStep,
-              indicator: _indicator,
-              showLabels: _showLabels && _labelsAllowed,
-            ),
+            child: GHProgressStepper(steps: _steps, currentStep: _currentStep, indicator: _indicator, showLabels: _showLabels && _labelsAllowed),
           ),
           SpecPanel(spec: _spec),
           SizedBox(height: spacing.lg),

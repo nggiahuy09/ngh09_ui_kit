@@ -65,18 +65,16 @@ class GHAppSpacing extends ThemeExtension<GHAppSpacing> {
     double? lg,
     double? xl,
     double? xxl,
-  }) {
-    return GHAppSpacing(
-      xxs: xxs ?? this.xxs,
-      xs: xs ?? this.xs,
-      sm: sm ?? this.sm,
-      smd: smd ?? this.smd,
-      md: md ?? this.md,
-      lg: lg ?? this.lg,
-      xl: xl ?? this.xl,
-      xxl: xxl ?? this.xxl,
-    );
-  }
+  }) => GHAppSpacing(
+    xxs: xxs ?? this.xxs,
+    xs: xs ?? this.xs,
+    sm: sm ?? this.sm,
+    smd: smd ?? this.smd,
+    md: md ?? this.md,
+    lg: lg ?? this.lg,
+    xl: xl ?? this.xl,
+    xxl: xxl ?? this.xxl,
+  );
 
   @override
   GHAppSpacing lerp(ThemeExtension<GHAppSpacing>? other, double t) {

@@ -10,8 +10,7 @@ class _BreakpointStep {
   final double value;
 }
 
-/// A static reference display of the kit's responsive breakpoints, read
-/// live from [BreakpointTokens].
+/// A static reference display of the kit's responsive breakpoints, read live from [BreakpointTokens].
 class BreakpointsScreen extends StatelessWidget {
   const BreakpointsScreen({super.key});
 

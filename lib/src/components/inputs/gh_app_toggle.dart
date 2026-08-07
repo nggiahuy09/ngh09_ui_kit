@@ -8,9 +8,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable toggle switch built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppToggle` is the canonical binary-choice input. It supports three
-/// [ToggleSize] values, hover / focus / disabled states with Finesse
-/// shadow transitions, and exposes the toggled value via [onChanged].
+/// `GHAppToggle` is the canonical binary-choice input. It supports three [ToggleSize] values, hover / focus / disabled states with Finesse shadow transitions, and exposes the toggled value via [onChanged].
 ///
 /// ```dart
 /// GHAppToggle(
@@ -39,8 +37,7 @@ class GHAppToggle extends StatefulWidget {
   /// The size variant. See [ToggleSize].
   final ToggleSize size;
 
-  /// Optional label read by screen readers instead of the default
-  /// "toggle switch" description.
+  /// Optional label read by screen readers instead of the default "toggle switch" description.
   final String? semanticLabel;
 
   @override
@@ -161,15 +158,9 @@ class _Thumb extends StatelessWidget {
   final bool isEnabled;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-        boxShadow: isEnabled ? ShadowTokens.small : null,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+    width: size,
+    height: size,
+    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white, boxShadow: isEnabled ? ShadowTokens.small : null),
+  );
 }

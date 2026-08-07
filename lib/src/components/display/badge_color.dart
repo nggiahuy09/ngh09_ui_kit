@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ngh09_ui_kit/src/tokens/colors.dart';
 
-/// The color of a `GHAppBadge`, controlling its background, label and
-/// leading-dot tints.
+/// The color of a `GHAppBadge`, controlling its background, label and leading-dot tints.
 ///
 /// Matches the four colors in the Finesse UI Kit "Badges" component set.
 enum BadgeColor {

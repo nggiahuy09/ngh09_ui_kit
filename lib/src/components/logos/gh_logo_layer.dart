@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 /// A single absolutely-positioned SVG layer within a company logo.
 ///
-/// All positions are fractions (0.0–1.0) of the logo's natural size.
-/// The SVG asset fills the positioned bounds with [BoxFit.fill].
+/// All positions are fractions (0.0–1.0) of the logo's natural size. The SVG asset fills the positioned bounds with [BoxFit.fill].
 @immutable
 class GHLogoLayer {
   /// Creates a logo layer.

@@ -16,14 +16,12 @@ class _RangePreset {
 }
 
 const _presets = [
-  _RangePreset(label: '0–100 · step 1', min: 0, max: 100, step: 1),
-  _RangePreset(label: '0–10 · step 0.5', min: 0, max: 10, step: 0.5),
-  _RangePreset(label: '0–1000 · step 50', min: 0, max: 1000, step: 50),
+  _RangePreset(label: '0-100 · step 1', min: 0, max: 100, step: 1),
+  _RangePreset(label: '0-10 · step 0.5', min: 0, max: 10, step: 0.5),
+  _RangePreset(label: '0-1000 · step 50', min: 0, max: 1000, step: 50),
 ];
 
-/// A live playground for [GHAppSlider]: drag the real slider, swap
-/// min/max/step presets, and toggle the value label and disabled state, with
-/// a spec string reflecting the choice.
+/// A live playground for [GHAppSlider]: drag the real slider, swap min/max/step presets, and toggle the value label and disabled state, with a spec string reflecting the choice.
 class SliderPlaygroundScreen extends StatefulWidget {
   const SliderPlaygroundScreen({super.key});
 

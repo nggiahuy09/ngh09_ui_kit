@@ -10,8 +10,7 @@ class _SpacingStep {
   final double value;
 }
 
-/// A static reference list of the kit's spacing scale, read live from
-/// [GHAppSpacing].
+/// A static reference list of the kit's spacing scale, read live from [GHAppSpacing].
 class SpacingScreen extends StatelessWidget {
   const SpacingScreen({super.key});
 

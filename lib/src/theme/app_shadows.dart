@@ -3,8 +3,7 @@ import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 
 /// Semantic shadow roles for the UI kit, exposed as a [ThemeExtension].
 ///
-/// Components read shadows from here (via `context.shadows`) instead of using
-/// primitive [ShadowTokens] directly, so re-theming touches only one place.
+/// Components read shadows from here (via `context.shadows`) instead of using primitive [ShadowTokens] directly, so re-theming touches only one place.
 ///
 /// Roles mirror the **Finesse UI Kit** shadow system:
 /// * **Normal** — [small], [medium], [large] for components at rest.
@@ -128,34 +127,16 @@ class GHAppShadows extends ThemeExtension<GHAppShadows> {
       small: BoxShadow.lerpList(small, other.small, t) ?? small,
       medium: BoxShadow.lerpList(medium, other.medium, t) ?? medium,
       large: BoxShadow.lerpList(large, other.large, t) ?? large,
-      hoverPrimary:
-          BoxShadow.lerpList(hoverPrimary, other.hoverPrimary, t) ??
-          hoverPrimary,
-      hoverSecondary:
-          BoxShadow.lerpList(hoverSecondary, other.hoverSecondary, t) ??
-          hoverSecondary,
-      hoverError:
-          BoxShadow.lerpList(hoverError, other.hoverError, t) ?? hoverError,
-      hoverWarning:
-          BoxShadow.lerpList(hoverWarning, other.hoverWarning, t) ??
-          hoverWarning,
-      hoverSuccess:
-          BoxShadow.lerpList(hoverSuccess, other.hoverSuccess, t) ??
-          hoverSuccess,
-      focusPrimary:
-          BoxShadow.lerpList(focusPrimary, other.focusPrimary, t) ??
-          focusPrimary,
-      focusSecondary:
-          BoxShadow.lerpList(focusSecondary, other.focusSecondary, t) ??
-          focusSecondary,
-      focusError:
-          BoxShadow.lerpList(focusError, other.focusError, t) ?? focusError,
-      focusWarning:
-          BoxShadow.lerpList(focusWarning, other.focusWarning, t) ??
-          focusWarning,
-      focusSuccess:
-          BoxShadow.lerpList(focusSuccess, other.focusSuccess, t) ??
-          focusSuccess,
+      hoverPrimary: BoxShadow.lerpList(hoverPrimary, other.hoverPrimary, t) ?? hoverPrimary,
+      hoverSecondary: BoxShadow.lerpList(hoverSecondary, other.hoverSecondary, t) ?? hoverSecondary,
+      hoverError: BoxShadow.lerpList(hoverError, other.hoverError, t) ?? hoverError,
+      hoverWarning: BoxShadow.lerpList(hoverWarning, other.hoverWarning, t) ?? hoverWarning,
+      hoverSuccess: BoxShadow.lerpList(hoverSuccess, other.hoverSuccess, t) ?? hoverSuccess,
+      focusPrimary: BoxShadow.lerpList(focusPrimary, other.focusPrimary, t) ?? focusPrimary,
+      focusSecondary: BoxShadow.lerpList(focusSecondary, other.focusSecondary, t) ?? focusSecondary,
+      focusError: BoxShadow.lerpList(focusError, other.focusError, t) ?? focusError,
+      focusWarning: BoxShadow.lerpList(focusWarning, other.focusWarning, t) ?? focusWarning,
+      focusSuccess: BoxShadow.lerpList(focusSuccess, other.focusSuccess, t) ?? focusSuccess,
     );
   }
 }

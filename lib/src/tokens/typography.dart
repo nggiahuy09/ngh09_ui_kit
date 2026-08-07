@@ -1,15 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-/// Primitive typography tokens — raw font sizes, weights, line heights and
-/// letter spacing.
+/// Primitive typography tokens — raw font sizes, weights, line heights and letter spacing.
 ///
-/// Low-level values consumed by the semantic theme layer (`GHAppTypography`).
-/// Sizes follow the **Finesse UI Kit** type scale (Titles → Headings → Body),
-/// projected onto the Material type-role names that the semantic layer exposes.
-/// See `figma/typography.md` for the source design and the role mapping.
+/// Low-level values consumed by the semantic theme layer (`GHAppTypography`). Sizes follow the **Finesse UI Kit** type scale (Titles → Headings → Body), projected onto the Material type-role names that the semantic layer exposes. See `figma/typography.md` for the source design and the role mapping.
 abstract final class TypographyTokens {
-  /// Default font family. The Finesse design system is built on **Inter**;
-  /// the static weights are bundled under `assets/fonts/` (see `pubspec.yaml`).
+  /// Default font family. The Finesse design system is built on **Inter**; the static weights are bundled under `assets/fonts/` (see `pubspec.yaml`).
   static const String fontFamily = 'Inter';
 
   // Font weights ------------------------------------------------------------
@@ -80,8 +75,7 @@ abstract final class TypographyTokens {
   static const double sizeLabelSmall = 10;
 
   // Line heights (absolute logical px, matching Finesse "Line Spacing") ------
-  // The semantic layer divides these by the matching font size to derive
-  // Flutter's `TextStyle.height` multiplier.
+  // The semantic layer divides these by the matching font size to derive Flutter's `TextStyle.height` multiplier.
 
   /// Display large line height (150px).
   static const double lineHeightDisplayLarge = 150;
@@ -129,67 +123,52 @@ abstract final class TypographyTokens {
   static const double lineHeightLabelSmall = 16;
 
   // Height multipliers (line height ÷ font size) ----------------------------
-  // Derived from the absolute line heights above; this is what Flutter's
-  // `TextStyle.height` expects. Kept as named constants so the semantic layer
-  // stays terse (one short token per role).
+  // Derived from the absolute line heights above; this is what Flutter's `TextStyle.height` expects. Kept as named constants so the semantic layer stays terse (one short token per role).
 
   /// Display large height multiplier (150 ÷ 120).
-  static const double heightDisplayLarge =
-      lineHeightDisplayLarge / sizeDisplayLarge;
+  static const double heightDisplayLarge = lineHeightDisplayLarge / sizeDisplayLarge;
 
   /// Display medium height multiplier (120 ÷ 96).
-  static const double heightDisplayMedium =
-      lineHeightDisplayMedium / sizeDisplayMedium;
+  static const double heightDisplayMedium = lineHeightDisplayMedium / sizeDisplayMedium;
 
   /// Display small height multiplier (90 ÷ 72).
-  static const double heightDisplaySmall =
-      lineHeightDisplaySmall / sizeDisplaySmall;
+  static const double heightDisplaySmall = lineHeightDisplaySmall / sizeDisplaySmall;
 
   /// Headline large height multiplier (72 ÷ 60).
-  static const double heightHeadlineLarge =
-      lineHeightHeadlineLarge / sizeHeadlineLarge;
+  static const double heightHeadlineLarge = lineHeightHeadlineLarge / sizeHeadlineLarge;
 
   /// Headline medium height multiplier (60 ÷ 48).
-  static const double heightHeadlineMedium =
-      lineHeightHeadlineMedium / sizeHeadlineMedium;
+  static const double heightHeadlineMedium = lineHeightHeadlineMedium / sizeHeadlineMedium;
 
   /// Headline small height multiplier (44 ÷ 36).
-  static const double heightHeadlineSmall =
-      lineHeightHeadlineSmall / sizeHeadlineSmall;
+  static const double heightHeadlineSmall = lineHeightHeadlineSmall / sizeHeadlineSmall;
 
   /// Title large height multiplier (38 ÷ 30).
-  static const double heightTitleLarge =
-      lineHeightTitleLarge / sizeTitleLarge;
+  static const double heightTitleLarge = lineHeightTitleLarge / sizeTitleLarge;
 
   /// Title medium height multiplier (32 ÷ 24).
-  static const double heightTitleMedium =
-      lineHeightTitleMedium / sizeTitleMedium;
+  static const double heightTitleMedium = lineHeightTitleMedium / sizeTitleMedium;
 
   /// Title small height multiplier (30 ÷ 20).
-  static const double heightTitleSmall =
-      lineHeightTitleSmall / sizeTitleSmall;
+  static const double heightTitleSmall = lineHeightTitleSmall / sizeTitleSmall;
 
   /// Body large height multiplier (28 ÷ 18).
   static const double heightBodyLarge = lineHeightBodyLarge / sizeBodyLarge;
 
   /// Body medium height multiplier (24 ÷ 16).
-  static const double heightBodyMedium =
-      lineHeightBodyMedium / sizeBodyMedium;
+  static const double heightBodyMedium = lineHeightBodyMedium / sizeBodyMedium;
 
   /// Body small height multiplier (20 ÷ 14).
   static const double heightBodySmall = lineHeightBodySmall / sizeBodySmall;
 
   /// Label large height multiplier (20 ÷ 14).
-  static const double heightLabelLarge =
-      lineHeightLabelLarge / sizeLabelLarge;
+  static const double heightLabelLarge = lineHeightLabelLarge / sizeLabelLarge;
 
   /// Label medium height multiplier (18 ÷ 12).
-  static const double heightLabelMedium =
-      lineHeightLabelMedium / sizeLabelMedium;
+  static const double heightLabelMedium = lineHeightLabelMedium / sizeLabelMedium;
 
   /// Label small height multiplier (16 ÷ 10).
-  static const double heightLabelSmall =
-      lineHeightLabelSmall / sizeLabelSmall;
+  static const double heightLabelSmall = lineHeightLabelSmall / sizeLabelSmall;
 
   // Letter spacing (logical px) ---------------------------------------------
   // Finesse applies -2% tracking to the larger steps (≥36px) and 0 elsewhere.

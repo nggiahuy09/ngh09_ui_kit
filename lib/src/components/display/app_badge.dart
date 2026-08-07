@@ -6,14 +6,12 @@ import 'package:ngh09_ui_kit/src/components/flags/gh_country.dart';
 import 'package:ngh09_ui_kit/src/components/flags/gh_country_flag.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// The leading visual a [GHAppBadge] shows before its label. Mutually
-/// exclusive — set by which named constructor was used, never by the caller.
+/// The leading visual a [GHAppBadge] shows before its label. Mutually exclusive — set by which named constructor was used, never by the caller.
 enum _BadgeType { simple, dot, icon, avatar, flag }
 
 /// A small status pill built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppBadge` always shows a [label], optionally preceded by a leading
-/// visual that depends on which constructor is used:
+/// `GHAppBadge` always shows a [label], optionally preceded by a leading visual that depends on which constructor is used:
 /// * The default constructor shows the label alone.
 /// * [GHAppBadge.dot] precedes it with a small colored dot.
 /// * [GHAppBadge.icon] precedes and/or follows it with [leadingIcon] /
@@ -21,11 +19,9 @@ enum _BadgeType { simple, dot, icon, avatar, flag }
 /// * [GHAppBadge.avatar] precedes it with a circular [avatar].
 /// * [GHAppBadge.flag] precedes it with a [GHCountryFlag] for [country].
 ///
-/// [GHAppBadge.count] is a convenience over the default constructor that
-/// renders an integer and can clamp large values to `"<max>+"`.
+/// [GHAppBadge.count] is a convenience over the default constructor that renders an integer and can clamp large values to `"<max>+"`.
 ///
-/// The [color] selects one of the four Finesse badge colors, [size] one of
-/// three heights, and [corner] a squared or fully-rounded (pill) shape.
+/// The [color] selects one of the four Finesse badge colors, [size] one of three heights, and [corner] a squared or fully-rounded (pill) shape.
 ///
 /// ```dart
 /// const GHAppBadge(label: 'New', color: BadgeColor.success);
@@ -125,8 +121,7 @@ class GHAppBadge extends StatelessWidget {
   /// The badge's text.
   final String label;
 
-  /// Which leading visual this badge shows. Set internally by the named
-  /// constructor used, never directly by the caller.
+  /// Which leading visual this badge shows. Set internally by the named constructor used, never directly by the caller.
   final _BadgeType _type;
 
   /// The badge's color. See [BadgeColor].
@@ -193,13 +188,11 @@ class GHAppBadge extends StatelessWidget {
       ],
     );
 
-    // The [Text] child already exposes [label] to accessibility, so no extra
-    // Semantics wrapper is needed here.
+    // The [Text] child already exposes [label] to accessibility, so no extra Semantics wrapper is needed here.
     return Container(
       constraints: BoxConstraints(minWidth: expanded ? double.infinity : 0, minHeight: _height),
       padding: _padding,
-      // Only center within the box when expanded; an unconditional alignment
-      // would make the badge greedily fill loose constraints.
+      // Only center within the box when expanded; an unconditional alignment would make the badge greedily fill loose constraints.
       alignment: expanded ? Alignment.center : null,
       decoration: BoxDecoration(color: color.background, borderRadius: _borderRadius(context)),
       child: content,

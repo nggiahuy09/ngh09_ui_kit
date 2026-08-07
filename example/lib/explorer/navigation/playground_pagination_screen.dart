@@ -6,10 +6,7 @@ import 'package:ngh09_ui_kit_example/explorer/widgets/preview_card.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/segmented_picker.dart';
 import 'package:ngh09_ui_kit_example/explorer/widgets/spec_panel.dart';
 
-/// A live playground for [GHPagination]: pick a type, total page count,
-/// sibling/boundary collapsing window, and toggle nav labels, with a
-/// genuinely interactive current page and a spec string reflecting the
-/// choice.
+/// A live playground for [GHPagination]: pick a type, total page count, sibling/boundary collapsing window, and toggle nav labels, with a genuinely interactive current page and a spec string reflecting the choice.
 class PaginationPlaygroundScreen extends StatefulWidget {
   const PaginationPlaygroundScreen({super.key});
 

@@ -34,8 +34,6 @@ enum GHSnackbarState {
 
   /// The color of the trailing "Dismiss" CTA label.
   ///
-  /// Matches [contentColor] for the colored states, but the Finesse spec
-  /// keeps it pure black (rather than grey) for [active].
-  Color get dismissLabelColor =>
-      this == GHSnackbarState.active ? ColorTokens.black : contentColor;
+  /// Matches [contentColor] for the colored states, but the Finesse spec keeps it pure black (rather than grey) for [active].
+  Color get dismissLabelColor => this == GHSnackbarState.active ? ColorTokens.black : contentColor;
 }

@@ -9,15 +9,11 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// An informational overlay built on the Finesse UI Kit design tokens.
 ///
-/// `GHTooltip` always shows a [headline]. Passing [supportingText] switches it
-/// from a single-line label into the "detailed" layout: a bold headline
-/// followed by a line of body copy, constrained to [maxWidth].
+/// `GHTooltip` always shows a [headline]. Passing [supportingText] switches it from a single-line label into the "detailed" layout: a bold headline followed by a line of body copy, constrained to [maxWidth].
 ///
-/// An optional [arrow] points the tooltip at whatever it's anchored to, and
-/// [onDismiss] shows a close (×) button — omit it to hide the button.
+/// An optional [arrow] points the tooltip at whatever it's anchored to, and [onDismiss] shows a close (×) button — omit it to hide the button.
 ///
-/// The [size] selects one of three text scales and [corner] a squared or
-/// softly-rounded shape.
+/// The [size] selects one of three text scales and [corner] a squared or softly-rounded shape.
 ///
 /// ```dart
 /// const GHTooltip(headline: 'Here is a tooltip');
@@ -45,14 +41,12 @@ class GHTooltip extends StatelessWidget {
 
   /// The tooltip's primary text.
   ///
-  /// Shown alone (medium weight) when [supportingText] is `null`, or as a
-  /// bold title above it otherwise.
+  /// Shown alone (medium weight) when [supportingText] is `null`, or as a bold title above it otherwise.
   final String headline;
 
   /// Body copy shown below [headline].
   ///
-  /// Switches the tooltip from its single-line layout to the detailed
-  /// headline-plus-body layout.
+  /// Switches the tooltip from its single-line layout to the detailed headline-plus-body layout.
   final String? supportingText;
 
   /// Which edge the pointed arrow protrudes from. See [TooltipArrow].
@@ -69,8 +63,7 @@ class GHTooltip extends StatelessWidget {
 
   /// Callback fired when the close button is tapped.
   ///
-  /// The close button is still shown (as a decorative affordance) when this
-  /// is `null`, matching the Finesse default — it just isn't interactive.
+  /// The close button is still shown (as a decorative affordance) when this is `null`, matching the Finesse default — it just isn't interactive.
   final VoidCallback? onDismiss;
 
   /// The maximum width of the detailed (headline + [supportingText]) layout.
@@ -171,7 +164,10 @@ class _TooltipBox extends StatelessWidget {
                   spacing: 8,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(headline, style: _baseStyle(context).copyWith(fontWeight: FontWeight.w600, color: ColorTokens.black)),
+                    Text(
+                      headline,
+                      style: _baseStyle(context).copyWith(fontWeight: FontWeight.w600, color: ColorTokens.black),
+                    ),
                     Text(
                       supportingText!,
                       style: _baseStyle(context).copyWith(fontWeight: FontWeight.w400, color: ColorTokens.gray500),
@@ -186,16 +182,17 @@ class _TooltipBox extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: _simpleGap,
             children: [
-              Text(headline, style: _baseStyle(context).copyWith(fontWeight: FontWeight.w500, color: ColorTokens.black)),
+              Text(
+                headline,
+                style: _baseStyle(context).copyWith(fontWeight: FontWeight.w500, color: ColorTokens.black),
+              ),
               ?closeButton,
             ],
           );
 
     return Container(
       constraints: _detailed ? BoxConstraints(maxWidth: maxWidth) : null,
-      padding: _detailed
-          ? EdgeInsets.all(_detailedPadding)
-          : const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: _detailed ? EdgeInsets.all(_detailedPadding) : const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: ColorTokens.white,
         borderRadius: corner == TooltipCorner.smooth ? context.radii.borderRadiusMd : null,
@@ -212,8 +209,7 @@ class _ArrowTip extends StatelessWidget {
 
   final TooltipArrow direction;
 
-  // The Finesse spec keeps the arrow the same 20x12 dp size across all
-  // tooltip sizes and corner styles.
+  // The Finesse spec keeps the arrow the same 20x12 dp size across all tooltip sizes and corner styles.
   static const double _length = 20;
   static const double _depth = 12;
 

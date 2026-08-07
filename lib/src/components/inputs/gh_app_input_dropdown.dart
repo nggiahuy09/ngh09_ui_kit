@@ -11,15 +11,9 @@ import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A search-driven select control — the Finesse UI Kit "Input Dropdowns"
-/// spec, combining a search-style text field trigger with an anchored
-/// `GHAppDropdown` menu.
+/// A search-driven select control — the Finesse UI Kit "Input Dropdowns" spec, combining a search-style text field trigger with an anchored `GHAppDropdown` menu.
 ///
-/// `GHAppInputDropdown<T>` shows a text field with a fixed leading
-/// magnifying-glass icon and a trailing chevron. Focusing it opens the menu
-/// below; when [searchable] is `true` (the default), typing filters [items]
-/// by a case-insensitive substring match on their label. Picking a row calls
-/// [onChanged], fills the field with the picked label, and closes the menu.
+/// `GHAppInputDropdown<T>` shows a text field with a fixed leading magnifying-glass icon and a trailing chevron. Focusing it opens the menu below; when [searchable] is `true` (the default), typing filters [items] by a case-insensitive substring match on their label. Picking a row calls [onChanged], fills the field with the picked label, and closes the menu.
 ///
 /// ```dart
 /// GHAppInputDropdown<String>(
@@ -36,8 +30,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 class GHAppInputDropdown<T> extends StatefulWidget {
   /// Creates a searchable dropdown select over [items].
   ///
-  /// Not a `const` constructor: [items].length must be validated at runtime,
-  /// which Dart's const evaluator cannot do for a `List`.
+  /// Not a `const` constructor: [items].length must be validated at runtime, which Dart's const evaluator cannot do for a `List`.
   GHAppInputDropdown({required this.items, required this.onChanged, this.placeholder = 'Search', this.searchable = true, this.width, super.key})
     : assert(items.isNotEmpty, 'GHAppInputDropdown needs at least one item.');
 
@@ -52,13 +45,10 @@ class GHAppInputDropdown<T> extends StatefulWidget {
   /// Placeholder shown while the field is empty.
   final String placeholder;
 
-  /// Whether typing filters [items] by label. When `false`, the field is
-  /// read-only and acts purely as a menu trigger.
+  /// Whether typing filters [items] by label. When `false`, the field is read-only and acts purely as a menu trigger.
   final bool searchable;
 
-  /// A fixed width for the field and menu. When `null`, the field sizes to
-  /// its parent's constraints and the menu matches the field's measured
-  /// width.
+  /// A fixed width for the field and menu. When `null`, the field sizes to its parent's constraints and the menu matches the field's measured width.
   final double? width;
 
   @override
@@ -223,10 +213,7 @@ class _GHAppInputDropdownState<T> extends State<GHAppInputDropdown<T>> {
               groupId: this,
               child: Align(
                 alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: _buildMenu(context),
-                ),
+                child: Padding(padding: const EdgeInsets.only(top: 4), child: _buildMenu(context)),
               ),
             ),
           );

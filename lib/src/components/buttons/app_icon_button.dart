@@ -9,10 +9,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A themeable, icon-only button built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppIconButton` is the canonical square action button for toolbars and
-/// compact controls. It supports seven [IconButtonSize] steps, two
-/// [IconButtonCorner] shapes, and hover / focus / disabled states with
-/// Finesse shadow transitions.
+/// `GHAppIconButton` is the canonical square action button for toolbars and compact controls. It supports seven [IconButtonSize] steps, two [IconButtonCorner] shapes, and hover / focus / disabled states with Finesse shadow transitions.
 ///
 /// ```dart
 /// GHAppIconButton(
@@ -32,9 +29,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 ///
 /// A button is disabled when [onPressed] is `null`.
 class GHAppIconButton extends StatefulWidget {
-  /// Creates an icon button with an explicit [size] (defaults to
-  /// [IconButtonSize.medium]) and [corner] (defaults to
-  /// [IconButtonCorner.sharp]).
+  /// Creates an icon button with an explicit [size] (defaults to [IconButtonSize.medium]) and [corner] (defaults to [IconButtonCorner.sharp]).
   const GHAppIconButton({
     required this.icon,
     this.onPressed,
@@ -49,8 +44,7 @@ class GHAppIconButton extends StatefulWidget {
 
   /// Called when the button is tapped.
   ///
-  /// When `null`, the button renders in its disabled state and does not
-  /// respond to input.
+  /// When `null`, the button renders in its disabled state and does not respond to input.
   final VoidCallback? onPressed;
 
   /// The size variant. See [IconButtonSize].
@@ -59,8 +53,7 @@ class GHAppIconButton extends StatefulWidget {
   /// The corner-radius shape. See [IconButtonCorner].
   final IconButtonCorner corner;
 
-  /// An accessibility label announced by screen readers and shown as a
-  /// tooltip on hover. Strongly recommended since the button has no text.
+  /// An accessibility label announced by screen readers and shown as a tooltip on hover. Strongly recommended since the button has no text.
   final String? semanticLabel;
 
   @override
@@ -68,8 +61,7 @@ class GHAppIconButton extends StatefulWidget {
 }
 
 class _GHAppIconButtonState extends State<GHAppIconButton> {
-  // Shared states controller lets the shadow layer read the same states that
-  // the underlying Material button reports (hover, focus, pressed, etc.).
+  // Shared states controller lets the shadow layer read the same states that the underlying Material button reports (hover, focus, pressed, etc.).
   final _statesController = WidgetStatesController();
 
   bool get _isEnabled => widget.onPressed != null;
@@ -77,10 +69,7 @@ class _GHAppIconButtonState extends State<GHAppIconButton> {
   @override
   void initState() {
     super.initState();
-    // Defer listener registration to after the first frame. FilledButton calls
-    // statesController.update() during its own mount (to set the disabled
-    // state), which would fire _onStatesChanged mid-build and violate
-    // Flutter's "no setState during build" invariant.
+    // Defer listener registration to after the first frame. FilledButton calls statesController.update() during its own mount (to set the disabled state), which would fire _onStatesChanged mid-build and violate Flutter's "no setState during build" invariant.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _statesController.addListener(_onStatesChanged);
     });
@@ -88,13 +77,7 @@ class _GHAppIconButtonState extends State<GHAppIconButton> {
 
   void _onStatesChanged() {
     if (!mounted) return;
-    // The underlying Material button calls _statesController.update() during
-    // its own build/didUpdateWidget — e.g. when this button is rebuilt into a
-    // disabled state, it flips WidgetState.disabled mid-build. Calling setState
-    // synchronously then would violate Flutter's "no setState during build"
-    // invariant (the '!_dirty' assertion), so defer to after the frame when a
-    // build is already in flight; otherwise (hover/focus/press at rest) rebuild
-    // immediately so the shadow layer reacts without a frame's lag.
+    // The underlying Material button calls _statesController.update() during disabled state, it flips WidgetState.disabled mid-build. Calling setState synchronously then would violate Flutter's "no setState during build" invariant (the '!_dirty' assertion), so defer to after the frame when a build is already in flight; otherwise (hover/focus/press at rest) rebuild immediately so the shadow layer reacts without a frame's lag.
     if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.persistentCallbacks) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) setState(() {});
@@ -166,15 +149,13 @@ class _GHAppIconButtonState extends State<GHAppIconButton> {
   ButtonStyle get _buttonStyle {
     return ButtonStyle(
       animationDuration: DurationTokens.fast,
-      // Remove Material's built-in elevation and hover/focus tint so they
-      // don't compete with our explicit color and box-shadow layers.
+      // Remove Material's built-in elevation and hover/focus tint so they don't compete with our explicit color and box-shadow layers.
       elevation: const WidgetStatePropertyAll(0),
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       minimumSize: const WidgetStatePropertyAll(Size.zero),
       fixedSize: WidgetStatePropertyAll(Size.square(_boxSize)),
       padding: const WidgetStatePropertyAll(EdgeInsets.zero),
-      // Sizes below 48dp (2xs/xs) would otherwise be padded up to Material's
-      // default minimum touch target.
+      // Sizes below 48dp (2xs/xs) would otherwise be padded up to Material's default minimum touch target.
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       backgroundColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.disabled)) return ColorTokens.gray100;
@@ -208,9 +189,7 @@ class _GHAppIconButtonState extends State<GHAppIconButton> {
 
     if (widget.semanticLabel != null) button = Tooltip(message: widget.semanticLabel, child: button);
 
-    // The shadow is re-evaluated on each build triggered by _onStatesChanged,
-    // so the correct resting / hover / focus shadow is always applied without
-    // an extra widget node in the tree.
+    // The shadow is re-evaluated on each build triggered by _onStatesChanged, so the correct resting / hover / focus shadow is always applied without an extra widget node in the tree.
     return DecoratedBox(
       decoration: BoxDecoration(borderRadius: borderRadius, boxShadow: _shadowForStates(_statesController.value, shadows)),
       child: button,

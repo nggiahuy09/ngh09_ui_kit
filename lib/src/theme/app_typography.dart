@@ -3,9 +3,7 @@ import 'package:ngh09_ui_kit/src/tokens/typography.dart';
 
 /// Semantic text styles exposed as a [ThemeExtension].
 ///
-/// Accessed via `context.textStyles`. Maps primitive [TypographyTokens] onto
-/// the Material 3 type roles (display → label). Components reference these
-/// roles instead of hardcoding sizes/weights.
+/// Accessed via `context.textStyles`. Maps primitive [TypographyTokens] onto the Material 3 type roles (display → label). Components reference these roles instead of hardcoding sizes/weights.
 @immutable
 class GHAppTypography extends ThemeExtension<GHAppTypography> {
   /// Creates a typography set.
@@ -27,11 +25,7 @@ class GHAppTypography extends ThemeExtension<GHAppTypography> {
     required this.labelSmall,
   });
 
-  /// The default typography scale — the Finesse type scale mapped onto the
-  /// Material type-role names. Each role binds the Inter family, its Finesse
-  /// font size, a per-role `height` (line-height px ÷ font size) and letter
-  /// spacing. Weights are retained per role (the Finesse design does not
-  /// annotate weight per step). See `figma/typography.md`.
+  /// The default typography scale — the Finesse type scale mapped onto the Material type-role names. Each role binds the Inter family, its Finesse font size, a per-role `height` (line-height px ÷ font size) and letter spacing. Weights are retained per role (the Finesse design does not annotate weight per step). See `figma/typography.md`.
   const GHAppTypography.standard()
     : displayLarge = const TextStyle(
         fontFamily: TypographyTokens.fontFamily,
@@ -186,25 +180,23 @@ class GHAppTypography extends ThemeExtension<GHAppTypography> {
 
   /// Builds a Material [TextTheme] from these semantic styles, so built-in
   /// Material widgets inherit the same type scale.
-  TextTheme toTextTheme() {
-    return TextTheme(
-      displayLarge: displayLarge,
-      displayMedium: displayMedium,
-      displaySmall: displaySmall,
-      headlineLarge: headlineLarge,
-      headlineMedium: headlineMedium,
-      headlineSmall: headlineSmall,
-      titleLarge: titleLarge,
-      titleMedium: titleMedium,
-      titleSmall: titleSmall,
-      bodyLarge: bodyLarge,
-      bodyMedium: bodyMedium,
-      bodySmall: bodySmall,
-      labelLarge: labelLarge,
-      labelMedium: labelMedium,
-      labelSmall: labelSmall,
-    );
-  }
+  TextTheme toTextTheme() => TextTheme(
+    displayLarge: displayLarge,
+    displayMedium: displayMedium,
+    displaySmall: displaySmall,
+    headlineLarge: headlineLarge,
+    headlineMedium: headlineMedium,
+    headlineSmall: headlineSmall,
+    titleLarge: titleLarge,
+    titleMedium: titleMedium,
+    titleSmall: titleSmall,
+    bodyLarge: bodyLarge,
+    bodyMedium: bodyMedium,
+    bodySmall: bodySmall,
+    labelLarge: labelLarge,
+    labelMedium: labelMedium,
+    labelSmall: labelSmall,
+  );
 
   @override
   GHAppTypography copyWith({
@@ -223,25 +215,23 @@ class GHAppTypography extends ThemeExtension<GHAppTypography> {
     TextStyle? labelLarge,
     TextStyle? labelMedium,
     TextStyle? labelSmall,
-  }) {
-    return GHAppTypography(
-      displayLarge: displayLarge ?? this.displayLarge,
-      displayMedium: displayMedium ?? this.displayMedium,
-      displaySmall: displaySmall ?? this.displaySmall,
-      headlineLarge: headlineLarge ?? this.headlineLarge,
-      headlineMedium: headlineMedium ?? this.headlineMedium,
-      headlineSmall: headlineSmall ?? this.headlineSmall,
-      titleLarge: titleLarge ?? this.titleLarge,
-      titleMedium: titleMedium ?? this.titleMedium,
-      titleSmall: titleSmall ?? this.titleSmall,
-      bodyLarge: bodyLarge ?? this.bodyLarge,
-      bodyMedium: bodyMedium ?? this.bodyMedium,
-      bodySmall: bodySmall ?? this.bodySmall,
-      labelLarge: labelLarge ?? this.labelLarge,
-      labelMedium: labelMedium ?? this.labelMedium,
-      labelSmall: labelSmall ?? this.labelSmall,
-    );
-  }
+  }) => GHAppTypography(
+    displayLarge: displayLarge ?? this.displayLarge,
+    displayMedium: displayMedium ?? this.displayMedium,
+    displaySmall: displaySmall ?? this.displaySmall,
+    headlineLarge: headlineLarge ?? this.headlineLarge,
+    headlineMedium: headlineMedium ?? this.headlineMedium,
+    headlineSmall: headlineSmall ?? this.headlineSmall,
+    titleLarge: titleLarge ?? this.titleLarge,
+    titleMedium: titleMedium ?? this.titleMedium,
+    titleSmall: titleSmall ?? this.titleSmall,
+    bodyLarge: bodyLarge ?? this.bodyLarge,
+    bodyMedium: bodyMedium ?? this.bodyMedium,
+    bodySmall: bodySmall ?? this.bodySmall,
+    labelLarge: labelLarge ?? this.labelLarge,
+    labelMedium: labelMedium ?? this.labelMedium,
+    labelSmall: labelSmall ?? this.labelSmall,
+  );
 
   @override
   GHAppTypography lerp(ThemeExtension<GHAppTypography>? other, double t) {

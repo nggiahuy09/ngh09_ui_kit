@@ -6,15 +6,11 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
 /// A transient, low-emphasis notification bar with four semantic states.
 ///
-/// Snackbars communicate a brief status message inline with the content that
-/// triggered it — unlike a full alert banner, they are meant to be shown
-/// temporarily (e.g. via a [SnackBar]/overlay) and always render on a single
-/// line. They may include:
+/// Snackbars communicate a brief status message inline with the content that triggered it — unlike a full alert banner, they are meant to be shown temporarily (e.g. via a [SnackBar]/overlay) and always render on a single line. They may include:
 ///
 /// * An optional leading icon indicating the state.
 /// * A single-line message.
-/// * A trailing affordance — either a close (×) icon, or a "Dismiss" text
-///   button when [ctaButton] is `true`.
+/// * A trailing affordance — either a close (×) icon, or a "Dismiss" text button when [ctaButton] is `true`.
 ///
 /// ```dart
 /// GHSnackbar(
@@ -30,12 +26,9 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// )
 /// ```
 ///
-/// **Width.** The snackbar sizes to its content on the trailing edge and
-/// expands to fill its parent on the leading edge. Constrain it with a
-/// [SizedBox] to match the Finesse fixed-width spec.
+/// **Width.** The snackbar sizes to its content on the trailing edge and expands to fill its parent on the leading edge. Constrain it with a [SizedBox] to match the Finesse fixed-width spec.
 ///
-/// **Corners.** Pass `smooth: true` to apply an 8 px radius matching the
-/// Finesse "Smooth" variant; omit (or `false`) for the "Sharp" variant.
+/// **Corners.** Pass `smooth: true` to apply an 8 px radius matching the Finesse "Smooth" variant; omit (or `false`) for the "Sharp" variant.
 class GHSnackbar extends StatelessWidget {
   /// Creates a snackbar.
   const GHSnackbar({
@@ -61,12 +54,10 @@ class GHSnackbar extends StatelessWidget {
   /// Whether to show the state icon on the leading edge. Defaults to `true`.
   final bool showLeadingIcon;
 
-  /// Whether the trailing affordance is a "Dismiss" text button rather than a
-  /// close (×) icon. Defaults to `false`.
+  /// Whether the trailing affordance is a "Dismiss" text button rather than a close (×) icon. Defaults to `false`.
   final bool ctaButton;
 
-  /// The label for the trailing CTA button. Only used when [ctaButton] is
-  /// `true`. Defaults to `"Dismiss"`.
+  /// The label for the trailing CTA button. Only used when [ctaButton] is `true`. Defaults to `"Dismiss"`.
   final String ctaLabel;
 
   /// Callback fired when the trailing affordance is tapped.

@@ -1,7 +1,6 @@
 /// A country represented in the Finesse UI flag catalog.
 ///
-/// Each case carries an ISO 3166-1 alpha-2 [isoCode] and derives a Unicode
-/// flag emoji from it via [flagEmoji].
+/// Each case carries an ISO 3166-1 alpha-2 [isoCode] and derives a Unicode flag emoji from it via [flagEmoji].
 ///
 /// ```dart
 /// GHCountryFlag(GHCountry.unitedStates)
@@ -661,16 +660,13 @@ enum GHCountry {
 
   /// The Unicode flag emoji derived from [isoCode].
   ///
-  /// Composed from two regional indicator symbols (U+1F1E6–U+1F1FF), one per
-  /// letter of the alpha-2 code. Renders as the country's flag on supported
-  /// platforms (iOS, Android, macOS, web).
+  /// Composed from two regional indicator symbols (U+1F1E6–U+1F1FF), one per letter of the alpha-2 code. Renders as the country's flag on supported platforms (iOS, Android, macOS, web).
   String get flagEmoji {
     const base = 0x1F1E6;
     return String.fromCharCodes(isoCode.toUpperCase().codeUnits.map((c) => base + c - 0x41));
   }
 
-  /// Returns the [GHCountry] whose [isoCode] matches [code] (case-insensitive),
-  /// or `null` if no match is found.
+  /// Returns the [GHCountry] whose [isoCode] matches [code] (case-insensitive), or `null` if no match is found.
   static GHCountry? fromIsoCode(String code) {
     final upper = code.toUpperCase();
     for (final country in GHCountry.values) {

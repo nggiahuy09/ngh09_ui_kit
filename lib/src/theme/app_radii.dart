@@ -5,26 +5,14 @@ import 'package:ngh09_ui_kit/src/tokens/radii.dart';
 
 /// Semantic border-radius scale exposed as a [ThemeExtension].
 ///
-/// Accessed via `context.radii`. Maps to primitive [RadiusTokens] and provides
-/// ready-made [BorderRadius] getters for component use.
+/// Accessed via `context.radii`. Maps to primitive [RadiusTokens] and provides ready-made [BorderRadius] getters for component use.
 @immutable
 class GHAppRadii extends ThemeExtension<GHAppRadii> {
   /// Creates a radius set.
-  const GHAppRadii({
-    required this.none,
-    required this.sm,
-    required this.md,
-    required this.lg,
-    required this.full,
-  });
+  const GHAppRadii({required this.none, required this.sm, required this.md, required this.lg, required this.full});
 
   /// The default radius scale.
-  const GHAppRadii.standard()
-    : none = RadiusTokens.none,
-      sm = RadiusTokens.sm,
-      md = RadiusTokens.md,
-      lg = RadiusTokens.lg,
-      full = RadiusTokens.full;
+  const GHAppRadii.standard() : none = RadiusTokens.none, sm = RadiusTokens.sm, md = RadiusTokens.md, lg = RadiusTokens.lg, full = RadiusTokens.full;
 
   /// No rounding.
   final double none;
@@ -54,21 +42,8 @@ class GHAppRadii extends ThemeExtension<GHAppRadii> {
   BorderRadius get borderRadiusFull => BorderRadius.circular(full);
 
   @override
-  GHAppRadii copyWith({
-    double? none,
-    double? sm,
-    double? md,
-    double? lg,
-    double? full,
-  }) {
-    return GHAppRadii(
-      none: none ?? this.none,
-      sm: sm ?? this.sm,
-      md: md ?? this.md,
-      lg: lg ?? this.lg,
-      full: full ?? this.full,
-    );
-  }
+  GHAppRadii copyWith({double? none, double? sm, double? md, double? lg, double? full}) =>
+      GHAppRadii(none: none ?? this.none, sm: sm ?? this.sm, md: md ?? this.md, lg: lg ?? this.lg, full: full ?? this.full);
 
   @override
   GHAppRadii lerp(ThemeExtension<GHAppRadii>? other, double t) {

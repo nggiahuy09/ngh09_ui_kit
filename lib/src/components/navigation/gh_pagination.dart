@@ -9,16 +9,9 @@ import 'package:ngh09_ui_kit/src/components/icons/heroicon_style.dart';
 import 'package:ngh09_ui_kit/src/components/navigation/pagination_type.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A page-navigation control with "Previous"/"Next" actions and, in
-/// [PaginationType.numbered] mode, tappable page-number chips — per the
-/// Finesse UI Kit spec.
+/// A page-navigation control with "Previous"/"Next" actions and, in [PaginationType.numbered] mode, tappable page-number chips — per the Finesse UI Kit spec.
 ///
-/// Long page ranges collapse to a "…" around the current page. The
-/// collapsing window is controlled by [siblingCount] (pages shown on either
-/// side of the current page) and [boundaryCount] (pages always shown at each
-/// end) — the same "sibling + boundary" algorithm used by most web
-/// pagination components, which keeps the control's width constant as the
-/// user moves between pages.
+/// Long page ranges collapse to a "…" around the current page. The collapsing window is controlled by [siblingCount] (pages shown on either side of the current page) and [boundaryCount] (pages always shown at each end) — the same "sibling + boundary" algorithm used by most web pagination components, which keeps the control's width constant as the user moves between pages.
 ///
 /// ```dart
 /// GHPagination(
@@ -36,8 +29,7 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// );
 /// ```
 class GHPagination extends StatelessWidget {
-  /// Creates a pagination control for [totalPages] pages, currently on
-  /// [currentPage] (1-indexed).
+  /// Creates a pagination control for [totalPages] pages, currently on [currentPage] (1-indexed).
   const GHPagination({
     required this.currentPage,
     required this.totalPages,
@@ -56,18 +48,15 @@ class GHPagination extends StatelessWidget {
   /// The total number of pages.
   final int totalPages;
 
-  /// Called with the new page number when "Previous", "Next", or a page
-  /// chip is tapped.
+  /// Called with the new page number when "Previous", "Next", or a page chip is tapped.
   final ValueChanged<int> onPageChanged;
 
-  /// Whether to show individual page-number chips or a "Page X of Y" label.
-  /// See [PaginationType].
+  /// Whether to show individual page-number chips or a "Page X of Y" label. See [PaginationType].
   final PaginationType type;
 
   /// Whether the "Previous"/"Next" controls show their text label.
   ///
-  /// When `false`, they render as bare arrow icons — a compact layout for
-  /// tight spaces.
+  /// When `false`, they render as bare arrow icons — a compact layout for tight spaces.
   final bool showNavLabels;
 
   /// Pages shown adjacent to the current page before collapsing to "…".
@@ -120,13 +109,9 @@ class GHPagination extends StatelessWidget {
   }
 }
 
-/// Computes the page numbers a [GHPagination] should render, using `null` as
-/// an ellipsis marker.
+/// Computes the page numbers a [GHPagination] should render, using `null` as an ellipsis marker.
 ///
-/// Mirrors the standard "sibling + boundary" collapsing algorithm used by
-/// most pagination components (e.g. MUI's `usePagination`): the sibling
-/// window is extended near either boundary so the total item count — and
-/// therefore the control's width — stays constant across positions.
+/// Mirrors the standard "sibling + boundary" collapsing algorithm used by most pagination components (e.g. MUI's `usePagination`): the sibling window is extended near either boundary so the total item count — and therefore the control's width — stays constant across positions.
 List<int?> paginationRange({required int current, required int total, required int siblingCount, required int boundaryCount}) {
   final totalVisible = boundaryCount * 2 + siblingCount * 2 + 3;
   if (total <= totalVisible) return List<int?>.generate(total, (i) => i + 1);
@@ -248,16 +233,14 @@ class _PageEllipsis extends StatelessWidget {
   const _PageEllipsis();
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 32,
-      height: 32,
-      child: Center(
-        child: Text(
-          '...',
-          style: context.textStyles.bodySmall.copyWith(fontWeight: FontWeight.w600, color: context.colors.onSurfaceVariant),
-        ),
+  Widget build(BuildContext context) => SizedBox(
+    width: 32,
+    height: 32,
+    child: Center(
+      child: Text(
+        '...',
+        style: context.textStyles.bodySmall.copyWith(fontWeight: FontWeight.w600, color: context.colors.onSurfaceVariant),
       ),
-    );
-  }
+    ),
+  );
 }

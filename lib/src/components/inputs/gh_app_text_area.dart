@@ -8,12 +8,9 @@ import 'package:ngh09_ui_kit/src/tokens/durations.dart';
 import 'package:ngh09_ui_kit/src/tokens/shadows.dart';
 import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 
-/// A themeable multi-line text input built on the Finesse UI Kit design
-/// tokens.
+/// A themeable multi-line text input built on the Finesse UI Kit design tokens.
 ///
-/// `GHAppTextArea` shares its anatomy and state colors with `GHAppTextField`
-/// (label above, helper/error/warning/success row below) but grows to fit
-/// [minLines]–[maxLines] of top-aligned content instead of a single line.
+/// `GHAppTextArea` shares its anatomy and state colors with `GHAppTextField` (label above, helper/error/warning/success row below) but grows to fit [minLines]–[maxLines] of top-aligned content instead of a single line.
 ///
 /// ```dart
 /// GHAppTextArea(
@@ -30,11 +27,9 @@ import 'package:ngh09_ui_kit/src/utils/context_extensions.dart';
 /// );
 /// ```
 ///
-/// The field is disabled when [enabled] is `false`, and read-only (visible
-/// but non-editable) when [readOnly] is `true`.
+/// The field is disabled when [enabled] is `false`, and read-only (visible but non-editable) when [readOnly] is `true`.
 class GHAppTextArea extends StatefulWidget {
-  /// Creates a multi-line text area, at least [minLines] tall (defaults to
-  /// 3) and growing up to [maxLines] (unbounded when `null`).
+  /// Creates a multi-line text area, at least [minLines] tall (defaults to 3) and growing up to [maxLines] (unbounded when `null`).
   const GHAppTextArea({
     this.controller,
     this.focusNode,
@@ -57,8 +52,7 @@ class GHAppTextArea extends StatefulWidget {
   /// Controls the field's text. When `null`, the field manages its own.
   final TextEditingController? controller;
 
-  /// The focus node backing the field. When `null`, the field creates and
-  /// owns one internally.
+  /// The focus node backing the field. When `null`, the field creates and owns one internally.
   final FocusNode? focusNode;
 
   /// Optional label shown above the field.
@@ -67,19 +61,16 @@ class GHAppTextArea extends StatefulWidget {
   /// Optional placeholder shown when the field is empty.
   final String? placeholder;
 
-  /// Optional helper/error/warning/success message shown below the field,
-  /// prefixed with a status icon matching [status].
+  /// Optional helper/error/warning/success message shown below the field, prefixed with a status icon matching [status].
   final String? helperText;
 
-  /// The feedback state, tinting the field and [helperText]. Defaults to
-  /// [GHAlertState.active] (neutral).
+  /// The feedback state, tinting the field and [helperText]. Defaults to [GHAlertState.active] (neutral).
   final GHAlertState status;
 
   /// The minimum number of visible text rows. Defaults to 3.
   final int minLines;
 
-  /// The maximum number of rows the field grows to before scrolling.
-  /// `null` (the default) lets it grow without bound.
+  /// The maximum number of rows the field grows to before scrolling. `null` (the default) lets it grow without bound.
   final int? maxLines;
 
   /// The keyboard type to display. Defaults to [TextInputType.multiline].
@@ -88,8 +79,7 @@ class GHAppTextArea extends StatefulWidget {
   /// The action button to show on the software keyboard.
   final TextInputAction? textInputAction;
 
-  /// Whether the field accepts input. When `false`, it renders in its
-  /// disabled state.
+  /// Whether the field accepts input. When `false`, it renders in its disabled state.
   final bool enabled;
 
   /// Whether the field's content is visible but non-editable ("View Only").
@@ -115,8 +105,7 @@ class _GHAppTextAreaState extends State<GHAppTextArea> {
 
   FocusNode get _focusNode => widget.focusNode ?? (_internalFocusNode ??= FocusNode());
 
-  // A field is "static" when it neither accepts input nor reacts to hover or
-  // focus — disabled and read-only share the same muted, fixed appearance.
+  // A field is "static" when it neither accepts input nor reacts to hover or focus — disabled and read-only share the same muted, fixed appearance.
   bool get _isStatic => !widget.enabled || widget.readOnly;
 
   @override

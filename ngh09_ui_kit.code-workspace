@@ -5,8 +5,8 @@
 			"path": "."
 		},
 		{
-			"name": "app",
-			"path": "app"
+			"name": "example_app",
+			"path": "example"
 		}
 	],
 	"settings": {}
